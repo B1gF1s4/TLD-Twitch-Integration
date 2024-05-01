@@ -1,10 +1,21 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <RootNamespace>TLD_Twitch_Integration</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ds5678.Modding.TLD.Il2CppAssemblies.Windows" Version="2.10.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="ModSettings">
+      <HintPath>..\..\..\Program Files (x86)\Steam\steamapps\common\TheLongDark\Mods\ModSettings.dll</HintPath>
+    </Reference>
+  </ItemGroup>
 
 </Project>
