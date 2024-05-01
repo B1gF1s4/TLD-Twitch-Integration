@@ -48,3 +48,16 @@ The channel using this mod needs to be at least affiliate with twitch, so custom
 
 To log out for example to connect a different twitch account go to the mods data folder /Mods/TLD_Twitch_Integration and delete the file login.json
 
+## Credits
+
+ChefMaria for banger ideas
+https://www.twitch.tv/chefmaria
+
+NeilsClark for art work
+https://www.youtube.com/@ProfNeils
+
+TLD Modding discord for general awesomeness
+https://discord.gg/nb2jQez
+
+DigitalZombie for a view super helpful pointers early on
+https://github.com/DigitalzombieTLD
