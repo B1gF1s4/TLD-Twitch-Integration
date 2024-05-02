@@ -17,19 +17,35 @@ The channel using this mod needs to be at least affiliate with twitch, so custom
 - TTI Sound: Hello
 
 ## Redeems
-- TTI will create all twitch redeems on initial load (game start)
-- if there is any naming conflicts with redeems TTI wants to create and redeems you already have, TTI will skip creation and retry on next load
-- TTI checks regularly and tries recreating redeems that are missing on twitch. deleting a TTI redeem in your twitch dashboard will trigger TTI to recreate its default.
-- all TTI created redeems can be editted in any way (including title, cost, color, icons and prompts).
-- changing the redeems enabled status in the twitch dashboard will be overwritten by availabilty setting in mod settings in game
-- if you uninstall TTI, but want to preserve your redeems on twitch and want to relink them at a later point, keep the file /TLD-Twitch-Integration/redeems.json from your Mods folder.
 
-- !!!! limitation: twitch allows for a maximum of 50 custom rewards (redeems) which includes both enabled and disabled redeems
+TTI will create all twitch redeems on initial load (game start)
 
-## How to install
-- install melon
-- install mod settings mod
+if there is any naming conflicts with redeems TTI wants to create and redeems you already have, TTI will skip creation and retry on next load
+
+TTI checks regularly and tries recreating redeems that are missing on twitch. deleting a TTI redeem in your twitch dashboard will trigger TTI to recreate its default.
+
+all TTI created redeems can be editted in any way (including title, cost, color, icons and prompts).
+
+changing the redeems enabled status in the twitch dashboard will be overwritten by availabilty setting in mod settings in game
+
+if you uninstall TTI, but want to preserve your redeems on twitch and want to relink them at a later point, keep the file /TLD-Twitch-Integration/redeems.json from your Mods folder.
+
+!!!! limitation: twitch allows for a maximum of 50 custom rewards (redeems) which includes both enabled and disabled redeems
+
+## Requirements
+- if you haven't done so already, install MelonLoader by downloading and running [MelonLoader.Installer.exe](https://github.com/HerpDerpinstine/MelonLoader/releases/latest/download/MelonLoader.Installer.exe)
+- download and place [ModSettings.dll](https://github.com/zeobviouslyfakeacc/ModSettings/releases) in your /Mods/ folder
 - install TTI
+
+## Install (Development Build)
+- go to twitch devloper console and create new application (clientId and clientSecret)
+- check out development branch
+- add CleintId and ClientSecret in AuthService.cs
+- build solution -> copy TLD-Twitch-Integration.dll to your Mods folder
+
+### Uninstall 
+- remove TLD-Twitch-Integration.dll from your /Mods/ folder
+- remove /Mods/TLD_Twitch_Integration/ and everything in it (preserve redeems.json if you wish to keep your redeem settings for later)
 
 ## Getting started
 - start the game
@@ -38,26 +54,16 @@ The channel using this mod needs to be at least affiliate with twitch, so custom
 - go to twitch and configure redeem appearence, cost and alerts
 - go live and have fun
 
-## Development build
-- go to twitch devloper console and create new application (clientId and clientSecret)
-- check out development branch
-- add CleintId and ClientSecret in AuthService.cs
-- build solution -> copy TLD-Twitch-Integration.dll to your Mods folder
-
 ## Logging out
 
 To log out for example to connect a different twitch account go to the mods data folder /Mods/TLD_Twitch_Integration and delete the file login.json
 
 ## Credits
 
-ChefMaria for banger ideas
-https://www.twitch.tv/chefmaria
+[ChefMaria](https://www.twitch.tv/chefmaria) for banger ideas
 
-NeilsClark for art work
-https://www.youtube.com/@ProfNeils
+[NeilsClark](https://www.youtube.com/@ProfNeils) for art work
 
-TLD Modding discord for general awesomeness
-https://discord.gg/nb2jQez
+[TLD Modding discord](https://discord.gg/nb2jQez) for general awesomeness
 
-DigitalZombie for a view super helpful pointers early on
-https://github.com/DigitalzombieTLD
+[DigitalZombie](https://github.com/DigitalzombieTLD) for a view super helpful pointers early on
