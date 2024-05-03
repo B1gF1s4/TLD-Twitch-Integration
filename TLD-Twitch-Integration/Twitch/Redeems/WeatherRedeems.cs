@@ -10,7 +10,8 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 			Prompt = "Changes the ingame weather to blizzard",
 			Cost = 1,
 			Color = RedeemColors.WEATHER,
-			IsEnabled = false
+			IsEnabled = false,
+			IsUserInputRequired = false,
 		};
 
 		public static CustomReward Clear = new()
@@ -19,7 +20,8 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 			Prompt = "Changes the ingame weather to clear",
 			Cost = 1,
 			Color = RedeemColors.WEATHER,
-			IsEnabled = false
+			IsEnabled = false,
+			IsUserInputRequired = false,
 		};
 
 		public static CustomReward LightFog = new()
@@ -28,7 +30,8 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 			Prompt = "Changes the ingame weather to light fog",
 			Cost = 1,
 			Color = RedeemColors.WEATHER,
-			IsEnabled = false
+			IsEnabled = false,
+			IsUserInputRequired = false,
 		};
 
 		public static CustomReward DenseFog = new()
@@ -37,7 +40,8 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 			Prompt = "Changes the ingame weather to dense fog",
 			Cost = 1,
 			Color = RedeemColors.WEATHER,
-			IsEnabled = false
+			IsEnabled = false,
+			IsUserInputRequired = false,
 		};
 
 		public static CustomReward PartlyCloudy = new()
@@ -46,7 +50,8 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 			Prompt = "Changes the ingame weather to partly cloudy",
 			Cost = 1,
 			Color = RedeemColors.WEATHER,
-			IsEnabled = false
+			IsEnabled = false,
+			IsUserInputRequired = false,
 		};
 
 		public static CustomReward Cloudy = new()
@@ -55,7 +60,8 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 			Prompt = "Changes the ingame weather to cloudy",
 			Cost = 1,
 			Color = RedeemColors.WEATHER,
-			IsEnabled = false
+			IsEnabled = false,
+			IsUserInputRequired = false,
 		};
 
 		public static CustomReward LightSnow = new()
@@ -64,7 +70,8 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 			Prompt = "Changes the ingame weather to light snow",
 			Cost = 1,
 			Color = RedeemColors.WEATHER,
-			IsEnabled = false
+			IsEnabled = false,
+			IsUserInputRequired = false,
 		};
 
 		public static CustomReward HeavySnow = new()
@@ -73,7 +80,8 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 			Prompt = "Changes the ingame weather to heavy snow",
 			Cost = 1,
 			Color = RedeemColors.WEATHER,
-			IsEnabled = false
+			IsEnabled = false,
+			IsUserInputRequired = false,
 		};
 	}
 }

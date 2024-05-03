@@ -19,7 +19,8 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 			Prompt = "Plays the FATIGUEYAWN player sound",
 			Cost = 1,
 			Color = RedeemColors.SOUND,
-			IsEnabled = false
+			IsEnabled = false,
+			IsUserInputRequired = false,
 		};
 
 		public static CustomReward Happy420 = new()
@@ -28,7 +29,8 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 			Prompt = "Plays the SUFFOCATIONCOUGH player sound",
 			Cost = 1,
 			Color = RedeemColors.SOUND,
-			IsEnabled = false
+			IsEnabled = false,
+			IsUserInputRequired = false,
 		};
 
 		public static CustomReward Hydrate = new()
@@ -37,7 +39,8 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 			Prompt = "Plays the VERYTHIRSTY player sound",
 			Cost = 1,
 			Color = RedeemColors.SOUND,
-			IsEnabled = false
+			IsEnabled = false,
+			IsUserInputRequired = false,
 		};
 	}
 }

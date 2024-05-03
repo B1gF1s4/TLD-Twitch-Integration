@@ -21,5 +21,8 @@ namespace TLD_Twitch_Integration.Twitch.Models
 
 		[JsonPropertyName("prompt")]
 		public string? Prompt { get; set; }
+
+		[JsonPropertyName("is_user_input_required")]
+		public bool IsUserInputRequired { get; set; }
 	}
 }

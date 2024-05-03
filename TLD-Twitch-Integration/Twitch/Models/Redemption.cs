@@ -18,5 +18,8 @@ namespace TLD_Twitch_Integration.Twitch.Models
 
 		[JsonPropertyName("user_name")]
 		public string? UserName { get; set; }
+
+		[JsonPropertyName("user_input")]
+		public string? UserInput { get; set; }
 	}
 }

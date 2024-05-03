@@ -86,6 +86,16 @@ namespace TLD_Twitch_Integration
 			GameManager.GetPlayerVoiceComponent()?.Play(soundsRessourceName, ignoreDelay);
 		}
 
+		public static void PlayPlayerSound(string sound)
+		{
+			var ignoreDelay = (Il2CppVoice.Priority)PlayerVoice.Options.IgnoreNonCriticalDelay;
+
+			if (string.IsNullOrEmpty(sound))
+				return;
+
+			GameManager.GetPlayerVoiceComponent()?.Play(sound, ignoreDelay);
+		}
+
 		public static void HandleAffliction(string type)
 		{
 			// TODO: needs fixing!
