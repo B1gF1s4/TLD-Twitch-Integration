@@ -2,6 +2,8 @@
 {
 	public static class RedeemNames
 	{
+		public const string SOUND = "TTI Dev: Sound Check";
+
 		public const string WEATHER_BLIZZARD = "TTI: Blizzard";
 		public const string WEATHER_CLEAR = "TTI: Clear";
 		public const string WEATHER_LIGHT_FOG = "TTI: Light Fog";

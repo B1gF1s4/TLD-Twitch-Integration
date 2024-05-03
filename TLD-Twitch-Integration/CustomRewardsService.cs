@@ -242,6 +242,13 @@ namespace TLD_Twitch_Integration
 					RedeemNames.WEATHER_HEAVY_SNOW);
 
 				await UpdateCustomReward(
+					Settings.Redeems.GetIdByRedeemName(RedeemNames.SOUND),
+					Settings.ModSettings.Enabled &&
+					Settings.ModSettings.AllowSoundRedeems &&
+					Settings.ModSettings.AllowDevSoundCheck,
+					RedeemNames.SOUND);
+
+				await UpdateCustomReward(
 					Settings.Redeems.GetIdByRedeemName(RedeemNames.SOUND_HELLO),
 					Settings.ModSettings.Enabled &&
 					Settings.ModSettings.AllowSoundRedeems &&

@@ -21,6 +21,8 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 			{ RedeemNames.SOUND_420, SoundRedeems.Happy420 },
 			{ RedeemNames.SOUND_GOOD_NIGHT, SoundRedeems.GoodNight },
 			{ RedeemNames.SOUND_HYDRATE, SoundRedeems.Hydrate },
+
+			{ RedeemNames.SOUND, SoundRedeems.DevSound }
 		};
 
 		public static CustomReward GetRedeemDefault(string redeemName)

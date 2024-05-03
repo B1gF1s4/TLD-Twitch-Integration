@@ -80,6 +80,10 @@ namespace TLD_Twitch_Integration
 		[Description("Enable or disable all sound redeems")]
 		public bool AllowSoundRedeems = false;
 
+		[Name("Allow Dev Sound Check")]
+		[Description($"Enable or disable the {RedeemNames.SOUND} redeem")]
+		public bool AllowDevSoundCheck = false;
+
 		[Name("Allow Hello")]
 		[Description($"Enable or disable the {RedeemNames.SOUND_HELLO} redeem")]
 		public bool AllowSoundHello = false;
@@ -144,6 +148,7 @@ namespace TLD_Twitch_Integration
 		private void RefreshSoundFields()
 		{
 			var allow = AllowSoundRedeems && Enabled;
+			SetFieldVisible(nameof(AllowDevSoundCheck), allow);
 			SetFieldVisible(nameof(AllowSoundHello), allow);
 			SetFieldVisible(nameof(AllowSound420), allow);
 			SetFieldVisible(nameof(AllowSoundGoodNight), allow);

@@ -68,16 +68,16 @@ namespace TLD_Twitch_Integration
 		private static void ExecuteRedeem(Redemption redeem)
 		{
 
-			var title = Settings.Redeems.GetRedeemNameById(redeem.CustomReward?.Id!);
+			var defaultTitle = Settings.Redeems.GetRedeemNameById(redeem.CustomReward?.Id!);
 
-			if (string.IsNullOrEmpty(title))
+			if (string.IsNullOrEmpty(defaultTitle))
 				return;
 
 			if (Settings.ModSettings.ShowAlert)
 				HUDMessage.AddMessage($"{redeem.UserName} redeemed {redeem.CustomReward?.Title}",
 					_interval - 1, true, true);
 
-			switch (title)
+			switch (defaultTitle)
 			{
 				case RedeemNames.WEATHER_BLIZZARD:
 				case RedeemNames.WEATHER_CLEAR:
@@ -87,15 +87,18 @@ namespace TLD_Twitch_Integration
 				case RedeemNames.WEATHER_CLOUDY:
 				case RedeemNames.WEATHER_LIGHT_SNOW:
 				case RedeemNames.WEATHER_HEAVY_SNOW:
-					var weatherStage = GetWeatherFromRedeemName(title);
+					var weatherStage = GetWeatherFromRedeemName(defaultTitle);
 					GameService.ChangeWeather(weatherStage);
 					break;
 				case RedeemNames.SOUND_HELLO:
 				case RedeemNames.SOUND_GOOD_NIGHT:
 				case RedeemNames.SOUND_420:
 				case RedeemNames.SOUND_HYDRATE:
-					var sound = GetSoundFromRedeemName(title);
+					var sound = GetSoundFromRedeemName(defaultTitle);
 					GameService.PlayPlayerSound(sound);
+					break;
+				case RedeemNames.SOUND:
+					GameService.PlayPlayerSound(redeem.UserInput!);
 					break;
 				default:
 					break;

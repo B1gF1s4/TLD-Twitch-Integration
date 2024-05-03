@@ -31,6 +31,9 @@ namespace TLD_Twitch_Integration
 		[Name(RedeemNames.WEATHER_HEAVY_SNOW)]
 		public string WeatherHeavySnow = "";
 
+		[Name(RedeemNames.SOUND)]
+		public string DevSoundCheck = "";
+
 		[Name(RedeemNames.SOUND_HELLO)]
 		public string SoundHello = "";
 

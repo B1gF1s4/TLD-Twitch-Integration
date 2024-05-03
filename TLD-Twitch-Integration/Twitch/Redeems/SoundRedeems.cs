@@ -4,13 +4,24 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 {
 	public static class SoundRedeems
 	{
+		public static CustomReward DevSound = new()
+		{
+			Title = RedeemNames.SOUND,
+			Prompt = "Plays the sound ressource from input.",
+			Cost = 1,
+			Color = RedeemColors.SOUND,
+			IsEnabled = false,
+			IsUserInputRequired = true,
+		};
+
 		public static CustomReward Hello = new()
 		{
 			Title = RedeemNames.SOUND_HELLO,
 			Prompt = "Plays the TODDAWN player sound",
 			Cost = 1,
 			Color = RedeemColors.SOUND,
-			IsEnabled = false
+			IsEnabled = false,
+			IsUserInputRequired = false,
 		};
 
 		public static CustomReward GoodNight = new()
