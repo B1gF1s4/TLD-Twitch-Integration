@@ -297,6 +297,9 @@ namespace TLD_Twitch_Integration.Twitch
 						throw new CustomRewardNotManageableException(customRewardName);
 				}
 
+				if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+					throw new InvalidTokenException();
+
 				throw new UnhandledErrorResponseException(response.StatusCode, responseContent);
 			}
 
@@ -329,6 +332,9 @@ namespace TLD_Twitch_Integration.Twitch
 
 			if (!response.IsSuccessStatusCode)
 			{
+				if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+					throw new InvalidTokenException();
+
 				throw new UnhandledErrorResponseException(response.StatusCode, responseContent);
 			}
 		}
