@@ -38,9 +38,9 @@ if you uninstall TTI, but want to preserve your redeems on twitch and want to re
 - install TTI
 
 ## Install (Development Build)
-- go to twitch devloper console and create new application (clientId and clientSecret)
+- go to twitch devloper console and [register new application](https://dev.twitch.tv/docs/authentication/register-app/)
 - check out development branch
-- add CleintId and ClientSecret in AuthService.cs
+- edit CleintId and ClientSecret properties in TLD-Twitch-Integration/AuthService.cs
 - build solution -> copy TLD-Twitch-Integration.dll to your Mods folder
 
 ### Uninstall 
