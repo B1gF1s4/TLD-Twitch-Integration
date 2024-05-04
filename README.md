@@ -52,7 +52,7 @@ changing the redeems enabled status in the twitch dashboard will be overwritten 
 
 if you uninstall TTI, but want to preserve your redeems on twitch and want to relink them at a later point, keep the file /TLD-Twitch-Integration/redeems.json from your Mods folder.
 
-!!!! limitation: twitch allows for a maximum of 50 custom rewards (redeems) which includes both enabled and disabled redeems
+*limitation: twitch allows for a maximum of 50 custom rewards (redeems) which includes both enabled and disabled*
 
 ## Requirements
 - if you haven't done so already, install MelonLoader by downloading and running [MelonLoader.Installer.exe](https://github.com/HerpDerpinstine/MelonLoader/releases/latest/download/MelonLoader.Installer.exe)
@@ -82,10 +82,10 @@ To log out for example to connect a different twitch account go to the mods data
 
 ## Credits
 
-[ChefMaria](https://www.twitch.tv/chefmaria) for banger ideas
+[ChefMaria](https://www.twitch.tv/chefmaria) banger ideas
 
-[NeilsClark](https://www.youtube.com/@ProfNeils) for art work
+[NeilsClark](https://www.youtube.com/@ProfNeils) art work
 
-[TLD Modding discord](https://discord.gg/nb2jQez) for general awesomeness
+[TLD Modding discord](https://discord.gg/nb2jQez) general awesomeness
 
-[DigitalZombie](https://github.com/DigitalzombieTLD) for a view super helpful pointers early on
+[DigitalZombie](https://github.com/DigitalzombieTLD) super helpful pointers
