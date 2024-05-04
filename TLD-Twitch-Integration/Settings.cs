@@ -126,6 +126,48 @@ namespace TLD_Twitch_Integration
 		[Description($"Enable or disable the {RedeemNames.SOUND_HYDRATE} redeem")]
 		public bool AllowSoundHydrate = false;
 
+		[Section("Harmful Status Redeems")]
+		[Name("Allow Harmful Status Redeems")]
+		[Description("Enable or disable all harmful status redeems")]
+		public bool AllowHarmfulStatus = false;
+
+		[Name("Allow Hungry")]
+		[Description($"Enable or disable the {RedeemNames.STATUS_HUNGRY} redeem")]
+		public bool AllowStatusHungry = false;
+
+		[Name("Allow Thirsty")]
+		[Description($"Enable or disable the {RedeemNames.STATUS_THIRSTY} redeem")]
+		public bool AllowStatusThirsty = false;
+
+		[Name("Allow Tired")]
+		[Description($"Enable or disable the {RedeemNames.STATUS_TIRED} redeem")]
+		public bool AllowStatusTired = false;
+
+		[Name("Allow Freezing")]
+		[Description($"Enable or disable the {RedeemNames.STATUS_FREEZING} redeem")]
+		public bool AllowStatusFreezing = false;
+
+		[Section("Helpful Status Redeems")]
+		[Name("Allow Helpful Status Redeems")]
+		[Description("Enable or disable all helpful status redeems")]
+		public bool AllowHelpfulStatus = false;
+
+		[Name("Allow Full")]
+		[Description($"Enable or disable the {RedeemNames.STATUS_FULL} redeem")]
+		public bool AllowStatusFull = false;
+
+		[Name("Allow Not Thirsty")]
+		[Description($"Enable or disable the {RedeemNames.STATUS_NOT_THIRSTY} redeem")]
+		public bool AllowStatusNotThirsty = false;
+
+		[Name("Allow Awake")]
+		[Description($"Enable or disable the {RedeemNames.STATUS_AWAKE} redeem")]
+		public bool AllowStatusAwake = false;
+
+		[Name("Allow Warm")]
+		[Description($"Enable or disable the {RedeemNames.STATUS_WARM} redeem")]
+		public bool AllowStatusWarm = false;
+
 		public ModSettings() : base(Path.Combine(Mod.BaseDirectory, "user-settings"))
 		{
 			RefreshAllFields();
@@ -150,6 +192,12 @@ namespace TLD_Twitch_Integration
 
 			if (field.Name == nameof(AllowSoundRedeems))
 				RefreshSoundFields();
+
+			if (field.Name == nameof(AllowHelpfulStatus))
+				RefreshHelpfulStatusFields();
+
+			if (field.Name == nameof(AllowHarmfulStatus))
+				RefreshHarmfulStatusFields();
 		}
 
 		public void RefreshAllFields()
@@ -161,6 +209,8 @@ namespace TLD_Twitch_Integration
 			RefreshAnimalFields();
 			RefreshWeatherFields();
 			RefreshSoundFields();
+			RefreshHelpfulStatusFields();
+			RefreshHarmfulStatusFields();
 		}
 
 		private void RefreshAnimalFields()
@@ -194,6 +244,24 @@ namespace TLD_Twitch_Integration
 			SetFieldVisible(nameof(AllowSound420), allow);
 			SetFieldVisible(nameof(AllowSoundGoodNight), allow);
 			SetFieldVisible(nameof(AllowSoundHydrate), allow);
+		}
+
+		private void RefreshHelpfulStatusFields()
+		{
+			var allow = AllowHelpfulStatus && Enabled;
+			SetFieldVisible(nameof(AllowStatusFull), allow);
+			SetFieldVisible(nameof(AllowStatusNotThirsty), allow);
+			SetFieldVisible(nameof(AllowStatusAwake), allow);
+			SetFieldVisible(nameof(AllowStatusWarm), allow);
+		}
+
+		private void RefreshHarmfulStatusFields()
+		{
+			var allow = AllowHarmfulStatus && Enabled;
+			SetFieldVisible(nameof(AllowStatusHungry), allow);
+			SetFieldVisible(nameof(AllowStatusThirsty), allow);
+			SetFieldVisible(nameof(AllowStatusTired), allow);
+			SetFieldVisible(nameof(AllowStatusFreezing), allow);
 		}
 	}
 

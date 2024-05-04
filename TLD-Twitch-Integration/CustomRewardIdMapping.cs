@@ -61,6 +61,30 @@ namespace TLD_Twitch_Integration
 		[Name(RedeemNames.SOUND_HYDRATE)]
 		public string SoundHydrate = "";
 
+		[Name(RedeemNames.STATUS_HUNGRY)]
+		public string StatusHungry = "";
+
+		[Name(RedeemNames.STATUS_THIRSTY)]
+		public string StatusThirsty = "";
+
+		[Name(RedeemNames.STATUS_TIRED)]
+		public string StatusTired = "";
+
+		[Name(RedeemNames.STATUS_FREEZING)]
+		public string StatusFreezing = "";
+
+		[Name(RedeemNames.STATUS_FULL)]
+		public string StatusFull = "";
+
+		[Name(RedeemNames.STATUS_NOT_THIRSTY)]
+		public string StatusNotThirsty = "";
+
+		[Name(RedeemNames.STATUS_AWAKE)]
+		public string StatusAwake = "";
+
+		[Name(RedeemNames.STATUS_WARM)]
+		public string StatusWarm = "";
+
 		public CustomRewardIdMapping() : base(Path.Combine(Mod.BaseDirectory, "redeems"))
 		{ }
 

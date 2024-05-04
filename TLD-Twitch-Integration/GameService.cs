@@ -77,6 +77,32 @@ namespace TLD_Twitch_Integration
 			}
 		}
 
+		public static bool IsInShelter()
+		{
+			return GameManager.GetSnowShelterManager().PlayerInShelter();
+		}
+
+		public static bool IsInBuilding()
+		{
+			if (GameManager.GetWeatherComponent().IsIndoorScene())
+			{
+				return true;
+			}
+			else if (GameManager.GetWeatherComponent().IsIndoorEnvironment())
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+
+		public static bool IsInCar()
+		{
+			return GameManager.GetPlayerInVehicle().IsInside();
+		}
+
 		public static void ChangeWeather(WeatherStage stage)
 		{
 			GameManager.GetWeatherTransitionComponent()?.ForceUnmanagedWeatherStage(stage, 10f);

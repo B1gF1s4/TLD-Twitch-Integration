@@ -13,6 +13,9 @@ namespace TLD_Twitch_Integration.Patches
 			if (SpawningAnimal)
 				return;
 
+			if (IsInBuilding())
+				return;
+
 			switch (AnimalToSpawn)
 			{
 				case AnimalRedeemType.TWolves:

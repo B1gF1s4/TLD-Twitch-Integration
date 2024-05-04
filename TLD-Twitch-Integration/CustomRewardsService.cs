@@ -97,8 +97,6 @@ namespace TLD_Twitch_Integration
 				Melon<Mod>.Logger.Msg($"finished creating redeems. saving IDs.");
 				Settings.Redeems.Save();
 			}
-
-			await SyncCustomRewardsWithSettings();
 		}
 
 		private static async Task CheckForDeletedCustomRewards()
@@ -173,7 +171,7 @@ namespace TLD_Twitch_Integration
 			{
 				Melon<Mod>.Logger.Msg($"finished recreating redeems. saving IDs.");
 				Settings.Redeems.Save();
-				await SyncCustomRewardsWithSettings();
+				SyncRequired = true;
 			}
 		}
 
@@ -309,6 +307,62 @@ namespace TLD_Twitch_Integration
 					Settings.ModSettings.AllowSoundRedeems &&
 					Settings.ModSettings.AllowSoundHydrate,
 					RedeemNames.SOUND_HYDRATE);
+
+				await UpdateCustomReward(
+					Settings.Redeems.GetIdByRedeemName(RedeemNames.STATUS_HUNGRY),
+					Settings.ModSettings.Enabled &&
+					Settings.ModSettings.AllowHarmfulStatus &&
+					Settings.ModSettings.AllowStatusHungry,
+					RedeemNames.STATUS_HUNGRY);
+
+				await UpdateCustomReward(
+					Settings.Redeems.GetIdByRedeemName(RedeemNames.STATUS_THIRSTY),
+					Settings.ModSettings.Enabled &&
+					Settings.ModSettings.AllowHarmfulStatus &&
+					Settings.ModSettings.AllowStatusThirsty,
+					RedeemNames.STATUS_THIRSTY);
+
+				await UpdateCustomReward(
+					Settings.Redeems.GetIdByRedeemName(RedeemNames.STATUS_TIRED),
+					Settings.ModSettings.Enabled &&
+					Settings.ModSettings.AllowHarmfulStatus &&
+					Settings.ModSettings.AllowStatusTired,
+					RedeemNames.STATUS_TIRED);
+
+				await UpdateCustomReward(
+					Settings.Redeems.GetIdByRedeemName(RedeemNames.STATUS_FREEZING),
+					Settings.ModSettings.Enabled &&
+					Settings.ModSettings.AllowHarmfulStatus &&
+					Settings.ModSettings.AllowStatusFreezing,
+					RedeemNames.STATUS_FREEZING);
+
+				await UpdateCustomReward(
+					Settings.Redeems.GetIdByRedeemName(RedeemNames.STATUS_FULL),
+					Settings.ModSettings.Enabled &&
+					Settings.ModSettings.AllowHelpfulStatus &&
+					Settings.ModSettings.AllowStatusFull,
+					RedeemNames.STATUS_FULL);
+
+				await UpdateCustomReward(
+					Settings.Redeems.GetIdByRedeemName(RedeemNames.STATUS_NOT_THIRSTY),
+					Settings.ModSettings.Enabled &&
+					Settings.ModSettings.AllowHelpfulStatus &&
+					Settings.ModSettings.AllowStatusNotThirsty,
+					RedeemNames.STATUS_NOT_THIRSTY);
+
+				await UpdateCustomReward(
+					Settings.Redeems.GetIdByRedeemName(RedeemNames.STATUS_AWAKE),
+					Settings.ModSettings.Enabled &&
+					Settings.ModSettings.AllowHelpfulStatus &&
+					Settings.ModSettings.AllowStatusAwake,
+					RedeemNames.STATUS_AWAKE);
+
+				await UpdateCustomReward(
+					Settings.Redeems.GetIdByRedeemName(RedeemNames.STATUS_WARM),
+					Settings.ModSettings.Enabled &&
+					Settings.ModSettings.AllowHelpfulStatus &&
+					Settings.ModSettings.AllowStatusWarm,
+					RedeemNames.STATUS_WARM);
 			}
 			catch (InvalidTokenException)
 			{

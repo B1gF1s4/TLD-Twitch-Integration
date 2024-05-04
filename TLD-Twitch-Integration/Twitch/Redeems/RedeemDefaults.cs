@@ -29,6 +29,16 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 			{ RedeemNames.ANIMAL_MOOSE, AnimalRedeems.Moose },
 			{ RedeemNames.ANIMAL_STALKING_WOLF, AnimalRedeems.StalkingWolf },
 			{ RedeemNames.ANIMAL_BUNNY_EXPLOSION, AnimalRedeems.BunnyExplosion },
+
+			{ RedeemNames.STATUS_HUNGRY, StatusRedeems.Hungry },
+			{ RedeemNames.STATUS_THIRSTY, StatusRedeems.Thirsty },
+			{ RedeemNames.STATUS_TIRED, StatusRedeems.Tired },
+			{ RedeemNames.STATUS_FREEZING, StatusRedeems.Freezing },
+
+			{ RedeemNames.STATUS_FULL, StatusRedeems.Full },
+			{ RedeemNames.STATUS_NOT_THIRSTY, StatusRedeems.NotThirsty },
+			{ RedeemNames.STATUS_AWAKE, StatusRedeems.Awake },
+			{ RedeemNames.STATUS_WARM, StatusRedeems.Warm },
 		};
 
 		public static CustomReward GetRedeemDefault(string redeemName)

@@ -50,7 +50,13 @@ namespace TLD_Twitch_Integration
 			if (redeem == null)
 				return;
 
-			ExecuteRedeem(redeem);
+			var executed = ExecuteRedeem(redeem);
+			if (!executed)
+				return;
+
+			if (Settings.ModSettings.ShowAlert)
+				HUDMessage.AddMessage($"{redeem.UserName} redeemed {redeem.CustomReward?.Title}",
+					_interval - 1, true, true);
 
 			try
 			{
@@ -68,17 +74,13 @@ namespace TLD_Twitch_Integration
 			}
 		}
 
-		private static void ExecuteRedeem(Redemption redeem)
+		private static bool ExecuteRedeem(Redemption redeem)
 		{
 
 			var defaultTitle = Settings.Redeems.GetRedeemNameById(redeem.CustomReward?.Id!);
 
 			if (string.IsNullOrEmpty(defaultTitle))
-				return;
-
-			if (Settings.ModSettings.ShowAlert)
-				HUDMessage.AddMessage($"{redeem.UserName} redeemed {redeem.CustomReward?.Title}",
-					_interval - 1, true, true);
+				return false;
 
 			switch (defaultTitle)
 			{
@@ -91,36 +93,72 @@ namespace TLD_Twitch_Integration
 				case RedeemNames.WEATHER_LIGHT_SNOW:
 				case RedeemNames.WEATHER_HEAVY_SNOW:
 					var weatherStage = GetWeatherFromRedeemName(defaultTitle);
-					GameService.ChangeWeather(weatherStage);
+					ChangeWeather(weatherStage);
 					break;
 				case RedeemNames.SOUND_HELLO:
 				case RedeemNames.SOUND_GOOD_NIGHT:
 				case RedeemNames.SOUND_420:
 				case RedeemNames.SOUND_HYDRATE:
 					var sound = GetSoundFromRedeemName(defaultTitle);
-					GameService.PlayPlayerSound(sound);
+					PlayPlayerSound(sound);
 					break;
 				case RedeemNames.SOUND:
-					GameService.PlayPlayerSound(redeem.UserInput!);
+					PlayPlayerSound(redeem.UserInput!);
 					break;
 				case RedeemNames.ANIMAL_T_WOLVES:
-					GameService.AnimalToSpawn = AnimalRedeemType.TWolves;
+					if (IsInBuilding())
+						return false;
+					AnimalToSpawn = AnimalRedeemType.TWolves;
 					break;
 				case RedeemNames.ANIMAL_BEAR:
-					GameService.AnimalToSpawn = AnimalRedeemType.Bear;
+					if (IsInBuilding())
+						return false;
+					AnimalToSpawn = AnimalRedeemType.Bear;
 					break;
 				case RedeemNames.ANIMAL_MOOSE:
-					GameService.AnimalToSpawn = AnimalRedeemType.Moose;
+					if (IsInBuilding())
+						return false;
+					AnimalToSpawn = AnimalRedeemType.Moose;
 					break;
 				case RedeemNames.ANIMAL_STALKING_WOLF:
-					GameService.AnimalToSpawn = AnimalRedeemType.StalkingWolf;
+					if (IsInBuilding())
+						return false;
+					AnimalToSpawn = AnimalRedeemType.StalkingWolf;
 					break;
 				case RedeemNames.ANIMAL_BUNNY_EXPLOSION:
-					GameService.AnimalToSpawn = AnimalRedeemType.BunnyExplosion;
+					if (IsInBuilding())
+						return false;
+					AnimalToSpawn = AnimalRedeemType.BunnyExplosion;
+					break;
+				case RedeemNames.STATUS_HUNGRY:
+					ChangeMeter(MeterType.Hunger, false);
+					break;
+				case RedeemNames.STATUS_THIRSTY:
+					ChangeMeter(MeterType.Thirst, false);
+					break;
+				case RedeemNames.STATUS_TIRED:
+					ChangeMeter(MeterType.Fatigue, false);
+					break;
+				case RedeemNames.STATUS_FREEZING:
+					ChangeMeter(MeterType.Cold, false);
+					break;
+				case RedeemNames.STATUS_FULL:
+					ChangeMeter(MeterType.Hunger, true);
+					break;
+				case RedeemNames.STATUS_NOT_THIRSTY:
+					ChangeMeter(MeterType.Thirst, true);
+					break;
+				case RedeemNames.STATUS_AWAKE:
+					ChangeMeter(MeterType.Fatigue, true);
+					break;
+				case RedeemNames.STATUS_WARM:
+					ChangeMeter(MeterType.Cold, true);
 					break;
 				default:
 					break;
 			}
+
+			return true;
 		}
 
 		private static WeatherStage GetWeatherFromRedeemName(string title)
@@ -130,14 +168,14 @@ namespace TLD_Twitch_Integration
 			return (WeatherStage)stage;
 		}
 
-		private static GameService.Sound GetSoundFromRedeemName(string title)
+		private static Sound GetSoundFromRedeemName(string title)
 		{
 			return title switch
 			{
-				RedeemNames.SOUND_HELLO => GameService.Sound.Hello,
-				RedeemNames.SOUND_GOOD_NIGHT => GameService.Sound.GoodNight,
-				RedeemNames.SOUND_420 => GameService.Sound.Happy420,
-				RedeemNames.SOUND_HYDRATE => GameService.Sound.Hydrate,
+				RedeemNames.SOUND_HELLO => Sound.Hello,
+				RedeemNames.SOUND_GOOD_NIGHT => Sound.GoodNight,
+				RedeemNames.SOUND_420 => Sound.Happy420,
+				RedeemNames.SOUND_HYDRATE => Sound.Hydrate,
 				_ => throw new InvalidOperationException(),
 			};
 		}
