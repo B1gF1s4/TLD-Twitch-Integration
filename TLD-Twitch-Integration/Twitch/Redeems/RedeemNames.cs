@@ -4,6 +4,12 @@
 	{
 		public const string SOUND = "TTI Dev: Sound Check";
 
+		public const string ANIMAL_T_WOLVES = "TTI: Timberwolves";
+		public const string ANIMAL_BEAR = "TTI: Bear";
+		public const string ANIMAL_MOOSE = "TTI: Moose";
+		public const string ANIMAL_STALKING_WOLF = "TTI: Stalking Wolf";
+		public const string ANIMAL_BUNNY_EXPLOSION = "TTI: Bunny Explosion";
+
 		public const string WEATHER_BLIZZARD = "TTI: Blizzard";
 		public const string WEATHER_CLEAR = "TTI: Clear";
 		public const string WEATHER_LIGHT_FOG = "TTI: Light Fog";

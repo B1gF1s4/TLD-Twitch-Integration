@@ -4,6 +4,7 @@ using TLD_Twitch_Integration.Exceptions;
 using TLD_Twitch_Integration.Twitch;
 using TLD_Twitch_Integration.Twitch.Models;
 using TLD_Twitch_Integration.Twitch.Redeems;
+using static TLD_Twitch_Integration.GameService;
 
 namespace TLD_Twitch_Integration
 {
@@ -24,7 +25,9 @@ namespace TLD_Twitch_Integration
 				return;
 
 			if (string.IsNullOrEmpty(GameManager.m_ActiveScene) ||
-				GameManager.m_ActiveScene == "MainMenu")
+				GameManager.m_ActiveScene == "MainMenu" ||
+				GameManager.m_ActiveScene == "Boot" ||
+				GameManager.m_ActiveScene == "Empty")
 				return;
 
 			if (GameManager.m_IsPaused)
@@ -99,6 +102,21 @@ namespace TLD_Twitch_Integration
 					break;
 				case RedeemNames.SOUND:
 					GameService.PlayPlayerSound(redeem.UserInput!);
+					break;
+				case RedeemNames.ANIMAL_T_WOLVES:
+					GameService.AnimalToSpawn = AnimalRedeemType.TWolves;
+					break;
+				case RedeemNames.ANIMAL_BEAR:
+					GameService.AnimalToSpawn = AnimalRedeemType.Bear;
+					break;
+				case RedeemNames.ANIMAL_MOOSE:
+					GameService.AnimalToSpawn = AnimalRedeemType.Moose;
+					break;
+				case RedeemNames.ANIMAL_STALKING_WOLF:
+					GameService.AnimalToSpawn = AnimalRedeemType.StalkingWolf;
+					break;
+				case RedeemNames.ANIMAL_BUNNY_EXPLOSION:
+					GameService.AnimalToSpawn = AnimalRedeemType.BunnyExplosion;
 					break;
 				default:
 					break;

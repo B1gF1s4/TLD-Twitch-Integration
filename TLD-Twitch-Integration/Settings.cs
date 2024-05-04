@@ -30,6 +30,7 @@ namespace TLD_Twitch_Integration
 
 	public class ModSettings : JsonModSettings
 	{
+		[Section("General")]
 		[Name("Enabled")]
 		[Description("Enable or disable all TTI functionality")]
 		public bool Enabled = true;
@@ -37,6 +38,31 @@ namespace TLD_Twitch_Integration
 		[Name("Display Redeem Alert")]
 		[Description("Enable or disable the redeem alert UI component")]
 		public bool ShowAlert = true;
+
+		[Section("Animal Redeems")]
+		[Name("Allow Animal Redeems")]
+		[Description($"Enable or disable all animal redeems")]
+		public bool AllowAnimalRedeems = false;
+
+		[Name("Allow T-Wolves")]
+		[Description($"Enable or disable the {RedeemNames.ANIMAL_T_WOLVES} redeem")]
+		public bool AllowTWolves = false;
+
+		[Name("Allow Bear")]
+		[Description($"Enable or disable the {RedeemNames.ANIMAL_BEAR} redeem")]
+		public bool AllowBear = false;
+
+		[Name("Allow Moose")]
+		[Description($"Enable or disable the {RedeemNames.ANIMAL_MOOSE} redeem")]
+		public bool AllowMoose = false;
+
+		[Name("Allow Stalking Wolf")]
+		[Description($"Enable or disable the {RedeemNames.ANIMAL_STALKING_WOLF} redeem")]
+		public bool AllowStalkingWolf = false;
+
+		[Name("Allow Bunny Explosion")]
+		[Description($"Enable or disable the {RedeemNames.ANIMAL_BUNNY_EXPLOSION} redeem")]
+		public bool AllowBunnyExplosion = false;
 
 		[Section("Weather Redeems")]
 		[Name("Allow Weather Redeems")]
@@ -116,6 +142,9 @@ namespace TLD_Twitch_Integration
 			if (field.Name == nameof(Enabled))
 				RefreshAllFields();
 
+			if (field.Name == nameof(AllowAnimalRedeems))
+				RefreshAnimalFields();
+
 			if (field.Name == nameof(AllowWeatherRedeems))
 				RefreshWeatherFields();
 
@@ -126,10 +155,22 @@ namespace TLD_Twitch_Integration
 		public void RefreshAllFields()
 		{
 			SetFieldVisible(nameof(ShowAlert), Enabled);
+			SetFieldVisible(nameof(AllowAnimalRedeems), Enabled);
 			SetFieldVisible(nameof(AllowWeatherRedeems), Enabled);
 			SetFieldVisible(nameof(AllowSoundRedeems), Enabled);
+			RefreshAnimalFields();
 			RefreshWeatherFields();
 			RefreshSoundFields();
+		}
+
+		private void RefreshAnimalFields()
+		{
+			var allow = AllowAnimalRedeems && Enabled;
+			SetFieldVisible(nameof(AllowTWolves), allow);
+			SetFieldVisible(nameof(AllowBear), allow);
+			SetFieldVisible(nameof(AllowMoose), allow);
+			SetFieldVisible(nameof(AllowStalkingWolf), allow);
+			SetFieldVisible(nameof(AllowBunnyExplosion), allow);
 		}
 
 		private void RefreshWeatherFields()

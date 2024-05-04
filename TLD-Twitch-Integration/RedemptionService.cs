@@ -29,7 +29,9 @@ namespace TLD_Twitch_Integration
 				return;
 
 			if (string.IsNullOrEmpty(GameManager.m_ActiveScene) ||
-				GameManager.m_ActiveScene == "MainMenu")
+				GameManager.m_ActiveScene == "MainMenu" ||
+				GameManager.m_ActiveScene == "Boot" ||
+				GameManager.m_ActiveScene == "Empty")
 				return;
 
 			if (GameManager.m_IsPaused)

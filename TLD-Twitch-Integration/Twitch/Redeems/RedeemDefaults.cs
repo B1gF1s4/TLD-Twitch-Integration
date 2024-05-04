@@ -22,7 +22,13 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 			{ RedeemNames.SOUND_GOOD_NIGHT, SoundRedeems.GoodNight },
 			{ RedeemNames.SOUND_HYDRATE, SoundRedeems.Hydrate },
 
-			{ RedeemNames.SOUND, SoundRedeems.DevSound }
+			{ RedeemNames.SOUND, SoundRedeems.DevSound },
+
+			{ RedeemNames.ANIMAL_T_WOLVES, AnimalRedeems.TWolves },
+			{ RedeemNames.ANIMAL_BEAR, AnimalRedeems.Bear },
+			{ RedeemNames.ANIMAL_MOOSE, AnimalRedeems.Moose },
+			{ RedeemNames.ANIMAL_STALKING_WOLF, AnimalRedeems.StalkingWolf },
+			{ RedeemNames.ANIMAL_BUNNY_EXPLOSION, AnimalRedeems.BunnyExplosion },
 		};
 
 		public static CustomReward GetRedeemDefault(string redeemName)

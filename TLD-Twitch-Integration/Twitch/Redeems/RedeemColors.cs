@@ -6,5 +6,6 @@
 		public const string STATUS_HARM = "#9D2F1C";
 		public const string STATUS_HELP = "#2A721E";
 		public const string SOUND = "#7839a9";
+		public const string ANIMAL_HARM = "#9D2F1C";
 	}
 }

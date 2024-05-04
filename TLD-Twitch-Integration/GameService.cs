@@ -5,6 +5,24 @@ namespace TLD_Twitch_Integration
 	public static class GameService
 	{
 
+		public static AnimalRedeemType AnimalToSpawn { get; set; }
+
+		public static bool SpawningAnimal { get; set; }
+		public static int SpawnedAnimalCounter { get; set; }
+
+		public const int TWolfPackSize = 5;
+		public const int BunnyExplosionSize = 30;
+
+		public enum AnimalRedeemType
+		{
+			None,
+			TWolves,
+			Bear,
+			Moose,
+			StalkingWolf,
+			BunnyExplosion
+		}
+
 		public enum MeterType
 		{
 			Fatigue,
@@ -19,6 +37,44 @@ namespace TLD_Twitch_Integration
 			GoodNight,
 			Happy420,
 			Hydrate
+		}
+
+		public static void SpawnTWolves()
+		{
+			SpawnedAnimalCounter = 0;
+			SpawningAnimal = true;
+			for (int i = 0; i < TWolfPackSize; i++)
+			{
+				ConsoleManager.CONSOLE_spawn_wolf_grey();
+			}
+		}
+
+		public static void SpawnBear()
+		{
+			SpawningAnimal = true;
+			ConsoleManager.CONSOLE_spawn_bear();
+		}
+
+		public static void SpawnMoose()
+		{
+			SpawningAnimal = true;
+			ConsoleManager.CONSOLE_spawn_moose();
+		}
+
+		public static void SpawnStalkingWolf()
+		{
+			SpawningAnimal = true;
+			ConsoleManager.CONSOLE_spawn_wolf();
+		}
+
+		public static void SpawnBunnyExplosion()
+		{
+			SpawnedAnimalCounter = 0;
+			SpawningAnimal = true;
+			for (int i = 0; i < BunnyExplosionSize; i++)
+			{
+				ConsoleManager.CONSOLE_spawn_rabbit();
+			}
 		}
 
 		public static void ChangeWeather(WeatherStage stage)

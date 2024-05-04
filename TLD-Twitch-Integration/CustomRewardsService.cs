@@ -24,20 +24,20 @@ namespace TLD_Twitch_Integration
 
 			_lastUpdated = DateTime.UtcNow;
 
-			if (AuthService.IsConnected)
-			{
-				if (!IsInitialized)
-				{
-					await CreateCustomRewards();
-					IsInitialized = true;
-				}
-				else
-				{
-					await CheckForDeletedCustomRewards();
+			if (!AuthService.IsConnected)
+				return;
 
-					if (SyncRequired)
-						await SyncCustomRewardsWithSettings();
-				}
+			if (!IsInitialized)
+			{
+				await CreateCustomRewards();
+				IsInitialized = true;
+			}
+			else
+			{
+				await CheckForDeletedCustomRewards();
+
+				if (SyncRequired)
+					await SyncCustomRewardsWithSettings();
 			}
 		}
 
@@ -184,6 +184,40 @@ namespace TLD_Twitch_Integration
 			try
 			{
 				// TODO: refactor to use reflection, possibly custom attribute and iterate settings, or redeem defaults
+				await UpdateCustomReward(
+					Settings.Redeems.GetIdByRedeemName(RedeemNames.ANIMAL_T_WOLVES),
+					Settings.ModSettings.Enabled &&
+					Settings.ModSettings.AllowAnimalRedeems &&
+					Settings.ModSettings.AllowTWolves,
+					RedeemNames.ANIMAL_T_WOLVES);
+
+				await UpdateCustomReward(
+					Settings.Redeems.GetIdByRedeemName(RedeemNames.ANIMAL_BEAR),
+					Settings.ModSettings.Enabled &&
+					Settings.ModSettings.AllowAnimalRedeems &&
+					Settings.ModSettings.AllowBear,
+					RedeemNames.ANIMAL_BEAR);
+
+				await UpdateCustomReward(
+					Settings.Redeems.GetIdByRedeemName(RedeemNames.ANIMAL_MOOSE),
+					Settings.ModSettings.Enabled &&
+					Settings.ModSettings.AllowAnimalRedeems &&
+					Settings.ModSettings.AllowMoose,
+					RedeemNames.ANIMAL_MOOSE);
+
+				await UpdateCustomReward(
+					Settings.Redeems.GetIdByRedeemName(RedeemNames.ANIMAL_STALKING_WOLF),
+					Settings.ModSettings.Enabled &&
+					Settings.ModSettings.AllowAnimalRedeems &&
+					Settings.ModSettings.AllowStalkingWolf,
+					RedeemNames.ANIMAL_STALKING_WOLF);
+
+				await UpdateCustomReward(
+					Settings.Redeems.GetIdByRedeemName(RedeemNames.ANIMAL_BUNNY_EXPLOSION),
+					Settings.ModSettings.Enabled &&
+					Settings.ModSettings.AllowAnimalRedeems &&
+					Settings.ModSettings.AllowBunnyExplosion,
+					RedeemNames.ANIMAL_BUNNY_EXPLOSION);
 
 				await UpdateCustomReward(
 					Settings.Redeems.GetIdByRedeemName(RedeemNames.WEATHER_BLIZZARD),

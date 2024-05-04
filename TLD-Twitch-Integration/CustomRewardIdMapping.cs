@@ -7,6 +7,21 @@ namespace TLD_Twitch_Integration
 {
 	public class CustomRewardIdMapping : JsonFile
 	{
+		[Name(RedeemNames.ANIMAL_T_WOLVES)]
+		public string AnimalTWolves = "";
+
+		[Name(RedeemNames.ANIMAL_BEAR)]
+		public string AnimalBear = "";
+
+		[Name(RedeemNames.ANIMAL_MOOSE)]
+		public string AnimalMoose = "";
+
+		[Name(RedeemNames.ANIMAL_STALKING_WOLF)]
+		public string AnimalStalkingWolf = "";
+
+		[Name(RedeemNames.ANIMAL_BUNNY_EXPLOSION)]
+		public string AnimalBunnyExplosion = "";
+
 		[Name(RedeemNames.WEATHER_BLIZZARD)]
 		public string WeatherBlizzard = "";
 
