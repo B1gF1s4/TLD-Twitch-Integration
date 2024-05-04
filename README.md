@@ -21,7 +21,7 @@ The channel using this mod needs to be at least affiliate with twitch, so custom
 - TTI: Stalking Wolf
 - TTI: Bunny Explosion
 
-### Chaing status
+### Changing status
 - TTI: Hungry
 - TTI: Thirst
 - TTI: Tired
@@ -39,20 +39,14 @@ The channel using this mod needs to be at least affiliate with twitch, so custom
 - TTI Sound: Hello
 
 ## Redeems
+- TTI will create all twitch redeems on initial load (game start)
+- if there is any naming conflicts with redeems TTI wants to create and redeems you already have, TTI will skip creation and retry on next load
+- TTI checks regularly and tries recreating redeems that are missing on twitch. deleting a TTI redeem in your twitch dashboard will trigger TTI to recreate its default.
+- all TTI created redeems can be editted in any way (including title, cost, color, icons and prompts).
+- changing the redeems enabled status in the twitch dashboard will be overwritten by availabilty setting in mod settings in game
+- if you uninstall TTI, but want to preserve your redeems on twitch and want to relink them at a later point, keep the file /TLD-Twitch-Integration/redeems.json from your Mods folder.
 
-TTI will create all twitch redeems on initial load (game start)
-
-if there is any naming conflicts with redeems TTI wants to create and redeems you already have, TTI will skip creation and retry on next load
-
-TTI checks regularly and tries recreating redeems that are missing on twitch. deleting a TTI redeem in your twitch dashboard will trigger TTI to recreate its default.
-
-all TTI created redeems can be editted in any way (including title, cost, color, icons and prompts).
-
-changing the redeems enabled status in the twitch dashboard will be overwritten by availabilty setting in mod settings in game
-
-if you uninstall TTI, but want to preserve your redeems on twitch and want to relink them at a later point, keep the file /TLD-Twitch-Integration/redeems.json from your Mods folder.
-
-*limitation: twitch allows for a maximum of 50 custom rewards (redeems) which includes both enabled and disabled*
+**limitation: twitch allows for a maximum of 50 custom rewards (redeems) which includes both enabled and disabled**
 
 ## Requirements
 - if you haven't done so already, install MelonLoader by downloading and running [MelonLoader.Installer.exe](https://github.com/HerpDerpinstine/MelonLoader/releases/latest/download/MelonLoader.Installer.exe)
@@ -78,7 +72,7 @@ if you uninstall TTI, but want to preserve your redeems on twitch and want to re
 
 ## Logging out
 
-To log out for example to connect a different twitch account go to the mods data folder /Mods/TLD_Twitch_Integration and delete the file login.json
+To log out for example to connect a different twitch account go to the mods data folder /Mods/TLD_Twitch_Integration/ and delete the file login.json
 
 ## Credits
 
