@@ -206,6 +206,8 @@ namespace TLD_Twitch_Integration
 			SetFieldVisible(nameof(AllowAnimalRedeems), Enabled);
 			SetFieldVisible(nameof(AllowWeatherRedeems), Enabled);
 			SetFieldVisible(nameof(AllowSoundRedeems), Enabled);
+			SetFieldVisible(nameof(AllowHelpfulStatus), Enabled);
+			SetFieldVisible(nameof(AllowHarmfulStatus), Enabled);
 			RefreshAnimalFields();
 			RefreshWeatherFields();
 			RefreshSoundFields();

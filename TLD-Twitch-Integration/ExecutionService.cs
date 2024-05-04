@@ -10,7 +10,7 @@ namespace TLD_Twitch_Integration
 {
 	public class ExecutionService
 	{
-		private const int _interval = 5;
+		private const int _interval = 6;
 
 		private static DateTime _lastUpdated;
 

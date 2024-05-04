@@ -11,9 +11,9 @@ namespace TLD_Twitch_Integration
 	{
 		public static bool IsInitialized { get; private set; }
 
-		public static bool SyncRequired { get; set; }
+		public static bool SyncRequired { get; set; } = true;
 
-		private const int _interval = 5;
+		private const int _interval = 30;
 
 		private static DateTime _lastUpdated;
 
@@ -372,8 +372,10 @@ namespace TLD_Twitch_Integration
 			{
 				Melon<Mod>.Logger.Error(ex);
 			}
-
-			SyncRequired = false;
+			finally
+			{
+				SyncRequired = false;
+			}
 		}
 
 		private static async Task UpdateCustomReward(string rewardId, bool isEnabled, string rewardName)
