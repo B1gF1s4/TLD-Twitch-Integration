@@ -10,9 +10,14 @@ namespace TLD_Twitch_Integration
 {
 	public class ExecutionService
 	{
+		public static bool ExecutionPending { get; set; }
+
+		public static List<Redemption> ExecutionQueue { get; set; } = new();
+
 		private const int _interval = 6;
 
 		private static DateTime _lastUpdated;
+
 
 		public static async Task OnUpdate()
 		{
@@ -20,6 +25,9 @@ namespace TLD_Twitch_Integration
 				return;
 
 			_lastUpdated = DateTime.UtcNow;
+
+			if (!AuthService.IsConnected)
+				return;
 
 			if (!Settings.ModSettings.Enabled)
 				return;
@@ -33,55 +41,89 @@ namespace TLD_Twitch_Integration
 			if (GameManager.m_IsPaused)
 				return;
 
-			if (AuthService.IsConnected && RedemptionService.HasOpenRedeems)
-				await HandleNextRedeem();
+			if (!RedemptionService.HasOpenRedeems)
+				return;
+
+			await HandleNextRedeem();
 
 		}
 
 		private static async Task HandleNextRedeem()
 		{
-			var userId = AuthService.User?.Id ?? throw new NotLoggedInException();
+			var userId = AuthService.User?.Id ??
+				throw new NotLoggedInException();
 
-			var redeem = RedemptionService.OpenRedeems
-				.OrderBy(r => r.RedeemedAt)
-				.ToList()
-				.FirstOrDefault();
+			var redeemToExecute = ExecutionQueue.Any() ?
+				ExecutionQueue.FirstOrDefault() :
+				RedemptionService.OpenRedeems
+					.OrderBy(r => r.RedeemedAt)
+					.ToList()
+					.FirstOrDefault();
 
-			if (redeem == null)
+			if (redeemToExecute == null)
 				return;
 
-			var executed = ExecuteRedeem(redeem);
+			ExecutionPending = true;
+
+			await TryExecuteRedeem(redeemToExecute, userId);
+
+			ExecutionPending = false;
+		}
+
+		private static async Task TryExecuteRedeem(Redemption redeem, string userId)
+		{
+			var defaultTitle = Settings.Redeems.GetRedeemNameById(redeem.CustomReward?.Id!);
+
+			Melon<Mod>.Logger.Msg($"trying to execute redeem - {defaultTitle}");
+
+			var executed = ExecuteRedeem(redeem, defaultTitle);
+
 			if (!executed)
-				return;
-
-			if (Settings.ModSettings.ShowAlert)
-				HUDMessage.AddMessage($"{redeem.UserName} redeemed {redeem.CustomReward?.Title}",
-					_interval - 1, true, true);
-
-			try
 			{
-				await TwitchAdapter.FulfillRedemption(AuthService.ClientId, Settings.Token.Access, userId, redeem);
+				Melon<Mod>.Logger.Msg($"redeem skipped, trying next");
+
+				ExecutionQueue.Add(redeem);
 				RedemptionService.OpenRedeems.RemoveAll(r => r.Id == redeem.Id);
+
+				var nextRedeemToExecute = RedemptionService.OpenRedeems
+					.OrderBy(r => r.RedeemedAt)
+					.ToList()
+					.FirstOrDefault();
+
+				if (nextRedeemToExecute == null)
+					return;
+
+				await TryExecuteRedeem(nextRedeemToExecute, userId);
 			}
-			catch (InvalidTokenException)
+			else
 			{
-				await AuthService.RefreshToken();
-				return;
-			}
-			catch (Exception ex)
-			{
-				Melon<Mod>.Logger.Error(ex);
+				Melon<Mod>.Logger.Msg($"redeem executed, removing from redemption queue on twitch");
+
+				if (Settings.ModSettings.ShowAlert)
+					HUDMessage.AddMessage($"{redeem.UserName} redeemed {redeem.CustomReward?.Title}",
+						_interval - 1, true, true);
+
+				try
+				{
+					await TwitchAdapter.FulfillRedemption(AuthService.ClientId, Settings.Token.Access, userId, redeem);
+
+					ExecutionQueue.RemoveAll(r => r.Id == redeem.Id);
+					RedemptionService.OpenRedeems.RemoveAll(r => r.Id == redeem.Id);
+				}
+				catch (InvalidTokenException)
+				{
+					await AuthService.RefreshToken();
+					return;
+				}
+				catch (Exception ex)
+				{
+					Melon<Mod>.Logger.Error(ex);
+				}
 			}
 		}
 
-		private static bool ExecuteRedeem(Redemption redeem)
+		private static bool ExecuteRedeem(Redemption redeem, string defaultTitle)
 		{
-
-			var defaultTitle = Settings.Redeems.GetRedeemNameById(redeem.CustomReward?.Id!);
-
-			if (string.IsNullOrEmpty(defaultTitle))
-				return false;
-
 			switch (defaultTitle)
 			{
 				case RedeemNames.WEATHER_BLIZZARD:
@@ -157,6 +199,7 @@ namespace TLD_Twitch_Integration
 					ChangeMeter(MeterType.Cold, true);
 					break;
 				default:
+					Melon<Mod>.Logger.Error($"redeem operation not supported - {defaultTitle}");
 					break;
 			}
 

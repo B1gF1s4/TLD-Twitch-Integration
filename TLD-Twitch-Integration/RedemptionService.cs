@@ -14,7 +14,7 @@ namespace TLD_Twitch_Integration
 
 		public static bool HasOpenRedeems { get; set; }
 
-		private const int _interval = 5;
+		private const int _interval = 10;
 
 		private static DateTime _lastUpdated;
 
@@ -24,6 +24,9 @@ namespace TLD_Twitch_Integration
 				return;
 
 			_lastUpdated = DateTime.UtcNow;
+
+			if (!AuthService.IsConnected)
+				return;
 
 			if (!Settings.ModSettings.Enabled)
 				return;
@@ -37,8 +40,10 @@ namespace TLD_Twitch_Integration
 			if (GameManager.m_IsPaused)
 				return;
 
-			if (AuthService.IsConnected && CustomRewardsService.IsInitialized)
-				await CheckForOpenRedeems();
+			if (!CustomRewardsService.IsInitialized)
+				return;
+
+			await CheckForOpenRedeems();
 		}
 
 		private static async Task CheckForOpenRedeems()
