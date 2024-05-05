@@ -10,8 +10,8 @@ namespace TLD_Twitch_Integration
 	public class ExecutionService
 	{
 		public static bool ExecutionPending { get; set; }
-
 		public static List<Redemption> ExecutionQueue { get; set; } = new();
+
 
 		private const int _interval = 6;
 
@@ -98,7 +98,9 @@ namespace TLD_Twitch_Integration
 		private static async Task TryExecuteRedeem(Redemption redeem, string userId)
 		{
 			GameState.Update();
+
 			var defaultTitle = Settings.Redeems.GetRedeemNameById(redeem.CustomReward?.Id!);
+			Melon<Mod>.Logger.Msg($"trying to execute redeem {defaultTitle}");
 
 			var executed = ExecuteRedeem(redeem, defaultTitle);
 
@@ -150,20 +152,6 @@ namespace TLD_Twitch_Integration
 		{
 			switch (defaultTitle)
 			{
-				case RedeemNames.WEATHER_BLIZZARD:
-				case RedeemNames.WEATHER_CLEAR:
-				case RedeemNames.WEATHER_LIGHT_FOG:
-				case RedeemNames.WEATHER_DENSE_FOG:
-				case RedeemNames.WEATHER_PARTLY_CLOUDY:
-				case RedeemNames.WEATHER_CLOUDY:
-				case RedeemNames.WEATHER_LIGHT_SNOW:
-				case RedeemNames.WEATHER_HEAVY_SNOW:
-					if (!ShouldExecuteWeatherRedeem())
-						return false;
-					var weatherStage = GetWeatherFromRedeemName(defaultTitle);
-					GameService.ChangeWeather(weatherStage);
-					break;
-
 				case RedeemNames.SOUND_HELLO:
 				case RedeemNames.SOUND_GOOD_NIGHT:
 				case RedeemNames.SOUND_420:
@@ -174,6 +162,54 @@ namespace TLD_Twitch_Integration
 
 				case RedeemNames.SOUND:
 					GameService.PlayPlayerSound(redeem.UserInput!);
+					break;
+
+				case RedeemNames.WEATHER_BLIZZARD:
+					if (!ShouldExecuteWeatherRedeem())
+						return false;
+					GameService.WeatherToChange = WeatherStage.Blizzard;
+					break;
+
+				case RedeemNames.WEATHER_CLEAR:
+					if (!ShouldExecuteWeatherRedeem())
+						return false;
+					GameService.WeatherToChange = WeatherStage.Clear;
+					break;
+
+				case RedeemNames.WEATHER_LIGHT_FOG:
+					if (!ShouldExecuteWeatherRedeem())
+						return false;
+					GameService.WeatherToChange = WeatherStage.LightFog;
+					break;
+
+				case RedeemNames.WEATHER_DENSE_FOG:
+					if (!ShouldExecuteWeatherRedeem())
+						return false;
+					GameService.WeatherToChange = WeatherStage.DenseFog;
+					break;
+
+				case RedeemNames.WEATHER_PARTLY_CLOUDY:
+					if (!ShouldExecuteWeatherRedeem())
+						return false;
+					GameService.WeatherToChange = WeatherStage.PartlyCloudy;
+					break;
+
+				case RedeemNames.WEATHER_CLOUDY:
+					if (!ShouldExecuteWeatherRedeem())
+						return false;
+					GameService.WeatherToChange = WeatherStage.Cloudy;
+					break;
+
+				case RedeemNames.WEATHER_LIGHT_SNOW:
+					if (!ShouldExecuteWeatherRedeem())
+						return false;
+					GameService.WeatherToChange = WeatherStage.LightSnow;
+					break;
+
+				case RedeemNames.WEATHER_HEAVY_SNOW:
+					if (!ShouldExecuteWeatherRedeem())
+						return false;
+					GameService.WeatherToChange = WeatherStage.HeavySnow;
 					break;
 
 				case RedeemNames.ANIMAL_T_WOLVES:
