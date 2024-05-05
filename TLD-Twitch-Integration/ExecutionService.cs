@@ -92,6 +92,8 @@ namespace TLD_Twitch_Integration
 				case RedeemNames.WEATHER_CLOUDY:
 				case RedeemNames.WEATHER_LIGHT_SNOW:
 				case RedeemNames.WEATHER_HEAVY_SNOW:
+					if (IsInBuilding())
+						return false;
 					var weatherStage = GetWeatherFromRedeemName(defaultTitle);
 					ChangeWeather(weatherStage);
 					break;
