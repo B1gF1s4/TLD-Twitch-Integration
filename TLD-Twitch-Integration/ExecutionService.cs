@@ -283,6 +283,26 @@ namespace TLD_Twitch_Integration
 					GameService.ChangeMeter(MeterType.Cold, true);
 					break;
 
+				case RedeemNames.AFFLICTION_CABIN_FEVER:
+					GameService.ShouldStartCabinFever = true;
+					break;
+
+				case RedeemNames.AFFLICTION_DYSENTERY:
+					GameService.ShouldStartDysentery = true;
+					break;
+
+				case RedeemNames.AFFLICTION_FOOD_POISONING:
+					GameService.ShouldStartFoodPoisoning = true;
+					break;
+
+				case RedeemNames.AFFLICTION_HYPOTHERMIA:
+					GameService.ShouldStartHypothermia = true;
+					break;
+
+				case RedeemNames.AFFLICTION_PARASITES:
+					GameService.ShouldStartParasites = true;
+					break;
+
 				default:
 					Melon<Mod>.Logger.Error($"redeem operation not supported - {defaultTitle}");
 					break;

@@ -13,6 +13,12 @@ namespace TLD_Twitch_Integration
 		public static WeatherStage WeatherToChange { get; set; }
 			= WeatherStage.Undefined;
 
+		public static bool ShouldStartCabinFever { get; set; }
+		public static bool ShouldStartDysentery { get; set; }
+		public static bool ShouldStartFoodPoisoning { get; set; }
+		public static bool ShouldStartHypothermia { get; set; }
+		public static bool ShouldStartParasites { get; set; }
+
 
 		public const int TWolfPackSize = 5;
 		public const int BunnyExplosionSize = 30;
@@ -62,12 +68,6 @@ namespace TLD_Twitch_Integration
 			{
 				ConsoleManager.CONSOLE_spawn_rabbit();
 			}
-		}
-
-		public static void ChangeWeather(WeatherStage stage)
-		{
-
-			//GameManager.GetWeatherTransitionComponent().ForceUnmanagedWeatherStage(stage, 10f);
 		}
 
 		public static void ChangeMeter(MeterType type, bool isHelp)
@@ -139,34 +139,6 @@ namespace TLD_Twitch_Integration
 
 			GameManager.GetPlayerVoiceComponent()?.Play(sound, ignoreDelay);
 		}
-
-		public static void HandleAffliction(string type)
-		{
-			// TODO: needs fixing!
-
-			switch (type)
-			{
-				case "CabinFever":
-					GameManager.GetCabinFeverComponent()?.CabinFeverStart(true, false);
-					break;
-				case "Dysentery":
-					GameManager.GetDysenteryComponent()?.DysenteryStart(true, false);
-					break;
-				case "FoodPoisoning":
-					GameManager.GetFoodPoisoningComponent()?.FoodPoisoningStart("GAMEPLAY_TaintedFood", true, false);
-					break;
-				case "Hypothermia":
-					GameManager.GetHypothermiaComponent()?.HypothermiaStart("GAMEPLAY_ColdWeather", true, false);
-					break;
-				case "Parasites":
-					GameManager.GetIntestinalParasitesComponent()?.IntestinalParasitesStart(false);
-					break;
-				default:
-					break;
-			}
-		}
-
-
 
 	}
 }

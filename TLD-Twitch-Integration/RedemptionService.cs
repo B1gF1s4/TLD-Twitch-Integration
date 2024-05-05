@@ -14,7 +14,7 @@ namespace TLD_Twitch_Integration
 
 		public static bool HasOpenRedeems { get; set; }
 
-		private const int _interval = 10;
+		private const int _interval = 5;
 
 		private static DateTime _lastUpdated;
 

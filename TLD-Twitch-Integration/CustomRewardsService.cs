@@ -363,6 +363,41 @@ namespace TLD_Twitch_Integration
 					Settings.ModSettings.AllowHelpfulStatus &&
 					Settings.ModSettings.AllowStatusWarm,
 					RedeemNames.STATUS_WARM);
+
+				await UpdateCustomReward(
+					Settings.Redeems.GetIdByRedeemName(RedeemNames.AFFLICTION_CABIN_FEVER),
+					Settings.ModSettings.Enabled &&
+					Settings.ModSettings.AllowAfflictionRedeems &&
+					Settings.ModSettings.AllowAfflictionCabinFever,
+					RedeemNames.AFFLICTION_CABIN_FEVER);
+
+				await UpdateCustomReward(
+					Settings.Redeems.GetIdByRedeemName(RedeemNames.AFFLICTION_DYSENTERY),
+					Settings.ModSettings.Enabled &&
+					Settings.ModSettings.AllowAfflictionRedeems &&
+					Settings.ModSettings.AllowAfflictionDysentery,
+					RedeemNames.AFFLICTION_DYSENTERY);
+
+				await UpdateCustomReward(
+					Settings.Redeems.GetIdByRedeemName(RedeemNames.AFFLICTION_FOOD_POISONING),
+					Settings.ModSettings.Enabled &&
+					Settings.ModSettings.AllowAfflictionRedeems &&
+					Settings.ModSettings.AllowAfflictionFoodPoisoning,
+					RedeemNames.AFFLICTION_FOOD_POISONING);
+
+				await UpdateCustomReward(
+					Settings.Redeems.GetIdByRedeemName(RedeemNames.AFFLICTION_HYPOTHERMIA),
+					Settings.ModSettings.Enabled &&
+					Settings.ModSettings.AllowAfflictionRedeems &&
+					Settings.ModSettings.AllowAfflictionHypothermia,
+					RedeemNames.AFFLICTION_HYPOTHERMIA);
+
+				await UpdateCustomReward(
+					Settings.Redeems.GetIdByRedeemName(RedeemNames.AFFLICTION_PARASITES),
+					Settings.ModSettings.Enabled &&
+					Settings.ModSettings.AllowAfflictionRedeems &&
+					Settings.ModSettings.AllowAfflictionParasites,
+					RedeemNames.AFFLICTION_PARASITES);
 			}
 			catch (InvalidTokenException)
 			{

@@ -33,5 +33,11 @@
 		public const string STATUS_FULL = "TTI: Full";
 		public const string STATUS_NOT_THIRSTY = "TTI: Not Thirsty";
 		public const string STATUS_WARM = "TTI: Warm";
+
+		public const string AFFLICTION_CABIN_FEVER = "TTI: Cabin Fever";
+		public const string AFFLICTION_DYSENTERY = "TTI: Dysentery";
+		public const string AFFLICTION_FOOD_POISONING = "TTI: Food Poisoning";
+		public const string AFFLICTION_HYPOTHERMIA = "TTI: Hypothermia";
+		public const string AFFLICTION_PARASITES = "TTI: Parasites";
 	}
 }

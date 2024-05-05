@@ -8,6 +8,12 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 
 		private static readonly Dictionary<string, CustomReward> _defaults = new()
 		{
+			{ RedeemNames.ANIMAL_T_WOLVES, AnimalRedeems.TWolves },
+			{ RedeemNames.ANIMAL_BEAR, AnimalRedeems.Bear },
+			{ RedeemNames.ANIMAL_MOOSE, AnimalRedeems.Moose },
+			{ RedeemNames.ANIMAL_STALKING_WOLF, AnimalRedeems.StalkingWolf },
+			{ RedeemNames.ANIMAL_BUNNY_EXPLOSION, AnimalRedeems.BunnyExplosion },
+
 			{ RedeemNames.WEATHER_BLIZZARD, WeatherRedeems.Blizzard },
 			{ RedeemNames.WEATHER_CLEAR, WeatherRedeems.Clear },
 			{ RedeemNames.WEATHER_LIGHT_FOG, WeatherRedeems.LightFog },
@@ -24,12 +30,6 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 
 			{ RedeemNames.SOUND, SoundRedeems.DevSound },
 
-			{ RedeemNames.ANIMAL_T_WOLVES, AnimalRedeems.TWolves },
-			{ RedeemNames.ANIMAL_BEAR, AnimalRedeems.Bear },
-			{ RedeemNames.ANIMAL_MOOSE, AnimalRedeems.Moose },
-			{ RedeemNames.ANIMAL_STALKING_WOLF, AnimalRedeems.StalkingWolf },
-			{ RedeemNames.ANIMAL_BUNNY_EXPLOSION, AnimalRedeems.BunnyExplosion },
-
 			{ RedeemNames.STATUS_HUNGRY, StatusRedeems.Hungry },
 			{ RedeemNames.STATUS_THIRSTY, StatusRedeems.Thirsty },
 			{ RedeemNames.STATUS_TIRED, StatusRedeems.Tired },
@@ -39,6 +39,12 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 			{ RedeemNames.STATUS_NOT_THIRSTY, StatusRedeems.NotThirsty },
 			{ RedeemNames.STATUS_AWAKE, StatusRedeems.Awake },
 			{ RedeemNames.STATUS_WARM, StatusRedeems.Warm },
+
+			{ RedeemNames.AFFLICTION_CABIN_FEVER, AfflictionRedeems.CabinFever },
+			{ RedeemNames.AFFLICTION_DYSENTERY, AfflictionRedeems.Dysentery },
+			{ RedeemNames.AFFLICTION_FOOD_POISONING, AfflictionRedeems.FoodPoisoning },
+			{ RedeemNames.AFFLICTION_HYPOTHERMIA, AfflictionRedeems.Hypothermia },
+			{ RedeemNames.AFFLICTION_PARASITES, AfflictionRedeems.Parasites },
 		};
 
 		public static CustomReward GetRedeemDefault(string redeemName)

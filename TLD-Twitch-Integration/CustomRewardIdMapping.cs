@@ -85,6 +85,21 @@ namespace TLD_Twitch_Integration
 		[Name(RedeemNames.STATUS_WARM)]
 		public string StatusWarm = "";
 
+		[Name(RedeemNames.AFFLICTION_CABIN_FEVER)]
+		public string AfflictionCabinFever = "";
+
+		[Name(RedeemNames.AFFLICTION_DYSENTERY)]
+		public string AfflictionDysentery = "";
+
+		[Name(RedeemNames.AFFLICTION_FOOD_POISONING)]
+		public string AfflictionFoodPoisoning = "";
+
+		[Name(RedeemNames.AFFLICTION_HYPOTHERMIA)]
+		public string AfflictionHypothermia = "";
+
+		[Name(RedeemNames.AFFLICTION_PARASITES)]
+		public string AfflictionParasites = "";
+
 		public CustomRewardIdMapping() : base(Path.Combine(Mod.BaseDirectory, "redeems"))
 		{ }
 

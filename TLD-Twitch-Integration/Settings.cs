@@ -173,6 +173,31 @@ namespace TLD_Twitch_Integration
 		[Description($"Enable or disable the {RedeemNames.STATUS_WARM} redeem")]
 		public bool AllowStatusWarm = false;
 
+		[Section("Affliction Redeems")]
+		[Name("Allow Affliction Redeems")]
+		[Description("Enable or disable all affliction redeems")]
+		public bool AllowAfflictionRedeems = false;
+
+		[Name("Allow Cabin Fever")]
+		[Description($"Enable or disable the {RedeemNames.AFFLICTION_CABIN_FEVER} redeem")]
+		public bool AllowAfflictionCabinFever = false;
+
+		[Name("Allow Dyentery")]
+		[Description($"Enable or disable the {RedeemNames.AFFLICTION_DYSENTERY} redeem")]
+		public bool AllowAfflictionDysentery = false;
+
+		[Name("Allow Food Poisoning")]
+		[Description($"Enable or disable the {RedeemNames.AFFLICTION_FOOD_POISONING} redeem")]
+		public bool AllowAfflictionFoodPoisoning = false;
+
+		[Name("Allow Hypothermia")]
+		[Description($"Enable or disable the {RedeemNames.AFFLICTION_HYPOTHERMIA} redeem")]
+		public bool AllowAfflictionHypothermia = false;
+
+		[Name("Allow Parasites")]
+		[Description($"Enable or disable the {RedeemNames.AFFLICTION_PARASITES} redeem")]
+		public bool AllowAfflictionParasites = false;
+
 		public ModSettings() : base(Path.Combine(Mod.BaseDirectory, "user-settings"))
 		{
 			RefreshAllFields();
@@ -203,6 +228,9 @@ namespace TLD_Twitch_Integration
 
 			if (field.Name == nameof(AllowHarmfulStatus))
 				RefreshHarmfulStatusFields();
+
+			if (field.Name == nameof(AllowAfflictionRedeems))
+				RefreshAfflictionFields();
 		}
 
 		public void RefreshAllFields()
@@ -213,11 +241,13 @@ namespace TLD_Twitch_Integration
 			SetFieldVisible(nameof(AllowSoundRedeems), Enabled);
 			SetFieldVisible(nameof(AllowHelpfulStatus), Enabled);
 			SetFieldVisible(nameof(AllowHarmfulStatus), Enabled);
+			SetFieldVisible(nameof(AllowAfflictionRedeems), Enabled);
 			RefreshAnimalFields();
 			RefreshWeatherFields();
 			RefreshSoundFields();
 			RefreshHelpfulStatusFields();
 			RefreshHarmfulStatusFields();
+			RefreshAfflictionFields();
 		}
 
 		private void RefreshAnimalFields()
@@ -270,6 +300,16 @@ namespace TLD_Twitch_Integration
 			SetFieldVisible(nameof(AllowStatusThirsty), allow);
 			SetFieldVisible(nameof(AllowStatusTired), allow);
 			SetFieldVisible(nameof(AllowStatusFreezing), allow);
+		}
+
+		private void RefreshAfflictionFields()
+		{
+			var allow = AllowAfflictionRedeems && Enabled;
+			SetFieldVisible(nameof(AllowAfflictionCabinFever), allow);
+			SetFieldVisible(nameof(AllowAfflictionDysentery), allow);
+			SetFieldVisible(nameof(AllowAfflictionFoodPoisoning), allow);
+			SetFieldVisible(nameof(AllowAfflictionHypothermia), allow);
+			SetFieldVisible(nameof(AllowAfflictionParasites), allow);
 		}
 	}
 

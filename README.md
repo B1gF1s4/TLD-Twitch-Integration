@@ -31,6 +31,13 @@ The channel using this mod needs to be at least affiliate with twitch, so custom
 - TTI: Awake
 - TTI: Warm
 
+### Afflictions
+- TTI: Cabin Fever
+- TTI: Dysentery
+- TTI: Food Poisoning
+- TTI: Hypothermia
+- TTI: Parasites
+
 ### Player sounds
 - (TTI Sound: Dev Check)
 - TTI Sound: Hydrate
