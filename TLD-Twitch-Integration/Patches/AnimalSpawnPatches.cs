@@ -1,5 +1,6 @@
 ﻿using HarmonyLib;
 using Il2Cpp;
+using MelonLoader;
 using static TLD_Twitch_Integration.ExecutionService;
 
 namespace TLD_Twitch_Integration.Patches
@@ -16,35 +17,47 @@ namespace TLD_Twitch_Integration.Patches
 			var cam = GameManager.GetCurrentCamera().transform;
 			var distance = 35.0f;
 
+			Melon<Mod>.Logger.Msg($"forward: {cam.forward}");
+
 			switch (GameService.AnimalToSpawn)
 			{
 				case AnimalRedeemType.TWolves:
 					var animalPosPack = cam.position + cam.forward * distance;
-					bai.SetPosition(animalPosPack);
+					animalPosPack.y += 100;
+					AiUtils.FindNearestGroundAndNavmeshFor(animalPosPack, out var groundPosPack, out var navmeshPosPack);
+					bai.SetPosition(groundPosPack);
 					GameService.SpawnedAnimalCounter++;
-
 					if (GameService.SpawnedAnimalCounter >= GameService.TWolfPackSize)
 					{
 						GameService.SpawningAnimal = false;
 						GameService.AnimalToSpawn = AnimalRedeemType.None;
 					}
 					break;
+
 				case AnimalRedeemType.Bear:
 				case AnimalRedeemType.Moose:
 					var animalPos = cam.position + cam.forward * distance;
-					bai.SetPosition(animalPos);
+					animalPos.y += 100;
+					AiUtils.FindNearestGroundAndNavmeshFor(animalPos, out var groundPos, out var navmeshPos);
+					bai.SetPosition(groundPos);
 					GameService.SpawningAnimal = false;
 					GameService.AnimalToSpawn = AnimalRedeemType.None;
 					break;
+
 				case AnimalRedeemType.StalkingWolf:
 					var animalPosBehind = cam.position - cam.forward * (distance / 2);
-					bai.SetPosition(animalPosBehind);
+					animalPosBehind.y += 100;
+					AiUtils.FindNearestGroundAndNavmeshFor(animalPosBehind, out var groundPosBehind, out var navmeshPosBehind);
+					bai.SetPosition(groundPosBehind);
 					GameService.SpawningAnimal = false;
 					GameService.AnimalToSpawn = AnimalRedeemType.None;
 					break;
+
 				case AnimalRedeemType.BunnyExplosion:
 					var animalPosExplosion = cam.position + cam.forward * (distance / 4);
-					bai.SetPosition(animalPosExplosion);
+					animalPosExplosion.y += 100;
+					AiUtils.FindNearestGroundAndNavmeshFor(animalPosExplosion, out var groundPosExplosion, out var navmeshPosExplosion);
+					bai.SetPosition(groundPosExplosion);
 					GameService.SpawnedAnimalCounter++;
 					if (GameService.SpawnedAnimalCounter >= GameService.BunnyExplosionSize)
 					{
@@ -52,6 +65,7 @@ namespace TLD_Twitch_Integration.Patches
 						GameService.AnimalToSpawn = AnimalRedeemType.None;
 					}
 					break;
+
 				default:
 					return;
 			}
