@@ -15,9 +15,7 @@ namespace TLD_Twitch_Integration.Patches
 				return;
 
 			var cam = GameManager.GetCurrentCamera().transform;
-			var distance = 35.0f;
-
-			Melon<Mod>.Logger.Msg($"forward: {cam.forward}");
+			var distance = Settings.ModSettings.AnimalSpawnDistance;
 
 			switch (GameService.AnimalToSpawn)
 			{
@@ -69,8 +67,6 @@ namespace TLD_Twitch_Integration.Patches
 				default:
 					return;
 			}
-
-
 		}
 	}
 

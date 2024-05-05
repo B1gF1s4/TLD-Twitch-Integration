@@ -44,6 +44,11 @@ namespace TLD_Twitch_Integration
 		[Description($"Enable or disable all animal redeems")]
 		public bool AllowAnimalRedeems = false;
 
+		[Name("Animal spawn distance")]
+		[Description("Distance that animal redeems spawn in anmals at.")]
+		[Slider(0f, 100f)]
+		public float AnimalSpawnDistance = 35.0f;
+
 		[Name("Allow T-Wolves")]
 		[Description($"Enable or disable the {RedeemNames.ANIMAL_T_WOLVES} redeem")]
 		public bool AllowTWolves = false;
@@ -218,6 +223,7 @@ namespace TLD_Twitch_Integration
 		private void RefreshAnimalFields()
 		{
 			var allow = AllowAnimalRedeems && Enabled;
+			SetFieldVisible(nameof(AnimalSpawnDistance), allow);
 			SetFieldVisible(nameof(AllowTWolves), allow);
 			SetFieldVisible(nameof(AllowBear), allow);
 			SetFieldVisible(nameof(AllowMoose), allow);
