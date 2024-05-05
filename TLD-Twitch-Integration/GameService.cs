@@ -1,4 +1,5 @@
 ﻿using Il2Cpp;
+using static TLD_Twitch_Integration.ExecutionService;
 
 namespace TLD_Twitch_Integration
 {
@@ -13,46 +14,26 @@ namespace TLD_Twitch_Integration
 		public const int TWolfPackSize = 5;
 		public const int BunnyExplosionSize = 30;
 
-		public enum AnimalRedeemType
-		{
-			None,
-			TWolves,
-			Bear,
-			Moose,
-			StalkingWolf,
-			BunnyExplosion
-		}
-
-		public enum MeterType
-		{
-			Fatigue,
-			Hunger,
-			Thirst,
-			Cold
-		}
-
-		public enum Sound
-		{
-			Hello,
-			GoodNight,
-			Happy420,
-			Hydrate
-		}
-
-		public static void SpawnTWolves()
+		public static void SpawnTWolves(bool aurora)
 		{
 			SpawnedAnimalCounter = 0;
 			SpawningAnimal = true;
 			for (int i = 0; i < TWolfPackSize; i++)
 			{
-				ConsoleManager.CONSOLE_spawn_wolf_grey();
+				if (aurora)
+					ConsoleManager.CONSOLE_spawn_grey_wolf_aurora();
+				else
+					ConsoleManager.CONSOLE_spawn_wolf_grey();
 			}
 		}
 
-		public static void SpawnBear()
+		public static void SpawnBear(bool aurora)
 		{
 			SpawningAnimal = true;
-			ConsoleManager.CONSOLE_spawn_bear();
+			if (aurora)
+				ConsoleManager.CONSOLE_spawn_aurorabear();
+			else
+				ConsoleManager.CONSOLE_spawn_bear();
 		}
 
 		public static void SpawnMoose()
@@ -61,10 +42,13 @@ namespace TLD_Twitch_Integration
 			ConsoleManager.CONSOLE_spawn_moose();
 		}
 
-		public static void SpawnStalkingWolf()
+		public static void SpawnStalkingWolf(bool aurora)
 		{
 			SpawningAnimal = true;
-			ConsoleManager.CONSOLE_spawn_wolf();
+			if (aurora)
+				ConsoleManager.CONSOLE_spawn_aurorawolf();
+			else
+				ConsoleManager.CONSOLE_spawn_wolf();
 		}
 
 		public static void SpawnBunnyExplosion()

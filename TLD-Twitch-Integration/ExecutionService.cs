@@ -4,7 +4,6 @@ using TLD_Twitch_Integration.Exceptions;
 using TLD_Twitch_Integration.Twitch;
 using TLD_Twitch_Integration.Twitch.Models;
 using TLD_Twitch_Integration.Twitch.Redeems;
-using static TLD_Twitch_Integration.GameService;
 
 namespace TLD_Twitch_Integration
 {
@@ -17,6 +16,32 @@ namespace TLD_Twitch_Integration
 		private const int _interval = 6;
 
 		private static DateTime _lastUpdated;
+
+		public enum AnimalRedeemType
+		{
+			None,
+			TWolves,
+			Bear,
+			Moose,
+			StalkingWolf,
+			BunnyExplosion
+		}
+
+		public enum MeterType
+		{
+			Fatigue,
+			Hunger,
+			Thirst,
+			Cold
+		}
+
+		public enum Sound
+		{
+			Hello,
+			GoodNight,
+			Happy420,
+			Hydrate
+		}
 
 
 		public static async Task OnUpdate()
@@ -72,9 +97,8 @@ namespace TLD_Twitch_Integration
 
 		private static async Task TryExecuteRedeem(Redemption redeem, string userId)
 		{
+			GameState.Update();
 			var defaultTitle = Settings.Redeems.GetRedeemNameById(redeem.CustomReward?.Id!);
-
-			Melon<Mod>.Logger.Msg($"trying to execute redeem - {defaultTitle}");
 
 			var executed = ExecuteRedeem(redeem, defaultTitle);
 
@@ -134,74 +158,115 @@ namespace TLD_Twitch_Integration
 				case RedeemNames.WEATHER_CLOUDY:
 				case RedeemNames.WEATHER_LIGHT_SNOW:
 				case RedeemNames.WEATHER_HEAVY_SNOW:
-					if (IsInBuilding())
+					if (!ShouldExecuteWeatherRedeem())
 						return false;
 					var weatherStage = GetWeatherFromRedeemName(defaultTitle);
-					ChangeWeather(weatherStage);
+					GameService.ChangeWeather(weatherStage);
 					break;
+
 				case RedeemNames.SOUND_HELLO:
 				case RedeemNames.SOUND_GOOD_NIGHT:
 				case RedeemNames.SOUND_420:
 				case RedeemNames.SOUND_HYDRATE:
 					var sound = GetSoundFromRedeemName(defaultTitle);
-					PlayPlayerSound(sound);
+					GameService.PlayPlayerSound(sound);
 					break;
+
 				case RedeemNames.SOUND:
-					PlayPlayerSound(redeem.UserInput!);
+					GameService.PlayPlayerSound(redeem.UserInput!);
 					break;
+
 				case RedeemNames.ANIMAL_T_WOLVES:
-					if (IsInBuilding())
+					if (!ShouldExecuteAnimalRedeem())
 						return false;
-					AnimalToSpawn = AnimalRedeemType.TWolves;
+					if (GameState.IsAuroraFading)
+						return false;
+					GameService.AnimalToSpawn = AnimalRedeemType.TWolves;
 					break;
+
 				case RedeemNames.ANIMAL_BEAR:
-					if (IsInBuilding())
+					if (!ShouldExecuteAnimalRedeem())
 						return false;
-					AnimalToSpawn = AnimalRedeemType.Bear;
+					if (GameState.IsAuroraFading)
+						return false;
+					GameService.AnimalToSpawn = AnimalRedeemType.Bear;
 					break;
+
 				case RedeemNames.ANIMAL_MOOSE:
-					if (IsInBuilding())
+					if (!ShouldExecuteAnimalRedeem())
 						return false;
-					AnimalToSpawn = AnimalRedeemType.Moose;
+					if (GameState.IsAuroraActive || GameState.IsAuroraFading)
+						return false;
+					else
+						GameService.AnimalToSpawn = AnimalRedeemType.Moose;
 					break;
+
 				case RedeemNames.ANIMAL_STALKING_WOLF:
-					if (IsInBuilding())
+					if (!ShouldExecuteAnimalRedeem())
 						return false;
-					AnimalToSpawn = AnimalRedeemType.StalkingWolf;
+					if (GameState.IsAuroraFading)
+						return false;
+					GameService.AnimalToSpawn = AnimalRedeemType.StalkingWolf;
 					break;
+
 				case RedeemNames.ANIMAL_BUNNY_EXPLOSION:
-					if (IsInBuilding())
+					if (!ShouldExecuteAnimalRedeem())
 						return false;
-					AnimalToSpawn = AnimalRedeemType.BunnyExplosion;
+					GameService.AnimalToSpawn = AnimalRedeemType.BunnyExplosion;
 					break;
+
 				case RedeemNames.STATUS_HUNGRY:
-					ChangeMeter(MeterType.Hunger, false);
+					GameService.ChangeMeter(MeterType.Hunger, false);
 					break;
+
 				case RedeemNames.STATUS_THIRSTY:
-					ChangeMeter(MeterType.Thirst, false);
+					GameService.ChangeMeter(MeterType.Thirst, false);
 					break;
+
 				case RedeemNames.STATUS_TIRED:
-					ChangeMeter(MeterType.Fatigue, false);
+					GameService.ChangeMeter(MeterType.Fatigue, false);
 					break;
+
 				case RedeemNames.STATUS_FREEZING:
-					ChangeMeter(MeterType.Cold, false);
+					GameService.ChangeMeter(MeterType.Cold, false);
 					break;
+
 				case RedeemNames.STATUS_FULL:
-					ChangeMeter(MeterType.Hunger, true);
+					GameService.ChangeMeter(MeterType.Hunger, true);
 					break;
+
 				case RedeemNames.STATUS_NOT_THIRSTY:
-					ChangeMeter(MeterType.Thirst, true);
+					GameService.ChangeMeter(MeterType.Thirst, true);
 					break;
+
 				case RedeemNames.STATUS_AWAKE:
-					ChangeMeter(MeterType.Fatigue, true);
+					GameService.ChangeMeter(MeterType.Fatigue, true);
 					break;
+
 				case RedeemNames.STATUS_WARM:
-					ChangeMeter(MeterType.Cold, true);
+					GameService.ChangeMeter(MeterType.Cold, true);
 					break;
+
 				default:
 					Melon<Mod>.Logger.Error($"redeem operation not supported - {defaultTitle}");
 					break;
 			}
+
+			return true;
+		}
+
+		private static bool ShouldExecuteWeatherRedeem()
+		{
+			if (GameState.IsInBuilding)
+				return false;
+
+			return true;
+		}
+
+		private static bool ShouldExecuteAnimalRedeem()
+		{
+			if (GameState.IsInBuilding)
+				return false;
 
 			return true;
 		}
