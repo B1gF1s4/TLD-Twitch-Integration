@@ -1,10 +1,40 @@
 ﻿using HarmonyLib;
 using Il2Cpp;
-using MelonLoader;
 using static TLD_Twitch_Integration.ExecutionService;
 
 namespace TLD_Twitch_Integration.Patches
 {
+
+	[HarmonyPatch(typeof(BaseAiManager), nameof(BaseAiManager.Update))]
+	internal class BaseAiManagerUpdatePatch
+	{
+		internal static void Postfix()
+		{
+			if (GameService.SpawningAnimal)
+				return;
+
+			switch (GameService.AnimalToSpawn)
+			{
+				case AnimalRedeemType.TWolves:
+					GameService.SpawnTWolves(GameState.IsAuroraActive);
+					break;
+				case AnimalRedeemType.Bear:
+					GameService.SpawnBear(GameState.IsAuroraActive);
+					break;
+				case AnimalRedeemType.Moose:
+					GameService.SpawnMoose();
+					break;
+				case AnimalRedeemType.StalkingWolf:
+					GameService.SpawnStalkingWolf(GameState.IsAuroraActive);
+					break;
+				case AnimalRedeemType.BunnyExplosion:
+					GameService.SpawnBunnyExplosion();
+					break;
+				default:
+					return;
+			}
+		}
+	}
 
 	[HarmonyPatch(typeof(BaseAiManager), nameof(BaseAiManager.Add), new Type[] { typeof(BaseAi) })]
 	internal class BaseAiManager_Add
