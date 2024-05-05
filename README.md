@@ -43,7 +43,7 @@ The channel using this mod needs to be at least affiliate with twitch, so custom
 - if there is any naming conflicts with redeems TTI wants to create and redeems you already have, TTI will skip creation and retry on next load
 - TTI checks regularly and tries recreating redeems that are missing on twitch. deleting a TTI redeem in your twitch dashboard will trigger TTI to recreate its default.
 - all TTI created redeems can be editted in any way (including title, cost, color, icons and prompts).
-- changing the redeems enabled status in the twitch dashboard will be overwritten by availabilty setting in mod settings in game
+- changing the redeems enabled status in the twitch dashboard will be overwritten by availability setting in mod settings in game
 - if you uninstall TTI, but want to preserve your redeems on twitch and want to relink them at a later point, keep the file /TLD-Twitch-Integration/redeems.json from your Mods folder.
 
 **limitation: twitch allows for a maximum of 50 custom rewards (redeems) which includes both enabled and disabled**
@@ -54,7 +54,7 @@ The channel using this mod needs to be at least affiliate with twitch, so custom
 - install TTI
 
 ## Install (Development Build)
-- go to twitch devloper console and [register new application](https://dev.twitch.tv/docs/authentication/register-app/)
+- go to twitch developer console and [register new application](https://dev.twitch.tv/docs/authentication/register-app/)
 - check out development branch
 - edit CleintId and ClientSecret properties in TLD-Twitch-Integration/AuthService.cs
 - build solution -> copy TLD-Twitch-Integration.dll to your Mods folder
