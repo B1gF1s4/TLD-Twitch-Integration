@@ -1,9 +1,33 @@
-# Planned redeems for release version 1.0
+# Release Version 1.0 - Roadmap
 
-## ToDo's
+## Redeems
 
-- [ ] TTI: Good Weather
-- [ ] TTI: Bad Weather 
+- [ ] [TTI: Good Weather](#tti-good-weather)
+- [ ] [TTI: Bad Weather](#tti-bad-weather) 
+- [ ] [TTI: Aurora](#tti-aurora) 
+- [ ] [TTI: Status Help](#tti-status-help) 
+- [ ] [TTI: Status Harm](#tti-status-harm)
+- [x] [TTI: Cabin Fever](#tti-cabin-fever)
+- [x] [TTI: Dysentery](#tti-dysentery)
+- [x] [TTI: Food Poisoning](#tti-food-poisoning)
+- [x] [TTI: Hypothermia](#tti-hypothermia)
+- [ ] [TTI: Bleeding](#tti-bleeding)
+- [ ] [TTI: Sprain](#tti-sprain)
+- [ ] [TTI: Team NoPants](#tti-team-nopants)
+- [ ] [TTI: Stink](#tti-stink)
+- [ ] [TTI: Drop Torch](#tti-drop-torch) 
+- [ ] [TTI: Drop Random Item](#tti-drop-random-item)
+- [ ] [TTI: Teleport](#tti-teleport)
+- [ ] [TTI: Stepped on Stim](#tti-stepped-on-stim)
+- [ ] [TTI: Bow](#tti-bow)
+- [ ] [TTI: Time of day](#tti-time-of-day)
+- [ ] [TTI: Big Game](#tti-big-game) 
+- [x] [TTI: T-Wolf Pack](#tti-t-wolf-pack)
+- [x] [TTI: Stalking Wolf](#tti-stalking-wolf)
+- [x] [TTI: Bunny Explosion](#tti-bunny-explosion)
+- [x] [TTI Sound: Happy 420](#tti-sound-happy-420)
+
+## Details
 
 ### TTI: Good Weather
 - userInput: fog, snow, clear, cloudy
