@@ -2,8 +2,8 @@
 
 ## ToDo's
 
-[x] TTI: Good Weather
-[x] TTI: Bad Weather 
+- [ ] TTI: Good Weather
+- [ ] TTI: Bad Weather 
 
 ### TTI: Good Weather
 - userInput: fog, snow, clear, cloudy
