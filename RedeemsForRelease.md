@@ -4,9 +4,9 @@
 
 - [x] [TTI Weather: Help](#tti-weather-help)
 - [x] [TTI Weather: Harm](#tti-weather-harm) 
-- [ ] [TTI Weather: Aurora](#tti-weather-aurora) 
-- [ ] [TTI Status: Help](#tti-status-help) 
-- [ ] [TTI Status: Harm](#tti-status-harm)
+- [x] [TTI Weather: Aurora](#tti-weather-aurora) 
+- [x] [TTI Status: Help](#tti-status-help) 
+- [x] [TTI Status: Harm](#tti-status-harm)
 - [ ] [TTI Status: Afflictions](#tti-status-afflictions)
 - [ ] [TTI Status: Bleeding](#tti-status-bleeding)
 - [ ] [TTI Status: Sprain](#tti-status-sprain)
@@ -45,19 +45,19 @@
 
 ### TTI Status: Help 
 - changes specified meter to settings help value
-- possible userInput: cold, fatigue, thirst, hunger
+- possible userInput: cold, fatigue, thirst, hunger (this is also the order of fallback when disabled)
 - configurable value in settings
 - can be enabled / disabled individually in settings
 
 ### TTI Status: Harm
 - changes specified meter to settings harm value
-- possible userInput: cold, fatigue, thirst, hunger
+- possible userInput: cold, fatigue, thirst, hunger (this is also the order of fallback when disabled)
 - configurable value in settings
 - can be enabled / disabled individually in settings
 
 ### TTI Status: Afflictions
-- gives specified affliction
-- possibe userInputs: foodpoisoning, dysentery, cabinfever, parasites
+- gives a random affliction
+- possibe outcomes: foodpoisoning, dysentery, cabinfever, parasites, hypothermia
 - can be enabled / disabled individually in settings
 
 ### TTI Status: Bleeding

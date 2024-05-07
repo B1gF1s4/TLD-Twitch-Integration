@@ -24,40 +24,10 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 			IsUserInputRequired = true
 		};
 
-		public static CustomReward CabinFever = new()
+		public static CustomReward Afflictions = new()
 		{
-			Title = RedeemNames.STATUS_CABIN_FEVER,
-			Prompt = "Gives the player cabin fever.",
-			Cost = 2000,
-			Color = RedeemColors.HARM,
-			IsEnabled = false,
-			IsUserInputRequired = false,
-		};
-
-		public static CustomReward Dysentery = new()
-		{
-			Title = RedeemNames.STATUS_DYSENTERY,
-			Prompt = "Gives the player dysentery.",
-			Cost = 2000,
-			Color = RedeemColors.HARM,
-			IsEnabled = false,
-			IsUserInputRequired = false,
-		};
-
-		public static CustomReward FoodPoisoning = new()
-		{
-			Title = RedeemNames.STATUS_FOOD_POISONING,
-			Prompt = "Gives the player food poisoning.",
-			Cost = 2000,
-			Color = RedeemColors.HARM,
-			IsEnabled = false,
-			IsUserInputRequired = false,
-		};
-
-		public static CustomReward Hypothermia = new()
-		{
-			Title = RedeemNames.STATUS_HYPOTHERMIA,
-			Prompt = "Gives the player hypothermia.",
+			Title = RedeemNames.STATUS_AFFLICTION,
+			Prompt = "Gives a random affliction. Possible outcomes: foodpoisoning, dysentery, cabinfever, parasites, hypothermia",
 			Cost = 2000,
 			Color = RedeemColors.HARM,
 			IsEnabled = false,
@@ -82,6 +52,16 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 			Color = RedeemColors.HARM,
 			IsEnabled = false,
 			IsUserInputRequired = true,
+		};
+
+		public static CustomReward Fristbite = new()
+		{
+			Title = RedeemNames.STATUS_FROSTBITE,
+			Prompt = "Gives the player frostbite at a random body part.",
+			Cost = 2000,
+			Color = RedeemColors.HARM,
+			IsEnabled = false,
+			IsUserInputRequired = false,
 		};
 
 		public static CustomReward Stink = new()

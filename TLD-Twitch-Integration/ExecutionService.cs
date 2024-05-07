@@ -19,6 +19,7 @@ namespace TLD_Twitch_Integration
 
 		public enum StatusMeter
 		{
+			None,
 			Cold,
 			Fatigue,
 			Thirst,
@@ -33,6 +34,15 @@ namespace TLD_Twitch_Integration
 			Moose,
 			StalkingWolf,
 			BunnyExplosion
+		}
+
+		public enum AfflictionRedeemType
+		{
+			FoodPoisoning,
+			Dysentery,
+			CabinFever,
+			Parasites,
+			Hypothermia
 		}
 
 		public static async Task OnUpdate()
@@ -150,12 +160,7 @@ namespace TLD_Twitch_Integration
 					return ExecuteWeatherHarmRedeem(redeem);
 
 				case RedeemNames.WEATHER_AURORA:
-					if (GameManager.m_ActiveScene == "Dam")
-						return false;
-					if (GameState.IsInBuilding)
-						return false;
-					GameService.ShouldStartAurora = true;
-					break;
+					return ExecuteWeatherAurora();
 
 				case RedeemNames.ANIMAL_T_WOLVES:
 					return ExecuteTWolfRedeem(redeem);
@@ -170,14 +175,13 @@ namespace TLD_Twitch_Integration
 					return ExecuteBunnyExplosionRedeem();
 
 				case RedeemNames.STATUS_HELP:
-					// TODO: evaluate userInput
-					GameService.ChangeMeter(StatusMeter.Hunger, true);
-					break;
+					return ExecuteStatusHelpRedeem(redeem);
 
 				case RedeemNames.STATUS_HARM:
-					// TODO: evaluate userInput
-					GameService.ChangeMeter(StatusMeter.Hunger, false);
-					break;
+					return ExecuteStatusHarmRedeem(redeem);
+
+				case RedeemNames.STATUS_AFFLICTION:
+					return ExecuteStatusAfflictionRedeem();
 
 				case RedeemNames.SOUND_420:
 					GameService.PlayPlayerSound("PLAY_SUFFOCATIONCOUGH");
@@ -185,22 +189,6 @@ namespace TLD_Twitch_Integration
 
 				case RedeemNames.DEV_SOUND:
 					GameService.PlayPlayerSound(redeem.UserInput!);
-					break;
-
-				case RedeemNames.STATUS_CABIN_FEVER:
-					GameService.ShouldStartCabinFever = true;
-					break;
-
-				case RedeemNames.STATUS_DYSENTERY:
-					GameService.ShouldStartDysentery = true;
-					break;
-
-				case RedeemNames.STATUS_FOOD_POISONING:
-					GameService.ShouldStartFoodPoisoning = true;
-					break;
-
-				case RedeemNames.STATUS_HYPOTHERMIA:
-					GameService.ShouldStartHypothermia = true;
 					break;
 
 				default:
@@ -272,6 +260,143 @@ namespace TLD_Twitch_Integration
 			GameService.WeatherToChange = weatherHarmToSet;
 
 			return true;
+		}
+
+		private static bool ExecuteWeatherAurora()
+		{
+			if (GameManager.m_ActiveScene == "Dam")
+				return false;
+
+			if (GameState.IsInBuilding)
+				return false;
+
+			GameService.ShouldStartAurora = true;
+
+			return true;
+		}
+
+		private static bool ExecuteStatusHelpRedeem(Redemption redeem)
+		{
+			var defaultStatusHelp = Settings.ModSettings.AllowStatusHelpWarm ? StatusMeter.Cold :
+						Settings.ModSettings.AllowStatusHelpAwake ? StatusMeter.Fatigue :
+						Settings.ModSettings.AllowStatusHelpNotThirsty ? StatusMeter.Thirst : StatusMeter.Hunger;
+
+			var userInputStatusHelp = string.IsNullOrEmpty(redeem.UserInput) ?
+				defaultStatusHelp.ToString().ToLower() : redeem.UserInput.ToLower();
+
+			var statusHelpToSet = userInputStatusHelp.Contains("cold") ? StatusMeter.Cold :
+				userInputStatusHelp.Contains("fatigue") ? StatusMeter.Fatigue :
+				userInputStatusHelp.Contains("thirst") ? StatusMeter.Thirst :
+				userInputStatusHelp.Contains("hunger") ? StatusMeter.Hunger : defaultStatusHelp;
+
+			if (statusHelpToSet == StatusMeter.Cold && !Settings.ModSettings.AllowStatusHelpWarm)
+				statusHelpToSet = defaultStatusHelp;
+
+			if (statusHelpToSet == StatusMeter.Fatigue && !Settings.ModSettings.AllowStatusHelpAwake)
+				statusHelpToSet = defaultStatusHelp;
+
+			if (statusHelpToSet == StatusMeter.Thirst && !Settings.ModSettings.AllowStatusHelpNotThirsty)
+				statusHelpToSet = defaultStatusHelp;
+
+			if (statusHelpToSet == StatusMeter.Hunger && !Settings.ModSettings.AllowStatusHelpFull)
+				statusHelpToSet = defaultStatusHelp;
+
+			GameService.StatusMeterToChange = statusHelpToSet;
+			GameService.IsHelpfulStatusMeterChange = true;
+
+			return true;
+		}
+
+		private static bool ExecuteStatusHarmRedeem(Redemption redeem)
+		{
+			var defaultStatusHarm = Settings.ModSettings.AllowStatusHarmFreezing ? StatusMeter.Cold :
+						Settings.ModSettings.AllowStatusHarmTired ? StatusMeter.Fatigue :
+						Settings.ModSettings.AllowStatusHarmThirsty ? StatusMeter.Thirst : StatusMeter.Hunger;
+
+			var userInputStatusHarm = string.IsNullOrEmpty(redeem.UserInput) ?
+				defaultStatusHarm.ToString().ToLower() : redeem.UserInput.ToLower();
+
+			var statusHarmToSet = userInputStatusHarm.Contains("cold") ? StatusMeter.Cold :
+				userInputStatusHarm.Contains("fatigue") ? StatusMeter.Fatigue :
+				userInputStatusHarm.Contains("thirst") ? StatusMeter.Thirst :
+				userInputStatusHarm.Contains("hunger") ? StatusMeter.Hunger : defaultStatusHarm;
+
+			if (statusHarmToSet == StatusMeter.Cold && !Settings.ModSettings.AllowStatusHarmHungry)
+				statusHarmToSet = defaultStatusHarm;
+
+			if (statusHarmToSet == StatusMeter.Fatigue && !Settings.ModSettings.AllowStatusHarmTired)
+				statusHarmToSet = defaultStatusHarm;
+
+			if (statusHarmToSet == StatusMeter.Thirst && !Settings.ModSettings.AllowStatusHarmThirsty)
+				statusHarmToSet = defaultStatusHarm;
+
+			if (statusHarmToSet == StatusMeter.Hunger && !Settings.ModSettings.AllowStatusHarmHungry)
+				statusHarmToSet = defaultStatusHarm;
+
+			GameService.StatusMeterToChange = statusHarmToSet;
+			GameService.IsHelpfulStatusMeterChange = false;
+
+			return true;
+		}
+
+		private static bool ExecuteStatusAfflictionRedeem()
+		{
+			Array values = Enum.GetValues(typeof(AfflictionRedeemType));
+			Random random = new();
+			AfflictionRedeemType affliction = (AfflictionRedeemType)
+				(values.GetValue(random.Next(values.Length)) ??
+				throw new Exception("trying to cast null to enum"));
+
+			switch (affliction)
+			{
+				case AfflictionRedeemType.FoodPoisoning:
+					if (!Settings.ModSettings.AllowAfflictionFoodPoisoning)
+						return false;
+
+					// TODO: check game settings && if player already has it
+
+					GameService.ShouldStartFoodPoisoning = true;
+					return true;
+
+				case AfflictionRedeemType.Dysentery:
+					if (!Settings.ModSettings.AllowAfflictionDysentery)
+						return false;
+
+					// TODO: check game settings && if player already has it
+
+					GameService.ShouldStartDysentery = true;
+					return true;
+
+				case AfflictionRedeemType.CabinFever:
+					if (!Settings.ModSettings.AllowAfflictionCabinFever)
+						return false;
+
+					// TODO: check game settings && if player already has it
+
+					GameService.ShouldStartCabinFever = true;
+					return true;
+
+				case AfflictionRedeemType.Parasites:
+					if (!Settings.ModSettings.AllowAfflictionParasites)
+						return false;
+
+					// TODO: check game settings && if player already has it
+
+					GameService.ShouldStartParasites = true;
+					return true;
+
+				case AfflictionRedeemType.Hypothermia:
+					if (!Settings.ModSettings.AllowAfflictionHypothermia)
+						return false;
+
+					// TODO: check game settings && if player already has it
+
+					GameService.ShouldStartHypothermia = true;
+					return true;
+
+				default:
+					return false;
+			}
 		}
 
 		private static bool ExecuteTWolfRedeem(Redemption redeem)

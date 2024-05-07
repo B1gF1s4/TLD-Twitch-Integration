@@ -134,23 +134,32 @@ namespace TLD_Twitch_Integration
 		[Slider(0f, 100f)]
 		public float StatusHarmValue = 10.0f;
 
-		[Section("TTI Status: Afflictions")]
-		[Name("Allow Status Cabin Fever")]
-		[Description($"Enable or disable {RedeemNames.STATUS_CABIN_FEVER} redeem")]
-		public bool AllowStatusCabinFever = false;
+		[Section(RedeemNames.STATUS_AFFLICTION)]
+		[Name("Allow Afflictions")]
+		[Description($"Enable or disable {RedeemNames.STATUS_AFFLICTION} redeem")]
+		public bool AllowAfflictions = false;
 
-		[Name("Allow Status Dysentery")]
-		[Description($"Enable or disable {RedeemNames.STATUS_DYSENTERY} redeem")]
-		public bool AllowStatusDysentery = false;
+		[Name("Allow Affliction Cabin Fever")]
+		[Description($"Enable or disable 'cabin fever' as possible output")]
+		public bool AllowAfflictionCabinFever = true;
 
-		[Name("Allow Status Food Poisoning")]
-		[Description($"Enable or disable {RedeemNames.STATUS_FOOD_POISONING} redeem")]
-		public bool AllowStatusFoodPoisoning = false;
+		[Name("Allow Affliction Dysentery")]
+		[Description($"Enable or disable 'dysentery' as possible output")]
+		public bool AllowAfflictionDysentery = true;
 
-		[Name("Allow Status Hypothermia")]
-		[Description($"Enable or disable {RedeemNames.STATUS_HYPOTHERMIA} redeem")]
-		public bool AllowStatusHypothermia = false;
+		[Name("Allow Affliction Food Poisoning")]
+		[Description($"Enable or disable 'food poisoning' as possible output")]
+		public bool AllowAfflictionFoodPoisoning = true;
 
+		[Name("Allow Affliction Hypothermia")]
+		[Description($"Enable or disable 'hypothermia' as possible output")]
+		public bool AllowAfflictionHypothermia = true;
+
+		[Name("Allow Affliction Parasites")]
+		[Description($"Enable or disable 'hypothermia' as possible output")]
+		public bool AllowAfflictionParasites = true;
+
+		[Section("TTI Status")]
 		[Name("Allow Status Bleeding")]
 		[Description($"Enable or disable {RedeemNames.STATUS_BLEED} redeem")]
 		public bool AllowStatusBleeding = false;
@@ -162,6 +171,10 @@ namespace TLD_Twitch_Integration
 		[Name("Allow Status Sprain Wrists")]
 		[Description($"Enable or disable 'handleft' and 'handright' user inputs for the {RedeemNames.STATUS_SPRAIN} redeem")]
 		public bool AllowStatusSprainWrists = true;
+
+		[Name("Allow Status Frostbites")]
+		[Description($"Enable or disable {RedeemNames.STATUS_FROSTBITE} redeem")]
+		public bool AllowStatusFrostbite = false;
 
 		[Name("Allow Status Stink")]
 		[Description($"Enable or disable {RedeemNames.STATUS_STINK} redeem")]
@@ -300,6 +313,9 @@ namespace TLD_Twitch_Integration
 			if (field.Name == nameof(AllowStatusHarm))
 				RefreshStatusHarmFields();
 
+			if (field.Name == nameof(AllowAfflictions))
+				RefreshAfflictionsFields();
+
 			if (field.Name == nameof(AllowStatusSprain))
 				RefreshStatusSprainFields();
 
@@ -336,12 +352,10 @@ namespace TLD_Twitch_Integration
 			SetFieldVisible(nameof(AllowWeatherAurora), Enabled);
 			SetFieldVisible(nameof(AllowStatusHelp), Enabled);
 			SetFieldVisible(nameof(AllowStatusHarm), Enabled);
-			SetFieldVisible(nameof(AllowStatusCabinFever), Enabled);
-			SetFieldVisible(nameof(AllowStatusDysentery), Enabled);
-			SetFieldVisible(nameof(AllowStatusFoodPoisoning), Enabled);
-			SetFieldVisible(nameof(AllowStatusHypothermia), Enabled);
+			SetFieldVisible(nameof(AllowAfflictions), Enabled);
 			SetFieldVisible(nameof(AllowStatusBleeding), Enabled);
 			SetFieldVisible(nameof(AllowStatusSprain), Enabled);
+			SetFieldVisible(nameof(AllowStatusFrostbite), Enabled);
 			SetFieldVisible(nameof(AllowStatusStink), Enabled);
 			SetFieldVisible(nameof(AllowTeamNoPants), Enabled);
 			SetFieldVisible(nameof(AllowDropTorch), Enabled);
@@ -360,6 +374,7 @@ namespace TLD_Twitch_Integration
 			RefreshWeatherHarmFields();
 			RefreshStatusHelpFields();
 			RefreshStatusHarmFields();
+			RefreshAfflictionsFields();
 			RefreshStatusSprainFields();
 			RefreshStatusStinkFields();
 			RefreshInventoryBowFields();
@@ -404,6 +419,16 @@ namespace TLD_Twitch_Integration
 			SetFieldVisible(nameof(AllowStatusHarmThirsty), allow);
 			SetFieldVisible(nameof(AllowStatusHarmHungry), allow);
 			SetFieldVisible(nameof(StatusHarmValue), allow);
+		}
+
+		private void RefreshAfflictionsFields()
+		{
+			var allow = AllowAfflictions && Enabled;
+			SetFieldVisible(nameof(AllowAfflictionCabinFever), allow);
+			SetFieldVisible(nameof(AllowAfflictionDysentery), allow);
+			SetFieldVisible(nameof(AllowAfflictionFoodPoisoning), allow);
+			SetFieldVisible(nameof(AllowAfflictionHypothermia), allow);
+			SetFieldVisible(nameof(AllowAfflictionParasites), allow);
 		}
 
 		private void RefreshStatusSprainFields()

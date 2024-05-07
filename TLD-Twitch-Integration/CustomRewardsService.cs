@@ -237,28 +237,10 @@ namespace TLD_Twitch_Integration
 					RedeemNames.STATUS_HARM);
 
 				await UpdateCustomReward(
-					Settings.Redeems.GetIdByRedeemName(RedeemNames.STATUS_CABIN_FEVER),
+					Settings.Redeems.GetIdByRedeemName(RedeemNames.STATUS_AFFLICTION),
 					Settings.ModSettings.Enabled &&
-					Settings.ModSettings.AllowStatusCabinFever,
-					RedeemNames.STATUS_CABIN_FEVER);
-
-				await UpdateCustomReward(
-					Settings.Redeems.GetIdByRedeemName(RedeemNames.STATUS_DYSENTERY),
-					Settings.ModSettings.Enabled &&
-					Settings.ModSettings.AllowStatusDysentery,
-					RedeemNames.STATUS_DYSENTERY);
-
-				await UpdateCustomReward(
-					Settings.Redeems.GetIdByRedeemName(RedeemNames.STATUS_FOOD_POISONING),
-					Settings.ModSettings.Enabled &&
-					Settings.ModSettings.AllowStatusFoodPoisoning,
-					RedeemNames.STATUS_FOOD_POISONING);
-
-				await UpdateCustomReward(
-					Settings.Redeems.GetIdByRedeemName(RedeemNames.STATUS_HYPOTHERMIA),
-					Settings.ModSettings.Enabled &&
-					Settings.ModSettings.AllowStatusHypothermia,
-					RedeemNames.STATUS_HYPOTHERMIA);
+					Settings.ModSettings.AllowAfflictions,
+					RedeemNames.STATUS_AFFLICTION); ;
 
 				await UpdateCustomReward(
 					Settings.Redeems.GetIdByRedeemName(RedeemNames.STATUS_BLEED),
@@ -271,6 +253,12 @@ namespace TLD_Twitch_Integration
 					Settings.ModSettings.Enabled &&
 					Settings.ModSettings.AllowStatusSprain,
 					RedeemNames.STATUS_SPRAIN);
+
+				await UpdateCustomReward(
+					Settings.Redeems.GetIdByRedeemName(RedeemNames.STATUS_FROSTBITE),
+					Settings.ModSettings.Enabled &&
+					Settings.ModSettings.AllowStatusFrostbite,
+					RedeemNames.STATUS_FROSTBITE);
 
 				await UpdateCustomReward(
 					Settings.Redeems.GetIdByRedeemName(RedeemNames.STATUS_STINK),

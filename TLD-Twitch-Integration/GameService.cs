@@ -21,6 +21,9 @@ namespace TLD_Twitch_Integration
 		public static bool ShouldStartHypothermia { get; set; }
 		public static bool ShouldStartParasites { get; set; }
 
+		public static StatusMeter StatusMeterToChange { get; set; }
+		public static bool IsHelpfulStatusMeterChange { get; set; }
+
 		public static void SpawnTWolves(bool aurora)
 		{
 			SpawnedAnimalCounter = 0;
@@ -70,7 +73,9 @@ namespace TLD_Twitch_Integration
 
 		public static void ChangeMeter(StatusMeter type, bool isHelp)
 		{
-			var value = isHelp ? 90f : 10f;
+			var value = isHelp ?
+				Settings.ModSettings.StatusHelpValue :
+				Settings.ModSettings.StatusHarmValue;
 
 			switch (type)
 			{
@@ -79,21 +84,25 @@ namespace TLD_Twitch_Integration
 					if (fatigue != null)
 						fatigue.m_CurrentFatigue = 100f - value;
 					break;
+
 				case StatusMeter.Hunger:
 					var hunger = GameManager.GetHungerComponent();
 					if (hunger != null)
 						hunger.m_CurrentReserveCalories = value / 100f * hunger.m_MaxReserveCalories;
 					break;
+
 				case StatusMeter.Thirst:
 					var thirst = GameManager.GetThirstComponent();
 					if (thirst != null)
 						thirst.m_CurrentThirst = 100f - value;
 					break;
+
 				case StatusMeter.Cold:
 					var cold = GameManager.GetFreezingComponent();
 					if (cold != null)
 						cold.m_CurrentFreezing = 100f - value;
 					break;
+
 				default:
 					break;
 			}

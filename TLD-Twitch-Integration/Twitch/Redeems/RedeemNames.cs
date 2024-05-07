@@ -13,12 +13,10 @@
 
 		public const string STATUS_HELP = "TTI Status: Help";
 		public const string STATUS_HARM = "TTI Status: Harm";
-		public const string STATUS_CABIN_FEVER = "TTI Status: Cabin Fever";
-		public const string STATUS_DYSENTERY = "TTI Status: Dysentery";
-		public const string STATUS_FOOD_POISONING = "TTI Status: Food Poisoning";
-		public const string STATUS_HYPOTHERMIA = "TTI Status: Hypothermia";
+		public const string STATUS_AFFLICTION = "TTI Status: Afflictions";
 		public const string STATUS_BLEED = "TTI Status: Bleeding";
 		public const string STATUS_SPRAIN = "TTI Status: Sprain";
+		public const string STATUS_FROSTBITE = "TTI Status: Frostbite";
 		public const string STATUS_STINK = "TTI Status: Stink";
 
 		public const string INVENTORY_NO_PANTS = "TTI Inventory: Team No Pants";

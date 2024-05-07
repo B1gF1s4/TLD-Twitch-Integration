@@ -1,8 +1,24 @@
 ﻿using HarmonyLib;
 using Il2Cpp;
+using static TLD_Twitch_Integration.ExecutionService;
 
 namespace TLD_Twitch_Integration.Patches
 {
+	[HarmonyPatch(typeof(PlayerManager), nameof(PlayerManager.Update))]
+	internal class PlayerManagerUpdatePatch
+	{
+		internal static void Postfix()
+		{
+			if (GameService.StatusMeterToChange == StatusMeter.None)
+				return;
+
+			GameService.ChangeMeter(GameService.StatusMeterToChange,
+				GameService.IsHelpfulStatusMeterChange);
+
+			GameService.StatusMeterToChange = StatusMeter.None;
+		}
+	}
+
 	[HarmonyPatch(typeof(CabinFever), nameof(CabinFever.Update))]
 	internal class CabinFeverUpdatePatch
 	{

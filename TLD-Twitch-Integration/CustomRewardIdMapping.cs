@@ -34,23 +34,17 @@ namespace TLD_Twitch_Integration
 		[Name(RedeemNames.STATUS_HARM)]
 		public string StatusHarm = "";
 
-		[Name(RedeemNames.STATUS_CABIN_FEVER)]
-		public string StatusCabinFever = "";
-
-		[Name(RedeemNames.STATUS_DYSENTERY)]
-		public string StatusDysentery = "";
-
-		[Name(RedeemNames.STATUS_FOOD_POISONING)]
-		public string StatusFoodPoisoning = "";
-
-		[Name(RedeemNames.STATUS_HYPOTHERMIA)]
-		public string StatusHypothermia = "";
+		[Name(RedeemNames.STATUS_AFFLICTION)]
+		public string StatusAffliction = "";
 
 		[Name(RedeemNames.STATUS_BLEED)]
 		public string StatusBleeding = "";
 
 		[Name(RedeemNames.STATUS_SPRAIN)]
 		public string StatusSprain = "";
+
+		[Name(RedeemNames.STATUS_FROSTBITE)]
+		public string StatusFrostbite = "";
 
 		[Name(RedeemNames.STATUS_STINK)]
 		public string StatusStink = "";

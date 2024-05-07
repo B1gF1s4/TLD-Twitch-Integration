@@ -69,6 +69,7 @@ namespace TLD_Twitch_Integration.Patches
 					GameService.SpawningAnimal = false;
 					GameService.AnimalToSpawn = AnimalRedeemType.None;
 					break;
+
 				case AnimalRedeemType.Moose:
 					var animalPosMoose = cam.position + cam.forward * Settings.ModSettings.DistanceMoose;
 					animalPosMoose.y += 200;

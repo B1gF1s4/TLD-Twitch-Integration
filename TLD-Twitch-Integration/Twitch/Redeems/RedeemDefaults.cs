@@ -19,12 +19,10 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 
 			{ RedeemNames.STATUS_HELP, StatusRedeems.Help },
 			{ RedeemNames.STATUS_HARM, StatusRedeems.Harm },
-			{ RedeemNames.STATUS_CABIN_FEVER, StatusRedeems.CabinFever },
-			{ RedeemNames.STATUS_DYSENTERY, StatusRedeems.Dysentery },
-			{ RedeemNames.STATUS_FOOD_POISONING, StatusRedeems.FoodPoisoning },
-			{ RedeemNames.STATUS_HYPOTHERMIA, StatusRedeems.Hypothermia },
+			{ RedeemNames.STATUS_AFFLICTION, StatusRedeems.Afflictions },
 			{ RedeemNames.STATUS_BLEED, StatusRedeems.Bleeding },
 			{ RedeemNames.STATUS_SPRAIN, StatusRedeems.Sprain },
+			{ RedeemNames.STATUS_FROSTBITE, StatusRedeems.Fristbite },
 			{ RedeemNames.STATUS_STINK, StatusRedeems.Stink },
 
 			{ RedeemNames.INVENTORY_NO_PANTS, InventoryRedeems.TeamNoPants },
