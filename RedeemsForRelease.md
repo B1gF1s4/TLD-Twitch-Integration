@@ -3,7 +3,7 @@
 ## Redeems
 
 - [x] [TTI Weather: Help](#tti-weather-help)
-- [ ] [TTI Weather: Harm](#tti-weather-harm) 
+- [x] [TTI Weather: Harm](#tti-weather-harm) 
 - [ ] [TTI Weather: Aurora](#tti-weather-aurora) 
 - [ ] [TTI Status: Help](#tti-status-help) 
 - [ ] [TTI Status: Harm](#tti-status-harm)
@@ -17,7 +17,7 @@
 - [ ] [TTI Inventory: Drop Random Item](#tti-inventory-drop-random-item)
 - [ ] [TTI Inventory: Stepped on Stim](#tti-inventory-stepped-on-stim)
 - [ ] [TTI Inventory: Bow](#tti-inventory-bow)
-- [ ] [TTI Animal: Big Game](#tti-animal-big-game) 
+- [x] [TTI Animal: Big Game](#tti-animal-big-game) 
 - [x] [TTI Animal: T-Wolf Pack](#tti-animal-t-wolf-pack)
 - [x] [TTI Animal: Stalking Wolf](#tti-animal-stalking-wolf)
 - [x] [TTI Animal: Bunny Explosion](#tti-animal-bunny-explosion)
@@ -44,14 +44,16 @@
 - [x] imeplement settings: enable / disable
 
 ### TTI Status: Help 
-- [ ] implement userInput: cold, fatigue, thirst, hunger
-- [x] imeplement settings: actual value the redeem will set the meter to, enable each meter individually
-- [x] changes the specified meter to the specified value
+- changes specified meter to settings help value
+- possible userInput: cold, fatigue, thirst, hunger
+- configurable value in settings
+- can be enabled / disabled individually in settings
 
 ### TTI Status: Harm
-- [ ] implement userInput: cold, fatigue, thirst, hunger
-- [x] imeplement settings: actual value the redeem will set the meter to, enable each meter individually
-- [x] changes the specified meter to the specified value
+- changes specified meter to settings harm value
+- possible userInput: cold, fatigue, thirst, hunger
+- configurable value in settings
+- can be enabled / disabled individually in settings
 
 ### TTI Status: Afflictions
 - gives specified affliction

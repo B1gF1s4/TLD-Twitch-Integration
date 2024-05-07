@@ -6,6 +6,15 @@ namespace TLD_Twitch_Integration.Patches
 	[HarmonyPatch(typeof(WeatherTransition), nameof(WeatherTransition.Update))]
 	internal class WeatherTransitionUpdatePatch
 	{
+		internal static void Prefix()
+		{
+			if (!GameService.ShouldStartAurora)
+				return;
+
+			ConsoleManager.CONSOLE_force_aurora();
+			GameService.ShouldStartAurora = false;
+		}
+
 		internal static void Postfix(WeatherTransition __instance)
 		{
 			if (GameService.WeatherToChange == WeatherStage.Undefined)

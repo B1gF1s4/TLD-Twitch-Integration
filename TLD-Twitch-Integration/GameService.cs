@@ -13,6 +13,7 @@ namespace TLD_Twitch_Integration
 
 		public static WeatherStage WeatherToChange { get; set; }
 			= WeatherStage.Undefined;
+		public static bool ShouldStartAurora { get; set; }
 
 		public static bool ShouldStartCabinFever { get; set; }
 		public static bool ShouldStartDysentery { get; set; }

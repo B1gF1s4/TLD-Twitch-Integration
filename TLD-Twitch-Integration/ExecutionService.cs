@@ -17,21 +17,6 @@ namespace TLD_Twitch_Integration
 
 		private static DateTime _lastUpdated;
 
-		public enum WeatherHelp
-		{
-			Clear,
-			Fog,
-			Snow,
-			Cloudy
-		}
-
-		public enum WeatherHarm
-		{
-			Blizzard,
-			Fog,
-			Snow
-		}
-
 		public enum StatusMeter
 		{
 			Cold,
@@ -167,7 +152,7 @@ namespace TLD_Twitch_Integration
 				case RedeemNames.WEATHER_AURORA:
 					if (GameState.IsInBuilding)
 						return false;
-					// TODO: implement forcing aurora
+					GameService.ShouldStartAurora = true;
 					break;
 
 				case RedeemNames.ANIMAL_T_WOLVES:
