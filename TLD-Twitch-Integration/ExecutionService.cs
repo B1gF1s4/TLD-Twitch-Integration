@@ -159,27 +159,49 @@ namespace TLD_Twitch_Integration
 			switch (defaultTitle)
 			{
 				case RedeemNames.WEATHER_HELP:
-					if (!ShouldExecuteWeatherRedeem())
+					if (GameState.IsInBuilding)
 						return false;
-					// TODO: evaluate userInput
-					GameService.WeatherToChange = WeatherStage.Clear;
+					var defaultWeatherHelp = Settings.ModSettings.AllowWeatherHelpClear ? WeatherStage.Clear :
+						Settings.ModSettings.AllowWeatherHelpFog ? WeatherStage.LightFog :
+						Settings.ModSettings.AllowWeatherHelpSnow ? WeatherStage.LightSnow : WeatherStage.PartlyCloudy;
+					var userInputWeatherHelp = string.IsNullOrEmpty(redeem.UserInput) ?
+						defaultWeatherHelp.ToString().ToLower() : redeem.UserInput.ToLower();
+					var weatherHelpToSet = userInputWeatherHelp.Contains("clear") ? WeatherStage.Clear :
+						userInputWeatherHelp.Contains("fog") ? WeatherStage.LightFog :
+						userInputWeatherHelp.Contains("snow") ? WeatherStage.LightSnow :
+						userInputWeatherHelp.Contains("cloudy") ? WeatherStage.PartlyCloudy : defaultWeatherHelp;
+					if (weatherHelpToSet == WeatherStage.Clear && !Settings.ModSettings.AllowWeatherHelpClear)
+						return false;
+					if (weatherHelpToSet == WeatherStage.LightFog && !Settings.ModSettings.AllowWeatherHelpFog)
+						return false;
+					if (weatherHelpToSet == WeatherStage.LightSnow && !Settings.ModSettings.AllowWeatherHelpSnow)
+						return false;
+					if (weatherHelpToSet == WeatherStage.PartlyCloudy && !Settings.ModSettings.AllowWeatherHelpCloudy)
+						return false;
+					GameService.WeatherToChange = weatherHelpToSet;
 					break;
 
 				case RedeemNames.WEATHER_HARM:
-					if (!ShouldExecuteWeatherRedeem())
+					if (GameState.IsInBuilding)
 						return false;
-					// TODO: evaluate userInput
-					GameService.WeatherToChange = WeatherStage.Blizzard;
+					var defaultWeatherHarm = Settings.ModSettings.AllowWeatherHarmBlizzard ? WeatherStage.Blizzard :
+						Settings.ModSettings.AllowWeatherHarmFog ? WeatherStage.DenseFog : WeatherStage.HeavySnow;
+					var userInputWeatherHarm = string.IsNullOrEmpty(redeem.UserInput) ?
+						defaultWeatherHarm.ToString().ToLower() : redeem.UserInput.ToLower();
+					var weatherHarmToSet = userInputWeatherHarm.Contains("blizzard") ? WeatherStage.Blizzard :
+						userInputWeatherHarm.Contains("fog") ? WeatherStage.DenseFog :
+						userInputWeatherHarm.Contains("snow") ? WeatherStage.HeavySnow : defaultWeatherHarm;
+					GameService.WeatherToChange = weatherHarmToSet;
 					break;
 
 				case RedeemNames.WEATHER_AURORA:
-					if (!ShouldExecuteWeatherRedeem())
+					if (GameState.IsInBuilding)
 						return false;
 					// TODO: implement forcing aurora
 					break;
 
 				case RedeemNames.ANIMAL_T_WOLVES:
-					if (!ShouldExecuteAnimalRedeem())
+					if (GameState.IsInBuilding)
 						return false;
 					if (GameState.IsAuroraFading)
 						return false;
@@ -190,24 +212,34 @@ namespace TLD_Twitch_Integration
 					break;
 
 				case RedeemNames.ANIMAL_BIG_GAME:
-					if (!ShouldExecuteAnimalRedeem())
+					if (GameState.IsInBuilding)
 						return false;
 					var defaultAnimal = Settings.ModSettings.AllowBigGameBear ?
-						"bear" : "moose";
+						AnimalRedeemType.Bear : AnimalRedeemType.Moose;
 					var userInputAnimal = string.IsNullOrEmpty(redeem.UserInput) ?
-						defaultAnimal : redeem.UserInput;
-					var animalToSet = userInputAnimal.Contains("bear") ? "bear" :
-						userInputAnimal.Contains("moose") ? "moose" : defaultAnimal;
-					if (animalToSet == "moose" && GameState.IsAuroraFading)
+						defaultAnimal.ToString().ToLower() : redeem.UserInput.ToLower();
+					var animalToSet = userInputAnimal.Contains("bear") ? AnimalRedeemType.Bear :
+						userInputAnimal.Contains("moose") ? AnimalRedeemType.Moose : defaultAnimal;
+					if (GameState.IsAuroraFading)
 						return false;
-					if (animalToSet == "bear")
-						GameService.AnimalToSpawn = AnimalRedeemType.Bear;
-					if (animalToSet == "moose")
+					if (animalToSet == AnimalRedeemType.Moose)
+					{
+						if (GameState.IsAuroraActive)
+							return false;
+						if (!Settings.ModSettings.AllowBigGameMoose)
+							return false;
 						GameService.AnimalToSpawn = AnimalRedeemType.Moose;
+					}
+					else
+					{
+						if (!Settings.ModSettings.AllowBigGameMoose)
+							return false;
+						GameService.AnimalToSpawn = AnimalRedeemType.Bear;
+					}
 					break;
 
 				case RedeemNames.ANIMAL_STALKING_WOLF:
-					if (!ShouldExecuteAnimalRedeem())
+					if (GameState.IsInBuilding)
 						return false;
 					if (GameState.IsAuroraFading)
 						return false;
@@ -215,7 +247,7 @@ namespace TLD_Twitch_Integration
 					break;
 
 				case RedeemNames.ANIMAL_BUNNY_EXPLOSION:
-					if (!ShouldExecuteAnimalRedeem())
+					if (GameState.IsInBuilding)
 						return false;
 					GameService.SpawningAnimalTargetCount = Settings.ModSettings.BunnyCount;
 					GameService.AnimalToSpawn = AnimalRedeemType.BunnyExplosion;
@@ -259,22 +291,6 @@ namespace TLD_Twitch_Integration
 					Melon<Mod>.Logger.Error($"redeem operation not supported - {defaultTitle}");
 					break;
 			}
-
-			return true;
-		}
-
-		private static bool ShouldExecuteWeatherRedeem()
-		{
-			if (GameState.IsInBuilding)
-				return false;
-
-			return true;
-		}
-
-		private static bool ShouldExecuteAnimalRedeem()
-		{
-			if (GameState.IsInBuilding)
-				return false;
 
 			return true;
 		}

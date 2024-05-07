@@ -2,7 +2,7 @@
 
 ## Redeems
 
-- [ ] [TTI Weather: Help](#tti-weather-help)
+- [x] [TTI Weather: Help](#tti-weather-help)
 - [ ] [TTI Weather: Harm](#tti-weather-harm) 
 - [ ] [TTI Weather: Aurora](#tti-weather-aurora) 
 - [ ] [TTI Status: Help](#tti-status-help) 
@@ -32,14 +32,14 @@
 - userInput order reflects fallback order in case userInput cannot be parsed. for example for the weather help redeem, if userInput is 'someUnidentifiedUserInput' TTI executes clear. if that is disabled, it executes fog, and so on
 
 ### TTI Weather: Help
-- [ ] imeplement userInput: clear, fog, snow, cloudy
-- [x] implement settings: enable each weather type individually
-- [x] changes the ingame weather
+- changes the ingame weather
+- possible userInputs: clear, fog, snow, cloudy (this is also the order of fallback when disabled)
+- can be enabled / disabled individually in settings
 
 ### TTI Weather: Harm 
-- [ ] implement userInput: blizzard, fog, snow
-- [x] imeplement settings: enable each weather type individually
-- [x] changes the ingame weather
+- changes the ingame weather
+- possible userInputs: blizzard, fog, snow (this is also the order of fallback when disabled)
+- can be enabled / disabled individually in settings
 
 ### TTI Weather: Aurora
 - [ ] instantly makes it midnight and starts an aurora (aurora fading in)
