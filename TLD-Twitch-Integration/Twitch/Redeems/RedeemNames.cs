@@ -4,7 +4,7 @@
 	{
 		public const string WEATHER_HELP = "TTI Weather: Help";
 		public const string WEATHER_HARM = "TTI Weather: Harm";
-		public const string WEATHER_AURORA = "TTI Weahter: Aurora";
+		public const string WEATHER_AURORA = "TTI Weather: Aurora";
 
 		public const string ANIMAL_T_WOLVES = "TTI Animal: Timberwolves";
 		public const string ANIMAL_BIG_GAME = "TTI Animal: Big Game";

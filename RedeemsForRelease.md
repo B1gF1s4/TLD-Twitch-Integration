@@ -40,8 +40,8 @@
 - can be enabled / disabled individually in settings
 
 ### TTI Weather: Aurora
-- [ ] instantly makes it midnight and starts an aurora (aurora fading in)
-- [x] imeplement settings: enable / disable
+- instantly makes it midnight and starts an aurora (aurora fading in)
+- this currently also works in the dam ...
 
 ### TTI Status: Help 
 - changes specified meter to settings help value

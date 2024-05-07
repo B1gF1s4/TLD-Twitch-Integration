@@ -150,6 +150,8 @@ namespace TLD_Twitch_Integration
 					return ExecuteWeatherHarmRedeem(redeem);
 
 				case RedeemNames.WEATHER_AURORA:
+					if (GameManager.m_ActiveScene == "Dam")
+						return false;
 					if (GameState.IsInBuilding)
 						return false;
 					GameService.ShouldStartAurora = true;
