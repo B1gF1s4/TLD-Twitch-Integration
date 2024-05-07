@@ -21,8 +21,8 @@
 - [ ] [TTI Inventory: Bow](#tti-inventory-bow)
 - [ ] [TTI Animal: Big Game](#tti-animal-big-game) 
 - [x] [TTI Animal: T-Wolf Pack](#tti-animal-t-wolf-pack)
-- [ ] [TTI Animal: Stalking Wolf](#tti-animal-stalking-wolf)
-- [ ] [TTI Animal: Bunny Explosion](#tti-animal-bunny-explosion)
+- [x] [TTI Animal: Stalking Wolf](#tti-animal-stalking-wolf)
+- [x] [TTI Animal: Bunny Explosion](#tti-animal-bunny-explosion)
 - [ ] [TTI Misc: Time of day](#tti-misc-time-of-day)
 - [ ] [TTI Misc: Teleport](#tti-misc-teleport)
 - [ ] [TTI Sound: Happy 420](#tti-sound-happy-420)
@@ -113,17 +113,19 @@
 - [x] spawns aurorabear during an aurora, delays moose spawn in case of aurora until its over
 
 ### TTI Animal: T-Wolf Pack
-- [x] implement userInput: 2-5
-- [x] implement settings: spawn distance / enable / disable
-- [x] spawns in front
+- spawns between 2-5 t-wolves depending on userInput
+- configurable spawn distance in settings
+- if userInput cannot be parsed, spawns a pack of 5
+- spawns aurora t-wolves during an aurora
 
 ### TTI Animal: Stalking Wolf
-- [x] implement settings: spawn distance / enable / disable
-- [x] spawns behind (oposite direction camera is looking at at time of redeem)
+- spawns wolf behind (opposite direction camera is facing)
+- configurable spawn distance in settings
+- spawns aurora wolf during an aurora
 
 ### TTI Animal: Bunny Explosion
-- [x] settings: amount of bunnies (for performance sake) / enable / disable
-- [x] spawns x amount of bunnies slightly in front
+- spawns x amount of bunnies
+- configurable bunny count in settings
 
 ### TTI Misc: Teleport
 - [ ] implement userInput: [some locations that still have to be decided on. thinking summit, goldmine, monolithlake. something along those lines]

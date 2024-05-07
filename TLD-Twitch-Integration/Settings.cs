@@ -210,8 +210,8 @@ namespace TLD_Twitch_Integration
 
 		[Name("T-Wolf Spawn Distance")]
 		[Description($"How far to spawn T-Wolves in front of you")]
-		[Slider(0.5f, 100.0f)]
-		public float DistanceTWolf = 35.0f;
+		[Slider(0.5f, 50.0f)]
+		public float DistanceTWolf = 15.0f;
 
 		[Name("Allow Big Game")]
 		[Description($"Enable or disable {RedeemNames.ANIMAL_BIG_GAME} redeem")]

@@ -63,11 +63,16 @@ namespace TLD_Twitch_Integration.Patches
 					break;
 
 				case AnimalRedeemType.Bear:
+					var animalPosBear = cam.position + cam.forward * Settings.ModSettings.DistanceBear;
+					animalPosBear.y += 200;
+					bai.SetPosition(animalPosBear);
+					GameService.SpawningAnimal = false;
+					GameService.AnimalToSpawn = AnimalRedeemType.None;
+					break;
 				case AnimalRedeemType.Moose:
-					var animalPos = cam.position + cam.forward * Settings.ModSettings.DistanceBear;
-					animalPos.y += 200;
-					AiUtils.FindNearestGroundAndNavmeshFor(animalPos, out var groundPos, out var navmeshPos);
-					bai.SetPosition(groundPos);
+					var animalPosMoose = cam.position + cam.forward * Settings.ModSettings.DistanceMoose;
+					animalPosMoose.y += 200;
+					bai.SetPosition(animalPosMoose);
 					GameService.SpawningAnimal = false;
 					GameService.AnimalToSpawn = AnimalRedeemType.None;
 					break;

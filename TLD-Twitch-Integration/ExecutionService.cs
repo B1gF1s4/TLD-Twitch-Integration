@@ -192,10 +192,18 @@ namespace TLD_Twitch_Integration
 				case RedeemNames.ANIMAL_BIG_GAME:
 					if (!ShouldExecuteAnimalRedeem())
 						return false;
-					if (GameState.IsAuroraFading)
+					var defaultAnimal = Settings.ModSettings.AllowBigGameBear ?
+						"bear" : "moose";
+					var userInputAnimal = string.IsNullOrEmpty(redeem.UserInput) ?
+						defaultAnimal : redeem.UserInput;
+					var animalToSet = userInputAnimal.Contains("bear") ? "bear" :
+						userInputAnimal.Contains("moose") ? "moose" : defaultAnimal;
+					if (animalToSet == "moose" && GameState.IsAuroraFading)
 						return false;
-					// TODO: evaluate userInput
-					GameService.AnimalToSpawn = AnimalRedeemType.Bear;
+					if (animalToSet == "bear")
+						GameService.AnimalToSpawn = AnimalRedeemType.Bear;
+					if (animalToSet == "moose")
+						GameService.AnimalToSpawn = AnimalRedeemType.Moose;
 					break;
 
 				case RedeemNames.ANIMAL_STALKING_WOLF:
