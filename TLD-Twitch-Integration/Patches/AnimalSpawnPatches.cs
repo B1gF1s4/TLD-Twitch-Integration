@@ -45,26 +45,26 @@ namespace TLD_Twitch_Integration.Patches
 				return;
 
 			var cam = GameManager.GetCurrentCamera().transform;
-			var distance = Settings.ModSettings.AnimalSpawnDistance;
 
 			switch (GameService.AnimalToSpawn)
 			{
 				case AnimalRedeemType.TWolves:
-					var animalPosPack = cam.position + cam.forward * distance;
+					var animalPosPack = cam.position + cam.forward * Settings.ModSettings.DistanceTWolf;
 					animalPosPack.y += 100;
 					AiUtils.FindNearestGroundAndNavmeshFor(animalPosPack, out var groundPosPack, out var navmeshPosPack);
 					bai.SetPosition(groundPosPack);
 					GameService.SpawnedAnimalCounter++;
-					if (GameService.SpawnedAnimalCounter >= GameService.TWolfPackSize)
+					if (GameService.SpawnedAnimalCounter >= GameService.SpawningAnimalTargetCount)
 					{
 						GameService.SpawningAnimal = false;
 						GameService.AnimalToSpawn = AnimalRedeemType.None;
+						GameService.SpawningAnimalTargetCount = 0;
 					}
 					break;
 
 				case AnimalRedeemType.Bear:
 				case AnimalRedeemType.Moose:
-					var animalPos = cam.position + cam.forward * distance;
+					var animalPos = cam.position + cam.forward * Settings.ModSettings.DistanceBear;
 					animalPos.y += 100;
 					AiUtils.FindNearestGroundAndNavmeshFor(animalPos, out var groundPos, out var navmeshPos);
 					bai.SetPosition(groundPos);
@@ -73,7 +73,7 @@ namespace TLD_Twitch_Integration.Patches
 					break;
 
 				case AnimalRedeemType.StalkingWolf:
-					var animalPosBehind = cam.position - cam.forward * (distance / 2);
+					var animalPosBehind = cam.position - cam.forward * Settings.ModSettings.DistanceStalkingWolf;
 					animalPosBehind.y += 100;
 					AiUtils.FindNearestGroundAndNavmeshFor(animalPosBehind, out var groundPosBehind, out var navmeshPosBehind);
 					bai.SetPosition(groundPosBehind);
@@ -82,7 +82,7 @@ namespace TLD_Twitch_Integration.Patches
 					break;
 
 				case AnimalRedeemType.BunnyExplosion:
-					var animalPosExplosion = cam.position + cam.forward * (distance / 4);
+					var animalPosExplosion = cam.position + cam.forward * 4;
 					animalPosExplosion.y += 100;
 					AiUtils.FindNearestGroundAndNavmeshFor(animalPosExplosion, out var groundPosExplosion, out var navmeshPosExplosion);
 					bai.SetPosition(groundPosExplosion);

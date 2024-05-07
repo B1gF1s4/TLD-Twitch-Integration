@@ -8,43 +8,37 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 
 		private static readonly Dictionary<string, CustomReward> _defaults = new()
 		{
+			{ RedeemNames.WEATHER_HELP, WeatherRedeems.Help },
+			{ RedeemNames.WEATHER_HARM, WeatherRedeems.Harm },
+			{ RedeemNames.WEATHER_AURORA, WeatherRedeems.Aurora },
+
 			{ RedeemNames.ANIMAL_T_WOLVES, AnimalRedeems.TWolves },
-			{ RedeemNames.ANIMAL_BEAR, AnimalRedeems.Bear },
-			{ RedeemNames.ANIMAL_MOOSE, AnimalRedeems.Moose },
+			{ RedeemNames.ANIMAL_BIG_GAME, AnimalRedeems.BigGame },
 			{ RedeemNames.ANIMAL_STALKING_WOLF, AnimalRedeems.StalkingWolf },
 			{ RedeemNames.ANIMAL_BUNNY_EXPLOSION, AnimalRedeems.BunnyExplosion },
 
-			{ RedeemNames.WEATHER_BLIZZARD, WeatherRedeems.Blizzard },
-			{ RedeemNames.WEATHER_CLEAR, WeatherRedeems.Clear },
-			{ RedeemNames.WEATHER_LIGHT_FOG, WeatherRedeems.LightFog },
-			{ RedeemNames.WEATHER_DENSE_FOG, WeatherRedeems.DenseFog },
-			{ RedeemNames.WEATHER_PARTLY_CLOUDY, WeatherRedeems.PartlyCloudy },
-			{ RedeemNames.WEATHER_CLOUDY, WeatherRedeems.Cloudy },
-			{ RedeemNames.WEATHER_LIGHT_SNOW, WeatherRedeems.LightSnow },
-			{ RedeemNames.WEATHER_HEAVY_SNOW, WeatherRedeems.HeavySnow },
+			{ RedeemNames.STATUS_HELP, StatusRedeems.Help },
+			{ RedeemNames.STATUS_HARM, StatusRedeems.Harm },
+			{ RedeemNames.STATUS_CABIN_FEVER, StatusRedeems.CabinFever },
+			{ RedeemNames.STATUS_DYSENTERY, StatusRedeems.Dysentery },
+			{ RedeemNames.STATUS_FOOD_POISONING, StatusRedeems.FoodPoisoning },
+			{ RedeemNames.STATUS_HYPOTHERMIA, StatusRedeems.Hypothermia },
+			{ RedeemNames.STATUS_BLEED, StatusRedeems.Bleeding },
+			{ RedeemNames.STATUS_SPRAIN, StatusRedeems.Sprain },
+			{ RedeemNames.STATUS_STINK, StatusRedeems.Stink },
 
-			{ RedeemNames.SOUND_HELLO, SoundRedeems.Hello },
+			{ RedeemNames.INVENTORY_NO_PANTS, InventoryRedeems.TeamNoPants },
+			{ RedeemNames.INVENTORY_DROP_TORCH, InventoryRedeems.DropTorch },
+			{ RedeemNames.INVENTORY_DROP_ITEM, InventoryRedeems.DropItem },
+			{ RedeemNames.INVENTORY_STEPPED_STIM, InventoryRedeems.SteppedStim },
+			{ RedeemNames.INVENTORY_BOW, InventoryRedeems.Bow },
+
+			{ RedeemNames.MISC_TELEPORT, MiscRedeems.Teleport },
+			{ RedeemNames.MISC_TIME, MiscRedeems.Time },
+
 			{ RedeemNames.SOUND_420, SoundRedeems.Happy420 },
-			{ RedeemNames.SOUND_GOOD_NIGHT, SoundRedeems.GoodNight },
-			{ RedeemNames.SOUND_HYDRATE, SoundRedeems.Hydrate },
 
-			{ RedeemNames.SOUND, SoundRedeems.DevSound },
-
-			{ RedeemNames.STATUS_HUNGRY, StatusRedeems.Hungry },
-			{ RedeemNames.STATUS_THIRSTY, StatusRedeems.Thirsty },
-			{ RedeemNames.STATUS_TIRED, StatusRedeems.Tired },
-			{ RedeemNames.STATUS_FREEZING, StatusRedeems.Freezing },
-
-			{ RedeemNames.STATUS_FULL, StatusRedeems.Full },
-			{ RedeemNames.STATUS_NOT_THIRSTY, StatusRedeems.NotThirsty },
-			{ RedeemNames.STATUS_AWAKE, StatusRedeems.Awake },
-			{ RedeemNames.STATUS_WARM, StatusRedeems.Warm },
-
-			{ RedeemNames.AFFLICTION_CABIN_FEVER, AfflictionRedeems.CabinFever },
-			{ RedeemNames.AFFLICTION_DYSENTERY, AfflictionRedeems.Dysentery },
-			{ RedeemNames.AFFLICTION_FOOD_POISONING, AfflictionRedeems.FoodPoisoning },
-			{ RedeemNames.AFFLICTION_HYPOTHERMIA, AfflictionRedeems.Hypothermia },
-			{ RedeemNames.AFFLICTION_PARASITES, AfflictionRedeems.Parasites },
+			{ RedeemNames.DEV_SOUND, DevRedeems.SoundCheck },
 		};
 
 		public static CustomReward GetRedeemDefault(string redeemName)

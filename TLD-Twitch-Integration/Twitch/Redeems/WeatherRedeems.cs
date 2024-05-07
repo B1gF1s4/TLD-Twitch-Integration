@@ -4,81 +4,31 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 {
 	public static class WeatherRedeems
 	{
-		public static CustomReward Blizzard = new()
+		public static CustomReward Help = new()
 		{
-			Title = RedeemNames.WEATHER_BLIZZARD,
-			Prompt = "Changes the ingame weather to blizzard",
-			Cost = 1,
+			Title = RedeemNames.WEATHER_HELP,
+			Prompt = "Changes the ingame weather. Possible inputs: clear, fog, snow, cloudy",
+			Cost = 200,
 			Color = RedeemColors.WEATHER,
 			IsEnabled = false,
-			IsUserInputRequired = false,
+			IsUserInputRequired = true,
 		};
 
-		public static CustomReward Clear = new()
+		public static CustomReward Harm = new()
 		{
-			Title = RedeemNames.WEATHER_CLEAR,
-			Prompt = "Changes the ingame weather to clear",
-			Cost = 1,
+			Title = RedeemNames.WEATHER_HARM,
+			Prompt = "Changes the ingame weather. Possible inputs: blizzard, fog, snow",
+			Cost = 1000,
 			Color = RedeemColors.WEATHER,
 			IsEnabled = false,
-			IsUserInputRequired = false,
+			IsUserInputRequired = true,
 		};
 
-		public static CustomReward LightFog = new()
+		public static CustomReward Aurora = new()
 		{
-			Title = RedeemNames.WEATHER_LIGHT_FOG,
-			Prompt = "Changes the ingame weather to light fog",
-			Cost = 1,
-			Color = RedeemColors.WEATHER,
-			IsEnabled = false,
-			IsUserInputRequired = false,
-		};
-
-		public static CustomReward DenseFog = new()
-		{
-			Title = RedeemNames.WEATHER_DENSE_FOG,
-			Prompt = "Changes the ingame weather to dense fog",
-			Cost = 1,
-			Color = RedeemColors.WEATHER,
-			IsEnabled = false,
-			IsUserInputRequired = false,
-		};
-
-		public static CustomReward PartlyCloudy = new()
-		{
-			Title = RedeemNames.WEATHER_PARTLY_CLOUDY,
-			Prompt = "Changes the ingame weather to partly cloudy",
-			Cost = 1,
-			Color = RedeemColors.WEATHER,
-			IsEnabled = false,
-			IsUserInputRequired = false,
-		};
-
-		public static CustomReward Cloudy = new()
-		{
-			Title = RedeemNames.WEATHER_CLOUDY,
-			Prompt = "Changes the ingame weather to cloudy",
-			Cost = 1,
-			Color = RedeemColors.WEATHER,
-			IsEnabled = false,
-			IsUserInputRequired = false,
-		};
-
-		public static CustomReward LightSnow = new()
-		{
-			Title = RedeemNames.WEATHER_LIGHT_SNOW,
-			Prompt = "Changes the ingame weather to light snow",
-			Cost = 1,
-			Color = RedeemColors.WEATHER,
-			IsEnabled = false,
-			IsUserInputRequired = false,
-		};
-
-		public static CustomReward HeavySnow = new()
-		{
-			Title = RedeemNames.WEATHER_HEAVY_SNOW,
-			Prompt = "Changes the ingame weather to heavy snow",
-			Cost = 1,
+			Title = RedeemNames.WEATHER_AURORA,
+			Prompt = "Immediatly sets the time to midnight and starts an aurora.",
+			Cost = 1000,
 			Color = RedeemColors.WEATHER,
 			IsEnabled = false,
 			IsUserInputRequired = false,

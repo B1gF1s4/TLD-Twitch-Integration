@@ -4,76 +4,94 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 {
 	public static class StatusRedeems
 	{
-		public static CustomReward Tired = new()
+		public static CustomReward Help = new()
 		{
-			Title = RedeemNames.STATUS_TIRED,
-			Prompt = "Sets the games fatigue meter to 10%",
-			Cost = 1,
-			Color = RedeemColors.STATUS_HARM,
-			IsEnabled = false
+			Title = RedeemNames.STATUS_HELP,
+			Prompt = "Set specified meter to help setting value. Possible inputs: cold, fatigue, thirst, hunger",
+			Cost = 200,
+			Color = RedeemColors.HELP,
+			IsEnabled = false,
+			IsUserInputRequired = true
 		};
 
-		public static CustomReward Hungry = new()
+		public static CustomReward Harm = new()
 		{
-			Title = RedeemNames.STATUS_HUNGRY,
-			Prompt = "Sets the games hunger meter to 10%",
-			Cost = 1,
-			Color = RedeemColors.STATUS_HARM,
-			IsEnabled = false
+			Title = RedeemNames.STATUS_HARM,
+			Prompt = "Set specified meter to harm setting value. Possible inputs: cold, fatigue, thirst, hunger",
+			Cost = 1000,
+			Color = RedeemColors.HARM,
+			IsEnabled = false,
+			IsUserInputRequired = true
 		};
 
-		public static CustomReward Thirsty = new()
+		public static CustomReward CabinFever = new()
 		{
-			Title = RedeemNames.STATUS_THIRSTY,
-			Prompt = "Sets the games thirst meter to 10%",
-			Cost = 1,
-			Color = RedeemColors.STATUS_HARM,
-			IsEnabled = false
+			Title = RedeemNames.STATUS_CABIN_FEVER,
+			Prompt = "Gives the player cabin fever.",
+			Cost = 2000,
+			Color = RedeemColors.HARM,
+			IsEnabled = false,
+			IsUserInputRequired = false,
 		};
 
-		public static CustomReward Freezing = new()
+		public static CustomReward Dysentery = new()
 		{
-			Title = RedeemNames.STATUS_FREEZING,
-			Prompt = "Sets the games cold meter to 10%",
-			Cost = 1,
-			Color = RedeemColors.STATUS_HARM,
-			IsEnabled = false
+			Title = RedeemNames.STATUS_DYSENTERY,
+			Prompt = "Gives the player dysentery.",
+			Cost = 2000,
+			Color = RedeemColors.HARM,
+			IsEnabled = false,
+			IsUserInputRequired = false,
 		};
 
-		public static CustomReward Awake = new()
+		public static CustomReward FoodPoisoning = new()
 		{
-			Title = RedeemNames.STATUS_AWAKE,
-			Prompt = "Sets the games fatigue meter to 90%",
-			Cost = 1,
-			Color = RedeemColors.STATUS_HELP,
-			IsEnabled = false
+			Title = RedeemNames.STATUS_FOOD_POISONING,
+			Prompt = "Gives the player food poisoning.",
+			Cost = 2000,
+			Color = RedeemColors.HARM,
+			IsEnabled = false,
+			IsUserInputRequired = false,
 		};
 
-		public static CustomReward Full = new()
+		public static CustomReward Hypothermia = new()
 		{
-			Title = RedeemNames.STATUS_FULL,
-			Prompt = "Sets the games hunger meter to 90%",
-			Cost = 1,
-			Color = RedeemColors.STATUS_HELP,
-			IsEnabled = false
+			Title = RedeemNames.STATUS_HYPOTHERMIA,
+			Prompt = "Gives the player hypothermia.",
+			Cost = 2000,
+			Color = RedeemColors.HARM,
+			IsEnabled = false,
+			IsUserInputRequired = false,
 		};
 
-		public static CustomReward NotThirsty = new()
+		public static CustomReward Bleeding = new()
 		{
-			Title = RedeemNames.STATUS_NOT_THIRSTY,
-			Prompt = "Sets the games thirst meter to 90%",
-			Cost = 1,
-			Color = RedeemColors.STATUS_HELP,
-			IsEnabled = false
+			Title = RedeemNames.STATUS_BLEED,
+			Prompt = "Gives the player the bleeding affliction on specified location. Possible inputs: handleft, handright, footleft, footright",
+			Cost = 2000,
+			Color = RedeemColors.HARM,
+			IsEnabled = false,
+			IsUserInputRequired = true,
 		};
 
-		public static CustomReward Warm = new()
+		public static CustomReward Sprain = new()
 		{
-			Title = RedeemNames.STATUS_WARM,
-			Prompt = "Sets the games warm meter to 90%",
-			Cost = 1,
-			Color = RedeemColors.STATUS_HELP,
-			IsEnabled = false
+			Title = RedeemNames.STATUS_SPRAIN,
+			Prompt = "Gives the player a sprain on specified location. Possible inputs: (handleft), (handright), footleft, footright",
+			Cost = 1000,
+			Color = RedeemColors.HARM,
+			IsEnabled = false,
+			IsUserInputRequired = true,
+		};
+
+		public static CustomReward Stink = new()
+		{
+			Title = RedeemNames.STATUS_STINK,
+			Prompt = "Gives the player stink.",
+			Cost = 5000,
+			Color = RedeemColors.ANIMAL,
+			IsEnabled = false,
+			IsUserInputRequired = false,
 		};
 	}
 }

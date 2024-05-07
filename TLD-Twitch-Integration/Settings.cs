@@ -39,164 +39,238 @@ namespace TLD_Twitch_Integration
 		[Description("Enable or disable the redeem alert UI component")]
 		public bool ShowAlert = true;
 
-		[Section("Animal Redeems")]
-		[Name("Allow Animal Redeems")]
-		[Description($"Enable or disable all animal redeems")]
-		public bool AllowAnimalRedeems = false;
+		[Section(RedeemNames.WEATHER_HELP)]
+		[Name("Allow Weather Help")]
+		[Description($"Enable or disable {RedeemNames.WEATHER_HELP} redeem")]
+		public bool AllowWeatherHelp = false;
 
-		[Name("Animal spawn distance")]
-		[Description("Distance that animal redeems spawn in anmals at.")]
+		[Name("Allow Weather Clear")]
+		[Description($"Enable or disable 'clear' for the {RedeemNames.WEATHER_HELP} redeem")]
+		public bool AllowWeatherHelpClear = true;
+
+		[Name("Allow Weather Light Fog")]
+		[Description($"Enable or disable 'light fog' for the {RedeemNames.WEATHER_HELP} redeem")]
+		public bool AllowWeatherHelpFog = true;
+
+		[Name("Allow Weather Light Snow")]
+		[Description($"Enable or disable 'light snow' for the {RedeemNames.WEATHER_HELP} redeem")]
+		public bool AllowWeatherHelpSnow = true;
+
+		[Name("Allow Weather Cloudy")]
+		[Description($"Enable or disable 'cloudy' for the {RedeemNames.WEATHER_HELP} redeem")]
+		public bool AllowWeatherHelpCloudy = true;
+
+		[Section(RedeemNames.WEATHER_HARM)]
+		[Name("Allow Weather Harm")]
+		[Description($"Enable or disable {RedeemNames.WEATHER_HARM} redeem")]
+		public bool AllowWeatherHarm = false;
+
+		[Name("Allow Weather Blizzard")]
+		[Description($"Enable or disable 'blizzard' for the {RedeemNames.WEATHER_HARM} redeem")]
+		public bool AllowWeatherHarmBlizzard = true;
+
+		[Name("Allow Weather Dense Fog")]
+		[Description($"Enable or disable 'dense fog' for the {RedeemNames.WEATHER_HARM} redeem")]
+		public bool AllowWeatherHarmFog = true;
+
+		[Name("Allow Weather Heavy Snow")]
+		[Description($"Enable or disable 'heavy snow' for the {RedeemNames.WEATHER_HARM} redeem")]
+		public bool AllowWeatherHarmSnow = true;
+
+		[Section(RedeemNames.WEATHER_AURORA)]
+		[Name("Allow Aurora")]
+		[Description($"Enable or disable {RedeemNames.WEATHER_AURORA} redeem")]
+		public bool AllowWeatherAurora = false;
+
+		[Section(RedeemNames.STATUS_HELP)]
+		[Name("Allow Status Help")]
+		[Description($"Enable or disable {RedeemNames.STATUS_HELP} redeem")]
+		public bool AllowStatusHelp = false;
+
+		[Name("Allow Status Warm")]
+		[Description($"Enable or disable 'cold' for the {RedeemNames.STATUS_HELP} redeem")]
+		public bool AllowStatusHelpWarm = true;
+
+		[Name("Allow Status Awake")]
+		[Description($"Enable or disable 'fatigue' for the {RedeemNames.STATUS_HELP} redeem")]
+		public bool AllowStatusHelpAwake = true;
+
+		[Name("Allow Status Not Thirsy")]
+		[Description($"Enable or disable 'thirst' for the {RedeemNames.STATUS_HELP} redeem")]
+		public bool AllowStatusHelpNotThirsty = true;
+
+		[Name("Allow Status Full")]
+		[Description($"Enable or disable 'hunger' for the {RedeemNames.STATUS_HELP} redeem")]
+		public bool AllowStatusHelpFull = true;
+
+		[Name("Status Help Value")]
+		[Description("Value helpful status redeems set the meter to.")]
 		[Slider(0f, 100f)]
-		public float AnimalSpawnDistance = 35.0f;
+		public float StatusHelpValue = 90.0f;
 
+		[Section(RedeemNames.STATUS_HARM)]
+		[Name("Allow Status Harm")]
+		[Description($"Enable or disable {RedeemNames.STATUS_HARM} redeem")]
+		public bool AllowStatusHarm = false;
+
+		[Name("Allow Status Freezing")]
+		[Description($"Enable or disable 'cold' for the {RedeemNames.STATUS_HARM} redeem")]
+		public bool AllowStatusHarmFreezing = true;
+
+		[Name("Allow Status Tired")]
+		[Description($"Enable or disable 'fatigue' for the {RedeemNames.STATUS_HARM} redeem")]
+		public bool AllowStatusHarmTired = true;
+
+		[Name("Allow Status Thirsy")]
+		[Description($"Enable or disable 'thirst' for the {RedeemNames.STATUS_HARM} redeem")]
+		public bool AllowStatusHarmThirsty = true;
+
+		[Name("Allow Status Hungry")]
+		[Description($"Enable or disable 'hunger' for the {RedeemNames.STATUS_HARM} redeem")]
+		public bool AllowStatusHarmHungry = true;
+
+		[Name("Status Harm Value")]
+		[Description("Value harmful status redeems set the meter to.")]
+		[Slider(0f, 100f)]
+		public float StatusHarmValue = 10.0f;
+
+		[Section("TTI Status: Afflictions")]
+		[Name("Allow Status Cabin Fever")]
+		[Description($"Enable or disable {RedeemNames.STATUS_CABIN_FEVER} redeem")]
+		public bool AllowStatusCabinFever = false;
+
+		[Name("Allow Status Dysentery")]
+		[Description($"Enable or disable {RedeemNames.STATUS_DYSENTERY} redeem")]
+		public bool AllowStatusDysentery = false;
+
+		[Name("Allow Status Food Poisoning")]
+		[Description($"Enable or disable {RedeemNames.STATUS_FOOD_POISONING} redeem")]
+		public bool AllowStatusFoodPoisoning = false;
+
+		[Name("Allow Status Hypothermia")]
+		[Description($"Enable or disable {RedeemNames.STATUS_HYPOTHERMIA} redeem")]
+		public bool AllowStatusHypothermia = false;
+
+		[Name("Allow Status Bleeding")]
+		[Description($"Enable or disable {RedeemNames.STATUS_BLEED} redeem")]
+		public bool AllowStatusBleeding = false;
+
+		[Name("Allow Status Sprain")]
+		[Description($"Enable or disable {RedeemNames.STATUS_SPRAIN} redeem")]
+		public bool AllowStatusSprain = false;
+
+		[Name("Allow Status Sprain Wrists")]
+		[Description($"Enable or disable 'handleft' and 'handright' user inputs for the {RedeemNames.STATUS_SPRAIN} redeem")]
+		public bool AllowStatusSprainWrists = true;
+
+		[Name("Allow Status Stink")]
+		[Description($"Enable or disable {RedeemNames.STATUS_STINK} redeem")]
+		public bool AllowStatusStink = false;
+
+		[Name("Stink Lines")]
+		[Description($"Amount of stink lines to get on the {RedeemNames.STATUS_STINK} redeem.")]
+		[Slider(1, 3, 3)]
+		public int StinkLines = 3;
+
+		[Name("Stink Time")]
+		[Description($"Amount of minutes stink lines will be active on the {RedeemNames.STATUS_STINK} redeem.")]
+		[Slider(1, 60)]
+		public int StinkTime = 5;
+
+		[Section("TTI Inventory")]
+		[Name("Allow Team NoPants")]
+		[Description($"Enable or disable {RedeemNames.INVENTORY_NO_PANTS} redeem")]
+		public bool AllowTeamNoPants = false;
+
+		[Name("Allow Drop Torch")]
+		[Description($"Enable or disable {RedeemNames.INVENTORY_DROP_TORCH} redeem")]
+		public bool AllowDropTorch = false;
+
+		[Name("Allow Drop Item")]
+		[Description($"Enable or disable {RedeemNames.INVENTORY_DROP_ITEM} redeem")]
+		public bool AllowDropItem = false;
+
+		[Name("Allow Stepped on Stim")]
+		[Description($"Enable or disable {RedeemNames.INVENTORY_STEPPED_STIM} redeem")]
+		public bool AllowSteppedStim = false;
+
+		[Name("Allow Bow")]
+		[Description($"Enable or disable {RedeemNames.INVENTORY_BOW} redeem")]
+		public bool AllowBow = false;
+
+		[Name("Arrow Count")]
+		[Description($"Amount of arrows to get on the {RedeemNames.INVENTORY_BOW} redeem.")]
+		[Slider(1, 100)]
+		public int ArrowCount = 10;
+
+		[Section("TTI Animal")]
 		[Name("Allow T-Wolves")]
-		[Description($"Enable or disable the {RedeemNames.ANIMAL_T_WOLVES} redeem")]
+		[Description($"Enable or disable {RedeemNames.ANIMAL_T_WOLVES} redeem")]
 		public bool AllowTWolves = false;
 
+		[Name("T-Wolf Spawn Distance")]
+		[Description($"How far to spawn T-Wolves in front of you")]
+		[Slider(0.5f, 100.0f)]
+		public float DistanceTWolf = 35.0f;
+
+		[Name("Allow Big Game")]
+		[Description($"Enable or disable {RedeemNames.ANIMAL_BIG_GAME} redeem")]
+		public bool AllowBigGame = false;
+
 		[Name("Allow Bear")]
-		[Description($"Enable or disable the {RedeemNames.ANIMAL_BEAR} redeem")]
-		public bool AllowBear = false;
+		[Description($"Enable or disable 'bear' for the {RedeemNames.ANIMAL_BIG_GAME} redeem")]
+		public bool AllowBigGameBear = true;
+
+		[Name("Bear Spawn Distance")]
+		[Description($"How far to spawn Bear in front of you")]
+		[Slider(0.5f, 100.0f)]
+		public float DistanceBear = 30.0f;
 
 		[Name("Allow Moose")]
-		[Description($"Enable or disable the {RedeemNames.ANIMAL_MOOSE} redeem")]
-		public bool AllowMoose = false;
+		[Description($"Enable or disable 'moose' for the {RedeemNames.ANIMAL_BIG_GAME} redeem")]
+		public bool AllowBigGameMoose = true;
+
+		[Name("Moose Spawn Distance")]
+		[Description($"How far to spawn Moose in front of you")]
+		[Slider(0.5f, 100.0f)]
+		public float DistanceMoose = 40.0f;
 
 		[Name("Allow Stalking Wolf")]
-		[Description($"Enable or disable the {RedeemNames.ANIMAL_STALKING_WOLF} redeem")]
+		[Description($"Enable or disable {RedeemNames.ANIMAL_STALKING_WOLF} redeem")]
 		public bool AllowStalkingWolf = false;
 
+		[Name("Stalking Wolf Distance")]
+		[Description($"How far to spawn Stalking Wolf behind you")]
+		[Slider(0.5f, 100.0f)]
+		public float DistanceStalkingWolf = 18.0f;
+
 		[Name("Allow Bunny Explosion")]
-		[Description($"Enable or disable the {RedeemNames.ANIMAL_BUNNY_EXPLOSION} redeem")]
+		[Description($"Enable or disable {RedeemNames.ANIMAL_BUNNY_EXPLOSION} redeem")]
 		public bool AllowBunnyExplosion = false;
 
-		[Section("Weather Redeems")]
-		[Name("Allow Weather Redeems")]
-		[Description($"Enable or disable all weather redeems")]
-		public bool AllowWeatherRedeems = false;
+		[Name("Bunny Count")]
+		[Description($"How many Bunnies to spawn")]
+		[Slider(5, 100)]
+		public int BunnyCount = 20;
 
-		[Name("Allow Blizzard")]
-		[Description($"Enable or disable the {RedeemNames.WEATHER_BLIZZARD} redeem")]
-		public bool AllowWeatherBlizzard = false;
+		[Section("TTI Misc")]
+		[Name("Allow Teleport")]
+		[Description($"Enable or disable {RedeemNames.MISC_TELEPORT} redeem")]
+		public bool AllowTeleport = false;
 
-		[Name("Allow Clear")]
-		[Description($"Enable or disable the {RedeemNames.WEATHER_CLEAR} redeem")]
-		public bool AllowWeatherClear = false;
+		[Name("Allow Time of Day")]
+		[Description($"Enable or disable {RedeemNames.MISC_TIME} redeem")]
+		public bool AllowTime = false;
 
-		[Name("Allow Light Fog")]
-		[Description($"Enable or disable the {RedeemNames.WEATHER_LIGHT_FOG} redeem")]
-		public bool AllowWeatherLightFog = false;
-
-		[Name("Allow Dense Fog")]
-		[Description($"Enable or disable the {RedeemNames.WEATHER_DENSE_FOG} redeem")]
-		public bool AllowWeatherDenseFog = false;
-
-		[Name("Allow Partly Cloudy")]
-		[Description($"Enable or disable the {RedeemNames.WEATHER_PARTLY_CLOUDY} redeem")]
-		public bool AllowWeatherPartlyCloudy = false;
-
-		[Name("Allow Cloudy")]
-		[Description($"Enable or disable the {RedeemNames.WEATHER_CLOUDY} redeem")]
-		public bool AllowWeatherCloudy = false;
-
-		[Name("Allow Light Snow")]
-		[Description($"Enable or disable the {RedeemNames.WEATHER_LIGHT_SNOW} redeem")]
-		public bool AllowWeatherLightSnow = false;
-
-		[Name("Allow Heavy Snow")]
-		[Description($"Enable or disable the {RedeemNames.WEATHER_HEAVY_SNOW} redeem")]
-		public bool AllowWeatherHeavySnow = false;
-
-		[Section("Sound Redeems")]
-		[Name("Allow Sound Redeems")]
-		[Description("Enable or disable all sound redeems")]
-		public bool AllowSoundRedeems = false;
-
-		[Name("Allow Dev Sound Check")]
-		[Description($"Enable or disable the {RedeemNames.SOUND} redeem")]
-		public bool AllowDevSoundCheck = false;
-
-		[Name("Allow Hello")]
-		[Description($"Enable or disable the {RedeemNames.SOUND_HELLO} redeem")]
-		public bool AllowSoundHello = false;
-
+		[Section("TTI Sound")]
 		[Name("Allow Happy 420")]
-		[Description($"Enable or disable the {RedeemNames.SOUND_420} redeem")]
+		[Description($"Enable or disable {RedeemNames.SOUND_420} redeem")]
 		public bool AllowSound420 = false;
 
-		[Name("Allow Good Night")]
-		[Description($"Enable or disable the {RedeemNames.SOUND_GOOD_NIGHT} redeem")]
-		public bool AllowSoundGoodNight = false;
-
-		[Name("Allow Hydrate")]
-		[Description($"Enable or disable the {RedeemNames.SOUND_HYDRATE} redeem")]
-		public bool AllowSoundHydrate = false;
-
-		[Section("Harmful Status Redeems")]
-		[Name("Allow Harmful Status Redeems")]
-		[Description("Enable or disable all harmful status redeems")]
-		public bool AllowHarmfulStatus = false;
-
-		[Name("Allow Hungry")]
-		[Description($"Enable or disable the {RedeemNames.STATUS_HUNGRY} redeem")]
-		public bool AllowStatusHungry = false;
-
-		[Name("Allow Thirsty")]
-		[Description($"Enable or disable the {RedeemNames.STATUS_THIRSTY} redeem")]
-		public bool AllowStatusThirsty = false;
-
-		[Name("Allow Tired")]
-		[Description($"Enable or disable the {RedeemNames.STATUS_TIRED} redeem")]
-		public bool AllowStatusTired = false;
-
-		[Name("Allow Freezing")]
-		[Description($"Enable or disable the {RedeemNames.STATUS_FREEZING} redeem")]
-		public bool AllowStatusFreezing = false;
-
-		[Section("Helpful Status Redeems")]
-		[Name("Allow Helpful Status Redeems")]
-		[Description("Enable or disable all helpful status redeems")]
-		public bool AllowHelpfulStatus = false;
-
-		[Name("Allow Full")]
-		[Description($"Enable or disable the {RedeemNames.STATUS_FULL} redeem")]
-		public bool AllowStatusFull = false;
-
-		[Name("Allow Not Thirsty")]
-		[Description($"Enable or disable the {RedeemNames.STATUS_NOT_THIRSTY} redeem")]
-		public bool AllowStatusNotThirsty = false;
-
-		[Name("Allow Awake")]
-		[Description($"Enable or disable the {RedeemNames.STATUS_AWAKE} redeem")]
-		public bool AllowStatusAwake = false;
-
-		[Name("Allow Warm")]
-		[Description($"Enable or disable the {RedeemNames.STATUS_WARM} redeem")]
-		public bool AllowStatusWarm = false;
-
-		[Section("Affliction Redeems")]
-		[Name("Allow Affliction Redeems")]
-		[Description("Enable or disable all affliction redeems")]
-		public bool AllowAfflictionRedeems = false;
-
-		[Name("Allow Cabin Fever")]
-		[Description($"Enable or disable the {RedeemNames.AFFLICTION_CABIN_FEVER} redeem")]
-		public bool AllowAfflictionCabinFever = false;
-
-		[Name("Allow Dyentery")]
-		[Description($"Enable or disable the {RedeemNames.AFFLICTION_DYSENTERY} redeem")]
-		public bool AllowAfflictionDysentery = false;
-
-		[Name("Allow Food Poisoning")]
-		[Description($"Enable or disable the {RedeemNames.AFFLICTION_FOOD_POISONING} redeem")]
-		public bool AllowAfflictionFoodPoisoning = false;
-
-		[Name("Allow Hypothermia")]
-		[Description($"Enable or disable the {RedeemNames.AFFLICTION_HYPOTHERMIA} redeem")]
-		public bool AllowAfflictionHypothermia = false;
-
-		[Name("Allow Parasites")]
-		[Description($"Enable or disable the {RedeemNames.AFFLICTION_PARASITES} redeem")]
-		public bool AllowAfflictionParasites = false;
+		[Section("TTI Dev")]
+		[Name("Allow Sound Check")]
+		[Description($"Enable or disable {RedeemNames.DEV_SOUND} redeem")]
+		public bool AllowDevSoundCheck = false;
 
 		public ModSettings() : base(Path.Combine(Mod.BaseDirectory, "user-settings"))
 		{
@@ -214,103 +288,180 @@ namespace TLD_Twitch_Integration
 			if (field.Name == nameof(Enabled))
 				RefreshAllFields();
 
-			if (field.Name == nameof(AllowAnimalRedeems))
-				RefreshAnimalFields();
+			if (field.Name == nameof(AllowWeatherHelp))
+				RefreshWeatherHelpFields();
 
-			if (field.Name == nameof(AllowWeatherRedeems))
-				RefreshWeatherFields();
+			if (field.Name == nameof(AllowWeatherHarm))
+				RefreshWeatherHarmFields();
 
-			if (field.Name == nameof(AllowSoundRedeems))
-				RefreshSoundFields();
+			if (field.Name == nameof(AllowStatusHelp))
+				RefreshStatusHelpFields();
 
-			if (field.Name == nameof(AllowHelpfulStatus))
-				RefreshHelpfulStatusFields();
+			if (field.Name == nameof(AllowStatusHarm))
+				RefreshStatusHarmFields();
 
-			if (field.Name == nameof(AllowHarmfulStatus))
-				RefreshHarmfulStatusFields();
+			if (field.Name == nameof(AllowStatusSprain))
+				RefreshStatusSprainFields();
 
-			if (field.Name == nameof(AllowAfflictionRedeems))
-				RefreshAfflictionFields();
+			if (field.Name == nameof(AllowStatusStink))
+				RefreshStatusStinkFields();
+
+			if (field.Name == nameof(AllowBow))
+				RefreshInventoryBowFields();
+
+			if (field.Name == nameof(AllowBigGame))
+				RefreshBigGameFields();
+
+			if (field.Name == nameof(AllowBigGameBear))
+				RefreshBigGameBearFields();
+
+			if (field.Name == nameof(AllowBigGameMoose))
+				RefreshBigGameMooseFields();
+
+			if (field.Name == nameof(AllowTWolves))
+				RefreshTWolfFields();
+
+			if (field.Name == nameof(AllowStalkingWolf))
+				RefreshStalkingWolfFields();
+
+			if (field.Name == nameof(AllowBunnyExplosion))
+				RefreshBunnyExplosionFields();
 		}
 
 		public void RefreshAllFields()
 		{
 			SetFieldVisible(nameof(ShowAlert), Enabled);
-			SetFieldVisible(nameof(AllowAnimalRedeems), Enabled);
-			SetFieldVisible(nameof(AllowWeatherRedeems), Enabled);
-			SetFieldVisible(nameof(AllowSoundRedeems), Enabled);
-			SetFieldVisible(nameof(AllowHelpfulStatus), Enabled);
-			SetFieldVisible(nameof(AllowHarmfulStatus), Enabled);
-			SetFieldVisible(nameof(AllowAfflictionRedeems), Enabled);
-			RefreshAnimalFields();
-			RefreshWeatherFields();
-			RefreshSoundFields();
-			RefreshHelpfulStatusFields();
-			RefreshHarmfulStatusFields();
-			RefreshAfflictionFields();
+			SetFieldVisible(nameof(AllowWeatherHelp), Enabled);
+			SetFieldVisible(nameof(AllowWeatherHarm), Enabled);
+			SetFieldVisible(nameof(AllowWeatherAurora), Enabled);
+			SetFieldVisible(nameof(AllowStatusHelp), Enabled);
+			SetFieldVisible(nameof(AllowStatusHarm), Enabled);
+			SetFieldVisible(nameof(AllowStatusCabinFever), Enabled);
+			SetFieldVisible(nameof(AllowStatusDysentery), Enabled);
+			SetFieldVisible(nameof(AllowStatusFoodPoisoning), Enabled);
+			SetFieldVisible(nameof(AllowStatusHypothermia), Enabled);
+			SetFieldVisible(nameof(AllowStatusBleeding), Enabled);
+			SetFieldVisible(nameof(AllowStatusSprain), Enabled);
+			SetFieldVisible(nameof(AllowStatusStink), Enabled);
+			SetFieldVisible(nameof(AllowTeamNoPants), Enabled);
+			SetFieldVisible(nameof(AllowDropTorch), Enabled);
+			SetFieldVisible(nameof(AllowDropItem), Enabled);
+			SetFieldVisible(nameof(AllowSteppedStim), Enabled);
+			SetFieldVisible(nameof(AllowBow), Enabled);
+			SetFieldVisible(nameof(AllowTWolves), Enabled);
+			SetFieldVisible(nameof(AllowBigGame), Enabled);
+			SetFieldVisible(nameof(AllowStalkingWolf), Enabled);
+			SetFieldVisible(nameof(AllowBunnyExplosion), Enabled);
+			SetFieldVisible(nameof(AllowTeleport), Enabled);
+			SetFieldVisible(nameof(AllowTime), Enabled);
+			SetFieldVisible(nameof(AllowSound420), Enabled);
+			SetFieldVisible(nameof(AllowDevSoundCheck), Enabled);
+			RefreshWeatherHelpFields();
+			RefreshWeatherHarmFields();
+			RefreshStatusHelpFields();
+			RefreshStatusHarmFields();
+			RefreshStatusSprainFields();
+			RefreshStatusStinkFields();
+			RefreshInventoryBowFields();
+			RefreshBigGameFields();
+			RefreshTWolfFields();
+			RefreshStalkingWolfFields();
+			RefreshBunnyExplosionFields();
 		}
 
-		private void RefreshAnimalFields()
+		private void RefreshWeatherHelpFields()
 		{
-			var allow = AllowAnimalRedeems && Enabled;
-			SetFieldVisible(nameof(AnimalSpawnDistance), allow);
-			SetFieldVisible(nameof(AllowTWolves), allow);
-			SetFieldVisible(nameof(AllowBear), allow);
-			SetFieldVisible(nameof(AllowMoose), allow);
-			SetFieldVisible(nameof(AllowStalkingWolf), allow);
-			SetFieldVisible(nameof(AllowBunnyExplosion), allow);
+			var allow = AllowWeatherHelp && Enabled;
+			SetFieldVisible(nameof(AllowWeatherHelpClear), allow);
+			SetFieldVisible(nameof(AllowWeatherHelpCloudy), allow);
+			SetFieldVisible(nameof(AllowWeatherHelpFog), allow);
+			SetFieldVisible(nameof(AllowWeatherHelpSnow), allow);
 		}
 
-		private void RefreshWeatherFields()
+		private void RefreshWeatherHarmFields()
 		{
-			var allow = AllowWeatherRedeems && Enabled;
-			SetFieldVisible(nameof(AllowWeatherBlizzard), allow);
-			SetFieldVisible(nameof(AllowWeatherClear), allow);
-			SetFieldVisible(nameof(AllowWeatherLightFog), allow);
-			SetFieldVisible(nameof(AllowWeatherDenseFog), allow);
-			SetFieldVisible(nameof(AllowWeatherPartlyCloudy), allow);
-			SetFieldVisible(nameof(AllowWeatherCloudy), allow);
-			SetFieldVisible(nameof(AllowWeatherLightSnow), allow);
-			SetFieldVisible(nameof(AllowWeatherHeavySnow), allow);
+			var allow = AllowWeatherHarm && Enabled;
+			SetFieldVisible(nameof(AllowWeatherHarmBlizzard), allow);
+			SetFieldVisible(nameof(AllowWeatherHarmFog), allow);
+			SetFieldVisible(nameof(AllowWeatherHarmSnow), allow);
 		}
 
-		private void RefreshSoundFields()
+		private void RefreshStatusHelpFields()
 		{
-			var allow = AllowSoundRedeems && Enabled;
-			SetFieldVisible(nameof(AllowDevSoundCheck), allow);
-			SetFieldVisible(nameof(AllowSoundHello), allow);
-			SetFieldVisible(nameof(AllowSound420), allow);
-			SetFieldVisible(nameof(AllowSoundGoodNight), allow);
-			SetFieldVisible(nameof(AllowSoundHydrate), allow);
+			var allow = AllowStatusHelp && Enabled;
+			SetFieldVisible(nameof(AllowStatusHelpWarm), allow);
+			SetFieldVisible(nameof(AllowStatusHelpAwake), allow);
+			SetFieldVisible(nameof(AllowStatusHelpNotThirsty), allow);
+			SetFieldVisible(nameof(AllowStatusHelpFull), allow);
+			SetFieldVisible(nameof(StatusHelpValue), allow);
 		}
 
-		private void RefreshHelpfulStatusFields()
+		private void RefreshStatusHarmFields()
 		{
-			var allow = AllowHelpfulStatus && Enabled;
-			SetFieldVisible(nameof(AllowStatusFull), allow);
-			SetFieldVisible(nameof(AllowStatusNotThirsty), allow);
-			SetFieldVisible(nameof(AllowStatusAwake), allow);
-			SetFieldVisible(nameof(AllowStatusWarm), allow);
+			var allow = AllowStatusHarm && Enabled;
+			SetFieldVisible(nameof(AllowStatusHarmFreezing), allow);
+			SetFieldVisible(nameof(AllowStatusHarmTired), allow);
+			SetFieldVisible(nameof(AllowStatusHarmThirsty), allow);
+			SetFieldVisible(nameof(AllowStatusHarmHungry), allow);
+			SetFieldVisible(nameof(StatusHarmValue), allow);
 		}
 
-		private void RefreshHarmfulStatusFields()
+		private void RefreshStatusSprainFields()
 		{
-			var allow = AllowHarmfulStatus && Enabled;
-			SetFieldVisible(nameof(AllowStatusHungry), allow);
-			SetFieldVisible(nameof(AllowStatusThirsty), allow);
-			SetFieldVisible(nameof(AllowStatusTired), allow);
-			SetFieldVisible(nameof(AllowStatusFreezing), allow);
+			var allow = AllowStatusSprain && Enabled;
+			SetFieldVisible(nameof(AllowStatusSprainWrists), allow);
 		}
 
-		private void RefreshAfflictionFields()
+		private void RefreshStatusStinkFields()
 		{
-			var allow = AllowAfflictionRedeems && Enabled;
-			SetFieldVisible(nameof(AllowAfflictionCabinFever), allow);
-			SetFieldVisible(nameof(AllowAfflictionDysentery), allow);
-			SetFieldVisible(nameof(AllowAfflictionFoodPoisoning), allow);
-			SetFieldVisible(nameof(AllowAfflictionHypothermia), allow);
-			SetFieldVisible(nameof(AllowAfflictionParasites), allow);
+			var allow = AllowStatusStink && Enabled;
+			SetFieldVisible(nameof(StinkLines), allow);
+			SetFieldVisible(nameof(StinkTime), allow);
+		}
+
+		private void RefreshInventoryBowFields()
+		{
+			var allow = AllowBow && Enabled;
+			SetFieldVisible(nameof(ArrowCount), allow);
+		}
+
+		private void RefreshBigGameFields()
+		{
+			var allow = AllowBigGame && Enabled;
+			SetFieldVisible(nameof(AllowBigGameBear), allow);
+			SetFieldVisible(nameof(AllowBigGameMoose), allow);
+			RefreshBigGameBearFields();
+			RefreshBigGameMooseFields();
+		}
+
+		private void RefreshBigGameBearFields()
+		{
+			var allow = AllowBigGame && AllowBigGameBear && Enabled;
+			SetFieldVisible(nameof(DistanceBear), allow);
+		}
+
+		private void RefreshBigGameMooseFields()
+		{
+			var allow = AllowBigGame && AllowBigGameMoose && Enabled;
+			SetFieldVisible(nameof(DistanceMoose), allow);
+		}
+
+		private void RefreshTWolfFields()
+		{
+			var allow = AllowTWolves && Enabled;
+			SetFieldVisible(nameof(DistanceTWolf), allow);
+		}
+
+		private void RefreshStalkingWolfFields()
+		{
+			var allow = AllowStalkingWolf && Enabled;
+			SetFieldVisible(nameof(DistanceStalkingWolf), allow);
+		}
+
+		private void RefreshBunnyExplosionFields()
+		{
+			var allow = AllowBow && Enabled;
+			SetFieldVisible(nameof(BunnyCount), allow);
 		}
 	}
-
 }

@@ -3,14 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TLD-Twitch-Integration", "TLD-Twitch-Integration\TLD-Twitch-Integration.csproj", "{255FEEA7-5C2C-4F8B-A375-E1464415E9BD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TLD-Twitch-Integration", "TLD-Twitch-Integration\TLD-Twitch-Integration.csproj", "{255FEEA7-5C2C-4F8B-A375-E1464415E9BD}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5BDD3F68-CCB8-4C18-903E-CAB89A99EC51}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
+		RedeemsForRelease.md = RedeemsForRelease.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TTI-Test", "TTI-Test\TTI-Test.csproj", "{138FEABD-42F4-460F-9E10-AE4214AE7C74}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TTI-Test", "TTI-Test\TTI-Test.csproj", "{138FEABD-42F4-460F-9E10-AE4214AE7C74}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

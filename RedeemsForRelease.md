@@ -37,7 +37,7 @@
 - [x] changes the ingame weather
 
 ### TTI Weather: Harm 
-- [ ] implement userInput: fog, snow, blizzard
+- [ ] implement userInput: blizzard, fog, snow
 - [x] imeplement settings: enable each weather type individually
 - [x] changes the ingame weather
 
@@ -46,65 +46,65 @@
 - [x] imeplement settings: enable / disable
 
 ### TTI Status: Help 
-- [ ] implement userInput: fatigue, cold, hunger, thirst
+- [ ] implement userInput: cold, fatigue, thirst, hunger
 - [x] imeplement settings: actual value the redeem will set the meter to, enable each meter individually
 - [x] changes the specified meter to the specified value
 
 ### TTI Status: Harm
-- [ ] implement userInput: fatigue, cold, hunger, thirst
+- [ ] implement userInput: cold, fatigue, thirst, hunger
 - [x] imeplement settings: actual value the redeem will set the meter to, enable each meter individually
 - [x] changes the specified meter to the specified value
 
 ### TTI Status: Cabin Fever
 - [x] gives player cabin fever
-- [ ] imeplement settings: enable / disable
+- [x] imeplement settings: enable / disable
 
 ### TTI Status: Dysentery
 - [x] gives the player dysentery
-- [ ] imeplement settings: enable / disable
+- [x] imeplement settings: enable / disable
 
 ### TTI Status: Food Poisoning
 - [x] gives the player food poisoning
-- [ ] imeplement settings: enable / disable
+- [x] imeplement settings: enable / disable
 
 ### TTI Status: Hypothermia
 - [x] gives the player hypothermia
-- [ ] imeplement settings: enable / disable
+- [x] imeplement settings: enable / disable
 
 ### TTI Status: Bleeding
 - [ ] implement userInput: handleft, handright, footleft, footright 
-- [ ] imeplement settings: enable / disable
+- [x] imeplement settings: enable / disable
 - [ ] gives the player bleeding
 
 ### TTI Status: Sprain
-- [ ] implement userInput: handleft, handright, footleft, footright 
-- [ ] imeplement settings: enable / disable / disabling wrists
+- [ ] implement userInput:  handleft, handright, footleft, footright 
+- [x] imeplement settings: enable / disable / disabling wrists
 - [ ] gives the player sprain
 
 ### TTI Status: Stink
 - [ ] immediately adds 3 stink lines 
-- [ ] imeplement settings: enable / disable
+- [x] imeplement settings: enable / disable / how many stink lines
 
 ### TTI Inventory: Team NoPants
 - [ ] drops all pants
-- [ ] imeplement settings: enable / disable
+- [x] imeplement settings: enable / disable
 
 ### TTI Inventory: Drop Torch
 - [ ] if you are holding one it drops or best torch in the inventory 
-- [ ] imeplement settings: enable / disable
+- [x] imeplement settings: enable / disable
 
 ### TTI Inventory: Drop Random Item
 - [ ] drop random item in inventory (cannot pick back up)
-- [ ] imeplement settings: enable / disable
+- [x] imeplement settings: enable / disable
 
 ### TTI Inventory: Stepped on Stim
 - [ ] immediatly activates the stim effect (doesnt consume from inventory)
-- [ ] imeplement settings: enable / disable
+- [x] imeplement settings: enable / disable
 
 ### TTI Inventory: Bow
 - [ ] adds bow
 - [ ] adds x arrows
-- [ ] imeplement settings: enable / disable / arrow amount
+- [x] imeplement settings: enable / disable / arrow amount
 
 ### TTI Animal: Big Game
 - [ ] implemenet userInput: bear, moose
@@ -114,27 +114,27 @@
 
 ### TTI Animal: T-Wolf Pack
 - [ ] implement userInput: 2-5
-- [ ] implement settings: spawn distance / enable / disable
+- [x] implement settings: spawn distance / enable / disable
 - [x] spawns in front
 
 ### TTI Animal: Stalking Wolf
-- [ ] implement settings: spawn distance / enable / disable
+- [x] implement settings: spawn distance / enable / disable
 - [x] spawns behind (oposite direction camera is looking at at time of redeem)
 
 ### TTI Animal: Bunny Explosion
-- [ ] settings: amount of bunnies (for performance sake) / enable / disable
+- [x] settings: amount of bunnies (for performance sake) / enable / disable
 - [x] spawns x amount of bunnies slightly in front
 
 ### TTI Misc: Teleport
 - [ ] implement userInput: [some locations that still have to be decided on. thinking summit, goldmine, monolithlake. something along those lines]
-- [ ] imeplement settings: enable / disable
+- [x] imeplement settings: enable / disable
 - [ ] teleports the player to the specified location
 
 ### TTI Misc: Time of day
 - [ ] implement userInput: an actual time of day, like 12:00, 17:42, 01:55
-- [ ] imeplement settings: enable / disable
+- [x] imeplement settings: enable / disable
 - [ ] sets the in game time of day to the specified time
 
 ### TTI Sound: Happy 420
 - [x] plays the suffocate sound
-- [ ] imeplement settings: enable / disable
+- [x] imeplement settings: enable / disable

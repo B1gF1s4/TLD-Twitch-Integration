@@ -17,6 +17,29 @@ namespace TLD_Twitch_Integration
 
 		private static DateTime _lastUpdated;
 
+		public enum WeatherHelp
+		{
+			Clear,
+			Fog,
+			Snow,
+			Cloudy
+		}
+
+		public enum WeatherHarm
+		{
+			Blizzard,
+			Fog,
+			Snow
+		}
+
+		public enum StatusMeter
+		{
+			Cold,
+			Fatigue,
+			Thirst,
+			Hunger,
+		}
+
 		public enum AnimalRedeemType
 		{
 			None,
@@ -26,23 +49,6 @@ namespace TLD_Twitch_Integration
 			StalkingWolf,
 			BunnyExplosion
 		}
-
-		public enum MeterType
-		{
-			Fatigue,
-			Hunger,
-			Thirst,
-			Cold
-		}
-
-		public enum Sound
-		{
-			Hello,
-			GoodNight,
-			Happy420,
-			Hydrate
-		}
-
 
 		public static async Task OnUpdate()
 		{
@@ -152,64 +158,24 @@ namespace TLD_Twitch_Integration
 		{
 			switch (defaultTitle)
 			{
-				case RedeemNames.SOUND_HELLO:
-				case RedeemNames.SOUND_GOOD_NIGHT:
-				case RedeemNames.SOUND_420:
-				case RedeemNames.SOUND_HYDRATE:
-					var sound = GetSoundFromRedeemName(defaultTitle);
-					GameService.PlayPlayerSound(sound);
-					break;
-
-				case RedeemNames.SOUND:
-					GameService.PlayPlayerSound(redeem.UserInput!);
-					break;
-
-				case RedeemNames.WEATHER_BLIZZARD:
+				case RedeemNames.WEATHER_HELP:
 					if (!ShouldExecuteWeatherRedeem())
 						return false;
-					GameService.WeatherToChange = WeatherStage.Blizzard;
-					break;
-
-				case RedeemNames.WEATHER_CLEAR:
-					if (!ShouldExecuteWeatherRedeem())
-						return false;
+					// TODO: evaluate userInput
 					GameService.WeatherToChange = WeatherStage.Clear;
 					break;
 
-				case RedeemNames.WEATHER_LIGHT_FOG:
+				case RedeemNames.WEATHER_HARM:
 					if (!ShouldExecuteWeatherRedeem())
 						return false;
-					GameService.WeatherToChange = WeatherStage.LightFog;
+					// TODO: evaluate userInput
+					GameService.WeatherToChange = WeatherStage.Blizzard;
 					break;
 
-				case RedeemNames.WEATHER_DENSE_FOG:
+				case RedeemNames.WEATHER_AURORA:
 					if (!ShouldExecuteWeatherRedeem())
 						return false;
-					GameService.WeatherToChange = WeatherStage.DenseFog;
-					break;
-
-				case RedeemNames.WEATHER_PARTLY_CLOUDY:
-					if (!ShouldExecuteWeatherRedeem())
-						return false;
-					GameService.WeatherToChange = WeatherStage.PartlyCloudy;
-					break;
-
-				case RedeemNames.WEATHER_CLOUDY:
-					if (!ShouldExecuteWeatherRedeem())
-						return false;
-					GameService.WeatherToChange = WeatherStage.Cloudy;
-					break;
-
-				case RedeemNames.WEATHER_LIGHT_SNOW:
-					if (!ShouldExecuteWeatherRedeem())
-						return false;
-					GameService.WeatherToChange = WeatherStage.LightSnow;
-					break;
-
-				case RedeemNames.WEATHER_HEAVY_SNOW:
-					if (!ShouldExecuteWeatherRedeem())
-						return false;
-					GameService.WeatherToChange = WeatherStage.HeavySnow;
+					// TODO: implement forcing aurora
 					break;
 
 				case RedeemNames.ANIMAL_T_WOLVES:
@@ -217,24 +183,19 @@ namespace TLD_Twitch_Integration
 						return false;
 					if (GameState.IsAuroraFading)
 						return false;
+					var packSize = int.TryParse(redeem.UserInput, out var number) ?
+						(number >= 2 && number <= 5) ? number : 5 : 5;
+					GameService.SpawningAnimalTargetCount = packSize;
 					GameService.AnimalToSpawn = AnimalRedeemType.TWolves;
 					break;
 
-				case RedeemNames.ANIMAL_BEAR:
+				case RedeemNames.ANIMAL_BIG_GAME:
 					if (!ShouldExecuteAnimalRedeem())
 						return false;
 					if (GameState.IsAuroraFading)
 						return false;
+					// TODO: evaluate userInput
 					GameService.AnimalToSpawn = AnimalRedeemType.Bear;
-					break;
-
-				case RedeemNames.ANIMAL_MOOSE:
-					if (!ShouldExecuteAnimalRedeem())
-						return false;
-					if (GameState.IsAuroraActive || GameState.IsAuroraFading)
-						return false;
-					else
-						GameService.AnimalToSpawn = AnimalRedeemType.Moose;
 					break;
 
 				case RedeemNames.ANIMAL_STALKING_WOLF:
@@ -251,56 +212,38 @@ namespace TLD_Twitch_Integration
 					GameService.AnimalToSpawn = AnimalRedeemType.BunnyExplosion;
 					break;
 
-				case RedeemNames.STATUS_HUNGRY:
-					GameService.ChangeMeter(MeterType.Hunger, false);
+				case RedeemNames.STATUS_HELP:
+					// TODO: evaluate userInput
+					GameService.ChangeMeter(StatusMeter.Hunger, true);
 					break;
 
-				case RedeemNames.STATUS_THIRSTY:
-					GameService.ChangeMeter(MeterType.Thirst, false);
+				case RedeemNames.STATUS_HARM:
+					// TODO: evaluate userInput
+					GameService.ChangeMeter(StatusMeter.Hunger, false);
 					break;
 
-				case RedeemNames.STATUS_TIRED:
-					GameService.ChangeMeter(MeterType.Fatigue, false);
+				case RedeemNames.SOUND_420:
+					GameService.PlayPlayerSound("PLAY_SUFFOCATIONCOUGH");
 					break;
 
-				case RedeemNames.STATUS_FREEZING:
-					GameService.ChangeMeter(MeterType.Cold, false);
+				case RedeemNames.DEV_SOUND:
+					GameService.PlayPlayerSound(redeem.UserInput!);
 					break;
 
-				case RedeemNames.STATUS_FULL:
-					GameService.ChangeMeter(MeterType.Hunger, true);
-					break;
-
-				case RedeemNames.STATUS_NOT_THIRSTY:
-					GameService.ChangeMeter(MeterType.Thirst, true);
-					break;
-
-				case RedeemNames.STATUS_AWAKE:
-					GameService.ChangeMeter(MeterType.Fatigue, true);
-					break;
-
-				case RedeemNames.STATUS_WARM:
-					GameService.ChangeMeter(MeterType.Cold, true);
-					break;
-
-				case RedeemNames.AFFLICTION_CABIN_FEVER:
+				case RedeemNames.STATUS_CABIN_FEVER:
 					GameService.ShouldStartCabinFever = true;
 					break;
 
-				case RedeemNames.AFFLICTION_DYSENTERY:
+				case RedeemNames.STATUS_DYSENTERY:
 					GameService.ShouldStartDysentery = true;
 					break;
 
-				case RedeemNames.AFFLICTION_FOOD_POISONING:
+				case RedeemNames.STATUS_FOOD_POISONING:
 					GameService.ShouldStartFoodPoisoning = true;
 					break;
 
-				case RedeemNames.AFFLICTION_HYPOTHERMIA:
+				case RedeemNames.STATUS_HYPOTHERMIA:
 					GameService.ShouldStartHypothermia = true;
-					break;
-
-				case RedeemNames.AFFLICTION_PARASITES:
-					GameService.ShouldStartParasites = true;
 					break;
 
 				default:
@@ -325,25 +268,6 @@ namespace TLD_Twitch_Integration
 				return false;
 
 			return true;
-		}
-
-		private static WeatherStage GetWeatherFromRedeemName(string title)
-		{
-			var weather = title.Replace("TTI: ", "").Replace(" ", "");
-			var stage = Enum.Parse(typeof(WeatherStage), weather) ?? throw new InvalidCastException();
-			return (WeatherStage)stage;
-		}
-
-		private static Sound GetSoundFromRedeemName(string title)
-		{
-			return title switch
-			{
-				RedeemNames.SOUND_HELLO => Sound.Hello,
-				RedeemNames.SOUND_GOOD_NIGHT => Sound.GoodNight,
-				RedeemNames.SOUND_420 => Sound.Happy420,
-				RedeemNames.SOUND_HYDRATE => Sound.Hydrate,
-				_ => throw new InvalidOperationException(),
-			};
 		}
 	}
 }

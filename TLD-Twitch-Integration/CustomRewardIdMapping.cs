@@ -7,14 +7,20 @@ namespace TLD_Twitch_Integration
 {
 	public class CustomRewardIdMapping : JsonFile
 	{
+		[Name(RedeemNames.WEATHER_HELP)]
+		public string WeatherHelp = "";
+
+		[Name(RedeemNames.WEATHER_HARM)]
+		public string WeatherHarm = "";
+
+		[Name(RedeemNames.WEATHER_AURORA)]
+		public string WeatherAurora = "";
+
 		[Name(RedeemNames.ANIMAL_T_WOLVES)]
 		public string AnimalTWolves = "";
 
-		[Name(RedeemNames.ANIMAL_BEAR)]
-		public string AnimalBear = "";
-
-		[Name(RedeemNames.ANIMAL_MOOSE)]
-		public string AnimalMoose = "";
+		[Name(RedeemNames.ANIMAL_BIG_GAME)]
+		public string AnimalBigGame = "";
 
 		[Name(RedeemNames.ANIMAL_STALKING_WOLF)]
 		public string AnimalStalkingWolf = "";
@@ -22,83 +28,59 @@ namespace TLD_Twitch_Integration
 		[Name(RedeemNames.ANIMAL_BUNNY_EXPLOSION)]
 		public string AnimalBunnyExplosion = "";
 
-		[Name(RedeemNames.WEATHER_BLIZZARD)]
-		public string WeatherBlizzard = "";
+		[Name(RedeemNames.STATUS_HELP)]
+		public string StatusHelp = "";
 
-		[Name(RedeemNames.WEATHER_CLEAR)]
-		public string WeatherClear = "";
+		[Name(RedeemNames.STATUS_HARM)]
+		public string StatusHarm = "";
 
-		[Name(RedeemNames.WEATHER_LIGHT_FOG)]
-		public string WeatherLightFog = "";
+		[Name(RedeemNames.STATUS_CABIN_FEVER)]
+		public string StatusCabinFever = "";
 
-		[Name(RedeemNames.WEATHER_DENSE_FOG)]
-		public string WeatherDenseFog = "";
+		[Name(RedeemNames.STATUS_DYSENTERY)]
+		public string StatusDysentery = "";
 
-		[Name(RedeemNames.WEATHER_PARTLY_CLOUDY)]
-		public string WeatherPartlyCloudy = "";
+		[Name(RedeemNames.STATUS_FOOD_POISONING)]
+		public string StatusFoodPoisoning = "";
 
-		[Name(RedeemNames.WEATHER_CLOUDY)]
-		public string WeatherCloudy = "";
+		[Name(RedeemNames.STATUS_HYPOTHERMIA)]
+		public string StatusHypothermia = "";
 
-		[Name(RedeemNames.WEATHER_LIGHT_SNOW)]
-		public string WeatherLightSnow = "";
+		[Name(RedeemNames.STATUS_BLEED)]
+		public string StatusBleeding = "";
 
-		[Name(RedeemNames.WEATHER_HEAVY_SNOW)]
-		public string WeatherHeavySnow = "";
+		[Name(RedeemNames.STATUS_SPRAIN)]
+		public string StatusSprain = "";
 
-		[Name(RedeemNames.SOUND)]
-		public string DevSoundCheck = "";
+		[Name(RedeemNames.STATUS_STINK)]
+		public string StatusStink = "";
 
-		[Name(RedeemNames.SOUND_HELLO)]
-		public string SoundHello = "";
+		[Name(RedeemNames.INVENTORY_NO_PANTS)]
+		public string InventoryNoPants = "";
+
+		[Name(RedeemNames.INVENTORY_DROP_TORCH)]
+		public string InventoryDropTorch = "";
+
+		[Name(RedeemNames.INVENTORY_DROP_ITEM)]
+		public string InventoryDropItem = "";
+
+		[Name(RedeemNames.INVENTORY_STEPPED_STIM)]
+		public string InventorySteppedStim = "";
+
+		[Name(RedeemNames.INVENTORY_BOW)]
+		public string InventoryBow = "";
+
+		[Name(RedeemNames.MISC_TELEPORT)]
+		public string MiscTeleport = "";
+
+		[Name(RedeemNames.MISC_TIME)]
+		public string MiscTime = "";
 
 		[Name(RedeemNames.SOUND_420)]
 		public string Sound420 = "";
 
-		[Name(RedeemNames.SOUND_GOOD_NIGHT)]
-		public string SoundGoodNight = "";
-
-		[Name(RedeemNames.SOUND_HYDRATE)]
-		public string SoundHydrate = "";
-
-		[Name(RedeemNames.STATUS_HUNGRY)]
-		public string StatusHungry = "";
-
-		[Name(RedeemNames.STATUS_THIRSTY)]
-		public string StatusThirsty = "";
-
-		[Name(RedeemNames.STATUS_TIRED)]
-		public string StatusTired = "";
-
-		[Name(RedeemNames.STATUS_FREEZING)]
-		public string StatusFreezing = "";
-
-		[Name(RedeemNames.STATUS_FULL)]
-		public string StatusFull = "";
-
-		[Name(RedeemNames.STATUS_NOT_THIRSTY)]
-		public string StatusNotThirsty = "";
-
-		[Name(RedeemNames.STATUS_AWAKE)]
-		public string StatusAwake = "";
-
-		[Name(RedeemNames.STATUS_WARM)]
-		public string StatusWarm = "";
-
-		[Name(RedeemNames.AFFLICTION_CABIN_FEVER)]
-		public string AfflictionCabinFever = "";
-
-		[Name(RedeemNames.AFFLICTION_DYSENTERY)]
-		public string AfflictionDysentery = "";
-
-		[Name(RedeemNames.AFFLICTION_FOOD_POISONING)]
-		public string AfflictionFoodPoisoning = "";
-
-		[Name(RedeemNames.AFFLICTION_HYPOTHERMIA)]
-		public string AfflictionHypothermia = "";
-
-		[Name(RedeemNames.AFFLICTION_PARASITES)]
-		public string AfflictionParasites = "";
+		[Name(RedeemNames.DEV_SOUND)]
+		public string DevSoundCheck = "";
 
 		public CustomRewardIdMapping() : base(Path.Combine(Mod.BaseDirectory, "redeems"))
 		{ }

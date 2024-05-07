@@ -183,221 +183,154 @@ namespace TLD_Twitch_Integration
 			{
 				// TODO: refactor to use reflection, possibly custom attribute and iterate settings, or redeem defaults
 				await UpdateCustomReward(
+					Settings.Redeems.GetIdByRedeemName(RedeemNames.WEATHER_HELP),
+					Settings.ModSettings.Enabled &&
+					Settings.ModSettings.AllowWeatherHelp,
+					RedeemNames.WEATHER_HELP);
+
+				await UpdateCustomReward(
+					Settings.Redeems.GetIdByRedeemName(RedeemNames.WEATHER_HARM),
+					Settings.ModSettings.Enabled &&
+					Settings.ModSettings.AllowWeatherHarm,
+					RedeemNames.WEATHER_HARM);
+
+				await UpdateCustomReward(
+					Settings.Redeems.GetIdByRedeemName(RedeemNames.WEATHER_AURORA),
+					Settings.ModSettings.Enabled &&
+					Settings.ModSettings.AllowWeatherAurora,
+					RedeemNames.WEATHER_AURORA);
+
+				await UpdateCustomReward(
 					Settings.Redeems.GetIdByRedeemName(RedeemNames.ANIMAL_T_WOLVES),
 					Settings.ModSettings.Enabled &&
-					Settings.ModSettings.AllowAnimalRedeems &&
 					Settings.ModSettings.AllowTWolves,
 					RedeemNames.ANIMAL_T_WOLVES);
 
 				await UpdateCustomReward(
-					Settings.Redeems.GetIdByRedeemName(RedeemNames.ANIMAL_BEAR),
+					Settings.Redeems.GetIdByRedeemName(RedeemNames.ANIMAL_BIG_GAME),
 					Settings.ModSettings.Enabled &&
-					Settings.ModSettings.AllowAnimalRedeems &&
-					Settings.ModSettings.AllowBear,
-					RedeemNames.ANIMAL_BEAR);
-
-				await UpdateCustomReward(
-					Settings.Redeems.GetIdByRedeemName(RedeemNames.ANIMAL_MOOSE),
-					Settings.ModSettings.Enabled &&
-					Settings.ModSettings.AllowAnimalRedeems &&
-					Settings.ModSettings.AllowMoose,
-					RedeemNames.ANIMAL_MOOSE);
+					Settings.ModSettings.AllowBigGame,
+					RedeemNames.ANIMAL_BIG_GAME);
 
 				await UpdateCustomReward(
 					Settings.Redeems.GetIdByRedeemName(RedeemNames.ANIMAL_STALKING_WOLF),
 					Settings.ModSettings.Enabled &&
-					Settings.ModSettings.AllowAnimalRedeems &&
 					Settings.ModSettings.AllowStalkingWolf,
 					RedeemNames.ANIMAL_STALKING_WOLF);
 
 				await UpdateCustomReward(
 					Settings.Redeems.GetIdByRedeemName(RedeemNames.ANIMAL_BUNNY_EXPLOSION),
 					Settings.ModSettings.Enabled &&
-					Settings.ModSettings.AllowAnimalRedeems &&
 					Settings.ModSettings.AllowBunnyExplosion,
 					RedeemNames.ANIMAL_BUNNY_EXPLOSION);
 
 				await UpdateCustomReward(
-					Settings.Redeems.GetIdByRedeemName(RedeemNames.WEATHER_BLIZZARD),
+					Settings.Redeems.GetIdByRedeemName(RedeemNames.STATUS_HELP),
 					Settings.ModSettings.Enabled &&
-					Settings.ModSettings.AllowWeatherRedeems &&
-					Settings.ModSettings.AllowWeatherBlizzard,
-					RedeemNames.WEATHER_BLIZZARD);
+					Settings.ModSettings.AllowStatusHelp,
+					RedeemNames.STATUS_HELP);
 
 				await UpdateCustomReward(
-					Settings.Redeems.GetIdByRedeemName(RedeemNames.WEATHER_CLEAR),
+					Settings.Redeems.GetIdByRedeemName(RedeemNames.STATUS_HARM),
 					Settings.ModSettings.Enabled &&
-					Settings.ModSettings.AllowWeatherRedeems &&
-					Settings.ModSettings.AllowWeatherClear,
-					RedeemNames.WEATHER_CLEAR);
+					Settings.ModSettings.AllowStatusHarm,
+					RedeemNames.STATUS_HARM);
 
 				await UpdateCustomReward(
-					Settings.Redeems.GetIdByRedeemName(RedeemNames.WEATHER_LIGHT_FOG),
+					Settings.Redeems.GetIdByRedeemName(RedeemNames.STATUS_CABIN_FEVER),
 					Settings.ModSettings.Enabled &&
-					Settings.ModSettings.AllowWeatherRedeems &&
-					Settings.ModSettings.AllowWeatherLightFog,
-					RedeemNames.WEATHER_LIGHT_FOG);
+					Settings.ModSettings.AllowStatusCabinFever,
+					RedeemNames.STATUS_CABIN_FEVER);
 
 				await UpdateCustomReward(
-					Settings.Redeems.GetIdByRedeemName(RedeemNames.WEATHER_DENSE_FOG),
+					Settings.Redeems.GetIdByRedeemName(RedeemNames.STATUS_DYSENTERY),
 					Settings.ModSettings.Enabled &&
-					Settings.ModSettings.AllowWeatherRedeems &&
-					Settings.ModSettings.AllowWeatherDenseFog,
-					RedeemNames.WEATHER_DENSE_FOG);
+					Settings.ModSettings.AllowStatusDysentery,
+					RedeemNames.STATUS_DYSENTERY);
 
 				await UpdateCustomReward(
-					Settings.Redeems.GetIdByRedeemName(RedeemNames.WEATHER_PARTLY_CLOUDY),
+					Settings.Redeems.GetIdByRedeemName(RedeemNames.STATUS_FOOD_POISONING),
 					Settings.ModSettings.Enabled &&
-					Settings.ModSettings.AllowWeatherRedeems &&
-					Settings.ModSettings.AllowWeatherPartlyCloudy,
-					RedeemNames.WEATHER_PARTLY_CLOUDY);
+					Settings.ModSettings.AllowStatusFoodPoisoning,
+					RedeemNames.STATUS_FOOD_POISONING);
 
 				await UpdateCustomReward(
-					Settings.Redeems.GetIdByRedeemName(RedeemNames.WEATHER_CLOUDY),
+					Settings.Redeems.GetIdByRedeemName(RedeemNames.STATUS_HYPOTHERMIA),
 					Settings.ModSettings.Enabled &&
-					Settings.ModSettings.AllowWeatherRedeems &&
-					Settings.ModSettings.AllowWeatherCloudy,
-					RedeemNames.WEATHER_CLOUDY);
+					Settings.ModSettings.AllowStatusHypothermia,
+					RedeemNames.STATUS_HYPOTHERMIA);
 
 				await UpdateCustomReward(
-					Settings.Redeems.GetIdByRedeemName(RedeemNames.WEATHER_LIGHT_SNOW),
+					Settings.Redeems.GetIdByRedeemName(RedeemNames.STATUS_BLEED),
 					Settings.ModSettings.Enabled &&
-					Settings.ModSettings.AllowWeatherRedeems &&
-					Settings.ModSettings.AllowWeatherLightSnow,
-					RedeemNames.WEATHER_LIGHT_SNOW);
+					Settings.ModSettings.AllowStatusBleeding,
+					RedeemNames.STATUS_BLEED);
 
 				await UpdateCustomReward(
-					Settings.Redeems.GetIdByRedeemName(RedeemNames.WEATHER_HEAVY_SNOW),
+					Settings.Redeems.GetIdByRedeemName(RedeemNames.STATUS_SPRAIN),
 					Settings.ModSettings.Enabled &&
-					Settings.ModSettings.AllowWeatherRedeems &&
-					Settings.ModSettings.AllowWeatherHeavySnow,
-					RedeemNames.WEATHER_HEAVY_SNOW);
+					Settings.ModSettings.AllowStatusSprain,
+					RedeemNames.STATUS_SPRAIN);
 
 				await UpdateCustomReward(
-					Settings.Redeems.GetIdByRedeemName(RedeemNames.SOUND),
+					Settings.Redeems.GetIdByRedeemName(RedeemNames.STATUS_STINK),
 					Settings.ModSettings.Enabled &&
-					Settings.ModSettings.AllowSoundRedeems &&
-					Settings.ModSettings.AllowDevSoundCheck,
-					RedeemNames.SOUND);
+					Settings.ModSettings.AllowStatusStink,
+					RedeemNames.STATUS_STINK);
 
 				await UpdateCustomReward(
-					Settings.Redeems.GetIdByRedeemName(RedeemNames.SOUND_HELLO),
+					Settings.Redeems.GetIdByRedeemName(RedeemNames.INVENTORY_NO_PANTS),
 					Settings.ModSettings.Enabled &&
-					Settings.ModSettings.AllowSoundRedeems &&
-					Settings.ModSettings.AllowSoundHello,
-					RedeemNames.SOUND_HELLO);
+					Settings.ModSettings.AllowTeamNoPants,
+					RedeemNames.INVENTORY_NO_PANTS);
+
+				await UpdateCustomReward(
+					Settings.Redeems.GetIdByRedeemName(RedeemNames.INVENTORY_DROP_TORCH),
+					Settings.ModSettings.Enabled &&
+					Settings.ModSettings.AllowDropTorch,
+					RedeemNames.INVENTORY_DROP_TORCH);
+
+				await UpdateCustomReward(
+					Settings.Redeems.GetIdByRedeemName(RedeemNames.INVENTORY_DROP_ITEM),
+					Settings.ModSettings.Enabled &&
+					Settings.ModSettings.AllowDropItem,
+					RedeemNames.INVENTORY_DROP_ITEM);
+
+				await UpdateCustomReward(
+					Settings.Redeems.GetIdByRedeemName(RedeemNames.INVENTORY_STEPPED_STIM),
+					Settings.ModSettings.Enabled &&
+					Settings.ModSettings.AllowSteppedStim,
+					RedeemNames.INVENTORY_STEPPED_STIM);
+
+				await UpdateCustomReward(
+					Settings.Redeems.GetIdByRedeemName(RedeemNames.INVENTORY_BOW),
+					Settings.ModSettings.Enabled &&
+					Settings.ModSettings.AllowBow,
+					RedeemNames.INVENTORY_BOW);
+
+				await UpdateCustomReward(
+					Settings.Redeems.GetIdByRedeemName(RedeemNames.MISC_TELEPORT),
+					Settings.ModSettings.Enabled &&
+					Settings.ModSettings.AllowTeleport,
+					RedeemNames.MISC_TELEPORT);
+
+				await UpdateCustomReward(
+					Settings.Redeems.GetIdByRedeemName(RedeemNames.MISC_TIME),
+					Settings.ModSettings.Enabled &&
+					Settings.ModSettings.AllowTime,
+					RedeemNames.MISC_TIME);
 
 				await UpdateCustomReward(
 					Settings.Redeems.GetIdByRedeemName(RedeemNames.SOUND_420),
 					Settings.ModSettings.Enabled &&
-					Settings.ModSettings.AllowSoundRedeems &&
 					Settings.ModSettings.AllowSound420,
 					RedeemNames.SOUND_420);
 
 				await UpdateCustomReward(
-					Settings.Redeems.GetIdByRedeemName(RedeemNames.SOUND_GOOD_NIGHT),
+					Settings.Redeems.GetIdByRedeemName(RedeemNames.DEV_SOUND),
 					Settings.ModSettings.Enabled &&
-					Settings.ModSettings.AllowSoundRedeems &&
-					Settings.ModSettings.AllowSoundGoodNight,
-					RedeemNames.SOUND_GOOD_NIGHT);
-
-				await UpdateCustomReward(
-					Settings.Redeems.GetIdByRedeemName(RedeemNames.SOUND_HYDRATE),
-					Settings.ModSettings.Enabled &&
-					Settings.ModSettings.AllowSoundRedeems &&
-					Settings.ModSettings.AllowSoundHydrate,
-					RedeemNames.SOUND_HYDRATE);
-
-				await UpdateCustomReward(
-					Settings.Redeems.GetIdByRedeemName(RedeemNames.STATUS_HUNGRY),
-					Settings.ModSettings.Enabled &&
-					Settings.ModSettings.AllowHarmfulStatus &&
-					Settings.ModSettings.AllowStatusHungry,
-					RedeemNames.STATUS_HUNGRY);
-
-				await UpdateCustomReward(
-					Settings.Redeems.GetIdByRedeemName(RedeemNames.STATUS_THIRSTY),
-					Settings.ModSettings.Enabled &&
-					Settings.ModSettings.AllowHarmfulStatus &&
-					Settings.ModSettings.AllowStatusThirsty,
-					RedeemNames.STATUS_THIRSTY);
-
-				await UpdateCustomReward(
-					Settings.Redeems.GetIdByRedeemName(RedeemNames.STATUS_TIRED),
-					Settings.ModSettings.Enabled &&
-					Settings.ModSettings.AllowHarmfulStatus &&
-					Settings.ModSettings.AllowStatusTired,
-					RedeemNames.STATUS_TIRED);
-
-				await UpdateCustomReward(
-					Settings.Redeems.GetIdByRedeemName(RedeemNames.STATUS_FREEZING),
-					Settings.ModSettings.Enabled &&
-					Settings.ModSettings.AllowHarmfulStatus &&
-					Settings.ModSettings.AllowStatusFreezing,
-					RedeemNames.STATUS_FREEZING);
-
-				await UpdateCustomReward(
-					Settings.Redeems.GetIdByRedeemName(RedeemNames.STATUS_FULL),
-					Settings.ModSettings.Enabled &&
-					Settings.ModSettings.AllowHelpfulStatus &&
-					Settings.ModSettings.AllowStatusFull,
-					RedeemNames.STATUS_FULL);
-
-				await UpdateCustomReward(
-					Settings.Redeems.GetIdByRedeemName(RedeemNames.STATUS_NOT_THIRSTY),
-					Settings.ModSettings.Enabled &&
-					Settings.ModSettings.AllowHelpfulStatus &&
-					Settings.ModSettings.AllowStatusNotThirsty,
-					RedeemNames.STATUS_NOT_THIRSTY);
-
-				await UpdateCustomReward(
-					Settings.Redeems.GetIdByRedeemName(RedeemNames.STATUS_AWAKE),
-					Settings.ModSettings.Enabled &&
-					Settings.ModSettings.AllowHelpfulStatus &&
-					Settings.ModSettings.AllowStatusAwake,
-					RedeemNames.STATUS_AWAKE);
-
-				await UpdateCustomReward(
-					Settings.Redeems.GetIdByRedeemName(RedeemNames.STATUS_WARM),
-					Settings.ModSettings.Enabled &&
-					Settings.ModSettings.AllowHelpfulStatus &&
-					Settings.ModSettings.AllowStatusWarm,
-					RedeemNames.STATUS_WARM);
-
-				await UpdateCustomReward(
-					Settings.Redeems.GetIdByRedeemName(RedeemNames.AFFLICTION_CABIN_FEVER),
-					Settings.ModSettings.Enabled &&
-					Settings.ModSettings.AllowAfflictionRedeems &&
-					Settings.ModSettings.AllowAfflictionCabinFever,
-					RedeemNames.AFFLICTION_CABIN_FEVER);
-
-				await UpdateCustomReward(
-					Settings.Redeems.GetIdByRedeemName(RedeemNames.AFFLICTION_DYSENTERY),
-					Settings.ModSettings.Enabled &&
-					Settings.ModSettings.AllowAfflictionRedeems &&
-					Settings.ModSettings.AllowAfflictionDysentery,
-					RedeemNames.AFFLICTION_DYSENTERY);
-
-				await UpdateCustomReward(
-					Settings.Redeems.GetIdByRedeemName(RedeemNames.AFFLICTION_FOOD_POISONING),
-					Settings.ModSettings.Enabled &&
-					Settings.ModSettings.AllowAfflictionRedeems &&
-					Settings.ModSettings.AllowAfflictionFoodPoisoning,
-					RedeemNames.AFFLICTION_FOOD_POISONING);
-
-				await UpdateCustomReward(
-					Settings.Redeems.GetIdByRedeemName(RedeemNames.AFFLICTION_HYPOTHERMIA),
-					Settings.ModSettings.Enabled &&
-					Settings.ModSettings.AllowAfflictionRedeems &&
-					Settings.ModSettings.AllowAfflictionHypothermia,
-					RedeemNames.AFFLICTION_HYPOTHERMIA);
-
-				await UpdateCustomReward(
-					Settings.Redeems.GetIdByRedeemName(RedeemNames.AFFLICTION_PARASITES),
-					Settings.ModSettings.Enabled &&
-					Settings.ModSettings.AllowAfflictionRedeems &&
-					Settings.ModSettings.AllowAfflictionParasites,
-					RedeemNames.AFFLICTION_PARASITES);
+					Settings.ModSettings.AllowDevSoundCheck,
+					RedeemNames.DEV_SOUND);
 			}
 			catch (InvalidTokenException)
 			{

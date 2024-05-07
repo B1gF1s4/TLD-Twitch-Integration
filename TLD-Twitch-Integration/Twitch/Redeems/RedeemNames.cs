@@ -2,42 +2,36 @@
 {
 	public static class RedeemNames
 	{
-		public const string SOUND = "TTI Dev: Sound Check";
+		public const string WEATHER_HELP = "TTI Weather: Help";
+		public const string WEATHER_HARM = "TTI Weather: Harm";
+		public const string WEATHER_AURORA = "TTI Weahter: Aurora";
 
-		public const string ANIMAL_T_WOLVES = "TTI: Timberwolves";
-		public const string ANIMAL_BEAR = "TTI: Bear";
-		public const string ANIMAL_MOOSE = "TTI: Moose";
-		public const string ANIMAL_STALKING_WOLF = "TTI: Stalking Wolf";
-		public const string ANIMAL_BUNNY_EXPLOSION = "TTI: Bunny Explosion";
+		public const string ANIMAL_T_WOLVES = "TTI Animal: Timberwolves";
+		public const string ANIMAL_BIG_GAME = "TTI Animal: Big Game";
+		public const string ANIMAL_STALKING_WOLF = "TTI Animal: Stalking Wolf";
+		public const string ANIMAL_BUNNY_EXPLOSION = "TTI Animal: Bunny Explosion";
 
-		public const string WEATHER_BLIZZARD = "TTI: Blizzard";
-		public const string WEATHER_CLEAR = "TTI: Clear";
-		public const string WEATHER_LIGHT_FOG = "TTI: Light Fog";
-		public const string WEATHER_DENSE_FOG = "TTI: Dense Fog";
-		public const string WEATHER_PARTLY_CLOUDY = "TTI: Partly Cloudy";
-		public const string WEATHER_CLOUDY = "TTI: Cloudy";
-		public const string WEATHER_LIGHT_SNOW = "TTI: Light Snow";
-		public const string WEATHER_HEAVY_SNOW = "TTI: Heavy Snow";
+		public const string STATUS_HELP = "TTI Status: Help";
+		public const string STATUS_HARM = "TTI Status: Harm";
+		public const string STATUS_CABIN_FEVER = "TTI Status: Cabin Fever";
+		public const string STATUS_DYSENTERY = "TTI Status: Dysentery";
+		public const string STATUS_FOOD_POISONING = "TTI Status: Food Poisoning";
+		public const string STATUS_HYPOTHERMIA = "TTI Status: Hypothermia";
+		public const string STATUS_BLEED = "TTI Status: Bleeding";
+		public const string STATUS_SPRAIN = "TTI Status: Sprain";
+		public const string STATUS_STINK = "TTI Status: Stink";
 
-		public const string SOUND_HYDRATE = "TTI Sound: Hydrate";
+		public const string INVENTORY_NO_PANTS = "TTI Inventory: Team No Pants";
+		public const string INVENTORY_DROP_TORCH = "TTI Inventory: Drop Torch";
+		public const string INVENTORY_DROP_ITEM = "TTI Inventory: Drop Item";
+		public const string INVENTORY_STEPPED_STIM = "TTI Inventory: Stepped on Stim";
+		public const string INVENTORY_BOW = "TTI Inventory: Bow";
+
+		public const string MISC_TELEPORT = "TTI Misc: Teleport";
+		public const string MISC_TIME = "TTI Misc: Time of Day";
+
 		public const string SOUND_420 = "TTI Sound: Happy 420";
-		public const string SOUND_GOOD_NIGHT = "TTI Sound: Good Night";
-		public const string SOUND_HELLO = "TTI Sound: Hello";
 
-		public const string STATUS_TIRED = "TTI: Tired";
-		public const string STATUS_HUNGRY = "TTI: Hungry";
-		public const string STATUS_THIRSTY = "TTI: Thirsty";
-		public const string STATUS_FREEZING = "TTI: Freezing";
-
-		public const string STATUS_AWAKE = "TTI: Awake";
-		public const string STATUS_FULL = "TTI: Full";
-		public const string STATUS_NOT_THIRSTY = "TTI: Not Thirsty";
-		public const string STATUS_WARM = "TTI: Warm";
-
-		public const string AFFLICTION_CABIN_FEVER = "TTI: Cabin Fever";
-		public const string AFFLICTION_DYSENTERY = "TTI: Dysentery";
-		public const string AFFLICTION_FOOD_POISONING = "TTI: Food Poisoning";
-		public const string AFFLICTION_HYPOTHERMIA = "TTI: Hypothermia";
-		public const string AFFLICTION_PARASITES = "TTI: Parasites";
+		public const string DEV_SOUND = "TTI Dev: Sound Check";
 	}
 }

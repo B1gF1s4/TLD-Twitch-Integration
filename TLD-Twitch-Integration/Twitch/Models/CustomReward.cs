@@ -24,5 +24,6 @@ namespace TLD_Twitch_Integration.Twitch.Models
 
 		[JsonPropertyName("is_user_input_required")]
 		public bool IsUserInputRequired { get; set; }
+
 	}
 }
