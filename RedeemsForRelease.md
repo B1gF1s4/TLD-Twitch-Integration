@@ -107,10 +107,12 @@
 - [x] imeplement settings: enable / disable / arrow amount
 
 ### TTI Animal: Big Game
-- [ ] implemenet userInput: bear, moose
-- [x] implement settings: spawn distance / enable / disable
-- [x] spawns in front
-- [x] spawns aurorabear during an aurora, delays moose spawn in case of aurora until its over
+- spawns bear or moose depending on userInput
+- defaults to bear if enabled, defaults to moose if bear is not enabled
+- can be enabled / disabled individually in settings
+- configurable spawn distance in settings
+- spawns aurorabear during an aurora
+- delays moose spawn in case of aurora until its over
 
 ### TTI Animal: T-Wolf Pack
 - spawns between 2-5 t-wolves depending on userInput
