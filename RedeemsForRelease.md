@@ -20,7 +20,7 @@
 - [ ] [TTI Inventory: Stepped on Stim](#tti-inventory-stepped-on-stim)
 - [ ] [TTI Inventory: Bow](#tti-inventory-bow)
 - [ ] [TTI Animal: Big Game](#tti-animal-big-game) 
-- [ ] [TTI Animal: T-Wolf Pack](#tti-animal-t-wolf-pack)
+- [x] [TTI Animal: T-Wolf Pack](#tti-animal-t-wolf-pack)
 - [ ] [TTI Animal: Stalking Wolf](#tti-animal-stalking-wolf)
 - [ ] [TTI Animal: Bunny Explosion](#tti-animal-bunny-explosion)
 - [ ] [TTI Misc: Time of day](#tti-misc-time-of-day)
@@ -113,7 +113,7 @@
 - [x] spawns aurorabear during an aurora, delays moose spawn in case of aurora until its over
 
 ### TTI Animal: T-Wolf Pack
-- [ ] implement userInput: 2-5
+- [x] implement userInput: 2-5
 - [x] implement settings: spawn distance / enable / disable
 - [x] spawns in front
 

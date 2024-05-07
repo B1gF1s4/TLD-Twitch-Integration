@@ -20,9 +20,6 @@ namespace TLD_Twitch_Integration
 		public static bool ShouldStartHypothermia { get; set; }
 		public static bool ShouldStartParasites { get; set; }
 
-
-		public const int BunnyExplosionSize = 30;
-
 		public static void SpawnTWolves(bool aurora)
 		{
 			SpawnedAnimalCounter = 0;
@@ -64,7 +61,7 @@ namespace TLD_Twitch_Integration
 		{
 			SpawnedAnimalCounter = 0;
 			SpawningAnimal = true;
-			for (int i = 0; i < BunnyExplosionSize; i++)
+			for (int i = 0; i < SpawningAnimalTargetCount; i++)
 			{
 				ConsoleManager.CONSOLE_spawn_rabbit();
 			}

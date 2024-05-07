@@ -209,6 +209,7 @@ namespace TLD_Twitch_Integration
 				case RedeemNames.ANIMAL_BUNNY_EXPLOSION:
 					if (!ShouldExecuteAnimalRedeem())
 						return false;
+					GameService.SpawningAnimalTargetCount = Settings.ModSettings.BunnyCount;
 					GameService.AnimalToSpawn = AnimalRedeemType.BunnyExplosion;
 					break;
 

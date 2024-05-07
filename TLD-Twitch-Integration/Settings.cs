@@ -460,7 +460,7 @@ namespace TLD_Twitch_Integration
 
 		private void RefreshBunnyExplosionFields()
 		{
-			var allow = AllowBow && Enabled;
+			var allow = AllowBunnyExplosion && Enabled;
 			SetFieldVisible(nameof(BunnyCount), allow);
 		}
 	}

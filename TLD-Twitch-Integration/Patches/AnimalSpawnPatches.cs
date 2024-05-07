@@ -37,7 +37,7 @@ namespace TLD_Twitch_Integration.Patches
 	}
 
 	[HarmonyPatch(typeof(BaseAiManager), nameof(BaseAiManager.Add), new Type[] { typeof(BaseAi) })]
-	internal class BaseAiManager_Add
+	internal class BaseAiManagerAddPatch
 	{
 		internal static void Postfix(BaseAi bai)
 		{
@@ -50,7 +50,7 @@ namespace TLD_Twitch_Integration.Patches
 			{
 				case AnimalRedeemType.TWolves:
 					var animalPosPack = cam.position + cam.forward * Settings.ModSettings.DistanceTWolf;
-					animalPosPack.y += 100;
+					animalPosPack.y += 200;
 					AiUtils.FindNearestGroundAndNavmeshFor(animalPosPack, out var groundPosPack, out var navmeshPosPack);
 					bai.SetPosition(groundPosPack);
 					GameService.SpawnedAnimalCounter++;
@@ -65,7 +65,7 @@ namespace TLD_Twitch_Integration.Patches
 				case AnimalRedeemType.Bear:
 				case AnimalRedeemType.Moose:
 					var animalPos = cam.position + cam.forward * Settings.ModSettings.DistanceBear;
-					animalPos.y += 100;
+					animalPos.y += 200;
 					AiUtils.FindNearestGroundAndNavmeshFor(animalPos, out var groundPos, out var navmeshPos);
 					bai.SetPosition(groundPos);
 					GameService.SpawningAnimal = false;
@@ -74,7 +74,7 @@ namespace TLD_Twitch_Integration.Patches
 
 				case AnimalRedeemType.StalkingWolf:
 					var animalPosBehind = cam.position - cam.forward * Settings.ModSettings.DistanceStalkingWolf;
-					animalPosBehind.y += 100;
+					animalPosBehind.y += 200;
 					AiUtils.FindNearestGroundAndNavmeshFor(animalPosBehind, out var groundPosBehind, out var navmeshPosBehind);
 					bai.SetPosition(groundPosBehind);
 					GameService.SpawningAnimal = false;
@@ -83,14 +83,15 @@ namespace TLD_Twitch_Integration.Patches
 
 				case AnimalRedeemType.BunnyExplosion:
 					var animalPosExplosion = cam.position + cam.forward * 4;
-					animalPosExplosion.y += 100;
+					animalPosExplosion.y += 200;
 					AiUtils.FindNearestGroundAndNavmeshFor(animalPosExplosion, out var groundPosExplosion, out var navmeshPosExplosion);
 					bai.SetPosition(groundPosExplosion);
 					GameService.SpawnedAnimalCounter++;
-					if (GameService.SpawnedAnimalCounter >= GameService.BunnyExplosionSize)
+					if (GameService.SpawnedAnimalCounter >= GameService.SpawningAnimalTargetCount)
 					{
 						GameService.SpawningAnimal = false;
 						GameService.AnimalToSpawn = AnimalRedeemType.None;
+						GameService.SpawningAnimalTargetCount = 0;
 					}
 					break;
 
