@@ -7,12 +7,10 @@
 - [ ] [TTI Weather: Aurora](#tti-weather-aurora) 
 - [ ] [TTI Status: Help](#tti-status-help) 
 - [ ] [TTI Status: Harm](#tti-status-harm)
-- [ ] [TTI Status: Cabin Fever](#tti-status-cabin-fever)
-- [ ] [TTI Status: Dysentery](#tti-status-dysentery)
-- [ ] [TTI Status: Food Poisoning](#tti-status-food-poisoning)
-- [ ] [TTI Status: Hypothermia](#tti-status-hypothermia)
+- [ ] [TTI Status: Afflictions](#tti-status-afflictions)
 - [ ] [TTI Status: Bleeding](#tti-status-bleeding)
 - [ ] [TTI Status: Sprain](#tti-status-sprain)
+- [ ] [TTI Status: Frostbite](#tti-status-frostbite)
 - [ ] [TTI Status: Stink](#tti-status-stink)
 - [ ] [TTI Inventory: Team NoPants](#tti-inventory-team-nopants)
 - [ ] [TTI Inventory: Drop Torch](#tti-inventory-drop-torch) 
@@ -55,35 +53,26 @@
 - [x] imeplement settings: actual value the redeem will set the meter to, enable each meter individually
 - [x] changes the specified meter to the specified value
 
-### TTI Status: Cabin Fever
-- [x] gives player cabin fever
-- [x] imeplement settings: enable / disable
-
-### TTI Status: Dysentery
-- [x] gives the player dysentery
-- [x] imeplement settings: enable / disable
-
-### TTI Status: Food Poisoning
-- [x] gives the player food poisoning
-- [x] imeplement settings: enable / disable
-
-### TTI Status: Hypothermia
-- [x] gives the player hypothermia
-- [x] imeplement settings: enable / disable
+### TTI Status: Afflictions
+- gives specified affliction
+- possibe userInputs: foodpoisoning, dysentery, cabinfever, parasites
+- can be enabled / disabled individually in settings
 
 ### TTI Status: Bleeding
-- [ ] implement userInput: handleft, handright, footleft, footright 
-- [x] imeplement settings: enable / disable
-- [ ] gives the player bleeding
+- gives bleeding at specified body part
+- possible userInput: handleft, handright, footleft, footright 
 
 ### TTI Status: Sprain
-- [ ] implement userInput:  handleft, handright, footleft, footright 
-- [x] imeplement settings: enable / disable / disabling wrists
-- [ ] gives the player sprain
+- gives a sprain at specified body part
+- possible userInput:  handleft, handright, footleft, footright 
+- wrist sprains can be disabled separately in settings
+
+### TTI Status: Frostbite
+- gives frostbite at random body part
 
 ### TTI Status: Stink
-- [ ] immediately adds 3 stink lines 
-- [x] imeplement settings: enable / disable / how many stink lines
+- immediately adds 3 stink lines 
+- configurable time and intensity in settings
 
 ### TTI Inventory: Team NoPants
 - [ ] drops all pants
