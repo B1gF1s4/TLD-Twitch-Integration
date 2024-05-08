@@ -103,7 +103,19 @@ namespace TLD_Twitch_Integration
 			var defaultTitle = Settings.Redeems.GetRedeemNameById(redeem.CustomReward?.Id!);
 			Melon<Mod>.Logger.Msg($"trying to execute redeem {defaultTitle}");
 
-			var executed = ExecuteRedeem(redeem, defaultTitle);
+			var executed = false;
+			try
+			{
+				executed = ExecuteRedeem(redeem, defaultTitle);
+			}
+			catch (RequiresRedeemRefundException refund)
+			{
+				await UpdateRedemption(userId, redeem, false);
+
+				Melon<Mod>.Logger.Msg($"'{redeem.CustomReward?.Title}' redeemed by {redeem.UserName} refunded. " +
+					$"- {refund.Message}");
+				return;
+			}
 
 			if (!executed)
 			{
@@ -130,22 +142,29 @@ namespace TLD_Twitch_Integration
 					HUDMessage.AddMessage($"{redeem.UserName} redeemed {redeem.CustomReward?.Title}",
 						_interval - 1, true, true);
 
-				try
-				{
-					await TwitchAdapter.FulfillRedemption(AuthService.ClientId, Settings.Token.Access, userId, redeem);
+				await UpdateRedemption(userId, redeem, true);
+			}
+		}
 
-					ExecutionQueue.RemoveAll(r => r.Id == redeem.Id);
-					RedemptionService.OpenRedeems.RemoveAll(r => r.Id == redeem.Id);
-				}
-				catch (InvalidTokenException)
-				{
-					await AuthService.RefreshToken();
-					return;
-				}
-				catch (Exception ex)
-				{
-					Melon<Mod>.Logger.Error(ex);
-				}
+		private static async Task UpdateRedemption(string userId, Redemption redeem, bool fulfill)
+		{
+			try
+			{
+				if (fulfill)
+					await TwitchAdapter.FulfillRedemption(AuthService.ClientId, Settings.Token.Access, userId, redeem);
+				else
+					await TwitchAdapter.CancelRedemption(AuthService.ClientId, Settings.Token.Access, userId, redeem);
+
+				ExecutionQueue.RemoveAll(r => r.Id == redeem.Id);
+				RedemptionService.OpenRedeems.RemoveAll(r => r.Id == redeem.Id);
+			}
+			catch (InvalidTokenException)
+			{
+				await AuthService.RefreshToken();
+			}
+			catch (Exception ex)
+			{
+				Melon<Mod>.Logger.Error(ex);
 			}
 		}
 
@@ -341,55 +360,49 @@ namespace TLD_Twitch_Integration
 
 		private static bool ExecuteStatusAfflictionRedeem()
 		{
-			Array values = Enum.GetValues(typeof(AfflictionRedeemType));
+			if (!Settings.ModSettings.AllowAfflictionCabinFever &&
+				!Settings.ModSettings.AllowAfflictionDysentery &&
+				!Settings.ModSettings.AllowAfflictionFoodPoisoning &&
+				!Settings.ModSettings.AllowAfflictionHypothermia &&
+				!Settings.ModSettings.AllowAfflictionParasites)
+				throw new RequiresRedeemRefundException("All afflictions are currently disabled.");
+
 			Random random = new();
-			AfflictionRedeemType affliction = (AfflictionRedeemType)
-				(values.GetValue(random.Next(values.Length)) ??
-				throw new Exception("trying to cast null to enum"));
+			var affliction = GetRandomEnabledAffliction(random);
 
 			switch (affliction)
 			{
 				case AfflictionRedeemType.FoodPoisoning:
-					if (!Settings.ModSettings.AllowAfflictionFoodPoisoning)
-						return false;
-
-					// TODO: check game settings && if player already has it
+					if (GameManager.GetFoodPoisoningComponent().HasFoodPoisoning())
+						throw new RequiresRedeemRefundException("Player already has Food Poisoning.");
 
 					GameService.ShouldStartFoodPoisoning = true;
 					return true;
 
 				case AfflictionRedeemType.Dysentery:
-					if (!Settings.ModSettings.AllowAfflictionDysentery)
-						return false;
-
-					// TODO: check game settings && if player already has it
+					if (GameManager.GetDysenteryComponent().HasDysentery())
+						throw new RequiresRedeemRefundException("Player already has Dysentery.");
 
 					GameService.ShouldStartDysentery = true;
 					return true;
 
 				case AfflictionRedeemType.CabinFever:
-					if (!Settings.ModSettings.AllowAfflictionCabinFever)
-						return false;
-
-					// TODO: check game settings && if player already has it
+					if (GameManager.GetCabinFeverComponent().HasCabinFever())
+						throw new RequiresRedeemRefundException("Player already has Cabin Fever.");
 
 					GameService.ShouldStartCabinFever = true;
 					return true;
 
 				case AfflictionRedeemType.Parasites:
-					if (!Settings.ModSettings.AllowAfflictionParasites)
-						return false;
-
-					// TODO: check game settings && if player already has it
+					if (GameManager.GetIntestinalParasitesComponent().HasIntestinalParasites())
+						throw new RequiresRedeemRefundException("Player already has Parasites.");
 
 					GameService.ShouldStartParasites = true;
 					return true;
 
 				case AfflictionRedeemType.Hypothermia:
-					if (!Settings.ModSettings.AllowAfflictionHypothermia)
-						return false;
-
-					// TODO: check game settings && if player already has it
+					if (GameManager.GetHypothermiaComponent().HasHypothermia())
+						throw new RequiresRedeemRefundException("Player already has Hypothermia.");
 
 					GameService.ShouldStartHypothermia = true;
 					return true;
@@ -397,6 +410,32 @@ namespace TLD_Twitch_Integration
 				default:
 					return false;
 			}
+		}
+
+		private static AfflictionRedeemType GetRandomEnabledAffliction(Random random)
+		{
+			Array values = Enum.GetValues(typeof(AfflictionRedeemType));
+			AfflictionRedeemType affliction = (AfflictionRedeemType)
+				(values.GetValue(random.Next(values.Length)) ??
+				throw new Exception("trying to cast null to enum"));
+
+			if (IsAfflictionEnabled(affliction))
+				return affliction;
+			else
+				return GetRandomEnabledAffliction(random);
+		}
+
+		private static bool IsAfflictionEnabled(AfflictionRedeemType affliction)
+		{
+			return affliction switch
+			{
+				AfflictionRedeemType.Parasites => Settings.ModSettings.AllowAfflictionParasites,
+				AfflictionRedeemType.Hypothermia => Settings.ModSettings.AllowAfflictionParasites,
+				AfflictionRedeemType.Dysentery => Settings.ModSettings.AllowAfflictionParasites,
+				AfflictionRedeemType.FoodPoisoning => Settings.ModSettings.AllowAfflictionParasites,
+				AfflictionRedeemType.CabinFever => Settings.ModSettings.AllowAfflictionParasites,
+				_ => true,
+			};
 		}
 
 		private static bool ExecuteTWolfRedeem(Redemption redeem)

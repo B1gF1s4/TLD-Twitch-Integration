@@ -7,7 +7,7 @@
 - [x] [TTI Weather: Aurora](#tti-weather-aurora) 
 - [x] [TTI Status: Help](#tti-status-help) 
 - [x] [TTI Status: Harm](#tti-status-harm)
-- [ ] [TTI Status: Afflictions](#tti-status-afflictions)
+- [x] [TTI Status: Afflictions](#tti-status-afflictions)
 - [ ] [TTI Status: Bleeding](#tti-status-bleeding)
 - [ ] [TTI Status: Sprain](#tti-status-sprain)
 - [ ] [TTI Status: Frostbite](#tti-status-frostbite)
@@ -59,6 +59,8 @@
 - gives a random affliction
 - possibe outcomes: foodpoisoning, dysentery, cabinfever, parasites, hypothermia
 - can be enabled / disabled individually in settings
+- refunds points if player already has rolled affliction
+- if gamemode doesnt allow affliction, but it is not disabled in mod settings, viewers will loose points on it
 
 ### TTI Status: Bleeding
 - gives bleeding at specified body part
