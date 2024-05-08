@@ -311,6 +311,16 @@ namespace TLD_Twitch_Integration.Twitch
 
 		public static async Task FulfillRedemption(string clientId, string accessToken, string broadcasterId, Redemption redemption)
 		{
+			await UpdateRedemption(clientId, accessToken, broadcasterId, redemption, "FULFILLED");
+		}
+
+		public static async Task CancelRedemption(string clientId, string accessToken, string broadcasterId, Redemption redemption)
+		{
+			await UpdateRedemption(clientId, accessToken, broadcasterId, redemption, "CANCELED");
+		}
+
+		private static async Task UpdateRedemption(string clientId, string accessToken, string broadcasterId, Redemption redemption, string status)
+		{
 			var httpClient = GetHttpClient();
 
 			var baseUrl = "https://api.twitch.tv/helix/channel_points/custom_rewards/redemptions";
@@ -319,8 +329,8 @@ namespace TLD_Twitch_Integration.Twitch
 			var request = new HttpRequestMessage(HttpMethod.Patch, url)
 			{
 				Content = new FormUrlEncodedContent(new[]
-					{
-					new KeyValuePair<string, string>("status", "FULFILLED")
+				{
+					new KeyValuePair<string, string>("status", status)
 				})
 			};
 
