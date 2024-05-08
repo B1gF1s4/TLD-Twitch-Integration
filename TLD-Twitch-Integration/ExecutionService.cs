@@ -114,6 +114,7 @@ namespace TLD_Twitch_Integration
 
 				Melon<Mod>.Logger.Msg($"'{redeem.CustomReward?.Title}' redeemed by {redeem.UserName} refunded. " +
 					$"- {refund.Message}");
+
 				return;
 			}
 
@@ -220,6 +221,15 @@ namespace TLD_Twitch_Integration
 
 		private static bool ExecuteWeatherHelpRedeem(Redemption redeem)
 		{
+			if (!Settings.ModSettings.AllowWeatherHelp)
+				throw new RequiresRedeemRefundException("Weather help redeem is currently disabled.");
+
+			if (!Settings.ModSettings.AllowWeatherHelpClear &&
+				!Settings.ModSettings.AllowWeatherHelpCloudy &&
+				!Settings.ModSettings.AllowWeatherHelpFog &&
+				!Settings.ModSettings.AllowWeatherHelpSnow)
+				throw new RequiresRedeemRefundException("All weather types for the weather help redeem are currently disabled.");
+
 			if (GameState.IsInBuilding)
 				return false;
 
@@ -254,6 +264,14 @@ namespace TLD_Twitch_Integration
 
 		private static bool ExecuteWeatherHarmRedeem(Redemption redeem)
 		{
+			if (!Settings.ModSettings.AllowWeatherHarm)
+				throw new RequiresRedeemRefundException("Weather harm redeem is currently disabled.");
+
+			if (!Settings.ModSettings.AllowWeatherHarmBlizzard &&
+				!Settings.ModSettings.AllowWeatherHarmFog &&
+				!Settings.ModSettings.AllowWeatherHarmSnow)
+				throw new RequiresRedeemRefundException("All weather types for the weather harm redeem are currently disabled.");
+
 			if (GameState.IsInBuilding)
 				return false;
 
@@ -283,6 +301,9 @@ namespace TLD_Twitch_Integration
 
 		private static bool ExecuteWeatherAurora()
 		{
+			if (!Settings.ModSettings.AllowWeatherAurora)
+				throw new RequiresRedeemRefundException("Aurora redeem is currently disabled.");
+
 			if (GameManager.m_ActiveScene == "Dam")
 				return false;
 
@@ -296,6 +317,15 @@ namespace TLD_Twitch_Integration
 
 		private static bool ExecuteStatusHelpRedeem(Redemption redeem)
 		{
+			if (!Settings.ModSettings.AllowStatusHelp)
+				throw new RequiresRedeemRefundException("Status help redeem is currently disabled.");
+
+			if (!Settings.ModSettings.AllowStatusHelpAwake &&
+				!Settings.ModSettings.AllowStatusHelpFull &&
+				!Settings.ModSettings.AllowStatusHelpNotThirsty &&
+				!Settings.ModSettings.AllowStatusHelpWarm)
+				throw new RequiresRedeemRefundException("All meters for the status help redeem are currently disabled.");
+
 			var defaultStatusHelp = Settings.ModSettings.AllowStatusHelpWarm ? StatusMeter.Cold :
 						Settings.ModSettings.AllowStatusHelpAwake ? StatusMeter.Fatigue :
 						Settings.ModSettings.AllowStatusHelpNotThirsty ? StatusMeter.Thirst : StatusMeter.Hunger;
@@ -328,6 +358,15 @@ namespace TLD_Twitch_Integration
 
 		private static bool ExecuteStatusHarmRedeem(Redemption redeem)
 		{
+			if (!Settings.ModSettings.AllowStatusHarm)
+				throw new RequiresRedeemRefundException("Status harm redeem is currently disabled.");
+
+			if (!Settings.ModSettings.AllowStatusHarmFreezing &&
+				!Settings.ModSettings.AllowStatusHarmHungry &&
+				!Settings.ModSettings.AllowStatusHarmThirsty &&
+				!Settings.ModSettings.AllowStatusHarmTired)
+				throw new RequiresRedeemRefundException("All meters for the status harm redeem are currently disabled.");
+
 			var defaultStatusHarm = Settings.ModSettings.AllowStatusHarmFreezing ? StatusMeter.Cold :
 						Settings.ModSettings.AllowStatusHarmTired ? StatusMeter.Fatigue :
 						Settings.ModSettings.AllowStatusHarmThirsty ? StatusMeter.Thirst : StatusMeter.Hunger;
@@ -360,6 +399,9 @@ namespace TLD_Twitch_Integration
 
 		private static bool ExecuteStatusAfflictionRedeem()
 		{
+			if (!Settings.ModSettings.AllowAfflictions)
+				throw new RequiresRedeemRefundException("Afflictions redeem is currently disabled.");
+
 			if (!Settings.ModSettings.AllowAfflictionCabinFever &&
 				!Settings.ModSettings.AllowAfflictionDysentery &&
 				!Settings.ModSettings.AllowAfflictionFoodPoisoning &&
@@ -440,6 +482,9 @@ namespace TLD_Twitch_Integration
 
 		private static bool ExecuteTWolfRedeem(Redemption redeem)
 		{
+			if (!Settings.ModSettings.AllowTWolves)
+				throw new RequiresRedeemRefundException("TWolf redeem is currently disabled.");
+
 			if (GameState.IsInBuilding)
 				return false;
 
@@ -457,6 +502,13 @@ namespace TLD_Twitch_Integration
 
 		private static bool ExecuteBigGameRedeem(Redemption redeem)
 		{
+			if (!Settings.ModSettings.AllowBigGame)
+				throw new RequiresRedeemRefundException("Big game redeem is currently disabled.");
+
+			if (!Settings.ModSettings.AllowBigGameBear &&
+				!Settings.ModSettings.AllowBigGameMoose)
+				throw new RequiresRedeemRefundException("All animal types for the big game redeem are currently disabled.");
+
 			if (GameState.IsInBuilding)
 				return false;
 
@@ -497,6 +549,9 @@ namespace TLD_Twitch_Integration
 
 		private static bool ExecuteStalkingWolfRedeem()
 		{
+			if (!Settings.ModSettings.AllowStalkingWolf)
+				throw new RequiresRedeemRefundException("Stalking wolf redeem is currently disabled.");
+
 			if (GameState.IsInBuilding)
 				return false;
 
@@ -510,6 +565,9 @@ namespace TLD_Twitch_Integration
 
 		private static bool ExecuteBunnyExplosionRedeem()
 		{
+			if (!Settings.ModSettings.AllowBunnyExplosion)
+				throw new RequiresRedeemRefundException("Bunny explosion redeem is currently disabled.");
+
 			if (GameState.IsInBuilding)
 				return false;
 
