@@ -10,8 +10,8 @@
 - [x] [TTI Status: Afflictions](#tti-status-afflictions)
 - [x] [TTI Status: Bleeding](#tti-status-bleeding)
 - [x] [TTI Status: Sprain](#tti-status-sprain)
-- [ ] [TTI Status: Frostbite](#tti-status-frostbite)
-- [ ] [TTI Status: Stink](#tti-status-stink)
+- [x] [TTI Status: Frostbite](#tti-status-frostbite)
+- [x] [TTI Status: Stink](#tti-status-stink)
 - [ ] [TTI Inventory: Team NoPants](#tti-inventory-team-nopants)
 - [ ] [TTI Inventory: Drop Torch](#tti-inventory-drop-torch) 
 - [ ] [TTI Inventory: Drop Random Item](#tti-inventory-drop-random-item)
@@ -74,10 +74,11 @@
 
 ### TTI Status: Frostbite
 - gives frostbite at random body part
+- refunds points if player already has 4 or more frostbites
 
 ### TTI Status: Stink
-- immediately adds 3 stink lines 
-- configurable time and intensity in settings
+- immediately adds stink 
+- configurable time and intensity in mod settings
 
 ### TTI Inventory: Team NoPants
 - [ ] drops all pants

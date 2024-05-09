@@ -1,5 +1,6 @@
 ﻿using HarmonyLib;
 using Il2Cpp;
+using MelonLoader;
 using static TLD_Twitch_Integration.ExecutionService;
 
 namespace TLD_Twitch_Integration.Patches
@@ -9,13 +10,32 @@ namespace TLD_Twitch_Integration.Patches
 	{
 		internal static void Postfix()
 		{
-			if (GameService.StatusMeterToChange == StatusMeter.None)
-				return;
-
-			GameService.ChangeMeter(GameService.StatusMeterToChange,
+			if (GameService.StatusMeterToChange != StatusMeter.None)
+			{
+				GameService.ChangeMeter(GameService.StatusMeterToChange,
 				GameService.IsHelpfulStatusMeterChange);
 
-			GameService.StatusMeterToChange = StatusMeter.None;
+				GameService.StatusMeterToChange = StatusMeter.None;
+			}
+		}
+	}
+
+	[HarmonyPatch(typeof(Inventory), nameof(Inventory.GetExtraScentIntensity))]
+	internal class InventoryGetExtraScentIntensityPatch
+	{
+		internal static void Postfix(ref float __result)
+		{
+			if (GameService.ShouldAddStink)
+			{
+				__result = GameService.StinkValue;
+
+				if ((DateTime.UtcNow - GameService.StinkStart).TotalSeconds >=
+					Settings.ModSettings.StinkTime)
+				{
+					Melon<Mod>.Logger.Msg("time is up, stink is gone");
+					GameService.ShouldAddStink = false;
+				}
+			}
 		}
 	}
 
@@ -99,7 +119,6 @@ namespace TLD_Twitch_Integration.Patches
 			if (!GameService.ShouldAddBleeding)
 				return;
 
-
 			Array values = Enum.GetValues(typeof(AfflictionBodyArea));
 			AfflictionBodyArea bodyArea = (AfflictionBodyArea)
 				(values.GetValue(random.Next(values.Length)) ??
@@ -152,6 +171,32 @@ namespace TLD_Twitch_Integration.Patches
 				AfflictionOptions.DisplayIcon | AfflictionOptions.Stumble);
 
 			GameService.ShouldAddSprain = false;
+		}
+	}
+
+	[HarmonyPatch(typeof(Frostbite), nameof(Frostbite.Update))]
+	internal class FrostbiteUpdatePatch
+	{
+		internal static Random random = new();
+
+		internal static void Postfix(Frostbite __instance)
+		{
+			if (!GameService.ShouldAddFrostbite)
+				return;
+
+			Array values = Enum.GetValues(typeof(AfflictionBodyArea));
+			AfflictionBodyArea bodyArea = (AfflictionBodyArea)
+				(values.GetValue(random.Next(values.Length)) ??
+					throw new Exception("trying to cast null to enum"));
+
+			var countBefore = __instance.GetFrostbiteAfflictionCount();
+
+			__instance.FrostbiteStart((int)bodyArea, true, false);
+
+			var countAfter = __instance.GetFrostbiteAfflictionCount();
+
+			if (countBefore < countAfter)
+				GameService.ShouldAddFrostbite = false;
 		}
 	}
 }

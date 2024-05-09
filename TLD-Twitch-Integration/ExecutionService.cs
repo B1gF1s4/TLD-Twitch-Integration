@@ -209,6 +209,12 @@ namespace TLD_Twitch_Integration
 				case RedeemNames.STATUS_SPRAIN:
 					return ExecuteSprainRedeem();
 
+				case RedeemNames.STATUS_FROSTBITE:
+					return ExecuteFrostbiteRedeem();
+
+				case RedeemNames.STATUS_STINK:
+					return ExecuteStinkRedeem();
+
 				case RedeemNames.SOUND_420:
 					GameService.PlayPlayerSound("PLAY_SUFFOCATIONCOUGH");
 					break;
@@ -522,6 +528,31 @@ namespace TLD_Twitch_Integration
 
 			GameService.ShouldAddSprain = true;
 			GameService.SprainIsAnkle = isAnkle;
+
+			return true;
+		}
+
+		private static bool ExecuteFrostbiteRedeem()
+		{
+			if (!Settings.ModSettings.AllowStatusFrostbite)
+				throw new RequiresRedeemRefundException("Frostbite redeem is currently disabled.");
+
+			if (GameManager.GetFrostbiteComponent().GetFrostbiteAfflictionCount() >= 4)
+				throw new RequiresRedeemRefundException("Player already has at least 4 frostbites.");
+
+			GameService.ShouldAddFrostbite = true;
+
+			return true;
+		}
+
+		private static bool ExecuteStinkRedeem()
+		{
+			if (!Settings.ModSettings.AllowStatusStink)
+				throw new RequiresRedeemRefundException("Stink redeem is currently disabled.");
+
+			GameService.ShouldAddStink = true;
+			GameService.StinkValue = Settings.ModSettings.StinkLines;
+			GameService.StinkStart = DateTime.UtcNow;
 
 			return true;
 		}

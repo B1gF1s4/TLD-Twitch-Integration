@@ -180,15 +180,15 @@ namespace TLD_Twitch_Integration
 		[Description($"Enable or disable {RedeemNames.STATUS_STINK} redeem")]
 		public bool AllowStatusStink = false;
 
-		[Name("Stink Lines")]
+		[Name("Stink")]
 		[Description($"Amount of stink lines to get on the {RedeemNames.STATUS_STINK} redeem.")]
-		[Slider(1, 3, 3)]
-		public int StinkLines = 3;
+		[Slider(1, 100)]
+		public float StinkLines = 90;
 
 		[Name("Stink Time")]
-		[Description($"Amount of minutes stink lines will be active on the {RedeemNames.STATUS_STINK} redeem.")]
-		[Slider(1, 60)]
-		public int StinkTime = 5;
+		[Description($"Amount of seconds stink lines will be active on the {RedeemNames.STATUS_STINK} redeem.")]
+		[Slider(1, 600)]
+		public int StinkTime = 300;
 
 		[Section("TTI Inventory")]
 		[Name("Allow Team NoPants")]

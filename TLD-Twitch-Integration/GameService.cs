@@ -27,6 +27,11 @@ namespace TLD_Twitch_Integration
 		public static bool ShouldAddBleeding { get; set; }
 		public static bool ShouldAddSprain { get; set; }
 		public static bool SprainIsAnkle { get; set; }
+		public static bool ShouldAddFrostbite { get; set; }
+
+		public static bool ShouldAddStink { get; set; }
+		public static DateTime StinkStart { get; set; }
+		public static float StinkValue { get; set; }
 
 		public static void SpawnTWolves(bool aurora)
 		{
