@@ -203,6 +203,12 @@ namespace TLD_Twitch_Integration
 				case RedeemNames.STATUS_AFFLICTION:
 					return ExecuteStatusAfflictionRedeem();
 
+				case RedeemNames.STATUS_BLEED:
+					return ExecuteBleedingRedeem();
+
+				case RedeemNames.STATUS_SPRAIN:
+					return ExecuteSprainRedeem();
+
 				case RedeemNames.SOUND_420:
 					GameService.PlayPlayerSound("PLAY_SUFFOCATIONCOUGH");
 					break;
@@ -478,6 +484,46 @@ namespace TLD_Twitch_Integration
 				AfflictionRedeemType.CabinFever => Settings.ModSettings.AllowAfflictionParasites,
 				_ => true,
 			};
+		}
+
+		private static bool ExecuteBleedingRedeem()
+		{
+			if (!Settings.ModSettings.AllowStatusBleeding)
+				throw new RequiresRedeemRefundException("Bleeding redeem is currently disabled.");
+
+			if (GameManager.GetBloodLossComponent().GetAfflictionsCount() >= 4)
+				throw new RequiresRedeemRefundException("Player already has 4 or more Bleedings.");
+
+			GameService.ShouldAddBleeding = true;
+
+			return true;
+		}
+
+		private static bool ExecuteSprainRedeem()
+		{
+			if (!Settings.ModSettings.AllowStatusSprain)
+				throw new RequiresRedeemRefundException("Sprains redeem is currently disabled.");
+
+			Random random = new();
+			var isAnkle = true;
+			if (Settings.ModSettings.AllowStatusSprainWrists)
+				isAnkle = random.NextDouble() > 0.5;
+
+			if (isAnkle)
+			{
+				if (GameManager.GetSprainedAnkleComponent().GetAfflictionsCount() >= 2)
+					throw new RequiresRedeemRefundException("Player already has 2 sprained ankles.");
+			}
+			else
+			{
+				if (GameManager.GetSprainedWristComponent().GetAfflictionsCount() >= 2)
+					throw new RequiresRedeemRefundException("Player already has 2 sprained wrists.");
+			}
+
+			GameService.ShouldAddSprain = true;
+			GameService.SprainIsAnkle = isAnkle;
+
+			return true;
 		}
 
 		private static bool ExecuteTWolfRedeem(Redemption redeem)

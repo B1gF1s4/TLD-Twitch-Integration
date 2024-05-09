@@ -24,6 +24,10 @@ namespace TLD_Twitch_Integration
 		public static StatusMeter StatusMeterToChange { get; set; }
 		public static bool IsHelpfulStatusMeterChange { get; set; }
 
+		public static bool ShouldAddBleeding { get; set; }
+		public static bool ShouldAddSprain { get; set; }
+		public static bool SprainIsAnkle { get; set; }
+
 		public static void SpawnTWolves(bool aurora)
 		{
 			SpawnedAnimalCounter = 0;

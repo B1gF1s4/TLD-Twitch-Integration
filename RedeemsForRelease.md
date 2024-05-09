@@ -8,8 +8,8 @@
 - [x] [TTI Status: Help](#tti-status-help) 
 - [x] [TTI Status: Harm](#tti-status-harm)
 - [x] [TTI Status: Afflictions](#tti-status-afflictions)
-- [ ] [TTI Status: Bleeding](#tti-status-bleeding)
-- [ ] [TTI Status: Sprain](#tti-status-sprain)
+- [x] [TTI Status: Bleeding](#tti-status-bleeding)
+- [x] [TTI Status: Sprain](#tti-status-sprain)
 - [ ] [TTI Status: Frostbite](#tti-status-frostbite)
 - [ ] [TTI Status: Stink](#tti-status-stink)
 - [ ] [TTI Inventory: Team NoPants](#tti-inventory-team-nopants)
@@ -63,13 +63,14 @@
 - if gamemode doesnt allow affliction, but it is not disabled in mod settings, viewers will loose points on it
 
 ### TTI Status: Bleeding
-- gives bleeding at specified body part
-- possible userInput: handleft, handright, footleft, footright 
+- gives bleeding at random body part
+- refunds points if player already has 4 or more bleedings
 
 ### TTI Status: Sprain
-- gives a sprain at specified body part
-- possible userInput:  handleft, handright, footleft, footright 
-- wrist sprains can be disabled separately in settings
+- randomly sprains wrist or ankle
+- wrist sprains can be disabled separately (if you want to keep the fun, but not have it interfer too much with holding a weapon)
+- refunds points if player already has 2 or more sprained wrists and TTI rolles 'wrist'
+- refunds points if player already has 2 or more sprained ankles and TTI rolles 'ankle'
 
 ### TTI Status: Frostbite
 - gives frostbite at random body part

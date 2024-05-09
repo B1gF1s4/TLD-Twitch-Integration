@@ -37,27 +37,27 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 		public static CustomReward Bleeding = new()
 		{
 			Title = RedeemNames.STATUS_BLEED,
-			Prompt = "Gives the player the bleeding affliction on specified location. Possible inputs: handleft, handright, footleft, footright",
+			Prompt = "Gives the player the bleeding affliction. max. 4",
 			Cost = 2000,
 			Color = RedeemColors.HARM,
 			IsEnabled = false,
-			IsUserInputRequired = true,
+			IsUserInputRequired = false,
 		};
 
 		public static CustomReward Sprain = new()
 		{
 			Title = RedeemNames.STATUS_SPRAIN,
-			Prompt = "Gives the player a sprain on specified location. Possible inputs: (handleft), (handright), footleft, footright",
+			Prompt = "Gives the player a sprain.",
 			Cost = 1000,
 			Color = RedeemColors.HARM,
 			IsEnabled = false,
-			IsUserInputRequired = true,
+			IsUserInputRequired = false,
 		};
 
 		public static CustomReward Fristbite = new()
 		{
 			Title = RedeemNames.STATUS_FROSTBITE,
-			Prompt = "Gives the player frostbite at a random body part.",
+			Prompt = "Gives the player frostbite.",
 			Cost = 2000,
 			Color = RedeemColors.HARM,
 			IsEnabled = false,
