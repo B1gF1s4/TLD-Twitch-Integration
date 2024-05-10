@@ -1,4 +1,5 @@
 ﻿using Il2Cpp;
+using UnityEngine;
 using static TLD_Twitch_Integration.ExecutionService;
 
 namespace TLD_Twitch_Integration
@@ -36,6 +37,11 @@ namespace TLD_Twitch_Integration
 		public static bool ShouldDropPants { get; set; }
 		public static bool ShouldDropTorch { get; set; }
 		public static bool ShouldAddBow { get; set; }
+		public static bool ShouldDropRandomItem { get; set; }
+
+		public static bool ShouldStepOnStim { get; set; }
+		public static GameObject? PrefabStim { get; set; }
+		public static bool LoadingAssets { get; set; }
 
 		public static void SpawnTWolves(bool aurora)
 		{

@@ -213,8 +213,8 @@ namespace TLD_Twitch_Integration
 
 		[Name("Arrow Count")]
 		[Description($"Amount of arrows to get on the {RedeemNames.INVENTORY_BOW} redeem.")]
-		[Slider(1, 100)]
-		public int ArrowCount = 10;
+		[Slider(1, 30)]
+		public int ArrowCount = 15;
 
 		[Section("TTI Animal")]
 		[Name("Allow T-Wolves")]

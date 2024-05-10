@@ -1,13 +1,14 @@
 ﻿using HarmonyLib;
 using Il2Cpp;
-using MelonLoader;
 
 namespace TLD_Twitch_Integration.Patches
 {
 	[HarmonyPatch(typeof(Inventory), nameof(Inventory.Update))]
-	public class InventoryPatches
+	public class InventoryUpdatePatches
 	{
-		internal static void Postfix()
+		internal static Random random = new Random();
+
+		internal static void Postfix(Inventory __instance)
 		{
 			if (GameService.ShouldDropPants)
 			{
@@ -22,7 +23,7 @@ namespace TLD_Twitch_Integration.Patches
 					if (entry == null)
 						continue;
 
-					entry.Drop(1, true, false, true);
+					var droppedItem = entry.Drop(1, true, false, true);
 				}
 
 				GameService.ShouldDropPants = false;
@@ -33,28 +34,61 @@ namespace TLD_Twitch_Integration.Patches
 				if (GameState.IsHoldingTorchLike)
 				{
 					var torch = GameManager.GetPlayerManagerComponent().m_ItemInHands;
-
-					torch?.Drop(1, true, false, true);
-					Melon<Mod>.Logger.Msg($"dropping {torch?.name}");
+					var droppedItem = torch?.Drop(1, true, false, true);
 				}
 				else
 				{
-					var invComp = GameManager.GetInventoryComponent();
 					GearItem? itemToDrop = null;
 
-					if (invComp?.GetNumTorches() > 0)
-						itemToDrop = invComp?.GetBestGearItemWithName("GEAR_Torch");
+					if (__instance.GetNumTorches() > 0)
+						itemToDrop = __instance.GetBestGearItemWithName("GEAR_Torch");
 
-					else if (invComp?.GetNumFlares(FlareType.Red) > 0)
-						itemToDrop = invComp?.GetBestGearItemWithName("GEAR_FlareA");
+					else if (__instance.GetNumFlares(FlareType.Red) > 0)
+						itemToDrop = __instance.GetBestGearItemWithName("GEAR_FlareA");
 
-					else if (invComp?.GetNumFlares(FlareType.Blue) > 0)
-						itemToDrop = invComp?.GetBestGearItemWithName("GEAR_BlueFlare");
+					else if (__instance.GetNumFlares(FlareType.Blue) > 0)
+						itemToDrop = __instance.GetBestGearItemWithName("GEAR_BlueFlare");
 
-					itemToDrop?.Drop(1, true, false, true);
+					var droppedItem = itemToDrop?.Drop(1, true, false, true);
 				}
 
 				GameService.ShouldDropTorch = false;
+			}
+
+			if (GameService.ShouldAddBow)
+			{
+				ConsoleManager.CONSOLE_bow();
+				__instance.RemoveGearFromInventory("GEAR_Arrow", 100 - Settings.ModSettings.ArrowCount);
+
+				GameService.ShouldAddBow = false;
+			}
+
+			if (GameService.ShouldStepOnStim)
+			{
+				if (GameService.PrefabStim != null)
+				{
+					var stimInstance = UnityEngine.Object.Instantiate(GameService.PrefabStim);
+					stimInstance.name = GameService.PrefabStim.name;
+
+					var stim = stimInstance.GetComponent<EmergencyStimItem>();
+					GameManager.GetEmergencyStimComponent().ApplyEmergencyStim(stim);
+
+					GameService.ShouldStepOnStim = false;
+				}
+			}
+
+			if (GameService.ShouldDropRandomItem)
+			{
+				var filter = (GearItem gi) => { return !string.IsNullOrEmpty(gi.name); };
+				var list = new Il2CppSystem.Collections.Generic.List<GearItem>();
+
+				__instance.GetGearItems(filter, list);
+
+				var gearItem = list[random.Next(0, list.Count - 1)];
+				var droppedItem = gearItem.Drop(1, true, false, true);
+				droppedItem.enabled = false;
+
+				GameService.ShouldDropRandomItem = false;
 			}
 		}
 	}

@@ -14,16 +14,16 @@
 - [x] [TTI Status: Stink](#tti-status-stink)
 - [x] [TTI Inventory: Team NoPants](#tti-inventory-team-nopants)
 - [x] [TTI Inventory: Drop Torch](#tti-inventory-drop-torch) 
-- [ ] [TTI Inventory: Drop Random Item](#tti-inventory-drop-random-item)
-- [ ] [TTI Inventory: Stepped on Stim](#tti-inventory-stepped-on-stim)
-- [ ] [TTI Inventory: Bow](#tti-inventory-bow)
+- [x] [TTI Inventory: Drop Random Item](#tti-inventory-drop-random-item)
+- [x] [TTI Inventory: Stepped on Stim](#tti-inventory-stepped-on-stim)
+- [x] [TTI Inventory: Bow](#tti-inventory-bow)
 - [x] [TTI Animal: Big Game](#tti-animal-big-game) 
 - [x] [TTI Animal: T-Wolf Pack](#tti-animal-t-wolf-pack)
 - [x] [TTI Animal: Stalking Wolf](#tti-animal-stalking-wolf)
 - [x] [TTI Animal: Bunny Explosion](#tti-animal-bunny-explosion)
-- [ ] [TTI Misc: Time of day](#tti-misc-time-of-day)
+- [x] [TTI Misc: Time of day](#tti-misc-time-of-day)
 - [ ] [TTI Misc: Teleport](#tti-misc-teleport)
-- [ ] [TTI Sound: Happy 420](#tti-sound-happy-420)
+- [x] [TTI Sound: Happy 420](#tti-sound-happy-420)
 
 ## Details
 
@@ -90,17 +90,15 @@
 - refunds points if player doesnt have torch or flare in inventory
 
 ### TTI Inventory: Drop Random Item
-- [ ] drop random item in inventory (cannot pick back up)
-- [x] imeplement settings: enable / disable
+- drop random item in inventory
 
 ### TTI Inventory: Stepped on Stim
-- [ ] immediatly activates the stim effect (doesnt consume from inventory)
-- [x] imeplement settings: enable / disable
+- immediatly activates the stim effect (doesnt consume from inventory)
 
 ### TTI Inventory: Bow
-- [ ] adds bow
-- [ ] adds x arrows
-- [x] imeplement settings: enable / disable / arrow amount
+- adds bow
+- adds x arrows
+- amount of arrows configurable in the mod settings
 
 ### TTI Animal: Big Game
 - spawns bear or moose depending on userInput
@@ -131,10 +129,7 @@
 - [ ] teleports the player to the specified location
 
 ### TTI Misc: Time of day
-- [ ] implement userInput: an actual time of day, like 12:00, 17:42, 01:55
-- [x] imeplement settings: enable / disable
-- [ ] sets the in game time of day to the specified time
+- adds 12h to the ingame time
 
 ### TTI Sound: Happy 420
-- [x] plays the suffocate sound
-- [x] imeplement settings: enable / disable
+- plays the suffocate sound

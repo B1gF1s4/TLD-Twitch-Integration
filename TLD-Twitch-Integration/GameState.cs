@@ -10,6 +10,15 @@ namespace TLD_Twitch_Integration
 		public static bool IsHoldingTorchLike { get; set; }
 		public static bool HasTorchLikeInInventory { get; set; }
 
+		public static bool PanelFirstAidEnabled { get; set; }
+		public static bool PanelClothingEnabled { get; set; }
+		public static bool PanelInventoryEnabled { get; set; }
+		public static bool PanelCraftingEnabled { get; set; }
+		public static bool PanelCookingEnabled { get; set; }
+		public static bool PanelLogEnabled { get; set; }
+		public static bool PanelMapEnabled { get; set; }
+
+
 		public static void Update()
 		{
 			IsInBuilding = GetIsInBuilding();
@@ -22,6 +31,11 @@ namespace TLD_Twitch_Integration
 			IsAuroraFading = GetIsAuroraFading();
 			IsHoldingTorchLike = GetIsHoldingTorchLike();
 			HasTorchLikeInInventory = GetHasTorchLikeInInventory();
+		}
+
+		public static bool IsMenuOpen()
+		{
+			return InterfaceManager.IsOverlayActiveCached();
 		}
 
 		private static bool GetIsInBuilding()

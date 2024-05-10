@@ -17,11 +17,11 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 		public static CustomReward Time = new()
 		{
 			Title = RedeemNames.MISC_TIME,
-			Prompt = "Sets the specified time of day. Possible input: e.g. 08:00, 14:30, 20:52",
+			Prompt = "Toggles between day and night (+12h in game time)",
 			Cost = 500,
 			Color = RedeemColors.MISC,
 			IsEnabled = false,
-			IsUserInputRequired = true,
+			IsUserInputRequired = false,
 		};
 	}
 }

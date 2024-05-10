@@ -221,6 +221,18 @@ namespace TLD_Twitch_Integration
 				case RedeemNames.INVENTORY_DROP_TORCH:
 					return ExecuteDropTorchRedeem();
 
+				case RedeemNames.INVENTORY_BOW:
+					return ExecuteBowRedeem();
+
+				case RedeemNames.INVENTORY_STEPPED_STIM:
+					return ExecuteSteppedStimRedeem();
+
+				case RedeemNames.INVENTORY_DROP_ITEM:
+					return ExecuteDropItemRedeem();
+
+				case RedeemNames.MISC_TIME:
+					return ExecuteTimeRedeem(redeem);
+
 				case RedeemNames.SOUND_420:
 					GameService.PlayPlayerSound("PLAY_SUFFOCATIONCOUGH");
 					break;
@@ -568,6 +580,9 @@ namespace TLD_Twitch_Integration
 			if (!Settings.ModSettings.AllowTeamNoPants)
 				throw new RequiresRedeemRefundException("Team NoPatns redeem is currently disabled.");
 
+			if (GameState.IsMenuOpen())
+				return false;
+
 			GameService.ShouldDropPants = true;
 
 			return true;
@@ -581,7 +596,49 @@ namespace TLD_Twitch_Integration
 			if (!GameState.HasTorchLikeInInventory)
 				throw new RequiresRedeemRefundException("Player doesnt have a torch or flare in inventory.");
 
+			if (GameState.IsMenuOpen())
+				return false;
+
 			GameService.ShouldDropTorch = true;
+
+			return true;
+		}
+
+		private static bool ExecuteBowRedeem()
+		{
+			if (!Settings.ModSettings.AllowBow)
+				throw new RequiresRedeemRefundException("Bow redeem is currently disabled.");
+
+			if (GameState.IsMenuOpen())
+				return false;
+
+			GameService.ShouldAddBow = true;
+
+			return true;
+		}
+
+		private static bool ExecuteSteppedStimRedeem()
+		{
+			if (!Settings.ModSettings.AllowSteppedStim)
+				throw new RequiresRedeemRefundException("Stepped on stim redeem is currently disabled.");
+
+			if (GameState.IsMenuOpen())
+				return false;
+
+			GameService.ShouldStepOnStim = true;
+
+			return true;
+		}
+
+		private static bool ExecuteDropItemRedeem()
+		{
+			if (!Settings.ModSettings.AllowDropItem)
+				throw new RequiresRedeemRefundException("Drop item redeem is currently disabled.");
+
+			if (GameState.IsMenuOpen())
+				return false;
+
+			GameService.ShouldDropRandomItem = true;
 
 			return true;
 		}
@@ -679,6 +736,16 @@ namespace TLD_Twitch_Integration
 
 			GameService.SpawningAnimalTargetCount = Settings.ModSettings.BunnyCount;
 			GameService.AnimalToSpawn = AnimalRedeemType.BunnyExplosion;
+
+			return true;
+		}
+
+		private static bool ExecuteTimeRedeem(Redemption redeem)
+		{
+			if (!Settings.ModSettings.AllowTime)
+				throw new RequiresRedeemRefundException("Time redeem is currently disabled.");
+
+			GameManager.m_TimeOfDay.SetNormalizedTime(GameManager.m_TimeOfDay.GetNormalizedTime() + 0.5f, true);
 
 			return true;
 		}
