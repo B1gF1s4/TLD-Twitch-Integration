@@ -12,8 +12,8 @@
 - [x] [TTI Status: Sprain](#tti-status-sprain)
 - [x] [TTI Status: Frostbite](#tti-status-frostbite)
 - [x] [TTI Status: Stink](#tti-status-stink)
-- [ ] [TTI Inventory: Team NoPants](#tti-inventory-team-nopants)
-- [ ] [TTI Inventory: Drop Torch](#tti-inventory-drop-torch) 
+- [x] [TTI Inventory: Team NoPants](#tti-inventory-team-nopants)
+- [x] [TTI Inventory: Drop Torch](#tti-inventory-drop-torch) 
 - [ ] [TTI Inventory: Drop Random Item](#tti-inventory-drop-random-item)
 - [ ] [TTI Inventory: Stepped on Stim](#tti-inventory-stepped-on-stim)
 - [ ] [TTI Inventory: Bow](#tti-inventory-bow)
@@ -41,7 +41,6 @@
 
 ### TTI Weather: Aurora
 - instantly makes it midnight and starts an aurora (aurora fading in)
-- this currently also works in the dam ...
 
 ### TTI Status: Help 
 - changes specified meter to settings help value
@@ -81,12 +80,14 @@
 - configurable time and intensity in mod settings
 
 ### TTI Inventory: Team NoPants
-- [ ] drops all pants
-- [x] imeplement settings: enable / disable
+- drops all pants to the ground
 
 ### TTI Inventory: Drop Torch
-- [ ] if you are holding one it drops or best torch in the inventory 
-- [x] imeplement settings: enable / disable
+- if holding torch (lit or unlit) player will drop that
+- if not, TTI will check for best torch and drop that
+- if there is no torch, TTI will look for a red flare
+- if there is no red flare, TTI will look for a blue flare
+- refunds points if player doesnt have torch or flare in inventory
 
 ### TTI Inventory: Drop Random Item
 - [ ] drop random item in inventory (cannot pick back up)

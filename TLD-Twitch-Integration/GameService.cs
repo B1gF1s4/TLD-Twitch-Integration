@@ -33,6 +33,10 @@ namespace TLD_Twitch_Integration
 		public static DateTime StinkStart { get; set; }
 		public static float StinkValue { get; set; }
 
+		public static bool ShouldDropPants { get; set; }
+		public static bool ShouldDropTorch { get; set; }
+		public static bool ShouldAddBow { get; set; }
+
 		public static void SpawnTWolves(bool aurora)
 		{
 			SpawnedAnimalCounter = 0;

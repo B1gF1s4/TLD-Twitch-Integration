@@ -215,6 +215,12 @@ namespace TLD_Twitch_Integration
 				case RedeemNames.STATUS_STINK:
 					return ExecuteStinkRedeem();
 
+				case RedeemNames.INVENTORY_NO_PANTS:
+					return ExecuteTeamNoPantsRedeem();
+
+				case RedeemNames.INVENTORY_DROP_TORCH:
+					return ExecuteDropTorchRedeem();
+
 				case RedeemNames.SOUND_420:
 					GameService.PlayPlayerSound("PLAY_SUFFOCATIONCOUGH");
 					break;
@@ -553,6 +559,29 @@ namespace TLD_Twitch_Integration
 			GameService.ShouldAddStink = true;
 			GameService.StinkValue = Settings.ModSettings.StinkLines;
 			GameService.StinkStart = DateTime.UtcNow;
+
+			return true;
+		}
+
+		private static bool ExecuteTeamNoPantsRedeem()
+		{
+			if (!Settings.ModSettings.AllowTeamNoPants)
+				throw new RequiresRedeemRefundException("Team NoPatns redeem is currently disabled.");
+
+			GameService.ShouldDropPants = true;
+
+			return true;
+		}
+
+		private static bool ExecuteDropTorchRedeem()
+		{
+			if (!Settings.ModSettings.AllowDropTorch)
+				throw new RequiresRedeemRefundException("Drop torch redeem is currently disabled.");
+
+			if (!GameState.HasTorchLikeInInventory)
+				throw new RequiresRedeemRefundException("Player doesnt have a torch or flare in inventory.");
+
+			GameService.ShouldDropTorch = true;
 
 			return true;
 		}
