@@ -7,8 +7,8 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 		public static CustomReward Help = new()
 		{
 			Title = RedeemNames.STATUS_HELP,
-			Prompt = "Set specified meter to help setting value. Possible inputs: cold, fatigue, thirst, hunger",
-			Cost = 200,
+			Prompt = "Sets specified meter to help value. Possible inputs: cold, fatigue, thirst, hunger",
+			Cost = 1,
 			Color = RedeemColors.HELP,
 			IsEnabled = false,
 			IsUserInputRequired = true
@@ -17,8 +17,8 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 		public static CustomReward Harm = new()
 		{
 			Title = RedeemNames.STATUS_HARM,
-			Prompt = "Set specified meter to harm setting value. Possible inputs: cold, fatigue, thirst, hunger",
-			Cost = 1000,
+			Prompt = "Sets specified meter to harm value. Possible inputs: cold, fatigue, thirst, hunger",
+			Cost = 1,
 			Color = RedeemColors.HARM,
 			IsEnabled = false,
 			IsUserInputRequired = true
@@ -28,7 +28,7 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 		{
 			Title = RedeemNames.STATUS_AFFLICTION,
 			Prompt = "Gives a random affliction. Possible outcomes: foodpoisoning, dysentery, cabinfever, parasites, hypothermia",
-			Cost = 2000,
+			Cost = 1,
 			Color = RedeemColors.HARM,
 			IsEnabled = false,
 			IsUserInputRequired = false,
@@ -37,8 +37,8 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 		public static CustomReward Bleeding = new()
 		{
 			Title = RedeemNames.STATUS_BLEED,
-			Prompt = "Gives the player the bleeding affliction. max. 4",
-			Cost = 2000,
+			Prompt = "Gives the player the bleeding affliction.",
+			Cost = 1,
 			Color = RedeemColors.HARM,
 			IsEnabled = false,
 			IsUserInputRequired = false,
@@ -48,7 +48,7 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 		{
 			Title = RedeemNames.STATUS_SPRAIN,
 			Prompt = "Gives the player a sprain.",
-			Cost = 1000,
+			Cost = 1,
 			Color = RedeemColors.HARM,
 			IsEnabled = false,
 			IsUserInputRequired = false,
@@ -58,7 +58,7 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 		{
 			Title = RedeemNames.STATUS_FROSTBITE,
 			Prompt = "Gives the player frostbite.",
-			Cost = 2000,
+			Cost = 1,
 			Color = RedeemColors.HARM,
 			IsEnabled = false,
 			IsUserInputRequired = false,
@@ -68,8 +68,8 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 		{
 			Title = RedeemNames.STATUS_STINK,
 			Prompt = "Gives the player stink.",
-			Cost = 5000,
-			Color = RedeemColors.ANIMAL,
+			Cost = 1,
+			Color = RedeemColors.HARM,
 			IsEnabled = false,
 			IsUserInputRequired = false,
 		};

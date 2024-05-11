@@ -11,7 +11,8 @@ namespace TLD_Twitch_Integration
 		public static bool IsAuroraFading { get; set; }
 		public static bool IsHoldingTorchLike { get; set; }
 		public static bool HasTorchLikeInInventory { get; set; }
-		public static bool HasItemsInInventory { get; set; }
+		public static Il2CppSystem.Collections.Generic.List<GearItem> GearItems
+		{ get; set; } = new();
 
 		public static bool PanelFirstAidEnabled { get; set; }
 		public static bool PanelClothingEnabled { get; set; }
@@ -51,7 +52,8 @@ namespace TLD_Twitch_Integration
 		public static bool ShouldDropPants { get; set; }
 		public static bool ShouldDropTorch { get; set; }
 		public static bool ShouldAddBow { get; set; }
-		public static bool ShouldDropRandomItem { get; set; }
+		public static GearItem? RandomItemToDrop { get; set; }
+		public static string? LastItemDropped { get; set; }
 
 		public static bool ShouldStepOnStim { get; set; }
 		public static GameObject? PrefabStim { get; set; }
@@ -69,7 +71,7 @@ namespace TLD_Twitch_Integration
 			IsAuroraFading = GetIsAuroraFading();
 			IsHoldingTorchLike = GetIsHoldingTorchLike();
 			HasTorchLikeInInventory = GetHasTorchLikeInInventory();
-			HasItemsInInventory = GetHasItemsInInventory();
+			GearItems = GetItemsInInventory();
 		}
 
 		public static void SpawnTWolves()
@@ -230,18 +232,14 @@ namespace TLD_Twitch_Integration
 			return true;
 		}
 
-		private static bool GetHasItemsInInventory()
+		private static Il2CppSystem.Collections.Generic.List<GearItem> GetItemsInInventory()
 		{
 			var filter = (GearItem gi) => { return !string.IsNullOrEmpty(gi.name); };
 			var list = new Il2CppSystem.Collections.Generic.List<GearItem>();
 
 			GameManager.GetInventoryComponent().GetGearItems(filter, list);
 
-			if (list.Count > 0)
-				return true;
-			else
-				return false;
+			return list;
 		}
-
 	}
 }

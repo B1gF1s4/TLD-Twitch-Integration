@@ -13,7 +13,7 @@ namespace TLD_Twitch_Integration
 		public static List<Redemption> ExecutionQueue { get; set; } = new();
 
 
-		private const int _interval = 6;
+		private const int _interval = 8;
 
 		private static DateTime _lastUpdated;
 
@@ -103,10 +103,10 @@ namespace TLD_Twitch_Integration
 			var defaultTitle = Settings.Redeems.GetRedeemNameById(redeem.CustomReward?.Id!);
 			Melon<Mod>.Logger.Msg($"trying to execute redeem {defaultTitle}");
 
-			var executed = false;
+			var redeemMessage = "";
 			try
 			{
-				executed = ExecuteRedeem(redeem, defaultTitle);
+				redeemMessage = ExecuteRedeem(redeem, defaultTitle);
 			}
 			catch (RequiresRedeemRefundException refund)
 			{
@@ -115,10 +115,14 @@ namespace TLD_Twitch_Integration
 				Melon<Mod>.Logger.Msg($"'{redeem.CustomReward?.Title}' redeemed by {redeem.UserName} refunded. " +
 					$"- {refund.Message}");
 
+				if (Settings.ModSettings.ShowAlert)
+					HUDMessage.AddMessage($"{redeem.UserName}'s Redeem refunded. -> {refund.Message}",
+						_interval - 1, true, true);
+
 				return;
 			}
 
-			if (!executed)
+			if (string.IsNullOrEmpty(redeemMessage))
 			{
 				Melon<Mod>.Logger.Msg($"redeem skipped, trying next");
 
@@ -140,8 +144,7 @@ namespace TLD_Twitch_Integration
 				Melon<Mod>.Logger.Msg($"redeem executed, removing from redemption queue on twitch");
 
 				if (Settings.ModSettings.ShowAlert)
-					HUDMessage.AddMessage($"{redeem.UserName} redeemed {redeem.CustomReward?.Title}",
-						_interval - 1, true, true);
+					HUDMessage.AddMessage(redeemMessage, _interval - 1, true, true);
 
 				await UpdateRedemption(userId, redeem, true);
 			}
@@ -169,7 +172,7 @@ namespace TLD_Twitch_Integration
 			}
 		}
 
-		private static bool ExecuteRedeem(Redemption redeem, string defaultTitle)
+		private static string ExecuteRedeem(Redemption redeem, string defaultTitle)
 		{
 			switch (defaultTitle)
 			{
@@ -180,7 +183,7 @@ namespace TLD_Twitch_Integration
 					return ExecuteWeatherHarmRedeem(redeem);
 
 				case RedeemNames.WEATHER_AURORA:
-					return ExecuteWeatherAurora();
+					return ExecuteWeatherAurora(redeem);
 
 				case RedeemNames.ANIMAL_T_WOLVES:
 					return ExecuteTWolfRedeem(redeem);
@@ -189,10 +192,10 @@ namespace TLD_Twitch_Integration
 					return ExecuteBigGameRedeem(redeem);
 
 				case RedeemNames.ANIMAL_STALKING_WOLF:
-					return ExecuteStalkingWolfRedeem();
+					return ExecuteStalkingWolfRedeem(redeem);
 
 				case RedeemNames.ANIMAL_BUNNY_EXPLOSION:
-					return ExecuteBunnyExplosionRedeem();
+					return ExecuteBunnyExplosionRedeem(redeem);
 
 				case RedeemNames.STATUS_HELP:
 					return ExecuteStatusHelpRedeem(redeem);
@@ -201,55 +204,53 @@ namespace TLD_Twitch_Integration
 					return ExecuteStatusHarmRedeem(redeem);
 
 				case RedeemNames.STATUS_AFFLICTION:
-					return ExecuteStatusAfflictionRedeem();
+					return ExecuteStatusAfflictionRedeem(redeem);
 
 				case RedeemNames.STATUS_BLEED:
-					return ExecuteBleedingRedeem();
+					return ExecuteBleedingRedeem(redeem);
 
 				case RedeemNames.STATUS_SPRAIN:
-					return ExecuteSprainRedeem();
+					return ExecuteSprainRedeem(redeem);
 
 				case RedeemNames.STATUS_FROSTBITE:
-					return ExecuteFrostbiteRedeem();
+					return ExecuteFrostbiteRedeem(redeem);
 
 				case RedeemNames.STATUS_STINK:
-					return ExecuteStinkRedeem();
+					return ExecuteStinkRedeem(redeem);
 
 				case RedeemNames.INVENTORY_NO_PANTS:
-					return ExecuteTeamNoPantsRedeem();
+					return ExecuteTeamNoPantsRedeem(redeem);
 
 				case RedeemNames.INVENTORY_DROP_TORCH:
-					return ExecuteDropTorchRedeem();
+					return ExecuteDropTorchRedeem(redeem);
 
 				case RedeemNames.INVENTORY_BOW:
-					return ExecuteBowRedeem();
+					return ExecuteBowRedeem(redeem);
 
 				case RedeemNames.INVENTORY_STEPPED_STIM:
-					return ExecuteSteppedStimRedeem();
+					return ExecuteSteppedStimRedeem(redeem);
 
 				case RedeemNames.INVENTORY_DROP_ITEM:
-					return ExecuteDropItemRedeem();
+					return ExecuteDropItemRedeem(redeem);
 
-				case RedeemNames.MISC_TIME:
-					return ExecuteTimeRedeem();
+				case RedeemNames.WEATHER_TIME:
+					return ExecuteTimeRedeem(redeem);
 
 				case RedeemNames.SOUND_420:
 					GameService.PlayPlayerSound("PLAY_SUFFOCATIONCOUGH");
-					break;
+					return $"{redeem.UserName} redeemed '{redeem.CustomReward?.Title}'";
 
 				case RedeemNames.DEV_SOUND:
 					GameService.PlayPlayerSound(redeem.UserInput!);
-					break;
+					return $"{redeem.UserName} redeemed '{redeem.CustomReward?.Title}'";
 
 				default:
 					Melon<Mod>.Logger.Error($"redeem operation not supported - {defaultTitle}");
-					break;
+					throw new RequiresRedeemRefundException("Redeem not found.");
 			}
-
-			return true;
 		}
 
-		private static bool ExecuteWeatherHelpRedeem(Redemption redeem)
+		private static string ExecuteWeatherHelpRedeem(Redemption redeem)
 		{
 			if (!Settings.ModSettings.AllowWeatherHelp)
 				throw new RequiresRedeemRefundException("Weather help redeem is currently disabled.");
@@ -261,7 +262,7 @@ namespace TLD_Twitch_Integration
 				throw new RequiresRedeemRefundException("All weather types for the weather help redeem are currently disabled.");
 
 			if (GameService.IsInBuilding)
-				return false;
+				return "";
 
 			var defaultWeatherHelp = Settings.ModSettings.AllowWeatherHelpClear ? WeatherStage.Clear :
 				Settings.ModSettings.AllowWeatherHelpFog ? WeatherStage.LightFog :
@@ -289,10 +290,10 @@ namespace TLD_Twitch_Integration
 
 			GameService.WeatherToChange = weatherHelpToSet;
 
-			return true;
+			return $"{redeem.UserName} redeemed '{redeem.CustomReward?.Title}' -> {weatherHelpToSet}";
 		}
 
-		private static bool ExecuteWeatherHarmRedeem(Redemption redeem)
+		private static string ExecuteWeatherHarmRedeem(Redemption redeem)
 		{
 			if (!Settings.ModSettings.AllowWeatherHarm)
 				throw new RequiresRedeemRefundException("Weather harm redeem is currently disabled.");
@@ -303,7 +304,7 @@ namespace TLD_Twitch_Integration
 				throw new RequiresRedeemRefundException("All weather types for the weather harm redeem are currently disabled.");
 
 			if (GameService.IsInBuilding)
-				return false;
+				return "";
 
 			var defaultWeatherHarm = Settings.ModSettings.AllowWeatherHarmBlizzard ? WeatherStage.Blizzard :
 				Settings.ModSettings.AllowWeatherHarmFog ? WeatherStage.DenseFog : WeatherStage.HeavySnow;
@@ -326,26 +327,26 @@ namespace TLD_Twitch_Integration
 
 			GameService.WeatherToChange = weatherHarmToSet;
 
-			return true;
+			return $"{redeem.UserName} redeemed '{redeem.CustomReward?.Title}' -> {weatherHarmToSet}";
 		}
 
-		private static bool ExecuteWeatherAurora()
+		private static string ExecuteWeatherAurora(Redemption redeem)
 		{
 			if (!Settings.ModSettings.AllowWeatherAurora)
 				throw new RequiresRedeemRefundException("Aurora redeem is currently disabled.");
 
 			if (GameManager.m_ActiveScene == "Dam")
-				return false;
+				return "";
 
 			if (GameService.IsInBuilding)
-				return false;
+				return "";
 
 			GameService.ShouldStartAurora = true;
 
-			return true;
+			return $"{redeem.UserName} redeemed '{redeem.CustomReward?.Title}'";
 		}
 
-		private static bool ExecuteStatusHelpRedeem(Redemption redeem)
+		private static string ExecuteStatusHelpRedeem(Redemption redeem)
 		{
 			if (!Settings.ModSettings.AllowStatusHelp)
 				throw new RequiresRedeemRefundException("Status help redeem is currently disabled.");
@@ -383,10 +384,10 @@ namespace TLD_Twitch_Integration
 			GameService.StatusMeterToChange = statusHelpToSet;
 			GameService.IsHelpfulStatusMeterChange = true;
 
-			return true;
+			return $"{redeem.UserName} redeemed '{redeem.CustomReward?.Title}' -> set {statusHelpToSet} to {Settings.ModSettings.StatusHelpValue}";
 		}
 
-		private static bool ExecuteStatusHarmRedeem(Redemption redeem)
+		private static string ExecuteStatusHarmRedeem(Redemption redeem)
 		{
 			if (!Settings.ModSettings.AllowStatusHarm)
 				throw new RequiresRedeemRefundException("Status harm redeem is currently disabled.");
@@ -424,10 +425,10 @@ namespace TLD_Twitch_Integration
 			GameService.StatusMeterToChange = statusHarmToSet;
 			GameService.IsHelpfulStatusMeterChange = false;
 
-			return true;
+			return $"{redeem.UserName} redeemed '{redeem.CustomReward?.Title}' -> set {statusHarmToSet} to {Settings.ModSettings.StatusHarmValue}";
 		}
 
-		private static bool ExecuteStatusAfflictionRedeem()
+		private static string ExecuteStatusAfflictionRedeem(Redemption redeem)
 		{
 			if (!Settings.ModSettings.AllowAfflictions)
 				throw new RequiresRedeemRefundException("Afflictions redeem is currently disabled.");
@@ -449,38 +450,38 @@ namespace TLD_Twitch_Integration
 						throw new RequiresRedeemRefundException("Player already has Food Poisoning.");
 
 					GameService.ShouldStartFoodPoisoning = true;
-					return true;
+					return $"{redeem.UserName} redeemed '{redeem.CustomReward?.Title}' -> Food Poisoning";
 
 				case AfflictionRedeemType.Dysentery:
 					if (GameManager.GetDysenteryComponent().HasDysentery())
 						throw new RequiresRedeemRefundException("Player already has Dysentery.");
 
 					GameService.ShouldStartDysentery = true;
-					return true;
+					return $"{redeem.UserName} redeemed '{redeem.CustomReward?.Title}' -> Food Dysentery";
 
 				case AfflictionRedeemType.CabinFever:
 					if (GameManager.GetCabinFeverComponent().HasCabinFever())
 						throw new RequiresRedeemRefundException("Player already has Cabin Fever.");
 
 					GameService.ShouldStartCabinFever = true;
-					return true;
+					return $"{redeem.UserName} redeemed '{redeem.CustomReward?.Title}' -> Food Cabin Fever";
 
 				case AfflictionRedeemType.Parasites:
 					if (GameManager.GetIntestinalParasitesComponent().HasIntestinalParasites())
 						throw new RequiresRedeemRefundException("Player already has Parasites.");
 
 					GameService.ShouldStartParasites = true;
-					return true;
+					return $"{redeem.UserName} redeemed '{redeem.CustomReward?.Title}' -> Parasites";
 
 				case AfflictionRedeemType.Hypothermia:
 					if (GameManager.GetHypothermiaComponent().HasHypothermia())
 						throw new RequiresRedeemRefundException("Player already has Hypothermia.");
 
 					GameService.ShouldStartHypothermia = true;
-					return true;
+					return $"{redeem.UserName} redeemed '{redeem.CustomReward?.Title}' -> Hypothermia";
 
 				default:
-					return false;
+					return "";
 			}
 		}
 
@@ -510,7 +511,7 @@ namespace TLD_Twitch_Integration
 			};
 		}
 
-		private static bool ExecuteBleedingRedeem()
+		private static string ExecuteBleedingRedeem(Redemption redeem)
 		{
 			if (!Settings.ModSettings.AllowStatusBleeding)
 				throw new RequiresRedeemRefundException("Bleeding redeem is currently disabled.");
@@ -520,10 +521,10 @@ namespace TLD_Twitch_Integration
 
 			GameService.ShouldAddBleeding = true;
 
-			return true;
+			return $"{redeem.UserName} redeemed '{redeem.CustomReward?.Title}'";
 		}
 
-		private static bool ExecuteSprainRedeem()
+		private static string ExecuteSprainRedeem(Redemption redeem)
 		{
 			if (!Settings.ModSettings.AllowStatusSprain)
 				throw new RequiresRedeemRefundException("Sprains redeem is currently disabled.");
@@ -547,10 +548,11 @@ namespace TLD_Twitch_Integration
 			GameService.ShouldAddSprain = true;
 			GameService.SprainIsAnkle = isAnkle;
 
-			return true;
+			var lastMsgPart = isAnkle ? "Ankle" : "Wrist";
+			return $"{redeem.UserName} redeemed '{redeem.CustomReward?.Title}' -> {lastMsgPart}";
 		}
 
-		private static bool ExecuteFrostbiteRedeem()
+		private static string ExecuteFrostbiteRedeem(Redemption redeem)
 		{
 			if (!Settings.ModSettings.AllowStatusFrostbite)
 				throw new RequiresRedeemRefundException("Frostbite redeem is currently disabled.");
@@ -560,10 +562,10 @@ namespace TLD_Twitch_Integration
 
 			GameService.ShouldAddFrostbite = true;
 
-			return true;
+			return $"{redeem.UserName} redeemed '{redeem.CustomReward?.Title}'";
 		}
 
-		private static bool ExecuteStinkRedeem()
+		private static string ExecuteStinkRedeem(Redemption redeem)
 		{
 			if (!Settings.ModSettings.AllowStatusStink)
 				throw new RequiresRedeemRefundException("Stink redeem is currently disabled.");
@@ -572,23 +574,23 @@ namespace TLD_Twitch_Integration
 			GameService.StinkValue = Settings.ModSettings.StinkLines;
 			GameService.StinkStart = DateTime.UtcNow;
 
-			return true;
+			return $"{redeem.UserName} redeemed '{redeem.CustomReward?.Title}' -> not active for {Settings.ModSettings.StinkTime}s";
 		}
 
-		private static bool ExecuteTeamNoPantsRedeem()
+		private static string ExecuteTeamNoPantsRedeem(Redemption redeem)
 		{
 			if (!Settings.ModSettings.AllowTeamNoPants)
 				throw new RequiresRedeemRefundException("Team NoPatns redeem is currently disabled.");
 
 			if (GameService.IsMenuOpen())
-				return false;
+				return "";
 
 			GameService.ShouldDropPants = true;
 
-			return true;
+			return $"{redeem.UserName} redeemed '{redeem.CustomReward?.Title}'";
 		}
 
-		private static bool ExecuteDropTorchRedeem()
+		private static string ExecuteDropTorchRedeem(Redemption redeem)
 		{
 			if (!Settings.ModSettings.AllowDropTorch)
 				throw new RequiresRedeemRefundException("Drop torch redeem is currently disabled.");
@@ -597,65 +599,68 @@ namespace TLD_Twitch_Integration
 				throw new RequiresRedeemRefundException("Player doesnt have a torch or flare in inventory.");
 
 			if (GameService.IsMenuOpen())
-				return false;
+				return "";
 
 			GameService.ShouldDropTorch = true;
 
-			return true;
+			return $"{redeem.UserName} redeemed '{redeem.CustomReward?.Title}'";
 		}
 
-		private static bool ExecuteBowRedeem()
+		private static string ExecuteBowRedeem(Redemption redeem)
 		{
 			if (!Settings.ModSettings.AllowBow)
 				throw new RequiresRedeemRefundException("Bow redeem is currently disabled.");
 
 			if (GameService.IsMenuOpen())
-				return false;
+				return "";
 
 			GameService.ShouldAddBow = true;
 
-			return true;
+			return $"{redeem.UserName} redeemed '{redeem.CustomReward?.Title}' -> {Settings.ModSettings.ArrowCount} arrows added";
 		}
 
-		private static bool ExecuteSteppedStimRedeem()
+		private static string ExecuteSteppedStimRedeem(Redemption redeem)
 		{
 			if (!Settings.ModSettings.AllowSteppedStim)
 				throw new RequiresRedeemRefundException("Stepped on stim redeem is currently disabled.");
 
 			if (GameService.IsMenuOpen())
-				return false;
+				return "";
 
 			GameService.ShouldStepOnStim = true;
 
-			return true;
+			return $"{redeem.UserName} redeemed '{redeem.CustomReward?.Title}'";
 		}
 
-		private static bool ExecuteDropItemRedeem()
+		private static string ExecuteDropItemRedeem(Redemption redeem)
 		{
 			if (!Settings.ModSettings.AllowDropItem)
 				throw new RequiresRedeemRefundException("Drop item redeem is currently disabled.");
 
 			if (GameService.IsMenuOpen())
-				return false;
+				return "";
 
-			if (!GameService.HasItemsInInventory)
-				return false;
+			if (GameService.GearItems.Count <= 0)
+				throw new RequiresRedeemRefundException("Player has no items in inventory.");
 
-			GameService.ShouldDropRandomItem = true;
+			Random random = new();
+			var gearItem = GameService.GearItems[random.Next(0, GameService.GearItems.Count - 1)];
 
-			return true;
+			GameService.RandomItemToDrop = gearItem;
+
+			return $"{redeem.UserName} redeemed '{redeem.CustomReward?.Title}' -> {gearItem.name.Replace("GEAR_", "")}";
 		}
 
-		private static bool ExecuteTWolfRedeem(Redemption redeem)
+		private static string ExecuteTWolfRedeem(Redemption redeem)
 		{
 			if (!Settings.ModSettings.AllowTWolves)
 				throw new RequiresRedeemRefundException("TWolf redeem is currently disabled.");
 
 			if (GameService.IsInBuilding)
-				return false;
+				return "";
 
 			if (GameService.IsAuroraFading)
-				return false;
+				return "";
 
 			var packSize = int.TryParse(redeem.UserInput, out var number) ?
 				(number >= 2 && number <= 5) ? number : 5 : 5;
@@ -663,10 +668,10 @@ namespace TLD_Twitch_Integration
 			GameService.SpawningAnimalTargetCount = packSize;
 			GameService.AnimalToSpawn = AnimalRedeemType.TWolves;
 
-			return true;
+			return $"{redeem.UserName} redeemed '{redeem.CustomReward?.Title}' -> pack of {packSize}";
 		}
 
-		private static bool ExecuteBigGameRedeem(Redemption redeem)
+		private static string ExecuteBigGameRedeem(Redemption redeem)
 		{
 			if (!Settings.ModSettings.AllowBigGame)
 				throw new RequiresRedeemRefundException("Big game redeem is currently disabled.");
@@ -676,7 +681,7 @@ namespace TLD_Twitch_Integration
 				throw new RequiresRedeemRefundException("All animal types for the big game redeem are currently disabled.");
 
 			if (GameService.IsInBuilding)
-				return false;
+				return "";
 
 			var defaultAnimal = Settings.ModSettings.AllowBigGameBear ?
 				AnimalRedeemType.Bear : AnimalRedeemType.Moose;
@@ -688,69 +693,69 @@ namespace TLD_Twitch_Integration
 				userInputAnimal.Contains("moose") ? AnimalRedeemType.Moose : defaultAnimal;
 
 			if (GameService.IsAuroraFading)
-				return false;
+				return "";
 
 			if (animalToSet == AnimalRedeemType.Moose)
 			{
 				if (GameService.IsAuroraActive)
-					return false;
+					return "";
 
 				if (!Settings.ModSettings.AllowBigGameMoose)
-					return false;
+					return "";
 
 				GameService.AnimalToSpawn = AnimalRedeemType.Moose;
 
-				return true;
+				return $"{redeem.UserName} redeemed '{redeem.CustomReward?.Title}' -> Moose";
 			}
 			else
 			{
 				if (!Settings.ModSettings.AllowBigGameMoose)
-					return false;
+					return "";
 
 				GameService.AnimalToSpawn = AnimalRedeemType.Bear;
 
-				return true;
+				return $"{redeem.UserName} redeemed '{redeem.CustomReward?.Title}' -> Bear";
 			}
 		}
 
-		private static bool ExecuteStalkingWolfRedeem()
+		private static string ExecuteStalkingWolfRedeem(Redemption redeem)
 		{
 			if (!Settings.ModSettings.AllowStalkingWolf)
 				throw new RequiresRedeemRefundException("Stalking wolf redeem is currently disabled.");
 
 			if (GameService.IsInBuilding)
-				return false;
+				return "";
 
 			if (GameService.IsAuroraFading)
-				return false;
+				return "";
 
 			GameService.AnimalToSpawn = AnimalRedeemType.StalkingWolf;
 
-			return true;
+			return $"{redeem.UserName} redeemed '{redeem.CustomReward?.Title}'";
 		}
 
-		private static bool ExecuteBunnyExplosionRedeem()
+		private static string ExecuteBunnyExplosionRedeem(Redemption redeem)
 		{
 			if (!Settings.ModSettings.AllowBunnyExplosion)
 				throw new RequiresRedeemRefundException("Bunny explosion redeem is currently disabled.");
 
 			if (GameService.IsInBuilding)
-				return false;
+				return "";
 
 			GameService.SpawningAnimalTargetCount = Settings.ModSettings.BunnyCount;
 			GameService.AnimalToSpawn = AnimalRedeemType.BunnyExplosion;
 
-			return true;
+			return $"{redeem.UserName} redeemed '{redeem.CustomReward?.Title}'";
 		}
 
-		private static bool ExecuteTimeRedeem()
+		private static string ExecuteTimeRedeem(Redemption redeem)
 		{
 			if (!Settings.ModSettings.AllowTime)
 				throw new RequiresRedeemRefundException("Time redeem is currently disabled.");
 
 			GameManager.m_TimeOfDay.SetNormalizedTime(GameManager.m_TimeOfDay.GetNormalizedTime() + 0.5f, true);
 
-			return true;
+			return $"{redeem.UserName} redeemed '{redeem.CustomReward?.Title}'";
 		}
 	}
 }

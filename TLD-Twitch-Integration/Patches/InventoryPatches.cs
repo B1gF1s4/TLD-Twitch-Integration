@@ -90,20 +90,15 @@ namespace TLD_Twitch_Integration.Patches
 				}
 			}
 
-			if (GameService.ShouldDropRandomItem)
+			if (GameService.RandomItemToDrop != null)
 			{
 				GameService.PlayPlayerSound("PLAY_FEARAFFLICTION");
 
-				var filter = (GearItem gi) => { return !string.IsNullOrEmpty(gi.name); };
-				var list = new Il2CppSystem.Collections.Generic.List<GearItem>();
-
-				__instance.GetGearItems(filter, list);
-
-				var gearItem = list[random.Next(0, list.Count - 1)];
-				var droppedItem = gearItem.Drop(1, true, false, true);
+				var droppedItem = GameService.RandomItemToDrop.Drop(1, true, false, true);
 				droppedItem.enabled = false;
 
-				GameService.ShouldDropRandomItem = false;
+				GameService.LastItemDropped = GameService.RandomItemToDrop.name;
+				GameService.RandomItemToDrop = null;
 			}
 		}
 	}

@@ -183,24 +183,6 @@ namespace TLD_Twitch_Integration
 			{
 				// TODO: refactor to use reflection, possibly custom attribute and iterate settings, or redeem defaults
 				await UpdateCustomReward(
-					Settings.Redeems.GetIdByRedeemName(RedeemNames.WEATHER_HELP),
-					Settings.ModSettings.Enabled &&
-					Settings.ModSettings.AllowWeatherHelp,
-					RedeemNames.WEATHER_HELP);
-
-				await UpdateCustomReward(
-					Settings.Redeems.GetIdByRedeemName(RedeemNames.WEATHER_HARM),
-					Settings.ModSettings.Enabled &&
-					Settings.ModSettings.AllowWeatherHarm,
-					RedeemNames.WEATHER_HARM);
-
-				await UpdateCustomReward(
-					Settings.Redeems.GetIdByRedeemName(RedeemNames.WEATHER_AURORA),
-					Settings.ModSettings.Enabled &&
-					Settings.ModSettings.AllowWeatherAurora,
-					RedeemNames.WEATHER_AURORA);
-
-				await UpdateCustomReward(
 					Settings.Redeems.GetIdByRedeemName(RedeemNames.ANIMAL_T_WOLVES),
 					Settings.ModSettings.Enabled &&
 					Settings.ModSettings.AllowTWolves,
@@ -223,6 +205,30 @@ namespace TLD_Twitch_Integration
 					Settings.ModSettings.Enabled &&
 					Settings.ModSettings.AllowBunnyExplosion,
 					RedeemNames.ANIMAL_BUNNY_EXPLOSION);
+
+				await UpdateCustomReward(
+					Settings.Redeems.GetIdByRedeemName(RedeemNames.WEATHER_HELP),
+					Settings.ModSettings.Enabled &&
+					Settings.ModSettings.AllowWeatherHelp,
+					RedeemNames.WEATHER_HELP);
+
+				await UpdateCustomReward(
+					Settings.Redeems.GetIdByRedeemName(RedeemNames.WEATHER_HARM),
+					Settings.ModSettings.Enabled &&
+					Settings.ModSettings.AllowWeatherHarm,
+					RedeemNames.WEATHER_HARM);
+
+				await UpdateCustomReward(
+					Settings.Redeems.GetIdByRedeemName(RedeemNames.WEATHER_AURORA),
+					Settings.ModSettings.Enabled &&
+					Settings.ModSettings.AllowWeatherAurora,
+					RedeemNames.WEATHER_AURORA);
+
+				await UpdateCustomReward(
+					Settings.Redeems.GetIdByRedeemName(RedeemNames.WEATHER_TIME),
+					Settings.ModSettings.Enabled &&
+					Settings.ModSettings.AllowTime,
+					RedeemNames.WEATHER_TIME);
 
 				await UpdateCustomReward(
 					Settings.Redeems.GetIdByRedeemName(RedeemNames.STATUS_HELP),
@@ -295,12 +301,6 @@ namespace TLD_Twitch_Integration
 					Settings.ModSettings.Enabled &&
 					Settings.ModSettings.AllowBow,
 					RedeemNames.INVENTORY_BOW);
-
-				await UpdateCustomReward(
-					Settings.Redeems.GetIdByRedeemName(RedeemNames.MISC_TIME),
-					Settings.ModSettings.Enabled &&
-					Settings.ModSettings.AllowTime,
-					RedeemNames.MISC_TIME);
 
 				await UpdateCustomReward(
 					Settings.Redeems.GetIdByRedeemName(RedeemNames.SOUND_420),

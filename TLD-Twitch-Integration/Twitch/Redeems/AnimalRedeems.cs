@@ -7,9 +7,9 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 		public static CustomReward TWolves = new()
 		{
 			Title = RedeemNames.ANIMAL_T_WOLVES,
-			Prompt = "Spawns a pack of 2-5 t-wolves. Input a number between 2 - 5. default: 5",
-			Cost = 10000,
-			Color = RedeemColors.ANIMAL,
+			Prompt = "Spawns a pack of t-wolves. Input a number between 2 - 5. default: 5",
+			Cost = 1,
+			Color = RedeemColors.HARM,
 			IsEnabled = false,
 			IsUserInputRequired = true,
 		};
@@ -18,8 +18,8 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 		{
 			Title = RedeemNames.ANIMAL_BIG_GAME,
 			Prompt = "Spawns big game from input. Possible inputs: bear, moose",
-			Cost = 5000,
-			Color = RedeemColors.ANIMAL,
+			Cost = 1,
+			Color = RedeemColors.HARM,
 			IsEnabled = false,
 			IsUserInputRequired = true,
 		};
@@ -28,8 +28,8 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 		{
 			Title = RedeemNames.ANIMAL_STALKING_WOLF,
 			Prompt = "Spawns a wolf behind the player.",
-			Cost = 1000,
-			Color = RedeemColors.ANIMAL,
+			Cost = 1,
+			Color = RedeemColors.HARM,
 			IsEnabled = false,
 			IsUserInputRequired = false,
 		};
@@ -37,9 +37,9 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 		public static CustomReward BunnyExplosion = new()
 		{
 			Title = RedeemNames.ANIMAL_BUNNY_EXPLOSION,
-			Prompt = "Spawns all the bunnies.",
-			Cost = 1000,
-			Color = RedeemColors.ANIMAL,
+			Prompt = "Spawns all ze bunnies.",
+			Cost = 1,
+			Color = RedeemColors.HELP,
 			IsEnabled = false,
 			IsUserInputRequired = false,
 		};

@@ -2,33 +2,31 @@
 {
 	public static class RedeemNames
 	{
-		public const string WEATHER_HELP = "TTI Weather: Help";
-		public const string WEATHER_HARM = "TTI Weather: Harm";
-		public const string WEATHER_AURORA = "TTI Weather: Aurora";
+		public const string ANIMAL_T_WOLVES = "TTI: Timberwolves";
+		public const string ANIMAL_BIG_GAME = "TTI: Big Game";
+		public const string ANIMAL_STALKING_WOLF = "TTI: Stalking Wolf";
+		public const string ANIMAL_BUNNY_EXPLOSION = "TTI: Bunny Explosion";
 
-		public const string ANIMAL_T_WOLVES = "TTI Animal: Timberwolves";
-		public const string ANIMAL_BIG_GAME = "TTI Animal: Big Game";
-		public const string ANIMAL_STALKING_WOLF = "TTI Animal: Stalking Wolf";
-		public const string ANIMAL_BUNNY_EXPLOSION = "TTI Animal: Bunny Explosion";
+		public const string WEATHER_HELP = "TTI: Good Weather";
+		public const string WEATHER_HARM = "TTI: Bad Weather";
+		public const string WEATHER_AURORA = "TTI: Aurora";
+		public const string WEATHER_TIME = "TTI: Day/Night Toggle";
 
-		public const string STATUS_HELP = "TTI Status: Help";
-		public const string STATUS_HARM = "TTI Status: Harm";
-		public const string STATUS_AFFLICTION = "TTI Status: Afflictions";
-		public const string STATUS_BLEED = "TTI Status: Bleeding";
-		public const string STATUS_SPRAIN = "TTI Status: Sprain";
-		public const string STATUS_FROSTBITE = "TTI Status: Frostbite";
-		public const string STATUS_STINK = "TTI Status: Stink";
+		public const string STATUS_HELP = "TTI: Status Help";
+		public const string STATUS_HARM = "TTI: Status Harm";
+		public const string STATUS_AFFLICTION = "TTI: Afflictions";
+		public const string STATUS_BLEED = "TTI: Bleeding";
+		public const string STATUS_SPRAIN = "TTI: Sprain";
+		public const string STATUS_FROSTBITE = "TTI: Frostbite";
+		public const string STATUS_STINK = "TTI: Stink";
 
-		public const string INVENTORY_NO_PANTS = "TTI Inventory: Team No Pants";
-		public const string INVENTORY_DROP_TORCH = "TTI Inventory: Drop Torch";
-		public const string INVENTORY_DROP_ITEM = "TTI Inventory: Drop Item";
-		public const string INVENTORY_STEPPED_STIM = "TTI Inventory: Stepped on Stim";
-		public const string INVENTORY_BOW = "TTI Inventory: Bow";
+		public const string INVENTORY_NO_PANTS = "TTI: Team No Pants";
+		public const string INVENTORY_DROP_TORCH = "TTI: Drop Torch";
+		public const string INVENTORY_DROP_ITEM = "TTI: Drop Item";
+		public const string INVENTORY_STEPPED_STIM = "TTI: Stepped on Stim";
+		public const string INVENTORY_BOW = "TTI: Bow";
 
-		public const string MISC_TELEPORT = "TTI Misc: Teleport";
-		public const string MISC_TIME = "TTI Misc: Time of Day";
-
-		public const string SOUND_420 = "TTI Sound: Happy 420";
+		public const string SOUND_420 = "TTI: Happy 420";
 
 		public const string DEV_SOUND = "TTI Dev: Sound Check";
 	}

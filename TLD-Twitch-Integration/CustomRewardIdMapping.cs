@@ -7,15 +7,6 @@ namespace TLD_Twitch_Integration
 {
 	public class CustomRewardIdMapping : JsonFile
 	{
-		[Name(RedeemNames.WEATHER_HELP)]
-		public string WeatherHelp = "";
-
-		[Name(RedeemNames.WEATHER_HARM)]
-		public string WeatherHarm = "";
-
-		[Name(RedeemNames.WEATHER_AURORA)]
-		public string WeatherAurora = "";
-
 		[Name(RedeemNames.ANIMAL_T_WOLVES)]
 		public string AnimalTWolves = "";
 
@@ -27,6 +18,18 @@ namespace TLD_Twitch_Integration
 
 		[Name(RedeemNames.ANIMAL_BUNNY_EXPLOSION)]
 		public string AnimalBunnyExplosion = "";
+
+		[Name(RedeemNames.WEATHER_HELP)]
+		public string WeatherHelp = "";
+
+		[Name(RedeemNames.WEATHER_HARM)]
+		public string WeatherHarm = "";
+
+		[Name(RedeemNames.WEATHER_AURORA)]
+		public string WeatherAurora = "";
+
+		[Name(RedeemNames.WEATHER_TIME)]
+		public string MiscTime = "";
 
 		[Name(RedeemNames.STATUS_HELP)]
 		public string StatusHelp = "";
@@ -63,12 +66,6 @@ namespace TLD_Twitch_Integration
 
 		[Name(RedeemNames.INVENTORY_BOW)]
 		public string InventoryBow = "";
-
-		[Name(RedeemNames.MISC_TELEPORT)]
-		public string MiscTeleport = "";
-
-		[Name(RedeemNames.MISC_TIME)]
-		public string MiscTime = "";
 
 		[Name(RedeemNames.SOUND_420)]
 		public string Sound420 = "";

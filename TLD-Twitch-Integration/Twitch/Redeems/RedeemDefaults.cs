@@ -8,14 +8,15 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 
 		private static readonly Dictionary<string, CustomReward> _defaults = new()
 		{
-			{ RedeemNames.WEATHER_HELP, WeatherRedeems.Help },
-			{ RedeemNames.WEATHER_HARM, WeatherRedeems.Harm },
-			{ RedeemNames.WEATHER_AURORA, WeatherRedeems.Aurora },
-
 			{ RedeemNames.ANIMAL_T_WOLVES, AnimalRedeems.TWolves },
 			{ RedeemNames.ANIMAL_BIG_GAME, AnimalRedeems.BigGame },
 			{ RedeemNames.ANIMAL_STALKING_WOLF, AnimalRedeems.StalkingWolf },
 			{ RedeemNames.ANIMAL_BUNNY_EXPLOSION, AnimalRedeems.BunnyExplosion },
+
+			{ RedeemNames.WEATHER_HELP, WeatherRedeems.Help },
+			{ RedeemNames.WEATHER_HARM, WeatherRedeems.Harm },
+			{ RedeemNames.WEATHER_AURORA, WeatherRedeems.Aurora },
+			{ RedeemNames.WEATHER_TIME, WeatherRedeems.Time },
 
 			{ RedeemNames.STATUS_HELP, StatusRedeems.Help },
 			{ RedeemNames.STATUS_HARM, StatusRedeems.Harm },
@@ -30,9 +31,6 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 			{ RedeemNames.INVENTORY_DROP_ITEM, InventoryRedeems.DropItem },
 			{ RedeemNames.INVENTORY_STEPPED_STIM, InventoryRedeems.SteppedStim },
 			{ RedeemNames.INVENTORY_BOW, InventoryRedeems.Bow },
-
-			{ RedeemNames.MISC_TELEPORT, MiscRedeems.Teleport },
-			{ RedeemNames.MISC_TIME, MiscRedeems.Time },
 
 			{ RedeemNames.SOUND_420, SoundRedeems.Happy420 },
 

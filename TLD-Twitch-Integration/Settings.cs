@@ -140,7 +140,7 @@ namespace TLD_Twitch_Integration
 		public bool AllowWeatherAurora = true;
 
 		[Name("Enable Day/Night Toggle")]
-		[Description($"Enable or disable {RedeemNames.MISC_TIME} redeem")]
+		[Description($"Enable or disable {RedeemNames.WEATHER_TIME} redeem")]
 		public bool AllowTime = true;
 
 		// TTI Status
