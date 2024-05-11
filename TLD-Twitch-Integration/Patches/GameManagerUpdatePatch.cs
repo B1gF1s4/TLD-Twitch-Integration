@@ -12,7 +12,7 @@ namespace TLD_Twitch_Integration.Patches
 		internal static void Prefix()
 		{
 			if (ExecutionPending)
-				GameState.Update();
+				GameService.Update();
 		}
 	}
 

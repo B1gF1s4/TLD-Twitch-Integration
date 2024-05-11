@@ -12,6 +12,8 @@ namespace TLD_Twitch_Integration.Patches
 		{
 			if (GameService.ShouldDropPants)
 			{
+				GameService.PlayPlayerSound("PLAY_CLOTHESTEARING");
+
 				var pantsInner = GameManager.GetPlayerManagerComponent().GetClothingInSlot(ClothingRegion.Legs, ClothingLayer.Top);
 				var pantsOuter = GameManager.GetPlayerManagerComponent().GetClothingInSlot(ClothingRegion.Legs, ClothingLayer.Top2);
 				var undiesInner = GameManager.GetPlayerManagerComponent().GetClothingInSlot(ClothingRegion.Legs, ClothingLayer.Mid);
@@ -24,6 +26,7 @@ namespace TLD_Twitch_Integration.Patches
 						continue;
 
 					var droppedItem = entry.Drop(1, true, false, true);
+					droppedItem.enabled = false;
 				}
 
 				GameService.ShouldDropPants = false;
@@ -31,10 +34,15 @@ namespace TLD_Twitch_Integration.Patches
 
 			if (GameService.ShouldDropTorch)
 			{
-				if (GameState.IsHoldingTorchLike)
+				GameService.PlayPlayerSound("PLAY_FEARAFFLICTION");
+
+				if (GameService.IsHoldingTorchLike)
 				{
 					var torch = GameManager.GetPlayerManagerComponent().m_ItemInHands;
 					var droppedItem = torch?.Drop(1, true, false, true);
+
+					if (droppedItem != null)
+						droppedItem.enabled = false;
 				}
 				else
 				{
@@ -50,6 +58,9 @@ namespace TLD_Twitch_Integration.Patches
 						itemToDrop = __instance.GetBestGearItemWithName("GEAR_BlueFlare");
 
 					var droppedItem = itemToDrop?.Drop(1, true, false, true);
+
+					if (droppedItem != null)
+						droppedItem.enabled = false;
 				}
 
 				GameService.ShouldDropTorch = false;
@@ -59,6 +70,8 @@ namespace TLD_Twitch_Integration.Patches
 			{
 				ConsoleManager.CONSOLE_bow();
 				__instance.RemoveGearFromInventory("GEAR_Arrow", 100 - Settings.ModSettings.ArrowCount);
+
+				GameService.PlayPlayerSound("PLAY_FEATUNLOCKED");
 
 				GameService.ShouldAddBow = false;
 			}
@@ -79,6 +92,8 @@ namespace TLD_Twitch_Integration.Patches
 
 			if (GameService.ShouldDropRandomItem)
 			{
+				GameService.PlayPlayerSound("PLAY_FEARAFFLICTION");
+
 				var filter = (GearItem gi) => { return !string.IsNullOrEmpty(gi.name); };
 				var list = new Il2CppSystem.Collections.Generic.List<GearItem>();
 

@@ -297,12 +297,6 @@ namespace TLD_Twitch_Integration
 					RedeemNames.INVENTORY_BOW);
 
 				await UpdateCustomReward(
-					Settings.Redeems.GetIdByRedeemName(RedeemNames.MISC_TELEPORT),
-					Settings.ModSettings.Enabled &&
-					Settings.ModSettings.AllowTeleport,
-					RedeemNames.MISC_TELEPORT);
-
-				await UpdateCustomReward(
 					Settings.Redeems.GetIdByRedeemName(RedeemNames.MISC_TIME),
 					Settings.ModSettings.Enabled &&
 					Settings.ModSettings.AllowTime,

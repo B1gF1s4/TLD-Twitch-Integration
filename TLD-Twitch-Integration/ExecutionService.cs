@@ -98,7 +98,7 @@ namespace TLD_Twitch_Integration
 
 		private static async Task TryExecuteRedeem(Redemption redeem, string userId)
 		{
-			GameState.Update();
+			GameService.Update();
 
 			var defaultTitle = Settings.Redeems.GetRedeemNameById(redeem.CustomReward?.Id!);
 			Melon<Mod>.Logger.Msg($"trying to execute redeem {defaultTitle}");
@@ -231,7 +231,7 @@ namespace TLD_Twitch_Integration
 					return ExecuteDropItemRedeem();
 
 				case RedeemNames.MISC_TIME:
-					return ExecuteTimeRedeem(redeem);
+					return ExecuteTimeRedeem();
 
 				case RedeemNames.SOUND_420:
 					GameService.PlayPlayerSound("PLAY_SUFFOCATIONCOUGH");
@@ -260,7 +260,7 @@ namespace TLD_Twitch_Integration
 				!Settings.ModSettings.AllowWeatherHelpSnow)
 				throw new RequiresRedeemRefundException("All weather types for the weather help redeem are currently disabled.");
 
-			if (GameState.IsInBuilding)
+			if (GameService.IsInBuilding)
 				return false;
 
 			var defaultWeatherHelp = Settings.ModSettings.AllowWeatherHelpClear ? WeatherStage.Clear :
@@ -302,7 +302,7 @@ namespace TLD_Twitch_Integration
 				!Settings.ModSettings.AllowWeatherHarmSnow)
 				throw new RequiresRedeemRefundException("All weather types for the weather harm redeem are currently disabled.");
 
-			if (GameState.IsInBuilding)
+			if (GameService.IsInBuilding)
 				return false;
 
 			var defaultWeatherHarm = Settings.ModSettings.AllowWeatherHarmBlizzard ? WeatherStage.Blizzard :
@@ -337,7 +337,7 @@ namespace TLD_Twitch_Integration
 			if (GameManager.m_ActiveScene == "Dam")
 				return false;
 
-			if (GameState.IsInBuilding)
+			if (GameService.IsInBuilding)
 				return false;
 
 			GameService.ShouldStartAurora = true;
@@ -580,7 +580,7 @@ namespace TLD_Twitch_Integration
 			if (!Settings.ModSettings.AllowTeamNoPants)
 				throw new RequiresRedeemRefundException("Team NoPatns redeem is currently disabled.");
 
-			if (GameState.IsMenuOpen())
+			if (GameService.IsMenuOpen())
 				return false;
 
 			GameService.ShouldDropPants = true;
@@ -593,10 +593,10 @@ namespace TLD_Twitch_Integration
 			if (!Settings.ModSettings.AllowDropTorch)
 				throw new RequiresRedeemRefundException("Drop torch redeem is currently disabled.");
 
-			if (!GameState.HasTorchLikeInInventory)
+			if (!GameService.HasTorchLikeInInventory)
 				throw new RequiresRedeemRefundException("Player doesnt have a torch or flare in inventory.");
 
-			if (GameState.IsMenuOpen())
+			if (GameService.IsMenuOpen())
 				return false;
 
 			GameService.ShouldDropTorch = true;
@@ -609,7 +609,7 @@ namespace TLD_Twitch_Integration
 			if (!Settings.ModSettings.AllowBow)
 				throw new RequiresRedeemRefundException("Bow redeem is currently disabled.");
 
-			if (GameState.IsMenuOpen())
+			if (GameService.IsMenuOpen())
 				return false;
 
 			GameService.ShouldAddBow = true;
@@ -622,7 +622,7 @@ namespace TLD_Twitch_Integration
 			if (!Settings.ModSettings.AllowSteppedStim)
 				throw new RequiresRedeemRefundException("Stepped on stim redeem is currently disabled.");
 
-			if (GameState.IsMenuOpen())
+			if (GameService.IsMenuOpen())
 				return false;
 
 			GameService.ShouldStepOnStim = true;
@@ -635,7 +635,10 @@ namespace TLD_Twitch_Integration
 			if (!Settings.ModSettings.AllowDropItem)
 				throw new RequiresRedeemRefundException("Drop item redeem is currently disabled.");
 
-			if (GameState.IsMenuOpen())
+			if (GameService.IsMenuOpen())
+				return false;
+
+			if (!GameService.HasItemsInInventory)
 				return false;
 
 			GameService.ShouldDropRandomItem = true;
@@ -648,10 +651,10 @@ namespace TLD_Twitch_Integration
 			if (!Settings.ModSettings.AllowTWolves)
 				throw new RequiresRedeemRefundException("TWolf redeem is currently disabled.");
 
-			if (GameState.IsInBuilding)
+			if (GameService.IsInBuilding)
 				return false;
 
-			if (GameState.IsAuroraFading)
+			if (GameService.IsAuroraFading)
 				return false;
 
 			var packSize = int.TryParse(redeem.UserInput, out var number) ?
@@ -672,7 +675,7 @@ namespace TLD_Twitch_Integration
 				!Settings.ModSettings.AllowBigGameMoose)
 				throw new RequiresRedeemRefundException("All animal types for the big game redeem are currently disabled.");
 
-			if (GameState.IsInBuilding)
+			if (GameService.IsInBuilding)
 				return false;
 
 			var defaultAnimal = Settings.ModSettings.AllowBigGameBear ?
@@ -684,12 +687,12 @@ namespace TLD_Twitch_Integration
 			var animalToSet = userInputAnimal.Contains("bear") ? AnimalRedeemType.Bear :
 				userInputAnimal.Contains("moose") ? AnimalRedeemType.Moose : defaultAnimal;
 
-			if (GameState.IsAuroraFading)
+			if (GameService.IsAuroraFading)
 				return false;
 
 			if (animalToSet == AnimalRedeemType.Moose)
 			{
-				if (GameState.IsAuroraActive)
+				if (GameService.IsAuroraActive)
 					return false;
 
 				if (!Settings.ModSettings.AllowBigGameMoose)
@@ -715,10 +718,10 @@ namespace TLD_Twitch_Integration
 			if (!Settings.ModSettings.AllowStalkingWolf)
 				throw new RequiresRedeemRefundException("Stalking wolf redeem is currently disabled.");
 
-			if (GameState.IsInBuilding)
+			if (GameService.IsInBuilding)
 				return false;
 
-			if (GameState.IsAuroraFading)
+			if (GameService.IsAuroraFading)
 				return false;
 
 			GameService.AnimalToSpawn = AnimalRedeemType.StalkingWolf;
@@ -731,7 +734,7 @@ namespace TLD_Twitch_Integration
 			if (!Settings.ModSettings.AllowBunnyExplosion)
 				throw new RequiresRedeemRefundException("Bunny explosion redeem is currently disabled.");
 
-			if (GameState.IsInBuilding)
+			if (GameService.IsInBuilding)
 				return false;
 
 			GameService.SpawningAnimalTargetCount = Settings.ModSettings.BunnyCount;
@@ -740,7 +743,7 @@ namespace TLD_Twitch_Integration
 			return true;
 		}
 
-		private static bool ExecuteTimeRedeem(Redemption redeem)
+		private static bool ExecuteTimeRedeem()
 		{
 			if (!Settings.ModSettings.AllowTime)
 				throw new RequiresRedeemRefundException("Time redeem is currently disabled.");

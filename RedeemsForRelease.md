@@ -22,7 +22,6 @@
 - [x] [TTI Animal: Stalking Wolf](#tti-animal-stalking-wolf)
 - [x] [TTI Animal: Bunny Explosion](#tti-animal-bunny-explosion)
 - [x] [TTI Misc: Time of day](#tti-misc-time-of-day)
-- [ ] [TTI Misc: Teleport](#tti-misc-teleport)
 - [x] [TTI Sound: Happy 420](#tti-sound-happy-420)
 
 ## Details
@@ -122,11 +121,6 @@
 ### TTI Animal: Bunny Explosion
 - spawns x amount of bunnies
 - configurable bunny count in settings
-
-### TTI Misc: Teleport
-- [ ] implement userInput: [some locations that still have to be decided on. thinking summit, goldmine, monolithlake. something along those lines]
-- [x] imeplement settings: enable / disable
-- [ ] teleports the player to the specified location
 
 ### TTI Misc: Time of day
 - adds 12h to the ingame time

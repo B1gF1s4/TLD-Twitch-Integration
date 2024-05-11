@@ -6,6 +6,20 @@ namespace TLD_Twitch_Integration
 {
 	public static class GameService
 	{
+		public static bool IsInBuilding { get; set; }
+		public static bool IsAuroraActive { get; set; }
+		public static bool IsAuroraFading { get; set; }
+		public static bool IsHoldingTorchLike { get; set; }
+		public static bool HasTorchLikeInInventory { get; set; }
+		public static bool HasItemsInInventory { get; set; }
+
+		public static bool PanelFirstAidEnabled { get; set; }
+		public static bool PanelClothingEnabled { get; set; }
+		public static bool PanelInventoryEnabled { get; set; }
+		public static bool PanelCraftingEnabled { get; set; }
+		public static bool PanelCookingEnabled { get; set; }
+		public static bool PanelLogEnabled { get; set; }
+		public static bool PanelMapEnabled { get; set; }
 
 		public static AnimalRedeemType AnimalToSpawn { get; set; }
 		public static bool SpawningAnimal { get; set; }
@@ -43,23 +57,40 @@ namespace TLD_Twitch_Integration
 		public static GameObject? PrefabStim { get; set; }
 		public static bool LoadingAssets { get; set; }
 
-		public static void SpawnTWolves(bool aurora)
+		public static void Update()
 		{
+			IsInBuilding = GetIsInBuilding();
+
+			if (GameManager.GetAuroraManager().IsFullyActive())
+				IsAuroraActive = true;
+			else
+				IsAuroraActive = false;
+
+			IsAuroraFading = GetIsAuroraFading();
+			IsHoldingTorchLike = GetIsHoldingTorchLike();
+			HasTorchLikeInInventory = GetHasTorchLikeInInventory();
+			HasItemsInInventory = GetHasItemsInInventory();
+		}
+
+		public static void SpawnTWolves()
+		{
+			PlayPlayerSound("PLAY_ANXIETYAFFLICTION");
+
 			SpawnedAnimalCounter = 0;
 			SpawningAnimal = true;
 			for (int i = 0; i < SpawningAnimalTargetCount; i++)
 			{
-				if (aurora)
+				if (IsAuroraActive)
 					ConsoleManager.CONSOLE_spawn_grey_wolf_aurora();
 				else
 					ConsoleManager.CONSOLE_spawn_wolf_grey();
 			}
 		}
 
-		public static void SpawnBear(bool aurora)
+		public static void SpawnBear()
 		{
 			SpawningAnimal = true;
-			if (aurora)
+			if (IsAuroraActive)
 				ConsoleManager.CONSOLE_spawn_aurorabear();
 			else
 				ConsoleManager.CONSOLE_spawn_bear();
@@ -71,10 +102,10 @@ namespace TLD_Twitch_Integration
 			ConsoleManager.CONSOLE_spawn_moose();
 		}
 
-		public static void SpawnStalkingWolf(bool aurora)
+		public static void SpawnStalkingWolf()
 		{
 			SpawningAnimal = true;
-			if (aurora)
+			if (IsAuroraActive)
 				ConsoleManager.CONSOLE_spawn_aurorawolf();
 			else
 				ConsoleManager.CONSOLE_spawn_wolf();
@@ -135,6 +166,81 @@ namespace TLD_Twitch_Integration
 				return;
 
 			GameManager.GetPlayerVoiceComponent()?.Play(sound, ignoreDelay);
+		}
+
+		public static bool IsMenuOpen()
+		{
+			return InterfaceManager.IsOverlayActiveCached();
+		}
+
+		private static bool GetIsInBuilding()
+		{
+			if (GameManager.GetWeatherComponent().IsIndoorScene())
+				return true;
+
+			if (GameManager.GetWeatherComponent().IsIndoorEnvironment())
+				return true;
+
+			return false;
+		}
+
+		private static bool GetIsAuroraFading()
+		{
+			var alpha = GameManager.GetAuroraManager().GetNormalizedAlpha();
+
+			if (alpha <= 0)
+				return false;
+
+			if (alpha >= 1)
+				return false;
+
+			return true;
+		}
+
+		private static bool GetIsHoldingTorchLike()
+		{
+			var playerComp = GameManager.GetPlayerManagerComponent();
+			if (playerComp == null)
+				return false;
+
+			if (playerComp.m_ItemInHands == null)
+				return false;
+
+			if (playerComp.m_ItemInHands.m_FlareItem != null ||
+				playerComp.m_ItemInHands.m_TorchItem != null ||
+				playerComp.m_ItemInHands.m_FlashlightItem != null)
+				return true;
+
+			return false;
+		}
+
+		private static bool GetHasTorchLikeInInventory()
+		{
+			var invComp = GameManager.GetInventoryComponent();
+			if (invComp == null)
+				return false;
+
+			var num = invComp.GetNumFlares(FlareType.Red) +
+				invComp.GetNumFlares(FlareType.Blue) +
+				invComp.GetNumTorches();
+
+			if (num <= 0)
+				return false;
+
+			return true;
+		}
+
+		private static bool GetHasItemsInInventory()
+		{
+			var filter = (GearItem gi) => { return !string.IsNullOrEmpty(gi.name); };
+			var list = new Il2CppSystem.Collections.Generic.List<GearItem>();
+
+			GameManager.GetInventoryComponent().GetGearItems(filter, list);
+
+			if (list.Count > 0)
+				return true;
+			else
+				return false;
 		}
 
 	}

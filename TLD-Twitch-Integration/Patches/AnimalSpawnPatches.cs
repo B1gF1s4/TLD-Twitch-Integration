@@ -16,16 +16,16 @@ namespace TLD_Twitch_Integration.Patches
 			switch (GameService.AnimalToSpawn)
 			{
 				case AnimalRedeemType.TWolves:
-					GameService.SpawnTWolves(GameState.IsAuroraActive);
+					GameService.SpawnTWolves();
 					break;
 				case AnimalRedeemType.Bear:
-					GameService.SpawnBear(GameState.IsAuroraActive);
+					GameService.SpawnBear();
 					break;
 				case AnimalRedeemType.Moose:
 					GameService.SpawnMoose();
 					break;
 				case AnimalRedeemType.StalkingWolf:
-					GameService.SpawnStalkingWolf(GameState.IsAuroraActive);
+					GameService.SpawnStalkingWolf();
 					break;
 				case AnimalRedeemType.BunnyExplosion:
 					GameService.SpawnBunnyExplosion();
