@@ -43,6 +43,5 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 			IsEnabled = false,
 			IsUserInputRequired = false,
 		};
-
 	}
 }
