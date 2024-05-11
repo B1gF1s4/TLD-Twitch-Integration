@@ -2,49 +2,6 @@
 Mod for The Long Dark that let's viewers of a twitch live stream interact with the game.
 The channel using this mod needs to be at least affiliate with twitch, so custom redeems are enabled.
 
-## What can we do
-
-### Changing the weather
-- TTI: Blizzard
-- TTI: Clear
-- TTI: Light Fog
-- TTI: Dense Fog
-- TTI: Partly Cloudy
-- TTI: Cloudy
-- TTI: Light Snow
-- TTI: Heavy Snow
-
-### Spawning animals
-- TTI: Bear
-- TTI: Moose
-- TTI: T-Wolf Pack (5)
-- TTI: Stalking Wolf
-- TTI: Bunny Explosion
-
-### Changing status
-- TTI: Hungry
-- TTI: Thirst
-- TTI: Tired
-- TTI: Freezing
-- TTI: Full
-- TTI: Not Thirsty
-- TTI: Awake
-- TTI: Warm
-
-### Afflictions
-- TTI: Cabin Fever
-- TTI: Dysentery
-- TTI: Food Poisoning
-- TTI: Hypothermia
-- TTI: Parasites
-
-### Player sounds
-- (TTI Sound: Dev Check)
-- TTI Sound: Hydrate
-- TTI Sound: Happy 420
-- TTI Sound: Good Night
-- TTI Sound: Hello
-
 ## Redeems
 - TTI will create all twitch redeems on initial load (game start)
 - if there is any naming conflicts with redeems TTI wants to create and redeems you already have, TTI will skip creation and retry on next load
