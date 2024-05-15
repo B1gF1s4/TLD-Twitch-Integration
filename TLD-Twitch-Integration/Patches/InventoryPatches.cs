@@ -76,20 +76,6 @@ namespace TLD_Twitch_Integration.Patches
 				GameService.ShouldAddBow = false;
 			}
 
-			if (GameService.ShouldStepOnStim)
-			{
-				if (GameService.PrefabStim != null)
-				{
-					var stimInstance = UnityEngine.Object.Instantiate(GameService.PrefabStim);
-					stimInstance.name = GameService.PrefabStim.name;
-
-					var stim = stimInstance.GetComponent<EmergencyStimItem>();
-					GameManager.GetEmergencyStimComponent().ApplyEmergencyStim(stim);
-
-					GameService.ShouldStepOnStim = false;
-				}
-			}
-
 			if (GameService.RandomItemToDrop != null)
 			{
 				GameService.PlayPlayerSound("PLAY_FEARAFFLICTION");

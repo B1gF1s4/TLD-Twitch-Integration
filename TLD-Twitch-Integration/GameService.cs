@@ -1,5 +1,4 @@
 ﻿using Il2Cpp;
-using UnityEngine;
 using static TLD_Twitch_Integration.ExecutionService;
 
 namespace TLD_Twitch_Integration
@@ -21,11 +20,6 @@ namespace TLD_Twitch_Integration
 		public static bool PanelCookingEnabled { get; set; }
 		public static bool PanelLogEnabled { get; set; }
 		public static bool PanelMapEnabled { get; set; }
-
-		public static AnimalRedeemType AnimalToSpawn { get; set; }
-		public static bool SpawningAnimal { get; set; }
-		public static int SpawnedAnimalCounter { get; set; }
-		public static int SpawningAnimalTargetCount { get; set; }
 
 		public static WeatherStage WeatherToChange { get; set; }
 			= WeatherStage.Undefined;
@@ -55,10 +49,6 @@ namespace TLD_Twitch_Integration
 		public static GearItem? RandomItemToDrop { get; set; }
 		public static string? LastItemDropped { get; set; }
 
-		public static bool ShouldStepOnStim { get; set; }
-		public static GameObject? PrefabStim { get; set; }
-		public static bool LoadingAssets { get; set; }
-
 		public static void Update()
 		{
 			IsInBuilding = GetIsInBuilding();
@@ -72,55 +62,6 @@ namespace TLD_Twitch_Integration
 			IsHoldingTorchLike = GetIsHoldingTorchLike();
 			HasTorchLikeInInventory = GetHasTorchLikeInInventory();
 			GearItems = GetItemsInInventory();
-		}
-
-		public static void SpawnTWolves()
-		{
-			PlayPlayerSound("PLAY_ANXIETYAFFLICTION");
-
-			SpawnedAnimalCounter = 0;
-			SpawningAnimal = true;
-			for (int i = 0; i < SpawningAnimalTargetCount; i++)
-			{
-				if (IsAuroraActive)
-					ConsoleManager.CONSOLE_spawn_grey_wolf_aurora();
-				else
-					ConsoleManager.CONSOLE_spawn_wolf_grey();
-			}
-		}
-
-		public static void SpawnBear()
-		{
-			SpawningAnimal = true;
-			if (IsAuroraActive)
-				ConsoleManager.CONSOLE_spawn_aurorabear();
-			else
-				ConsoleManager.CONSOLE_spawn_bear();
-		}
-
-		public static void SpawnMoose()
-		{
-			SpawningAnimal = true;
-			ConsoleManager.CONSOLE_spawn_moose();
-		}
-
-		public static void SpawnStalkingWolf()
-		{
-			SpawningAnimal = true;
-			if (IsAuroraActive)
-				ConsoleManager.CONSOLE_spawn_aurorawolf();
-			else
-				ConsoleManager.CONSOLE_spawn_wolf();
-		}
-
-		public static void SpawnBunnyExplosion()
-		{
-			SpawnedAnimalCounter = 0;
-			SpawningAnimal = true;
-			for (int i = 0; i < SpawningAnimalTargetCount; i++)
-			{
-				ConsoleManager.CONSOLE_spawn_rabbit();
-			}
 		}
 
 		public static void ChangeMeter(StatusMeter type, bool isHelp)

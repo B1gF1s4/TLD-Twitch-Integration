@@ -1,5 +1,6 @@
 ﻿using Il2Cpp;
 using MelonLoader;
+using TLD_Twitch_Integration.Commands;
 using TLD_Twitch_Integration.Exceptions;
 using TLD_Twitch_Integration.Twitch;
 using TLD_Twitch_Integration.Twitch.Models;
@@ -186,16 +187,16 @@ namespace TLD_Twitch_Integration
 					return ExecuteWeatherAurora(redeem);
 
 				case RedeemNames.ANIMAL_T_WOLVES:
-					return ExecuteTWolfRedeem(redeem);
+					return CmdAnimalTWolves.Execute(redeem);
 
 				case RedeemNames.ANIMAL_BIG_GAME:
-					return ExecuteBigGameRedeem(redeem);
+					return CmdAnimalBigGame.Execute(redeem);
 
 				case RedeemNames.ANIMAL_STALKING_WOLF:
-					return ExecuteStalkingWolfRedeem(redeem);
+					return CmdAnimalStalkingWolf.Execute(redeem);
 
 				case RedeemNames.ANIMAL_BUNNY_EXPLOSION:
-					return ExecuteBunnyExplosionRedeem(redeem);
+					return CmdAnimalBunnyExplosion.Execute(redeem);
 
 				case RedeemNames.STATUS_HELP:
 					return ExecuteStatusHelpRedeem(redeem);
@@ -228,7 +229,7 @@ namespace TLD_Twitch_Integration
 					return ExecuteBowRedeem(redeem);
 
 				case RedeemNames.INVENTORY_STEPPED_STIM:
-					return ExecuteSteppedStimRedeem(redeem);
+					return CmdInventoryStim.Execute(redeem);
 
 				case RedeemNames.INVENTORY_DROP_ITEM:
 					return ExecuteDropItemRedeem(redeem);
@@ -619,19 +620,6 @@ namespace TLD_Twitch_Integration
 			return $"{redeem.UserName} redeemed '{redeem.CustomReward?.Title}' -> {Settings.ModSettings.ArrowCount} arrows added";
 		}
 
-		private static string ExecuteSteppedStimRedeem(Redemption redeem)
-		{
-			if (!Settings.ModSettings.AllowSteppedStim)
-				throw new RequiresRedeemRefundException("Stepped on stim redeem is currently disabled.");
-
-			if (GameService.IsMenuOpen())
-				return "";
-
-			GameService.ShouldStepOnStim = true;
-
-			return $"{redeem.UserName} redeemed '{redeem.CustomReward?.Title}'";
-		}
-
 		private static string ExecuteDropItemRedeem(Redemption redeem)
 		{
 			if (!Settings.ModSettings.AllowDropItem)
@@ -649,103 +637,6 @@ namespace TLD_Twitch_Integration
 			GameService.RandomItemToDrop = gearItem;
 
 			return $"{redeem.UserName} redeemed '{redeem.CustomReward?.Title}' -> {gearItem.name.Replace("GEAR_", "")}";
-		}
-
-		private static string ExecuteTWolfRedeem(Redemption redeem)
-		{
-			if (!Settings.ModSettings.AllowTWolves)
-				throw new RequiresRedeemRefundException("TWolf redeem is currently disabled.");
-
-			if (GameService.IsInBuilding)
-				return "";
-
-			if (GameService.IsAuroraFading)
-				return "";
-
-			var packSize = int.TryParse(redeem.UserInput, out var number) ?
-				(number >= 2 && number <= 5) ? number : 5 : 5;
-
-			GameService.SpawningAnimalTargetCount = packSize;
-			GameService.AnimalToSpawn = AnimalRedeemType.TWolves;
-
-			return $"{redeem.UserName} redeemed '{redeem.CustomReward?.Title}' -> pack of {packSize}";
-		}
-
-		private static string ExecuteBigGameRedeem(Redemption redeem)
-		{
-			if (!Settings.ModSettings.AllowBigGame)
-				throw new RequiresRedeemRefundException("Big game redeem is currently disabled.");
-
-			if (!Settings.ModSettings.AllowBigGameBear &&
-				!Settings.ModSettings.AllowBigGameMoose)
-				throw new RequiresRedeemRefundException("All animal types for the big game redeem are currently disabled.");
-
-			if (GameService.IsInBuilding)
-				return "";
-
-			var defaultAnimal = Settings.ModSettings.AllowBigGameBear ?
-				AnimalRedeemType.Bear : AnimalRedeemType.Moose;
-
-			var userInputAnimal = string.IsNullOrEmpty(redeem.UserInput) ?
-				defaultAnimal.ToString().ToLower() : redeem.UserInput.ToLower();
-
-			var animalToSet = userInputAnimal.Contains("bear") ? AnimalRedeemType.Bear :
-				userInputAnimal.Contains("moose") ? AnimalRedeemType.Moose : defaultAnimal;
-
-			if (GameService.IsAuroraFading)
-				return "";
-
-			if (animalToSet == AnimalRedeemType.Moose)
-			{
-				if (GameService.IsAuroraActive)
-					return "";
-
-				if (!Settings.ModSettings.AllowBigGameMoose)
-					return "";
-
-				GameService.AnimalToSpawn = AnimalRedeemType.Moose;
-
-				return $"{redeem.UserName} redeemed '{redeem.CustomReward?.Title}' -> Moose";
-			}
-			else
-			{
-				if (!Settings.ModSettings.AllowBigGameMoose)
-					return "";
-
-				GameService.AnimalToSpawn = AnimalRedeemType.Bear;
-
-				return $"{redeem.UserName} redeemed '{redeem.CustomReward?.Title}' -> Bear";
-			}
-		}
-
-		private static string ExecuteStalkingWolfRedeem(Redemption redeem)
-		{
-			if (!Settings.ModSettings.AllowStalkingWolf)
-				throw new RequiresRedeemRefundException("Stalking wolf redeem is currently disabled.");
-
-			if (GameService.IsInBuilding)
-				return "";
-
-			if (GameService.IsAuroraFading)
-				return "";
-
-			GameService.AnimalToSpawn = AnimalRedeemType.StalkingWolf;
-
-			return $"{redeem.UserName} redeemed '{redeem.CustomReward?.Title}'";
-		}
-
-		private static string ExecuteBunnyExplosionRedeem(Redemption redeem)
-		{
-			if (!Settings.ModSettings.AllowBunnyExplosion)
-				throw new RequiresRedeemRefundException("Bunny explosion redeem is currently disabled.");
-
-			if (GameService.IsInBuilding)
-				return "";
-
-			GameService.SpawningAnimalTargetCount = Settings.ModSettings.BunnyCount;
-			GameService.AnimalToSpawn = AnimalRedeemType.BunnyExplosion;
-
-			return $"{redeem.UserName} redeemed '{redeem.CustomReward?.Title}'";
 		}
 
 		private static string ExecuteTimeRedeem(Redemption redeem)

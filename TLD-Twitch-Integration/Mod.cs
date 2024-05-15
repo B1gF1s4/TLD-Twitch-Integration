@@ -1,5 +1,6 @@
 ﻿using MelonLoader;
 using MelonLoader.Utils;
+using TLD_Twitch_Integration.Commands;
 
 namespace TLD_Twitch_Integration
 {
@@ -16,6 +17,11 @@ namespace TLD_Twitch_Integration
 
 			Directory.CreateDirectory(Path.Combine(
 				MelonEnvironment.ModsDirectory, BaseDirectory));
+
+			CmdAnimalBigGame.AddCommandToConsole();
+			CmdAnimalTWolves.AddCommandToConsole();
+			CmdAnimalStalkingWolf.AddCommandToConsole();
+			CmdAnimalBunnyExplosion.AddCommandToConsole();
 
 			Settings.OnLoad();
 			await AuthService.OnLoad();

@@ -65,7 +65,7 @@ namespace TLD_Twitch_Integration
 
 		[Name("      Bear Spawn Distance")]
 		[Description($"How far to spawn Bear in front of you")]
-		[Slider(0.5f, 100.0f)]
+		[Slider(0.5f, 50.0f)]
 		public float DistanceBear = 30.0f;
 
 		[Name("      Allow Moose")]
@@ -74,7 +74,7 @@ namespace TLD_Twitch_Integration
 
 		[Name("      Moose Spawn Distance")]
 		[Description($"How far to spawn Moose in front of you")]
-		[Slider(0.5f, 100.0f)]
+		[Slider(0.5f, 50.0f)]
 		public float DistanceMoose = 40.0f;
 
 		[Name("Enable Stalking Wolf")]
@@ -83,7 +83,7 @@ namespace TLD_Twitch_Integration
 
 		[Name("      Stalking Wolf Distance")]
 		[Description($"How far to spawn Stalking Wolf behind you")]
-		[Slider(0.5f, 100.0f)]
+		[Slider(0.5f, 50.0f)]
 		public float DistanceStalkingWolf = 18.0f;
 
 		[Name("Enable Bunny Explosion")]
@@ -92,7 +92,7 @@ namespace TLD_Twitch_Integration
 
 		[Name("      Bunny Count")]
 		[Description($"How many Bunnies to spawn")]
-		[Slider(5, 100)]
+		[Slider(5, 50)]
 		public int BunnyCount = 20;
 
 		// TTI Weather
@@ -169,8 +169,8 @@ namespace TLD_Twitch_Integration
 
 		[Name("      Status Help Value")]
 		[Description("Value helpful status redeems set the meter to.")]
-		[Slider(0f, 100f)]
-		public float StatusHelpValue = 90.0f;
+		[Slider(0, 100)]
+		public int StatusHelpValue = 90;
 
 		[Name("Enable Status Harm")]
 		[Description($"Enable or disable {RedeemNames.STATUS_HARM} redeem")]
@@ -194,8 +194,8 @@ namespace TLD_Twitch_Integration
 
 		[Name("      Status Harm Value")]
 		[Description("Value harmful status redeems set the meter to.")]
-		[Slider(0f, 100f)]
-		public float StatusHarmValue = 10.0f;
+		[Slider(0, 100)]
+		public int StatusHarmValue = 10;
 
 		[Name("Enable Afflictions")]
 		[Description($"Enable or disable {RedeemNames.STATUS_AFFLICTION} redeem")]
@@ -244,7 +244,7 @@ namespace TLD_Twitch_Integration
 		[Name("      Stink Value")]
 		[Description($"Amount of stink to get on the {RedeemNames.STATUS_STINK} redeem.")]
 		[Slider(1, 100)]
-		public float StinkLines = 90;
+		public int StinkLines = 90;
 
 		[Name("      Stink Time")]
 		[Description($"Amount of seconds stink lines will be active on the {RedeemNames.STATUS_STINK} redeem.")]
@@ -259,13 +259,25 @@ namespace TLD_Twitch_Integration
 		[Description($"Enable or disable {RedeemNames.INVENTORY_NO_PANTS} redeem")]
 		public bool AllowTeamNoPants = true;
 
+		[Name("      Allow Pants Pickup")]
+		[Description($"Allow picking up pants.")]
+		public bool AllowPantsPickup = false;
+
 		[Name("Enable Drop Torch")]
 		[Description($"Enable or disable {RedeemNames.INVENTORY_DROP_TORCH} redeem")]
 		public bool AllowDropTorch = true;
 
+		[Name("      Allow Torch Pickup")]
+		[Description($"Allow picking up torch.")]
+		public bool AllowTorchPickup = false;
+
 		[Name("Enable Drop Item")]
 		[Description($"Enable or disable {RedeemNames.INVENTORY_DROP_ITEM} redeem")]
 		public bool AllowDropItem = true;
+
+		[Name("      Allow Item Pickup")]
+		[Description($"Allow picking up dropped items.")]
+		public bool AllowItemPickup = false;
 
 		[Name("Enable Stepped on Stim")]
 		[Description($"Enable or disable {RedeemNames.INVENTORY_STEPPED_STIM} redeem")]
@@ -331,6 +343,15 @@ namespace TLD_Twitch_Integration
 			if (field.Name == nameof(AllowStatusStink))
 				RefreshStatusStinkFields();
 
+			if (field.Name == nameof(AllowTeamNoPants))
+				RefreshInventoryTeamNoPantsFields();
+
+			if (field.Name == nameof(AllowDropTorch))
+				RefreshInventoryDropTorchFields();
+
+			if (field.Name == nameof(AllowItemPickup))
+				RefreshInventoryDropItemFields();
+
 			if (field.Name == nameof(AllowBow))
 				RefreshInventoryBowFields();
 
@@ -385,6 +406,9 @@ namespace TLD_Twitch_Integration
 			RefreshAfflictionsFields();
 			RefreshStatusSprainFields();
 			RefreshStatusStinkFields();
+			RefreshInventoryTeamNoPantsFields();
+			RefreshInventoryDropTorchFields();
+			RefreshInventoryDropItemFields();
 			RefreshInventoryBowFields();
 			RefreshBigGameFields();
 			RefreshTWolfFields();
@@ -450,6 +474,24 @@ namespace TLD_Twitch_Integration
 			var allow = AllowStatusStink && Enabled;
 			SetFieldVisible(nameof(StinkLines), allow);
 			SetFieldVisible(nameof(StinkTime), allow);
+		}
+
+		private void RefreshInventoryTeamNoPantsFields()
+		{
+			var allow = AllowTeamNoPants && Enabled;
+			SetFieldVisible(nameof(AllowPantsPickup), allow);
+		}
+
+		private void RefreshInventoryDropTorchFields()
+		{
+			var allow = AllowDropTorch && Enabled;
+			SetFieldVisible(nameof(AllowTorchPickup), allow);
+		}
+
+		private void RefreshInventoryDropItemFields()
+		{
+			var allow = AllowDropItem && Enabled;
+			SetFieldVisible(nameof(AllowItemPickup), allow);
 		}
 
 		private void RefreshInventoryBowFields()
