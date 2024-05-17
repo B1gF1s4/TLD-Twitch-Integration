@@ -224,10 +224,10 @@ namespace TLD_Twitch_Integration
 					return ExecuteStinkRedeem(redeem);
 
 				case RedeemNames.INVENTORY_NO_PANTS:
-					return ExecuteTeamNoPantsRedeem(redeem);
+					return CommandDefaults.CmdInventoryNoPants.Execute(redeem);
 
 				case RedeemNames.INVENTORY_DROP_TORCH:
-					return ExecuteDropTorchRedeem(redeem);
+					return CommandDefaults.CmdInventoryDropTorch.Execute(redeem);
 
 				case RedeemNames.INVENTORY_BOW:
 					return ExecuteBowRedeem(redeem);
@@ -580,35 +580,6 @@ namespace TLD_Twitch_Integration
 			GameService.StinkStart = DateTime.UtcNow;
 
 			return $"{redeem.UserName} redeemed '{redeem.CustomReward?.Title}' -> not active for {Settings.ModSettings.StinkTime}s";
-		}
-
-		private static string ExecuteTeamNoPantsRedeem(Redemption redeem)
-		{
-			if (!Settings.ModSettings.AllowTeamNoPants)
-				throw new RequiresRedeemRefundException("Team NoPatns redeem is currently disabled.");
-
-			if (GameService.IsMenuOpen())
-				return "";
-
-			GameService.ShouldDropPants = true;
-
-			return $"{redeem.UserName} redeemed '{redeem.CustomReward?.Title}'";
-		}
-
-		private static string ExecuteDropTorchRedeem(Redemption redeem)
-		{
-			if (!Settings.ModSettings.AllowDropTorch)
-				throw new RequiresRedeemRefundException("Drop torch redeem is currently disabled.");
-
-			if (!GameService.HasTorchLikeInInventory)
-				throw new RequiresRedeemRefundException("Player doesnt have a torch or flare in inventory.");
-
-			if (GameService.IsMenuOpen())
-				return "";
-
-			GameService.ShouldDropTorch = true;
-
-			return $"{redeem.UserName} redeemed '{redeem.CustomReward?.Title}'";
 		}
 
 		private static string ExecuteBowRedeem(Redemption redeem)

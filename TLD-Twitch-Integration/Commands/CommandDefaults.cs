@@ -11,6 +11,8 @@
 
 		public static CmdInventoryDropItem CmdInventoryDropItem { get; set; } = new();
 		public static CmdInventoryStim CmdInventoryStim { get; set; } = new();
+		public static CmdInventoryDropTorch CmdInventoryDropTorch { get; set; } = new();
+		public static CmdInventoryNoPants CmdInventoryNoPants { get; set; } = new();
 
 		public static void Init()
 		{
@@ -20,12 +22,13 @@
 			Commands.Add(CmdAnimalTWolves);
 			Commands.Add(CmdInventoryDropItem);
 			Commands.Add(CmdInventoryStim);
+			Commands.Add(CmdInventoryDropTorch);
+			Commands.Add(CmdInventoryNoPants);
 
 			foreach (var cmd in Commands)
 			{
 				cmd.AddToConsole();
 			}
 		}
-
 	}
 }

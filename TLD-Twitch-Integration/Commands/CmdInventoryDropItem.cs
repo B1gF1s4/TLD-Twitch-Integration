@@ -14,7 +14,7 @@ namespace TLD_Twitch_Integration.Commands
 
 		public override string Execute(Redemption? redeem = null)
 		{
-			if (!Settings.ModSettings.AllowSteppedStim)
+			if (!Settings.ModSettings.AllowDropItem)
 				throw new RequiresRedeemRefundException(
 					"Drop item redeem is currently disabled.");
 
