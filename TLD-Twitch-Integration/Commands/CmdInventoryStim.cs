@@ -1,22 +1,18 @@
 ﻿using Il2Cpp;
 using TLD_Twitch_Integration.Exceptions;
+using TLD_Twitch_Integration.Game;
 using TLD_Twitch_Integration.Twitch.Models;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
 namespace TLD_Twitch_Integration.Commands
 {
-	public static class CmdInventoryStim
+    public class CmdInventoryStim : CommandBase
 	{
-		public static void AddCommandToConsole()
-		{
-			uConsole.RegisterCommand("tti_inventory_stim", new Action(() =>
-			{
-				Execute();
-			}));
-		}
+		public CmdInventoryStim() : base("tti_inventory_stim")
+		{ }
 
-		public static string Execute(Redemption? redeem = null)
+		public override string Execute(Redemption? redeem = null)
 		{
 			if (!Settings.ModSettings.AllowSteppedStim)
 				throw new RequiresRedeemRefundException(

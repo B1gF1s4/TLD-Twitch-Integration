@@ -1,9 +1,10 @@
 ﻿using HarmonyLib;
 using Il2Cpp;
+using TLD_Twitch_Integration.Game;
 
 namespace TLD_Twitch_Integration.Patches
 {
-	[HarmonyPatch(typeof(WeatherTransition), nameof(WeatherTransition.Update))]
+    [HarmonyPatch(typeof(WeatherTransition), nameof(WeatherTransition.Update))]
 	internal class WeatherTransitionUpdatePatch
 	{
 		internal static void Prefix()

@@ -18,10 +18,7 @@ namespace TLD_Twitch_Integration
 			Directory.CreateDirectory(Path.Combine(
 				MelonEnvironment.ModsDirectory, BaseDirectory));
 
-			CmdAnimalBigGame.AddCommandToConsole();
-			CmdAnimalTWolves.AddCommandToConsole();
-			CmdAnimalStalkingWolf.AddCommandToConsole();
-			CmdAnimalBunnyExplosion.AddCommandToConsole();
+			CommandDefaults.Init();
 
 			Settings.OnLoad();
 			await AuthService.OnLoad();

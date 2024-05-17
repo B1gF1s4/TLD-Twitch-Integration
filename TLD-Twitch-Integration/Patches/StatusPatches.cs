@@ -1,11 +1,12 @@
 ﻿using HarmonyLib;
 using Il2Cpp;
 using MelonLoader;
+using TLD_Twitch_Integration.Game;
 using static TLD_Twitch_Integration.ExecutionService;
 
 namespace TLD_Twitch_Integration.Patches
 {
-	[HarmonyPatch(typeof(PlayerManager), nameof(PlayerManager.Update))]
+    [HarmonyPatch(typeof(PlayerManager), nameof(PlayerManager.Update))]
 	internal class PlayerManagerUpdatePatch
 	{
 		internal static void Postfix()

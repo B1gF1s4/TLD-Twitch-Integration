@@ -1,23 +1,18 @@
-﻿using Il2Cpp;
-using TLD_Twitch_Integration.Exceptions;
+﻿using TLD_Twitch_Integration.Exceptions;
+using TLD_Twitch_Integration.Game;
 using TLD_Twitch_Integration.Twitch.Models;
 
 namespace TLD_Twitch_Integration.Commands
 {
-	public static class CmdInventoryDropItem
+	public class CmdInventoryDropItem : CommandBase
 	{
 
-		private static Random random = new();
+		private readonly Random random = new();
 
-		public static void AddCommandToConsole()
-		{
-			uConsole.RegisterCommand("tti_inventory_random", new Action(() =>
-			{
-				Execute();
-			}));
-		}
+		public CmdInventoryDropItem() : base("tti_inventory_random")
+		{ }
 
-		public static string Execute(Redemption? redeem = null)
+		public override string Execute(Redemption? redeem = null)
 		{
 			if (!Settings.ModSettings.AllowSteppedStim)
 				throw new RequiresRedeemRefundException(
@@ -32,6 +27,8 @@ namespace TLD_Twitch_Integration.Commands
 
 			var gearItem =
 				GameService.GearItems[random.Next(0, GameService.GearItems.Count - 1)];
+
+			GameService.PlayPlayerSound("PLAY_FEARAFFLICTION");
 
 			var droppedItem = gearItem.Drop(1, true, false, true);
 

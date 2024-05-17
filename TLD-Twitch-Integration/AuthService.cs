@@ -15,8 +15,8 @@ namespace TLD_Twitch_Integration
 			Connected
 		}
 
-		public static string ClientId { get; set; } = "kgpiz5p809sncyzuh770wikis8t9no";
-		public static string ClientSecret { get; set; } = "40v7bdedi0vss1mr9r2y3k3y0fqoz9";
+		public static string ClientId { get; set; } = "";
+		public static string ClientSecret { get; set; } = "";
 
 		public static ConnectionStatus Status { get; private set; }
 

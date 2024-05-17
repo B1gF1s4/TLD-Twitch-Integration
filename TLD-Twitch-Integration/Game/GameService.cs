@@ -1,7 +1,7 @@
 ﻿using Il2Cpp;
 using static TLD_Twitch_Integration.ExecutionService;
 
-namespace TLD_Twitch_Integration
+namespace TLD_Twitch_Integration.Game
 {
 	public static class GameService
 	{
@@ -46,8 +46,6 @@ namespace TLD_Twitch_Integration
 		public static bool ShouldDropPants { get; set; }
 		public static bool ShouldDropTorch { get; set; }
 		public static bool ShouldAddBow { get; set; }
-		public static GearItem? RandomItemToDrop { get; set; }
-		public static string? LastItemDropped { get; set; }
 
 		public static void Update()
 		{

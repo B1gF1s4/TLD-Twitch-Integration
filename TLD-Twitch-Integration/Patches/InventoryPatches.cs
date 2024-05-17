@@ -1,5 +1,6 @@
 ﻿using HarmonyLib;
 using Il2Cpp;
+using TLD_Twitch_Integration.Game;
 
 namespace TLD_Twitch_Integration.Patches
 {
@@ -74,17 +75,6 @@ namespace TLD_Twitch_Integration.Patches
 				GameService.PlayPlayerSound("PLAY_FEATUNLOCKED");
 
 				GameService.ShouldAddBow = false;
-			}
-
-			if (GameService.RandomItemToDrop != null)
-			{
-				GameService.PlayPlayerSound("PLAY_FEARAFFLICTION");
-
-				var droppedItem = GameService.RandomItemToDrop.Drop(1, true, false, true);
-				droppedItem.enabled = false;
-
-				GameService.LastItemDropped = GameService.RandomItemToDrop.name;
-				GameService.RandomItemToDrop = null;
 			}
 		}
 	}

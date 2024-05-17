@@ -2,6 +2,7 @@
 using MelonLoader;
 using TLD_Twitch_Integration.Commands;
 using TLD_Twitch_Integration.Exceptions;
+using TLD_Twitch_Integration.Game;
 using TLD_Twitch_Integration.Twitch;
 using TLD_Twitch_Integration.Twitch.Models;
 using TLD_Twitch_Integration.Twitch.Redeems;
@@ -66,6 +67,9 @@ namespace TLD_Twitch_Integration
 				return;
 
 			if (GameManager.m_IsPaused)
+				return;
+
+			if (Utils.IsSceneTransition())
 				return;
 
 			if (!RedemptionService.HasOpenRedeems)
@@ -187,16 +191,16 @@ namespace TLD_Twitch_Integration
 					return ExecuteWeatherAurora(redeem);
 
 				case RedeemNames.ANIMAL_T_WOLVES:
-					return CmdAnimalTWolves.Execute(redeem);
+					return CommandDefaults.CmdAnimalTWolves.Execute(redeem);
 
 				case RedeemNames.ANIMAL_BIG_GAME:
-					return CmdAnimalBigGame.Execute(redeem);
+					return CommandDefaults.CmdAnimalBigGame.Execute(redeem);
 
 				case RedeemNames.ANIMAL_STALKING_WOLF:
-					return CmdAnimalStalkingWolf.Execute(redeem);
+					return CommandDefaults.CmdAnimalStalkingWolf.Execute(redeem);
 
 				case RedeemNames.ANIMAL_BUNNY_EXPLOSION:
-					return CmdAnimalBunnyExplosion.Execute(redeem);
+					return CommandDefaults.CmdAnimalBunnyExplosion.Execute(redeem);
 
 				case RedeemNames.STATUS_HELP:
 					return ExecuteStatusHelpRedeem(redeem);
@@ -229,10 +233,10 @@ namespace TLD_Twitch_Integration
 					return ExecuteBowRedeem(redeem);
 
 				case RedeemNames.INVENTORY_STEPPED_STIM:
-					return CmdInventoryStim.Execute(redeem);
+					return CommandDefaults.CmdInventoryStim.Execute(redeem);
 
 				case RedeemNames.INVENTORY_DROP_ITEM:
-					return ExecuteDropItemRedeem(redeem);
+					return CommandDefaults.CmdInventoryDropItem.Execute(redeem);
 
 				case RedeemNames.WEATHER_TIME:
 					return ExecuteTimeRedeem(redeem);
@@ -618,25 +622,6 @@ namespace TLD_Twitch_Integration
 			GameService.ShouldAddBow = true;
 
 			return $"{redeem.UserName} redeemed '{redeem.CustomReward?.Title}' -> {Settings.ModSettings.ArrowCount} arrows added";
-		}
-
-		private static string ExecuteDropItemRedeem(Redemption redeem)
-		{
-			if (!Settings.ModSettings.AllowDropItem)
-				throw new RequiresRedeemRefundException("Drop item redeem is currently disabled.");
-
-			if (GameService.IsMenuOpen())
-				return "";
-
-			if (GameService.GearItems.Count <= 0)
-				throw new RequiresRedeemRefundException("Player has no items in inventory.");
-
-			Random random = new();
-			var gearItem = GameService.GearItems[random.Next(0, GameService.GearItems.Count - 1)];
-
-			GameService.RandomItemToDrop = gearItem;
-
-			return $"{redeem.UserName} redeemed '{redeem.CustomReward?.Title}' -> {gearItem.name.Replace("GEAR_", "")}";
 		}
 
 		private static string ExecuteTimeRedeem(Redemption redeem)

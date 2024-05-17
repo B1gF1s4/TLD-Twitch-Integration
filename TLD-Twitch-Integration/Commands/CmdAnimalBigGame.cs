@@ -1,22 +1,16 @@
-﻿using Il2Cpp;
-using TLD_Twitch_Integration.Exceptions;
+﻿using TLD_Twitch_Integration.Exceptions;
 using TLD_Twitch_Integration.Game;
 using TLD_Twitch_Integration.Twitch.Models;
 
 namespace TLD_Twitch_Integration.Commands
 {
-	public static class CmdAnimalBigGame
+    public class CmdAnimalBigGame : CommandBase
 	{
 
-		public static void AddCommandToConsole()
-		{
-			uConsole.RegisterCommand("tti_animal_big", new Action(() =>
-			{
-				Execute();
-			}));
-		}
+		public CmdAnimalBigGame() : base("tti_animal_big")
+		{ }
 
-		public static string Execute(Redemption? redeem = null)
+		public override string Execute(Redemption? redeem = null)
 		{
 			if (!Settings.ModSettings.AllowBigGame)
 				throw new RequiresRedeemRefundException(

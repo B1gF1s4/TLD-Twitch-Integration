@@ -1,21 +1,15 @@
-﻿using Il2Cpp;
-using TLD_Twitch_Integration.Exceptions;
+﻿using TLD_Twitch_Integration.Exceptions;
 using TLD_Twitch_Integration.Game;
 using TLD_Twitch_Integration.Twitch.Models;
 
 namespace TLD_Twitch_Integration.Commands
 {
-	public static class CmdAnimalTWolves
+    public class CmdAnimalTWolves : CommandBase
 	{
-		public static void AddCommandToConsole()
-		{
-			uConsole.RegisterCommand("tti_animal_twolf", new Action(() =>
-			{
-				Execute();
-			}));
-		}
+		public CmdAnimalTWolves() : base("tti_animal_twolf")
+		{ }
 
-		public static string Execute(Redemption? redeem = null)
+		public override string Execute(Redemption? redeem = null)
 		{
 			if (!Settings.ModSettings.AllowTWolves)
 				throw new RequiresRedeemRefundException(

@@ -1,21 +1,15 @@
-﻿using Il2Cpp;
-using TLD_Twitch_Integration.Exceptions;
+﻿using TLD_Twitch_Integration.Exceptions;
 using TLD_Twitch_Integration.Game;
 using TLD_Twitch_Integration.Twitch.Models;
 
 namespace TLD_Twitch_Integration.Commands
 {
-	public static class CmdAnimalStalkingWolf
+    public class CmdAnimalStalkingWolf : CommandBase
 	{
-		public static void AddCommandToConsole()
-		{
-			uConsole.RegisterCommand("tti_animal_wolf", new Action(() =>
-			{
-				Execute();
-			}));
-		}
+		public CmdAnimalStalkingWolf() : base("tti_animal_wolf")
+		{ }
 
-		public static string Execute(Redemption? redeem = null)
+		public override string Execute(Redemption? redeem = null)
 		{
 			if (!Settings.ModSettings.AllowStalkingWolf)
 				throw new RequiresRedeemRefundException(
@@ -45,6 +39,5 @@ namespace TLD_Twitch_Integration.Commands
 
 			return alert;
 		}
-
 	}
 }

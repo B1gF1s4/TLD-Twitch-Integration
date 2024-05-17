@@ -1,21 +1,15 @@
-﻿using Il2Cpp;
-using TLD_Twitch_Integration.Exceptions;
+﻿using TLD_Twitch_Integration.Exceptions;
 using TLD_Twitch_Integration.Game;
 using TLD_Twitch_Integration.Twitch.Models;
 
 namespace TLD_Twitch_Integration.Commands
 {
-	public static class CmdAnimalBunnyExplosion
+    public class CmdAnimalBunnyExplosion : CommandBase
 	{
-		public static void AddCommandToConsole()
-		{
-			uConsole.RegisterCommand("tti_animal_bunny", new Action(() =>
-			{
-				Execute();
-			}));
-		}
+		public CmdAnimalBunnyExplosion() : base("tti_animal_bunny")
+		{ }
 
-		public static string Execute(Redemption? redeem = null)
+		public override string Execute(Redemption? redeem = null)
 		{
 			if (!Settings.ModSettings.AllowBunnyExplosion)
 				throw new RequiresRedeemRefundException(
