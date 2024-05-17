@@ -40,6 +40,8 @@ To log out for example to connect a different twitch account go to the mods data
 
 ## Credits
 
+[B1gF1s4](https://www.twitch.tv/b1gf1s4) streams this regularly on twitch
+
 [ChefMaria](https://www.twitch.tv/chefmaria) banger ideas
 
 [NeilsClark](https://www.youtube.com/@ProfNeils) art work
