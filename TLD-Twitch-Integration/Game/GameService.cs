@@ -35,8 +35,6 @@ namespace TLD_Twitch_Integration.Game
 		public static DateTime StinkStart { get; set; }
 		public static float StinkValue { get; set; }
 
-		public static bool ShouldAddBow { get; set; }
-
 		public static void Update()
 		{
 			IsInBuilding = GetIsInBuilding();

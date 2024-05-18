@@ -314,7 +314,8 @@ namespace TLD_Twitch_Integration
 		public bool AllowSteppedStim = true;
 
 
-		[Name("Enable Weapon")]
+		[Section("Inventory: Weapon")]
+		[Name("Enable")]
 		[Description($"Enable or disable {RedeemNames.INVENTORY_WEAPON} redeem")]
 		public bool AllowWeapon = true;
 
@@ -409,7 +410,7 @@ namespace TLD_Twitch_Integration
 			if (field.Name == nameof(AllowDropTorch))
 				RefreshInventoryDropTorchFields();
 
-			if (field.Name == nameof(AllowItemPickup))
+			if (field.Name == nameof(AllowDropItem))
 				RefreshInventoryDropItemFields();
 
 			if (field.Name == nameof(AllowWeapon))

@@ -47,28 +47,41 @@ namespace TLD_Twitch_Integration.Commands
 			}
 
 			var inv = GameManager.GetInventoryComponent() ??
-					throw new RequiresRedeemRefundException("Inventory not accessable.");
+					throw new RequiresRedeemRefundException(
+						"Inventory not accessable.");
 
 			GameService.PlayPlayerSound("PLAY_FEATUNLOCKED");
 
 			switch (weaponToSpawn)
 			{
 				case "bow":
+					if (!Settings.ModSettings.AllowWeaponBow)
+						throw new RequiresRedeemRefundException(
+							"Bow is currently disabled.");
 					ConsoleManager.CONSOLE_bow();
 					inv.RemoveGearFromInventory("GEAR_Arrow",
 						100 - Settings.ModSettings.ArrowCount);
 					break;
 				case "rifle":
+					if (!Settings.ModSettings.AllowWeaponRifle)
+						throw new RequiresRedeemRefundException(
+							"Rifle is currently disabled.");
 					ConsoleManager.CONSOLE_rifle();
 					inv.RemoveGearFromInventory("GEAR_RifleAmmoSingle",
 						(100 + RifleBulletCapacity) - Settings.ModSettings.RifleBulletCount);
 					break;
 				case "revolver":
+					if (!Settings.ModSettings.AllowWeaponRevolver)
+						throw new RequiresRedeemRefundException(
+							"Revolver is currently disabled.");
 					ConsoleManager.CONSOLE_revolver();
 					inv.RemoveGearFromInventory("GEAR_RevolverAmmoSingle",
 						(100 + RevolverBulletCapacity) - Settings.ModSettings.RevolverBulletCount);
 					break;
 				case "flaregun":
+					if (!Settings.ModSettings.AllowWeaponFlaregun)
+						throw new RequiresRedeemRefundException(
+							"Flaregun is currently disabled.");
 					ConsoleManager.CONSOLE_flaregun();
 					inv.RemoveGearFromInventory("GEAR_FlareGunAmmoSingle",
 						(100 + FlaregunShellCapacity) - Settings.ModSettings.ShellCount);

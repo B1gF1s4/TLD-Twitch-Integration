@@ -36,7 +36,7 @@ namespace TLD_Twitch_Integration.Game
 			if (GameService.StatusMeterToChange != StatusMeter.None)
 			{
 				GameService.ChangeMeter(GameService.StatusMeterToChange,
-				GameService.IsHelpfulStatusMeterChange);
+					GameService.IsHelpfulStatusMeterChange);
 
 				GameService.StatusMeterToChange = StatusMeter.None;
 			}
