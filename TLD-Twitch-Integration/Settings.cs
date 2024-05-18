@@ -1,5 +1,6 @@
 ﻿using ModSettings;
 using System.Reflection;
+using TLD_Twitch_Integration.Commands;
 using TLD_Twitch_Integration.Twitch.Redeems;
 
 namespace TLD_Twitch_Integration
@@ -33,8 +34,7 @@ namespace TLD_Twitch_Integration
 		// General
 
 		[Section("General")]
-
-		[Name("Enabled")]
+		[Name("Enable")]
 		[Description("Enable or disable TTI")]
 		public bool Enabled = false;
 
@@ -42,266 +42,326 @@ namespace TLD_Twitch_Integration
 		[Description("Enable or disable TTIs UI components")]
 		public bool ShowAlert = true;
 
+
 		// TTI Animal
 
-		[Section("Animals")]
-
-		[Name("Enable T-Wolves")]
+		[Section($"Animal: T-Wolves")]
+		[Name("Enable")]
 		[Description($"Enable or disable {RedeemNames.ANIMAL_T_WOLVES} redeem")]
 		public bool AllowTWolves = true;
 
-		[Name("      T-Wolf Spawn Distance")]
+		[Name("Spawn Distance")]
 		[Description($"How far to spawn T-Wolves in front of you")]
 		[Slider(0.5f, 50.0f)]
 		public float DistanceTWolf = 15.0f;
 
-		[Name("Enable Big Game")]
+
+		[Section($"Animal: Big Game")]
+		[Name("Enable")]
 		[Description($"Enable or disable {RedeemNames.ANIMAL_BIG_GAME} redeem")]
 		public bool AllowBigGame = true;
 
-		[Name("      Allow Bear")]
+		[Name("Allow Bear")]
 		[Description($"Enable or disable 'bear' for the {RedeemNames.ANIMAL_BIG_GAME} redeem")]
 		public bool AllowBigGameBear = true;
 
-		[Name("      Bear Spawn Distance")]
+		[Name("Bear Spawn Distance")]
 		[Description($"How far to spawn Bear in front of you")]
 		[Slider(0.5f, 50.0f)]
 		public float DistanceBear = 30.0f;
 
-		[Name("      Allow Moose")]
+		[Name("Allow Moose")]
 		[Description($"Enable or disable 'moose' for the {RedeemNames.ANIMAL_BIG_GAME} redeem")]
 		public bool AllowBigGameMoose = true;
 
-		[Name("      Moose Spawn Distance")]
+		[Name("Moose Spawn Distance")]
 		[Description($"How far to spawn Moose in front of you")]
 		[Slider(0.5f, 50.0f)]
 		public float DistanceMoose = 40.0f;
 
-		[Name("Enable Stalking Wolf")]
+
+		[Section($"Animal: Stalking Wolf")]
+		[Name("Enable")]
 		[Description($"Enable or disable {RedeemNames.ANIMAL_STALKING_WOLF} redeem")]
 		public bool AllowStalkingWolf = true;
 
-		[Name("      Stalking Wolf Distance")]
+		[Name("Spawn Distance")]
 		[Description($"How far to spawn Stalking Wolf behind you")]
 		[Slider(0.5f, 50.0f)]
 		public float DistanceStalkingWolf = 18.0f;
 
-		[Name("Enable Bunny Explosion")]
+
+		[Section($"Animal: Bunny Explosion")]
+		[Name("Enable")]
 		[Description($"Enable or disable {RedeemNames.ANIMAL_BUNNY_EXPLOSION} redeem")]
 		public bool AllowBunnyExplosion = true;
 
-		[Name("      Bunny Count")]
+		[Name("Bunny Count")]
 		[Description($"How many Bunnies to spawn")]
 		[Slider(5, 50)]
 		public int BunnyCount = 20;
 
+
 		// TTI Weather
 
-		[Section("Weather")]
-
-		[Name("Enable Weather Help")]
+		[Section("Weather: Help")]
+		[Name("Enable")]
 		[Description($"Enable or disable {RedeemNames.WEATHER_HELP} redeem")]
 		public bool AllowWeatherHelp = true;
 
-		[Name("      Allow Weather Clear")]
+		[Name("Allow Clear")]
 		[Description($"Enable or disable 'clear' for the {RedeemNames.WEATHER_HELP} redeem")]
 		public bool AllowWeatherHelpClear = true;
 
-		[Name("      Allow Weather Light Fog")]
+		[Name("Allow Light Fog")]
 		[Description($"Enable or disable 'light fog' for the {RedeemNames.WEATHER_HELP} redeem")]
 		public bool AllowWeatherHelpFog = true;
 
-		[Name("      Allow Weather Light Snow")]
+		[Name("Allow Light Snow")]
 		[Description($"Enable or disable 'light snow' for the {RedeemNames.WEATHER_HELP} redeem")]
 		public bool AllowWeatherHelpSnow = true;
 
-		[Name("      Allow Weather Cloudy")]
+		[Name("Allow Cloudy")]
 		[Description($"Enable or disable 'cloudy' for the {RedeemNames.WEATHER_HELP} redeem")]
 		public bool AllowWeatherHelpCloudy = true;
 
-		[Name("Enable Weather Harm")]
+
+		[Section("Weather: Harm")]
+		[Name("Enable")]
 		[Description($"Enable or disable {RedeemNames.WEATHER_HARM} redeem")]
 		public bool AllowWeatherHarm = true;
 
-		[Name("      Allow Weather Blizzard")]
+		[Name("Allow Blizzard")]
 		[Description($"Enable or disable 'blizzard' for the {RedeemNames.WEATHER_HARM} redeem")]
 		public bool AllowWeatherHarmBlizzard = true;
 
-		[Name("     Allow Weather Dense Fog")]
+		[Name("Allow Dense Fog")]
 		[Description($"Enable or disable 'dense fog' for the {RedeemNames.WEATHER_HARM} redeem")]
 		public bool AllowWeatherHarmFog = true;
 
-		[Name("     Allow Weather Heavy Snow")]
+		[Name("Allow Heavy Snow")]
 		[Description($"Enable or disable 'heavy snow' for the {RedeemNames.WEATHER_HARM} redeem")]
 		public bool AllowWeatherHarmSnow = true;
 
-		[Name("Enable Aurora")]
+
+		[Section("Weather: Aurora")]
+		[Name("Enable")]
 		[Description($"Enable or disable {RedeemNames.WEATHER_AURORA} redeem")]
 		public bool AllowWeatherAurora = true;
 
-		[Name("Enable Day/Night Toggle")]
+
+		[Section("Weather: Day / Night Toggle")]
+		[Name("Enable")]
 		[Description($"Enable or disable {RedeemNames.WEATHER_TIME} redeem")]
 		public bool AllowTime = true;
 
+
 		// TTI Status
 
-		[Section("Status")]
-
-		[Name("Enable Status Help")]
+		[Section("Status: Help")]
+		[Name("Enable")]
 		[Description($"Enable or disable {RedeemNames.STATUS_HELP} redeem")]
 		public bool AllowStatusHelp = true;
 
-		[Name("      Allow Status Warm")]
+		[Name("Allow Warm")]
 		[Description($"Enable or disable 'cold' for the {RedeemNames.STATUS_HELP} redeem")]
 		public bool AllowStatusHelpWarm = true;
 
-		[Name("      Allow Status Awake")]
+		[Name("Allow Awake")]
 		[Description($"Enable or disable 'fatigue' for the {RedeemNames.STATUS_HELP} redeem")]
 		public bool AllowStatusHelpAwake = true;
 
-		[Name("      Allow Status Not Thirsy")]
+		[Name("Allow Not Thirsy")]
 		[Description($"Enable or disable 'thirst' for the {RedeemNames.STATUS_HELP} redeem")]
 		public bool AllowStatusHelpNotThirsty = true;
 
-		[Name("      Allow Status Full")]
+		[Name("Allow Full")]
 		[Description($"Enable or disable 'hunger' for the {RedeemNames.STATUS_HELP} redeem")]
 		public bool AllowStatusHelpFull = true;
 
-		[Name("      Status Help Value")]
-		[Description("Value helpful status redeems set the meter to.")]
+		[Name("Help Value")]
+		[Description("Value, helpful status redeems set the meter to.")]
 		[Slider(0, 100)]
 		public int StatusHelpValue = 90;
 
-		[Name("Enable Status Harm")]
+
+		[Section("Status: Harm")]
+		[Name("Enable")]
 		[Description($"Enable or disable {RedeemNames.STATUS_HARM} redeem")]
 		public bool AllowStatusHarm = true;
 
-		[Name("      Allow Status Freezing")]
+		[Name("Allow Freezing")]
 		[Description($"Enable or disable 'cold' for the {RedeemNames.STATUS_HARM} redeem")]
 		public bool AllowStatusHarmFreezing = true;
 
-		[Name("      Allow Status Tired")]
+		[Name("Allow Tired")]
 		[Description($"Enable or disable 'fatigue' for the {RedeemNames.STATUS_HARM} redeem")]
 		public bool AllowStatusHarmTired = true;
 
-		[Name("      Allow Status Thirsy")]
+		[Name("Allow Thirsy")]
 		[Description($"Enable or disable 'thirst' for the {RedeemNames.STATUS_HARM} redeem")]
 		public bool AllowStatusHarmThirsty = true;
 
-		[Name("      Allow Status Hungry")]
+		[Name("Allow Hungry")]
 		[Description($"Enable or disable 'hunger' for the {RedeemNames.STATUS_HARM} redeem")]
 		public bool AllowStatusHarmHungry = true;
 
-		[Name("      Status Harm Value")]
+		[Name("Harm Value")]
 		[Description("Value harmful status redeems set the meter to.")]
 		[Slider(0, 100)]
 		public int StatusHarmValue = 10;
 
-		[Name("Enable Afflictions")]
+
+		[Section("Status: Afflictions")]
+		[Name("Enable")]
 		[Description($"Enable or disable {RedeemNames.STATUS_AFFLICTION} redeem")]
 		public bool AllowAfflictions = true;
 
-		[Name("      Allow Affliction Cabin Fever")]
+		[Name("Allow Cabin Fever")]
 		[Description($"Enable or disable 'cabin fever' as possible output")]
 		public bool AllowAfflictionCabinFever = true;
 
-		[Name("      Allow Affliction Dysentery")]
+		[Name("Allow Dysentery")]
 		[Description($"Enable or disable 'dysentery' as possible output")]
 		public bool AllowAfflictionDysentery = true;
 
-		[Name("      Allow Affliction Food Poisoning")]
+		[Name("Allow Food Poisoning")]
 		[Description($"Enable or disable 'food poisoning' as possible output")]
 		public bool AllowAfflictionFoodPoisoning = true;
 
-		[Name("      Allow Affliction Hypothermia")]
+		[Name("Allow Hypothermia")]
 		[Description($"Enable or disable 'hypothermia' as possible output")]
 		public bool AllowAfflictionHypothermia = true;
 
-		[Name("      Allow Affliction Parasites")]
+		[Name("Allow Parasites")]
 		[Description($"Enable or disable 'hypothermia' as possible output")]
 		public bool AllowAfflictionParasites = true;
 
-		[Name("Enable Bleeding")]
+
+		[Section("Status: Bleeding")]
+		[Name("Enable")]
 		[Description($"Enable or disable {RedeemNames.STATUS_BLEED} redeem")]
 		public bool AllowStatusBleeding = true;
 
-		[Name("Enable Sprains")]
+
+		[Section("Status: Sprains")]
+		[Name("Enable")]
 		[Description($"Enable or disable {RedeemNames.STATUS_SPRAIN} redeem")]
 		public bool AllowStatusSprain = true;
 
-		[Name("      Allow Sprained Wrists")]
+		[Name("Allow Wrists")]
 		[Description($"Enable or disable wrists for the {RedeemNames.STATUS_SPRAIN} redeem")]
 		public bool AllowStatusSprainWrists = true;
 
-		[Name("Enable Frostbites")]
+
+		[Section("Status: Frostbites")]
+		[Name("Enable")]
 		[Description($"Enable or disable {RedeemNames.STATUS_FROSTBITE} redeem")]
 		public bool AllowStatusFrostbite = true;
 
-		[Name("Enable Stink")]
+
+		[Section("Status: Stink")]
+		[Name("Enable")]
 		[Description($"Enable or disable {RedeemNames.STATUS_STINK} redeem")]
 		public bool AllowStatusStink = true;
 
-		[Name("      Stink Value")]
+		[Name("Value")]
 		[Description($"Amount of stink to get on the {RedeemNames.STATUS_STINK} redeem.")]
 		[Slider(1, 100)]
 		public int StinkLines = 90;
 
-		[Name("      Stink Time")]
+		[Name("Time")]
 		[Description($"Amount of seconds stink lines will be active on the {RedeemNames.STATUS_STINK} redeem.")]
 		[Slider(1, 600)]
 		public int StinkTime = 300;
 
+
 		// TTI Inventory
 
-		[Section("Inventory")]
-
-		[Name("Enable Team NoPants")]
+		[Section("Inventory: Team NoPants")]
+		[Name("Enable")]
 		[Description($"Enable or disable {RedeemNames.INVENTORY_NO_PANTS} redeem")]
 		public bool AllowTeamNoPants = true;
 
-		[Name("      Allow Pants Pickup")]
+		[Name("Allow Pickup")]
 		[Description($"Allow picking up pants.")]
 		public bool AllowPantsPickup = false;
 
-		[Name("Enable Drop Torch")]
+
+		[Section("Inventory: Drop Torch")]
+		[Name("Enable")]
 		[Description($"Enable or disable {RedeemNames.INVENTORY_DROP_TORCH} redeem")]
 		public bool AllowDropTorch = true;
 
-		[Name("      Allow Torch Pickup")]
+		[Name("Allow Pickup")]
 		[Description($"Allow picking up torch.")]
 		public bool AllowTorchPickup = false;
 
-		[Name("Enable Drop Item")]
+
+		[Section("Inventory: Drop random Item")]
+		[Name("Enable")]
 		[Description($"Enable or disable {RedeemNames.INVENTORY_DROP_ITEM} redeem")]
 		public bool AllowDropItem = true;
 
-		[Name("      Allow Item Pickup")]
+		[Name("Allow Pickup")]
 		[Description($"Allow picking up dropped items.")]
 		public bool AllowItemPickup = false;
 
-		[Name("Enable Stepped on Stim")]
+
+		[Section("Inventory: Stepped on Stim")]
+		[Name("Enable")]
 		[Description($"Enable or disable {RedeemNames.INVENTORY_STEPPED_STIM} redeem")]
 		public bool AllowSteppedStim = true;
 
-		[Name("Enable Bow")]
-		[Description($"Enable or disable {RedeemNames.INVENTORY_BOW} redeem")]
-		public bool AllowBow = true;
 
-		[Name("      Arrow Count")]
-		[Description($"Amount of arrows to get on the {RedeemNames.INVENTORY_BOW} redeem.")]
+		[Name("Enable Weapon")]
+		[Description($"Enable or disable {RedeemNames.INVENTORY_WEAPON} redeem")]
+		public bool AllowWeapon = true;
+
+		[Name("Allow Bow")]
+		[Description($"Allow 'bow' for the {RedeemNames.INVENTORY_WEAPON} redeem.")]
+		public bool AllowWeaponBow = true;
+
+		[Name("Arrow Count")]
+		[Description($"Amount of arrows to get on the {RedeemNames.INVENTORY_WEAPON} redeem.")]
 		[Slider(1, 30)]
 		public int ArrowCount = 15;
+
+		[Name("Allow Rifle")]
+		[Description($"Allow 'rifle' for the {RedeemNames.INVENTORY_WEAPON} redeem.")]
+		public bool AllowWeaponRifle = true;
+
+		[Name("Rifle Ammo")]
+		[Description($"Amount of rifle bullets to get on the {RedeemNames.INVENTORY_WEAPON} redeem.")]
+		[Slider(CmdInventoryWeapon.RifleBulletCapacity, 100)]
+		public int RifleBulletCount = 40;
+
+		[Name("Allow Revolver")]
+		[Description($"Allow 'revolver' for the {RedeemNames.INVENTORY_WEAPON} redeem.")]
+		public bool AllowWeaponRevolver = true;
+
+		[Name("Revolver Ammo")]
+		[Description($"Amount of revolver bullets to get on the {RedeemNames.INVENTORY_WEAPON} redeem.")]
+		[Slider(CmdInventoryWeapon.RevolverBulletCapacity, 100)]
+		public int RevolverBulletCount = 40;
+
+		[Name("Allow Flaregun")]
+		[Description($"Allow 'flaregun' for the {RedeemNames.INVENTORY_WEAPON} redeem.")]
+		public bool AllowWeaponFlaregun = true;
+
+		[Name("Shells")]
+		[Description($"Amount of flare shells to get on the {RedeemNames.INVENTORY_WEAPON} redeem.")]
+		[Slider(CmdInventoryWeapon.FlaregunShellCapacity, 20)]
+		public int ShellCount = 8;
 
 		// TTI Sounds
 
 		[Section("Sounds")]
-
 		[Name("Enable Happy 420")]
 		[Description($"Enable or disable {RedeemNames.SOUND_420} redeem")]
 		public bool AllowSound420 = false;
 
 		[Section("Dev")]
-
 		[Name("Enable Sound Check")]
 		[Description($"Enable or disable {RedeemNames.DEV_SOUND} redeem")]
 		public bool AllowDevSoundCheck = false;
@@ -352,8 +412,20 @@ namespace TLD_Twitch_Integration
 			if (field.Name == nameof(AllowItemPickup))
 				RefreshInventoryDropItemFields();
 
-			if (field.Name == nameof(AllowBow))
-				RefreshInventoryBowFields();
+			if (field.Name == nameof(AllowWeapon))
+				RefreshInventoryWeaponFields();
+
+			if (field.Name == nameof(AllowWeaponBow))
+				RefreshWeaponArrowFields();
+
+			if (field.Name == nameof(AllowWeaponRifle))
+				RefreshWeaponRifleAmmoFields();
+
+			if (field.Name == nameof(AllowWeaponRevolver))
+				RefreshWeaponRevolverAmmoFields();
+
+			if (field.Name == nameof(AllowWeaponFlaregun))
+				RefreshWeaponShellFields();
 
 			if (field.Name == nameof(AllowBigGame))
 				RefreshBigGameFields();
@@ -391,7 +463,7 @@ namespace TLD_Twitch_Integration
 			SetFieldVisible(nameof(AllowDropTorch), Enabled);
 			SetFieldVisible(nameof(AllowDropItem), Enabled);
 			SetFieldVisible(nameof(AllowSteppedStim), Enabled);
-			SetFieldVisible(nameof(AllowBow), Enabled);
+			SetFieldVisible(nameof(AllowWeapon), Enabled);
 			SetFieldVisible(nameof(AllowTWolves), Enabled);
 			SetFieldVisible(nameof(AllowBigGame), Enabled);
 			SetFieldVisible(nameof(AllowStalkingWolf), Enabled);
@@ -409,7 +481,11 @@ namespace TLD_Twitch_Integration
 			RefreshInventoryTeamNoPantsFields();
 			RefreshInventoryDropTorchFields();
 			RefreshInventoryDropItemFields();
-			RefreshInventoryBowFields();
+			RefreshInventoryWeaponFields();
+			RefreshWeaponArrowFields();
+			RefreshWeaponRifleAmmoFields();
+			RefreshWeaponRevolverAmmoFields();
+			RefreshWeaponShellFields();
 			RefreshBigGameFields();
 			RefreshTWolfFields();
 			RefreshStalkingWolfFields();
@@ -494,10 +570,41 @@ namespace TLD_Twitch_Integration
 			SetFieldVisible(nameof(AllowItemPickup), allow);
 		}
 
-		private void RefreshInventoryBowFields()
+		private void RefreshInventoryWeaponFields()
 		{
-			var allow = AllowBow && Enabled;
+			var allow = AllowWeapon && Enabled;
+			SetFieldVisible(nameof(AllowWeaponBow), allow);
+			SetFieldVisible(nameof(AllowWeaponRifle), allow);
+			SetFieldVisible(nameof(AllowWeaponRevolver), allow);
+			SetFieldVisible(nameof(AllowWeaponFlaregun), allow);
+			RefreshWeaponArrowFields();
+			RefreshWeaponRifleAmmoFields();
+			RefreshWeaponRevolverAmmoFields();
+			RefreshWeaponShellFields();
+		}
+
+		private void RefreshWeaponArrowFields()
+		{
+			var allow = AllowWeapon && AllowWeaponBow && Enabled;
 			SetFieldVisible(nameof(ArrowCount), allow);
+		}
+
+		private void RefreshWeaponRifleAmmoFields()
+		{
+			var allow = AllowWeapon && AllowWeaponRifle && Enabled;
+			SetFieldVisible(nameof(RifleBulletCount), allow);
+		}
+
+		private void RefreshWeaponRevolverAmmoFields()
+		{
+			var allow = AllowWeapon && AllowWeaponRevolver && Enabled;
+			SetFieldVisible(nameof(RevolverBulletCount), allow);
+		}
+
+		private void RefreshWeaponShellFields()
+		{
+			var allow = AllowWeapon && AllowWeaponFlaregun && Enabled;
+			SetFieldVisible(nameof(ShellCount), allow);
 		}
 
 		private void RefreshBigGameFields()
