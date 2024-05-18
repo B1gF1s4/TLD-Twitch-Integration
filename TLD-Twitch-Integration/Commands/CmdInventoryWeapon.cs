@@ -9,7 +9,7 @@ namespace TLD_Twitch_Integration.Commands
 	{
 		public const int RifleBulletCapacity = 10;
 		public const int RevolverBulletCapacity = 6;
-		public const int FlaregunShellCapacity = 6;
+		public const int FlaregunShellCapacity = 1;
 
 		public CmdInventoryWeapon() : base("tti_inventory_weapon")
 		{ }
