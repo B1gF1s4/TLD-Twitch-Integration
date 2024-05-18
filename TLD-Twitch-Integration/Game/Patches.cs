@@ -1,12 +1,34 @@
 ﻿using HarmonyLib;
 using Il2Cpp;
-using MelonLoader;
-using TLD_Twitch_Integration.Game;
 using static TLD_Twitch_Integration.ExecutionService;
 
-namespace TLD_Twitch_Integration.Patches
+namespace TLD_Twitch_Integration.Game
 {
-    [HarmonyPatch(typeof(PlayerManager), nameof(PlayerManager.Update))]
+	[HarmonyPatch(typeof(GameManager), nameof(GameManager.Update))]
+	internal class GameManagerUpdatePatch
+	{
+		internal static void Prefix()
+		{
+			if (ExecutionPending)
+				GameService.Update();
+		}
+	}
+
+	[HarmonyPatch(typeof(WeatherTransition), nameof(WeatherTransition.Update))]
+	internal class WeatherTransitionUpdatePatch
+	{
+
+		internal static void Postfix(WeatherTransition __instance)
+		{
+			if (GameService.WeatherToChange == WeatherStage.Undefined)
+				return;
+
+			__instance.ActivateWeatherSet(GameService.WeatherToChange);
+			GameService.WeatherToChange = WeatherStage.Undefined;
+		}
+	}
+
+	[HarmonyPatch(typeof(PlayerManager), nameof(PlayerManager.Update))]
 	internal class PlayerManagerUpdatePatch
 	{
 		internal static void Postfix()
@@ -33,7 +55,6 @@ namespace TLD_Twitch_Integration.Patches
 				if ((DateTime.UtcNow - GameService.StinkStart).TotalSeconds >=
 					Settings.ModSettings.StinkTime)
 				{
-					Melon<Mod>.Logger.Msg("time is up, stink is gone");
 					GameService.ShouldAddStink = false;
 				}
 			}

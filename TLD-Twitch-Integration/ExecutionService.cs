@@ -181,15 +181,6 @@ namespace TLD_Twitch_Integration
 		{
 			switch (defaultTitle)
 			{
-				case RedeemNames.WEATHER_HELP:
-					return ExecuteWeatherHelpRedeem(redeem);
-
-				case RedeemNames.WEATHER_HARM:
-					return ExecuteWeatherHarmRedeem(redeem);
-
-				case RedeemNames.WEATHER_AURORA:
-					return ExecuteWeatherAurora(redeem);
-
 				case RedeemNames.ANIMAL_T_WOLVES:
 					return CommandDefaults.CmdAnimalTWolves.Execute(redeem);
 
@@ -201,6 +192,18 @@ namespace TLD_Twitch_Integration
 
 				case RedeemNames.ANIMAL_BUNNY_EXPLOSION:
 					return CommandDefaults.CmdAnimalBunnyExplosion.Execute(redeem);
+
+				case RedeemNames.WEATHER_HELP:
+					return CommandDefaults.CmdWeatherHelp.Execute(redeem);
+
+				case RedeemNames.WEATHER_HARM:
+					return CommandDefaults.CmdWeatherHarm.Execute(redeem);
+
+				case RedeemNames.WEATHER_TIME:
+					return CommandDefaults.CmdWeatherTime.Execute(redeem);
+
+				case RedeemNames.WEATHER_AURORA:
+					return CommandDefaults.CmdWeatherAurora.Execute(redeem);
 
 				case RedeemNames.STATUS_HELP:
 					return ExecuteStatusHelpRedeem(redeem);
@@ -238,9 +241,6 @@ namespace TLD_Twitch_Integration
 				case RedeemNames.INVENTORY_DROP_ITEM:
 					return CommandDefaults.CmdInventoryDropItem.Execute(redeem);
 
-				case RedeemNames.WEATHER_TIME:
-					return ExecuteTimeRedeem(redeem);
-
 				case RedeemNames.SOUND_420:
 					GameService.PlayPlayerSound("PLAY_SUFFOCATIONCOUGH");
 					return $"{redeem.UserName} redeemed '{redeem.CustomReward?.Title}'";
@@ -253,102 +253,6 @@ namespace TLD_Twitch_Integration
 					Melon<Mod>.Logger.Error($"redeem operation not supported - {defaultTitle}");
 					throw new RequiresRedeemRefundException("Redeem not found.");
 			}
-		}
-
-		private static string ExecuteWeatherHelpRedeem(Redemption redeem)
-		{
-			if (!Settings.ModSettings.AllowWeatherHelp)
-				throw new RequiresRedeemRefundException("Weather help redeem is currently disabled.");
-
-			if (!Settings.ModSettings.AllowWeatherHelpClear &&
-				!Settings.ModSettings.AllowWeatherHelpCloudy &&
-				!Settings.ModSettings.AllowWeatherHelpFog &&
-				!Settings.ModSettings.AllowWeatherHelpSnow)
-				throw new RequiresRedeemRefundException("All weather types for the weather help redeem are currently disabled.");
-
-			if (GameService.IsInBuilding)
-				return "";
-
-			var defaultWeatherHelp = Settings.ModSettings.AllowWeatherHelpClear ? WeatherStage.Clear :
-				Settings.ModSettings.AllowWeatherHelpFog ? WeatherStage.LightFog :
-				Settings.ModSettings.AllowWeatherHelpSnow ? WeatherStage.LightSnow : WeatherStage.PartlyCloudy;
-
-			var userInputWeatherHelp = string.IsNullOrEmpty(redeem.UserInput) ?
-				defaultWeatherHelp.ToString().ToLower() : redeem.UserInput.ToLower();
-
-			var weatherHelpToSet = userInputWeatherHelp.Contains("clear") ? WeatherStage.Clear :
-				userInputWeatherHelp.Contains("fog") ? WeatherStage.LightFog :
-				userInputWeatherHelp.Contains("snow") ? WeatherStage.LightSnow :
-				userInputWeatherHelp.Contains("cloudy") ? WeatherStage.PartlyCloudy : defaultWeatherHelp;
-
-			if (weatherHelpToSet == WeatherStage.Clear && !Settings.ModSettings.AllowWeatherHelpClear)
-				weatherHelpToSet = defaultWeatherHelp;
-
-			if (weatherHelpToSet == WeatherStage.LightFog && !Settings.ModSettings.AllowWeatherHelpFog)
-				weatherHelpToSet = defaultWeatherHelp;
-
-			if (weatherHelpToSet == WeatherStage.LightSnow && !Settings.ModSettings.AllowWeatherHelpSnow)
-				weatherHelpToSet = defaultWeatherHelp;
-
-			if (weatherHelpToSet == WeatherStage.PartlyCloudy && !Settings.ModSettings.AllowWeatherHelpCloudy)
-				weatherHelpToSet = defaultWeatherHelp;
-
-			GameService.WeatherToChange = weatherHelpToSet;
-
-			return $"{redeem.UserName} redeemed '{redeem.CustomReward?.Title}' -> {weatherHelpToSet}";
-		}
-
-		private static string ExecuteWeatherHarmRedeem(Redemption redeem)
-		{
-			if (!Settings.ModSettings.AllowWeatherHarm)
-				throw new RequiresRedeemRefundException("Weather harm redeem is currently disabled.");
-
-			if (!Settings.ModSettings.AllowWeatherHarmBlizzard &&
-				!Settings.ModSettings.AllowWeatherHarmFog &&
-				!Settings.ModSettings.AllowWeatherHarmSnow)
-				throw new RequiresRedeemRefundException("All weather types for the weather harm redeem are currently disabled.");
-
-			if (GameService.IsInBuilding)
-				return "";
-
-			var defaultWeatherHarm = Settings.ModSettings.AllowWeatherHarmBlizzard ? WeatherStage.Blizzard :
-				Settings.ModSettings.AllowWeatherHarmFog ? WeatherStage.DenseFog : WeatherStage.HeavySnow;
-
-			var userInputWeatherHarm = string.IsNullOrEmpty(redeem.UserInput) ?
-				defaultWeatherHarm.ToString().ToLower() : redeem.UserInput.ToLower();
-
-			var weatherHarmToSet = userInputWeatherHarm.Contains("blizzard") ? WeatherStage.Blizzard :
-				userInputWeatherHarm.Contains("fog") ? WeatherStage.DenseFog :
-				userInputWeatherHarm.Contains("snow") ? WeatherStage.HeavySnow : defaultWeatherHarm;
-
-			if (weatherHarmToSet == WeatherStage.Blizzard && !Settings.ModSettings.AllowWeatherHarmBlizzard)
-				weatherHarmToSet = defaultWeatherHarm;
-
-			if (weatherHarmToSet == WeatherStage.DenseFog && !Settings.ModSettings.AllowWeatherHarmFog)
-				weatherHarmToSet = defaultWeatherHarm;
-
-			if (weatherHarmToSet == WeatherStage.HeavySnow && !Settings.ModSettings.AllowWeatherHarmSnow)
-				weatherHarmToSet = defaultWeatherHarm;
-
-			GameService.WeatherToChange = weatherHarmToSet;
-
-			return $"{redeem.UserName} redeemed '{redeem.CustomReward?.Title}' -> {weatherHarmToSet}";
-		}
-
-		private static string ExecuteWeatherAurora(Redemption redeem)
-		{
-			if (!Settings.ModSettings.AllowWeatherAurora)
-				throw new RequiresRedeemRefundException("Aurora redeem is currently disabled.");
-
-			if (GameManager.m_ActiveScene == "Dam")
-				return "";
-
-			if (GameService.IsInBuilding)
-				return "";
-
-			GameService.ShouldStartAurora = true;
-
-			return $"{redeem.UserName} redeemed '{redeem.CustomReward?.Title}'";
 		}
 
 		private static string ExecuteStatusHelpRedeem(Redemption redeem)
@@ -582,14 +486,5 @@ namespace TLD_Twitch_Integration
 			return $"{redeem.UserName} redeemed '{redeem.CustomReward?.Title}' -> not active for {Settings.ModSettings.StinkTime}s";
 		}
 
-		private static string ExecuteTimeRedeem(Redemption redeem)
-		{
-			if (!Settings.ModSettings.AllowTime)
-				throw new RequiresRedeemRefundException("Time redeem is currently disabled.");
-
-			GameManager.m_TimeOfDay.SetNormalizedTime(GameManager.m_TimeOfDay.GetNormalizedTime() + 0.5f, true);
-
-			return $"{redeem.UserName} redeemed '{redeem.CustomReward?.Title}'";
-		}
 	}
 }

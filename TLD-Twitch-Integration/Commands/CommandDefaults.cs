@@ -9,6 +9,11 @@
 		public static CmdAnimalStalkingWolf CmdAnimalStalkingWolf { get; set; } = new();
 		public static CmdAnimalTWolves CmdAnimalTWolves { get; set; } = new();
 
+		public static CmdWeatherHelp CmdWeatherHelp { get; set; } = new();
+		public static CmdWeatherHarm CmdWeatherHarm { get; set; } = new();
+		public static CmdWeatherTime CmdWeatherTime { get; set; } = new();
+		public static CmdWeatherAurora CmdWeatherAurora { get; set; } = new();
+
 		public static CmdInventoryDropItem CmdInventoryDropItem { get; set; } = new();
 		public static CmdInventoryStim CmdInventoryStim { get; set; } = new();
 		public static CmdInventoryDropTorch CmdInventoryDropTorch { get; set; } = new();
@@ -21,6 +26,10 @@
 			Commands.Add(CmdAnimalBunnyExplosion);
 			Commands.Add(CmdAnimalStalkingWolf);
 			Commands.Add(CmdAnimalTWolves);
+			Commands.Add(CmdWeatherHelp);
+			Commands.Add(CmdWeatherHarm);
+			Commands.Add(CmdWeatherTime);
+			Commands.Add(CmdWeatherAurora);
 			Commands.Add(CmdInventoryDropItem);
 			Commands.Add(CmdInventoryStim);
 			Commands.Add(CmdInventoryDropTorch);
