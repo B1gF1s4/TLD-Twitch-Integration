@@ -24,7 +24,7 @@
 		public const string INVENTORY_DROP_TORCH = "TTI: Drop Torch";
 		public const string INVENTORY_DROP_ITEM = "TTI: Drop Item";
 		public const string INVENTORY_STEPPED_STIM = "TTI: Stepped on Stim";
-		public const string INVENTORY_BOW = "TTI: Bow";
+		public const string INVENTORY_WEAPON = "TTI: Weapon";
 
 		public const string SOUND_420 = "TTI: Happy 420";
 

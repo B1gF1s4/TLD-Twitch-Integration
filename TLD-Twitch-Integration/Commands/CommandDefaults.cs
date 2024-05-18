@@ -13,6 +13,7 @@
 		public static CmdInventoryStim CmdInventoryStim { get; set; } = new();
 		public static CmdInventoryDropTorch CmdInventoryDropTorch { get; set; } = new();
 		public static CmdInventoryNoPants CmdInventoryNoPants { get; set; } = new();
+		public static CmdInventoryWeapon CmdInventoryWeapon { get; set; } = new();
 
 		public static void Init()
 		{
@@ -24,6 +25,7 @@
 			Commands.Add(CmdInventoryStim);
 			Commands.Add(CmdInventoryDropTorch);
 			Commands.Add(CmdInventoryNoPants);
+			Commands.Add(CmdInventoryWeapon);
 
 			foreach (var cmd in Commands)
 			{

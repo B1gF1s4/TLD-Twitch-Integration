@@ -30,7 +30,7 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 			{ RedeemNames.INVENTORY_DROP_TORCH, InventoryRedeems.DropTorch },
 			{ RedeemNames.INVENTORY_DROP_ITEM, InventoryRedeems.DropItem },
 			{ RedeemNames.INVENTORY_STEPPED_STIM, InventoryRedeems.SteppedStim },
-			{ RedeemNames.INVENTORY_BOW, InventoryRedeems.Bow },
+			{ RedeemNames.INVENTORY_WEAPON, InventoryRedeems.Weapon },
 
 			{ RedeemNames.SOUND_420, SoundRedeems.Happy420 },
 

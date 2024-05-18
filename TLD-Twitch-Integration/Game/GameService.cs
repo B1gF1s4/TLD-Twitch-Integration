@@ -13,14 +13,6 @@ namespace TLD_Twitch_Integration.Game
 		public static Il2CppSystem.Collections.Generic.List<GearItem> GearItems
 		{ get; set; } = new();
 
-		public static bool PanelFirstAidEnabled { get; set; }
-		public static bool PanelClothingEnabled { get; set; }
-		public static bool PanelInventoryEnabled { get; set; }
-		public static bool PanelCraftingEnabled { get; set; }
-		public static bool PanelCookingEnabled { get; set; }
-		public static bool PanelLogEnabled { get; set; }
-		public static bool PanelMapEnabled { get; set; }
-
 		public static WeatherStage WeatherToChange { get; set; }
 			= WeatherStage.Undefined;
 		public static bool ShouldStartAurora { get; set; }
@@ -43,8 +35,6 @@ namespace TLD_Twitch_Integration.Game
 		public static DateTime StinkStart { get; set; }
 		public static float StinkValue { get; set; }
 
-		public static bool ShouldDropPants { get; set; }
-		public static bool ShouldDropTorch { get; set; }
 		public static bool ShouldAddBow { get; set; }
 
 		public static void Update()

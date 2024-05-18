@@ -64,7 +64,7 @@ namespace TLD_Twitch_Integration
 		[Name(RedeemNames.INVENTORY_STEPPED_STIM)]
 		public string InventorySteppedStim = "";
 
-		[Name(RedeemNames.INVENTORY_BOW)]
+		[Name(RedeemNames.INVENTORY_WEAPON)]
 		public string InventoryBow = "";
 
 		[Name(RedeemNames.SOUND_420)]

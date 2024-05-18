@@ -297,10 +297,10 @@ namespace TLD_Twitch_Integration
 					RedeemNames.INVENTORY_STEPPED_STIM);
 
 				await UpdateCustomReward(
-					Settings.Redeems.GetIdByRedeemName(RedeemNames.INVENTORY_BOW),
+					Settings.Redeems.GetIdByRedeemName(RedeemNames.INVENTORY_WEAPON),
 					Settings.ModSettings.Enabled &&
-					Settings.ModSettings.AllowBow,
-					RedeemNames.INVENTORY_BOW);
+					Settings.ModSettings.AllowWeapon,
+					RedeemNames.INVENTORY_WEAPON);
 
 				await UpdateCustomReward(
 					Settings.Redeems.GetIdByRedeemName(RedeemNames.SOUND_420),

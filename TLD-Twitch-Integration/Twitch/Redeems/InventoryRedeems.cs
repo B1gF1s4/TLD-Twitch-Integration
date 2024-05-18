@@ -44,14 +44,14 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 			IsUserInputRequired = false,
 		};
 
-		public static CustomReward Bow = new()
+		public static CustomReward Weapon = new()
 		{
-			Title = RedeemNames.INVENTORY_BOW,
-			Prompt = "Gives the player the bow and some arrows.",
+			Title = RedeemNames.INVENTORY_WEAPON,
+			Prompt = "Gives specified weapon. Possible inputs: bow, rifle, revolver, flaregun",
 			Cost = 1,
 			Color = RedeemColors.HELP,
 			IsEnabled = false,
-			IsUserInputRequired = false,
+			IsUserInputRequired = true,
 		};
 	}
 }

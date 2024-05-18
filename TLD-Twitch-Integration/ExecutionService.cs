@@ -229,8 +229,8 @@ namespace TLD_Twitch_Integration
 				case RedeemNames.INVENTORY_DROP_TORCH:
 					return CommandDefaults.CmdInventoryDropTorch.Execute(redeem);
 
-				case RedeemNames.INVENTORY_BOW:
-					return ExecuteBowRedeem(redeem);
+				case RedeemNames.INVENTORY_WEAPON:
+					return CommandDefaults.CmdInventoryWeapon.Execute(redeem);
 
 				case RedeemNames.INVENTORY_STEPPED_STIM:
 					return CommandDefaults.CmdInventoryStim.Execute(redeem);
@@ -580,19 +580,6 @@ namespace TLD_Twitch_Integration
 			GameService.StinkStart = DateTime.UtcNow;
 
 			return $"{redeem.UserName} redeemed '{redeem.CustomReward?.Title}' -> not active for {Settings.ModSettings.StinkTime}s";
-		}
-
-		private static string ExecuteBowRedeem(Redemption redeem)
-		{
-			if (!Settings.ModSettings.AllowBow)
-				throw new RequiresRedeemRefundException("Bow redeem is currently disabled.");
-
-			if (GameService.IsMenuOpen())
-				return "";
-
-			GameService.ShouldAddBow = true;
-
-			return $"{redeem.UserName} redeemed '{redeem.CustomReward?.Title}' -> {Settings.ModSettings.ArrowCount} arrows added";
 		}
 
 		private static string ExecuteTimeRedeem(Redemption redeem)
