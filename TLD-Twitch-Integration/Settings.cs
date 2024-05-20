@@ -318,10 +318,10 @@ namespace TLD_Twitch_Integration
 		public bool AllowSteppedStim = true;
 
 
-		[Section("Inventory: Bandage")]
-		[Name("Enable")]
-		[Description($"Enable or disable {RedeemNames.INVENTORY_BANDAGE} redeem")]
-		public bool AllowBandage = true;
+		//[Section("Inventory: Bandage")]
+		//[Name("Enable")]
+		//[Description($"Enable or disable {RedeemNames.INVENTORY_BANDAGE} redeem")]
+		//public bool AllowBandage = true;
 
 
 		[Section("Inventory: Weapon")]
@@ -376,9 +376,9 @@ namespace TLD_Twitch_Integration
 		//[Description($"Enable or disable the {RedeemNames.MISC_FART} redeem.")]
 		//public bool AllowMiscFart = false;
 
-		[Name("Enable Sound Check")]
-		[Description($"Enable or disable {RedeemNames.DEV_SOUND} redeem")]
-		public bool AllowDevSoundCheck = false;
+		//[Name("Enable Sound Check")]
+		//[Description($"Enable or disable {RedeemNames.DEV_SOUND} redeem")]
+		//public bool AllowDevSoundCheck = false;
 
 		public ModSettings() : base(Path.Combine(Mod.BaseDirectory, "user-settings"))
 		{
@@ -477,7 +477,7 @@ namespace TLD_Twitch_Integration
 			SetFieldVisible(nameof(AllowDropTorch), Enabled);
 			SetFieldVisible(nameof(AllowDropItem), Enabled);
 			SetFieldVisible(nameof(AllowSteppedStim), Enabled);
-			SetFieldVisible(nameof(AllowBandage), Enabled);
+			//SetFieldVisible(nameof(AllowBandage), Enabled);
 			SetFieldVisible(nameof(AllowWeapon), Enabled);
 			SetFieldVisible(nameof(AllowTWolves), Enabled);
 			SetFieldVisible(nameof(AllowBigGame), Enabled);
@@ -486,7 +486,7 @@ namespace TLD_Twitch_Integration
 			SetFieldVisible(nameof(AllowTime), Enabled);
 			SetFieldVisible(nameof(AllowMisc420), Enabled);
 			//SetFieldVisible(nameof(AllowMiscFart), Enabled);
-			SetFieldVisible(nameof(AllowDevSoundCheck), Enabled);
+			//SetFieldVisible(nameof(AllowDevSoundCheck), Enabled);
 			RefreshWeatherHelpFields();
 			RefreshWeatherHarmFields();
 			RefreshStatusHelpFields();
