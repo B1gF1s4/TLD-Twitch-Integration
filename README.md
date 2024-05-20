@@ -8,13 +8,13 @@ The channel using this mod needs to be at least affiliate with twitch, so custom
 - install [MelonLoader](https://github.com/HerpDerpinstine/MelonLoader/releases/latest/download/MelonLoader.Installer.exe)
 - download and place [ModSettings.dll](https://github.com/zeobviouslyfakeacc/ModSettings/releases) in your [TLD]/Mods/ folder
 - optional: download and place [DevConsole.dll](https://github.com/FINDarkside/TLD-Developer-Console/releases) in your [TLD]/Mods/ folder
--- this will enable the use of TTI commands
+..- this will enable the use of TTI commands
 - download and place [TLD-Twitch-Integration.dll](https://github.com/B1gF1s4/TLD-Twitch-Integration/releases) in your [TLD]/Mods/ folder
 
 ### Getting started
 - start the game
 - follow the authorization url from the melon loader console
--- **TTI does not ask for password! Some users report a password dialog opening after authorizing. You can just exit this, and try the auth url again. TTI does not ask for your twitch password!**
+..- **TTI does not ask for password! Some users report a password dialog opening after authorizing. You can just exit this, and try the auth url again. TTI does not ask for your twitch password!**
 - go to mod settings and configure which redeems to allow
 - go to twitch and configure redeem appearence, cost and alerts
 - go live and have fun
