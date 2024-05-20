@@ -40,7 +40,7 @@
 ### TTI Weather: Aurora
 - instantly makes it midnight and starts an aurora (aurora fading in)
 
-### TTI Weather: Day/Night Toggle
+### TTI Weather: Day Night Toggle
 - adds 12h to the ingame time
 
 ### TTI Status: Help 
