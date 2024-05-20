@@ -308,11 +308,11 @@ namespace TLD_Twitch_Integration
 					Settings.ModSettings.AllowWeapon,
 					RedeemNames.INVENTORY_WEAPON);
 
-				await UpdateCustomReward(
-					Settings.Redeems.GetIdByRedeemName(RedeemNames.INVENTORY_BANDAGE),
-					Settings.ModSettings.Enabled &&
-					Settings.ModSettings.AllowBandage,
-					RedeemNames.INVENTORY_BANDAGE);
+				//await UpdateCustomReward(
+				//	Settings.Redeems.GetIdByRedeemName(RedeemNames.INVENTORY_BANDAGE),
+				//	Settings.ModSettings.Enabled &&
+				//	Settings.ModSettings.AllowBandage,
+				//	RedeemNames.INVENTORY_BANDAGE);
 
 				await UpdateCustomReward(
 					Settings.Redeems.GetIdByRedeemName(RedeemNames.MISC_420),
@@ -326,11 +326,11 @@ namespace TLD_Twitch_Integration
 				//	Settings.ModSettings.AllowMiscFart,
 				//	RedeemNames.MISC_FART);
 
-				await UpdateCustomReward(
-					Settings.Redeems.GetIdByRedeemName(RedeemNames.DEV_SOUND),
-					Settings.ModSettings.Enabled &&
-					Settings.ModSettings.AllowDevSoundCheck,
-					RedeemNames.DEV_SOUND);
+				//await UpdateCustomReward(
+				//	Settings.Redeems.GetIdByRedeemName(RedeemNames.DEV_SOUND),
+				//	Settings.ModSettings.Enabled &&
+				//	Settings.ModSettings.AllowDevSoundCheck,
+				//	RedeemNames.DEV_SOUND);
 			}
 			catch (InvalidTokenException)
 			{

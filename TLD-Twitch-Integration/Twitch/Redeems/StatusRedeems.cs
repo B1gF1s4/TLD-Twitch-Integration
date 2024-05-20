@@ -8,7 +8,7 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 		{
 			Title = RedeemNames.STATUS_HELP,
 			Prompt = "Sets specified meter to help value. Possible inputs: cold, fatigue, thirst, hunger",
-			Cost = 200,
+			Cost = 500,
 			Color = RedeemColors.HELP,
 			IsEnabled = false,
 			IsUserInputRequired = true
@@ -18,7 +18,7 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 		{
 			Title = RedeemNames.STATUS_HARM,
 			Prompt = "Sets specified meter to harm value. Possible inputs: cold, fatigue, thirst, hunger",
-			Cost = 200,
+			Cost = 500,
 			Color = RedeemColors.HARM,
 			IsEnabled = false,
 			IsUserInputRequired = true
@@ -58,7 +58,7 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 		{
 			Title = RedeemNames.STATUS_SPRAIN,
 			Prompt = "Gives the player a sprain.",
-			Cost = 500,
+			Cost = 700,
 			Color = RedeemColors.HARM,
 			IsEnabled = false,
 			IsUserInputRequired = false,

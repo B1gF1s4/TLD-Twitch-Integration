@@ -70,8 +70,8 @@ namespace TLD_Twitch_Integration
 		[Name(RedeemNames.INVENTORY_WEAPON)]
 		public string InventoryBow = "";
 
-		[Name(RedeemNames.INVENTORY_BANDAGE)]
-		public string InventoryBandage = "";
+		//[Name(RedeemNames.INVENTORY_BANDAGE)]
+		//public string InventoryBandage = "";
 
 		[Name(RedeemNames.MISC_420)]
 		public string Misc420 = "";
@@ -79,8 +79,8 @@ namespace TLD_Twitch_Integration
 		//[Name(RedeemNames.MISC_FART)]
 		//public string MiscFart = "";
 
-		[Name(RedeemNames.DEV_SOUND)]
-		public string DevSoundCheck = "";
+		//[Name(RedeemNames.DEV_SOUND)]
+		//public string DevSoundCheck = "";
 
 		public CustomRewardIdMapping() : base(Path.Combine(Mod.BaseDirectory, "redeems"))
 		{ }

@@ -8,7 +8,7 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 		{
 			Title = RedeemNames.WEATHER_HELP,
 			Prompt = "Changes the ingame weather. Possible inputs: clear, fog, snow, cloudy",
-			Cost = 500,
+			Cost = 300,
 			Color = RedeemColors.WEATHER,
 			IsEnabled = false,
 			IsUserInputRequired = true,
@@ -18,7 +18,7 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 		{
 			Title = RedeemNames.WEATHER_HARM,
 			Prompt = "Changes the ingame weather. Possible inputs: blizzard, fog, snow",
-			Cost = 1000,
+			Cost = 1200,
 			Color = RedeemColors.WEATHER,
 			IsEnabled = false,
 			IsUserInputRequired = true,
@@ -28,7 +28,7 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 		{
 			Title = RedeemNames.WEATHER_AURORA,
 			Prompt = "Immediatly sets the time to midnight and starts an aurora.",
-			Cost = 1000,
+			Cost = 1200,
 			Color = RedeemColors.WEATHER,
 			IsEnabled = false,
 			IsUserInputRequired = false,

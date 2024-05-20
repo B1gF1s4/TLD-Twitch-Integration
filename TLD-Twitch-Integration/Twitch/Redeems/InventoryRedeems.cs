@@ -8,7 +8,7 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 		{
 			Title = RedeemNames.INVENTORY_NO_PANTS,
 			Prompt = "Drops all pants equipped.",
-			Cost = 500,
+			Cost = 400,
 			Color = RedeemColors.INVENTORY,
 			IsEnabled = false,
 			IsUserInputRequired = false,
@@ -18,7 +18,7 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 		{
 			Title = RedeemNames.INVENTORY_DROP_TORCH,
 			Prompt = "Drops the torch or flare in hand, or best in inventory, if not holding one.",
-			Cost = 500,
+			Cost = 400,
 			Color = RedeemColors.INVENTORY,
 			IsEnabled = false,
 			IsUserInputRequired = false,
@@ -28,7 +28,7 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 		{
 			Title = RedeemNames.INVENTORY_DROP_ITEM,
 			Prompt = "Drops a random item from inventory.",
-			Cost = 1000,
+			Cost = 1500,
 			Color = RedeemColors.INVENTORY,
 			IsEnabled = false,
 			IsUserInputRequired = false,
@@ -38,7 +38,7 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 		{
 			Title = RedeemNames.INVENTORY_STEPPED_STIM,
 			Prompt = "Applies stim immediately.",
-			Cost = 1000,
+			Cost = 1500,
 			Color = RedeemColors.INVENTORY,
 			IsEnabled = false,
 			IsUserInputRequired = false,
@@ -48,7 +48,7 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 		{
 			Title = RedeemNames.INVENTORY_WEAPON,
 			Prompt = "Gives a weapon. Possible inputs: bow, rifle, revolver, flaregun",
-			Cost = 500,
+			Cost = 200,
 			Color = RedeemColors.HELP,
 			IsEnabled = false,
 			IsUserInputRequired = true,

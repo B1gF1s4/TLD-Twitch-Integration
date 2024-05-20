@@ -18,7 +18,7 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 		{
 			Title = RedeemNames.ANIMAL_BIG_GAME,
 			Prompt = "Spawns big game from input. Possible inputs: bear, moose",
-			Cost = 2000,
+			Cost = 2500,
 			Color = RedeemColors.HARM,
 			IsEnabled = false,
 			IsUserInputRequired = true,
@@ -28,7 +28,7 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 		{
 			Title = RedeemNames.ANIMAL_STALKING_WOLF,
 			Prompt = "Spawns a wolf behind the player.",
-			Cost = 1000,
+			Cost = 2000,
 			Color = RedeemColors.HARM,
 			IsEnabled = false,
 			IsUserInputRequired = false,
@@ -38,7 +38,7 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 		{
 			Title = RedeemNames.ANIMAL_BUNNY_EXPLOSION,
 			Prompt = "Spawns all ze bunnies.",
-			Cost = 500,
+			Cost = 600,
 			Color = RedeemColors.HELP,
 			IsEnabled = false,
 			IsUserInputRequired = false,
