@@ -17,6 +17,7 @@
 		public static CmdStatusHelp CmdStatusHelp { get; set; } = new();
 		public static CmdStatusHarm CmdStatusHarm { get; set; } = new();
 		public static CmdStatusAffliction CmdStatusAffliction { get; set; } = new();
+		public static CmdStatusAfflictionCure CmdStatusAfflictionCure { get; set; } = new();
 		public static CmdStatusBleeding CmdStatusBleeding { get; set; } = new();
 		public static CmdStatusSprain CmdStatusSprain { get; set; } = new();
 		public static CmdStatusFrostbite CmdStatusFrostbite { get; set; } = new();
@@ -27,8 +28,10 @@
 		public static CmdInventoryDropTorch CmdInventoryDropTorch { get; set; } = new();
 		public static CmdInventoryNoPants CmdInventoryNoPants { get; set; } = new();
 		public static CmdInventoryWeapon CmdInventoryWeapon { get; set; } = new();
+		public static CmdInventoryBandage CmdInventoryBandage { get; set; } = new();
 
-		public static CmdSound420 CmdSound420 { get; set; } = new();
+		public static CmdMisc420 CmdMisc420 { get; set; } = new();
+		public static CmdMiscFart CmdMiscFart { get; set; } = new();
 
 		public static CmdDevSoundCheck CmdDevSoundCheck { get; set; } = new();
 
@@ -45,6 +48,7 @@
 			Commands.Add(CmdStatusHelp);
 			Commands.Add(CmdStatusHarm);
 			Commands.Add(CmdStatusAffliction);
+			Commands.Add(CmdStatusAfflictionCure);
 			Commands.Add(CmdStatusBleeding);
 			Commands.Add(CmdStatusSprain);
 			Commands.Add(CmdStatusFrostbite);
@@ -54,7 +58,9 @@
 			Commands.Add(CmdInventoryDropTorch);
 			Commands.Add(CmdInventoryNoPants);
 			Commands.Add(CmdInventoryWeapon);
-			Commands.Add(CmdSound420);
+			Commands.Add(CmdInventoryBandage);
+			Commands.Add(CmdMisc420);
+			Commands.Add(CmdMiscFart);
 			Commands.Add(CmdDevSoundCheck);
 
 			foreach (var cmd in Commands)

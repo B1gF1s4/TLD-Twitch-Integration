@@ -246,7 +246,13 @@ namespace TLD_Twitch_Integration
 					Settings.Redeems.GetIdByRedeemName(RedeemNames.STATUS_AFFLICTION),
 					Settings.ModSettings.Enabled &&
 					Settings.ModSettings.AllowAfflictions,
-					RedeemNames.STATUS_AFFLICTION); ;
+					RedeemNames.STATUS_AFFLICTION);
+
+				await UpdateCustomReward(
+					Settings.Redeems.GetIdByRedeemName(RedeemNames.STATUS_AFFLICTION_CURE),
+					Settings.ModSettings.Enabled &&
+					Settings.ModSettings.AllowAfflictionCure,
+					RedeemNames.STATUS_AFFLICTION_CURE);
 
 				await UpdateCustomReward(
 					Settings.Redeems.GetIdByRedeemName(RedeemNames.STATUS_BLEED),
@@ -303,10 +309,22 @@ namespace TLD_Twitch_Integration
 					RedeemNames.INVENTORY_WEAPON);
 
 				await UpdateCustomReward(
-					Settings.Redeems.GetIdByRedeemName(RedeemNames.SOUND_420),
+					Settings.Redeems.GetIdByRedeemName(RedeemNames.INVENTORY_BANDAGE),
 					Settings.ModSettings.Enabled &&
-					Settings.ModSettings.AllowSound420,
-					RedeemNames.SOUND_420);
+					Settings.ModSettings.AllowBandage,
+					RedeemNames.INVENTORY_BANDAGE);
+
+				await UpdateCustomReward(
+					Settings.Redeems.GetIdByRedeemName(RedeemNames.MISC_420),
+					Settings.ModSettings.Enabled &&
+					Settings.ModSettings.AllowMisc420,
+					RedeemNames.MISC_420);
+
+				//await UpdateCustomReward(
+				//	Settings.Redeems.GetIdByRedeemName(RedeemNames.MISC_FART),
+				//	Settings.ModSettings.Enabled &&
+				//	Settings.ModSettings.AllowMiscFart,
+				//	RedeemNames.MISC_FART);
 
 				await UpdateCustomReward(
 					Settings.Redeems.GetIdByRedeemName(RedeemNames.DEV_SOUND),

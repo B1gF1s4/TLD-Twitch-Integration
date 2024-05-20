@@ -29,7 +29,7 @@ namespace TLD_Twitch_Integration.Commands
 
 			var droppedItem = TryDropItem();
 
-			GameService.PlayPlayerSound("PLAY_FEARAFFLICTION");
+			GameService.PlayPlayerSound("PLAY_VOBURNREMINDER");
 
 			if (!Settings.ModSettings.AllowItemPickup)
 				droppedItem.enabled = false;

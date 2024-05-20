@@ -50,6 +50,9 @@ namespace TLD_Twitch_Integration.Game
 			GearItems = GetItemsInInventory();
 		}
 
+		public static T GetGearItemComponentPrefab<T>(string name)
+			=> GearItem.LoadGearItemPrefab(name).GetComponent<T>();
+
 		public static void ChangeMeter(StatusMeter type, bool isHelp)
 		{
 			var value = isHelp ?
@@ -161,7 +164,12 @@ namespace TLD_Twitch_Integration.Game
 
 		private static Il2CppSystem.Collections.Generic.List<GearItem> GetItemsInInventory()
 		{
-			var filter = (GearItem gi) => { return !string.IsNullOrEmpty(gi.name); };
+			var filter = (GearItem gi) =>
+			{
+				return !string.IsNullOrEmpty(gi.name) &&
+				gi.m_NarrativeCollectibleItem == null;
+			};
+
 			var list = new Il2CppSystem.Collections.Generic.List<GearItem>();
 
 			GameManager.GetInventoryComponent().GetGearItems(filter, list);

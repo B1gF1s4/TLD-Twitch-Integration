@@ -4,7 +4,7 @@ using TLD_Twitch_Integration.Twitch.Models;
 
 namespace TLD_Twitch_Integration.Commands
 {
-    public class CmdAnimalBunnyExplosion : CommandBase
+	public class CmdAnimalBunnyExplosion : CommandBase
 	{
 		public CmdAnimalBunnyExplosion() : base("tti_animal_bunny")
 		{ }
@@ -19,7 +19,7 @@ namespace TLD_Twitch_Integration.Commands
 				return "";
 
 			var prefabName = "WILDLIFE_Rabbit";
-			var dist = 4f;
+			var dist = 7f;
 
 			var nothingSpawned = true;
 			for (int i = 0; i < Settings.ModSettings.BunnyCount; i++)

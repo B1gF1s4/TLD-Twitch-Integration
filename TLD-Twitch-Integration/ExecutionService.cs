@@ -214,6 +214,9 @@ namespace TLD_Twitch_Integration
 				case RedeemNames.STATUS_AFFLICTION:
 					return CommandDefaults.CmdStatusAffliction.Execute(redeem);
 
+				case RedeemNames.STATUS_AFFLICTION_CURE:
+					return CommandDefaults.CmdStatusAfflictionCure.Execute(redeem);
+
 				case RedeemNames.STATUS_BLEED:
 					return CommandDefaults.CmdStatusBleeding.Execute(redeem);
 
@@ -241,8 +244,14 @@ namespace TLD_Twitch_Integration
 				case RedeemNames.INVENTORY_DROP_ITEM:
 					return CommandDefaults.CmdInventoryDropItem.Execute(redeem);
 
-				case RedeemNames.SOUND_420:
-					return CommandDefaults.CmdSound420.Execute(redeem);
+				case RedeemNames.INVENTORY_BANDAGE:
+					return CommandDefaults.CmdInventoryBandage.Execute(redeem);
+
+				case RedeemNames.MISC_420:
+					return CommandDefaults.CmdMisc420.Execute(redeem);
+
+				//case RedeemNames.MISC_FART:
+				//	return CommandDefaults.CmdMiscFart.Execute(redeem);
 
 				case RedeemNames.DEV_SOUND:
 					return CommandDefaults.CmdDevSoundCheck.Execute(redeem);

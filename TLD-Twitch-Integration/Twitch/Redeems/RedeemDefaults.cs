@@ -21,6 +21,7 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 			{ RedeemNames.STATUS_HELP, StatusRedeems.Help },
 			{ RedeemNames.STATUS_HARM, StatusRedeems.Harm },
 			{ RedeemNames.STATUS_AFFLICTION, StatusRedeems.Afflictions },
+			{ RedeemNames.STATUS_AFFLICTION_CURE, StatusRedeems.AfflictionCure },
 			{ RedeemNames.STATUS_BLEED, StatusRedeems.Bleeding },
 			{ RedeemNames.STATUS_SPRAIN, StatusRedeems.Sprain },
 			{ RedeemNames.STATUS_FROSTBITE, StatusRedeems.Fristbite },
@@ -31,8 +32,10 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 			{ RedeemNames.INVENTORY_DROP_ITEM, InventoryRedeems.DropItem },
 			{ RedeemNames.INVENTORY_STEPPED_STIM, InventoryRedeems.SteppedStim },
 			{ RedeemNames.INVENTORY_WEAPON, InventoryRedeems.Weapon },
+			{ RedeemNames.INVENTORY_BANDAGE, InventoryRedeems.Bandage },
 
-			{ RedeemNames.SOUND_420, SoundRedeems.Happy420 },
+			{ RedeemNames.MISC_420, MiscRedeems.Happy420 },
+			//{ RedeemNames.MISC_FART, MiscRedeems.Fart },
 
 			{ RedeemNames.DEV_SOUND, DevRedeems.SoundCheck },
 		};

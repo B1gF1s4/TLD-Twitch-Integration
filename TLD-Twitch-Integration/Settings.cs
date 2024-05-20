@@ -217,6 +217,10 @@ namespace TLD_Twitch_Integration
 		[Description($"Enable or disable {RedeemNames.STATUS_AFFLICTION} redeem")]
 		public bool AllowAfflictions = true;
 
+		[Name("Enable Cure Redeem")]
+		[Description($"Enable or disable {RedeemNames.STATUS_AFFLICTION_CURE} redeem")]
+		public bool AllowAfflictionCure = true;
+
 		[Name("Allow Cabin Fever")]
 		[Description($"Enable or disable 'cabin fever' as possible output")]
 		public bool AllowAfflictionCabinFever = true;
@@ -314,6 +318,12 @@ namespace TLD_Twitch_Integration
 		public bool AllowSteppedStim = true;
 
 
+		[Section("Inventory: Bandage")]
+		[Name("Enable")]
+		[Description($"Enable or disable {RedeemNames.INVENTORY_BANDAGE} redeem")]
+		public bool AllowBandage = true;
+
+
 		[Section("Inventory: Weapon")]
 		[Name("Enable")]
 		[Description($"Enable or disable {RedeemNames.INVENTORY_WEAPON} redeem")]
@@ -355,14 +365,17 @@ namespace TLD_Twitch_Integration
 		[Slider(CmdInventoryWeapon.FlaregunShellCapacity, 20)]
 		public int ShellCount = 8;
 
-		// TTI Sounds
+		// Misc
 
-		[Section("Sounds")]
+		[Section("Misc")]
 		[Name("Enable Happy 420")]
-		[Description($"Enable or disable {RedeemNames.SOUND_420} redeem")]
-		public bool AllowSound420 = false;
+		[Description($"Enable or disable the {RedeemNames.MISC_420} redeem.")]
+		public bool AllowMisc420 = false;
 
-		[Section("Dev")]
+		//[Name("Enable Fart")]
+		//[Description($"Enable or disable the {RedeemNames.MISC_FART} redeem.")]
+		//public bool AllowMiscFart = false;
+
 		[Name("Enable Sound Check")]
 		[Description($"Enable or disable {RedeemNames.DEV_SOUND} redeem")]
 		public bool AllowDevSoundCheck = false;
@@ -464,13 +477,15 @@ namespace TLD_Twitch_Integration
 			SetFieldVisible(nameof(AllowDropTorch), Enabled);
 			SetFieldVisible(nameof(AllowDropItem), Enabled);
 			SetFieldVisible(nameof(AllowSteppedStim), Enabled);
+			SetFieldVisible(nameof(AllowBandage), Enabled);
 			SetFieldVisible(nameof(AllowWeapon), Enabled);
 			SetFieldVisible(nameof(AllowTWolves), Enabled);
 			SetFieldVisible(nameof(AllowBigGame), Enabled);
 			SetFieldVisible(nameof(AllowStalkingWolf), Enabled);
 			SetFieldVisible(nameof(AllowBunnyExplosion), Enabled);
 			SetFieldVisible(nameof(AllowTime), Enabled);
-			SetFieldVisible(nameof(AllowSound420), Enabled);
+			SetFieldVisible(nameof(AllowMisc420), Enabled);
+			//SetFieldVisible(nameof(AllowMiscFart), Enabled);
 			SetFieldVisible(nameof(AllowDevSoundCheck), Enabled);
 			RefreshWeatherHelpFields();
 			RefreshWeatherHarmFields();
@@ -538,6 +553,7 @@ namespace TLD_Twitch_Integration
 			SetFieldVisible(nameof(AllowAfflictionFoodPoisoning), allow);
 			SetFieldVisible(nameof(AllowAfflictionHypothermia), allow);
 			SetFieldVisible(nameof(AllowAfflictionParasites), allow);
+			SetFieldVisible(nameof(AllowAfflictionCure), allow);
 		}
 
 		private void RefreshStatusSprainFields()

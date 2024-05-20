@@ -4,14 +4,14 @@ using TLD_Twitch_Integration.Twitch.Models;
 
 namespace TLD_Twitch_Integration.Commands
 {
-	public class CmdSound420 : CommandBase
+	public class CmdMisc420 : CommandBase
 	{
-		public CmdSound420() : base("tti_sound_420")
+		public CmdMisc420() : base("tti_misc_420")
 		{ }
 
 		public override string Execute(Redemption? redeem = null)
 		{
-			if (!Settings.ModSettings.AllowSound420)
+			if (!Settings.ModSettings.AllowMisc420)
 				throw new RequiresRedeemRefundException(
 					"420 redeem is currently disabled.");
 
@@ -22,7 +22,7 @@ namespace TLD_Twitch_Integration.Commands
 				alert = $"Happy 420";
 			else
 				alert = $"{redeem.UserName} redeemed '{redeem.CustomReward?.Title}' " +
-					$"-> Happy 420, cheers!";
+					$"-> Cheers!";
 
 			return alert;
 		}

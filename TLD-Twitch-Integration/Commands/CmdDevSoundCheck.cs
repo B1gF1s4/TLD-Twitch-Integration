@@ -11,7 +11,7 @@ namespace TLD_Twitch_Integration.Commands
 
 		public override string Execute(Redemption? redeem = null)
 		{
-			if (!Settings.ModSettings.AllowSound420)
+			if (!Settings.ModSettings.AllowMisc420)
 				throw new RequiresRedeemRefundException(
 					"Sound Check redeem is currently disabled.");
 

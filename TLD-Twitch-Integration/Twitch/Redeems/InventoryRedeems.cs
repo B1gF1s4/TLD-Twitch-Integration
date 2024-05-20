@@ -8,7 +8,7 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 		{
 			Title = RedeemNames.INVENTORY_NO_PANTS,
 			Prompt = "Drops all pants equipped.",
-			Cost = 1,
+			Cost = 500,
 			Color = RedeemColors.INVENTORY,
 			IsEnabled = false,
 			IsUserInputRequired = false,
@@ -17,8 +17,8 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 		public static CustomReward DropTorch = new()
 		{
 			Title = RedeemNames.INVENTORY_DROP_TORCH,
-			Prompt = "Makes the player drop the torch or flare in hand, or best in inventory, if the player is not holding one.",
-			Cost = 1,
+			Prompt = "Drops the torch or flare in hand, or best in inventory, if not holding one.",
+			Cost = 500,
 			Color = RedeemColors.INVENTORY,
 			IsEnabled = false,
 			IsUserInputRequired = false,
@@ -27,8 +27,8 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 		public static CustomReward DropItem = new()
 		{
 			Title = RedeemNames.INVENTORY_DROP_ITEM,
-			Prompt = "Drops a random item from inventory. It cannot be picked back up.",
-			Cost = 1,
+			Prompt = "Drops a random item from inventory.",
+			Cost = 1000,
 			Color = RedeemColors.INVENTORY,
 			IsEnabled = false,
 			IsUserInputRequired = false,
@@ -37,8 +37,8 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 		public static CustomReward SteppedStim = new()
 		{
 			Title = RedeemNames.INVENTORY_STEPPED_STIM,
-			Prompt = "Starts the stim effect, without consuming one.",
-			Cost = 1,
+			Prompt = "Applies stim immediately.",
+			Cost = 1000,
 			Color = RedeemColors.INVENTORY,
 			IsEnabled = false,
 			IsUserInputRequired = false,
@@ -47,11 +47,21 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 		public static CustomReward Weapon = new()
 		{
 			Title = RedeemNames.INVENTORY_WEAPON,
-			Prompt = "Gives specified weapon. Possible inputs: bow, rifle, revolver, flaregun",
-			Cost = 1,
+			Prompt = "Gives a weapon. Possible inputs: bow, rifle, revolver, flaregun",
+			Cost = 500,
 			Color = RedeemColors.HELP,
 			IsEnabled = false,
 			IsUserInputRequired = true,
+		};
+
+		public static CustomReward Bandage = new()
+		{
+			Title = RedeemNames.INVENTORY_BANDAGE,
+			Prompt = "Gives 2 bandages.",
+			Cost = 200,
+			Color = RedeemColors.HELP,
+			IsEnabled = false,
+			IsUserInputRequired = false,
 		};
 	}
 }

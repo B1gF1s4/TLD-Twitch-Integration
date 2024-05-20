@@ -15,6 +15,7 @@
 		public const string STATUS_HELP = "TTI: Status Help";
 		public const string STATUS_HARM = "TTI: Status Harm";
 		public const string STATUS_AFFLICTION = "TTI: Afflictions";
+		public const string STATUS_AFFLICTION_CURE = "TTI: Affliction Cure";
 		public const string STATUS_BLEED = "TTI: Bleeding";
 		public const string STATUS_SPRAIN = "TTI: Sprain";
 		public const string STATUS_FROSTBITE = "TTI: Frostbite";
@@ -25,8 +26,10 @@
 		public const string INVENTORY_DROP_ITEM = "TTI: Drop Item";
 		public const string INVENTORY_STEPPED_STIM = "TTI: Stepped on Stim";
 		public const string INVENTORY_WEAPON = "TTI: Weapon";
+		public const string INVENTORY_BANDAGE = "TTI: Bandage";
 
-		public const string SOUND_420 = "TTI: Happy 420";
+		public const string MISC_420 = "TTI: Happy 420";
+		//public const string MISC_FART = "TTI: Fart";
 
 		public const string DEV_SOUND = "TTI Dev: Sound Check";
 	}

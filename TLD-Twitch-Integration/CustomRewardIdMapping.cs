@@ -40,6 +40,9 @@ namespace TLD_Twitch_Integration
 		[Name(RedeemNames.STATUS_AFFLICTION)]
 		public string StatusAffliction = "";
 
+		[Name(RedeemNames.STATUS_AFFLICTION_CURE)]
+		public string StatusAfflictionCure = "";
+
 		[Name(RedeemNames.STATUS_BLEED)]
 		public string StatusBleeding = "";
 
@@ -67,8 +70,14 @@ namespace TLD_Twitch_Integration
 		[Name(RedeemNames.INVENTORY_WEAPON)]
 		public string InventoryBow = "";
 
-		[Name(RedeemNames.SOUND_420)]
-		public string Sound420 = "";
+		[Name(RedeemNames.INVENTORY_BANDAGE)]
+		public string InventoryBandage = "";
+
+		[Name(RedeemNames.MISC_420)]
+		public string Misc420 = "";
+
+		//[Name(RedeemNames.MISC_FART)]
+		//public string MiscFart = "";
 
 		[Name(RedeemNames.DEV_SOUND)]
 		public string DevSoundCheck = "";
