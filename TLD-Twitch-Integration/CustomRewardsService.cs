@@ -320,11 +320,11 @@ namespace TLD_Twitch_Integration
 					Settings.ModSettings.AllowMisc420,
 					RedeemNames.MISC_420);
 
-				//await UpdateCustomReward(
-				//	Settings.Redeems.GetIdByRedeemName(RedeemNames.MISC_FART),
-				//	Settings.ModSettings.Enabled &&
-				//	Settings.ModSettings.AllowMiscFart,
-				//	RedeemNames.MISC_FART);
+				await UpdateCustomReward(
+					Settings.Redeems.GetIdByRedeemName(RedeemNames.MISC_FART),
+					Settings.ModSettings.Enabled &&
+					Settings.ModSettings.AllowMiscFart,
+					RedeemNames.MISC_FART);
 
 				//await UpdateCustomReward(
 				//	Settings.Redeems.GetIdByRedeemName(RedeemNames.DEV_SOUND),

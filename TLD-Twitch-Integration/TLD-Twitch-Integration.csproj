@@ -18,6 +18,9 @@
     <Reference Include="Assembly-CSharp-firstpass">
       <HintPath>..\..\..\Program Files (x86)\Steam\steamapps\common\TheLongDark\MelonLoader\Il2CppAssemblies\Assembly-CSharp-firstpass.dll</HintPath>
     </Reference>
+    <Reference Include="AudioManager">
+      <HintPath>..\..\..\Program Files (x86)\Steam\steamapps\common\TheLongDark\Mods\AudioManager.dll</HintPath>
+    </Reference>
     <Reference Include="Il2CppAk.Wwise.Api.WAAPI">
       <HintPath>..\..\..\Program Files (x86)\Steam\steamapps\common\TheLongDark\MelonLoader\Il2CppAssemblies\Il2CppAk.Wwise.Api.WAAPI.dll</HintPath>
     </Reference>

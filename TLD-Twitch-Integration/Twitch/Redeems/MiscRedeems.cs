@@ -14,14 +14,14 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 			IsUserInputRequired = false,
 		};
 
-		//public static CustomReward Fart = new()
-		//{
-		//	Title = RedeemNames.MISC_FART,
-		//	Prompt = "No, you!",
-		//	Cost = 1,
-		//	Color = RedeemColors.HARM,
-		//	IsEnabled = false,
-		//	IsUserInputRequired = false,
-		//};
+		public static CustomReward Fart = new()
+		{
+			Title = RedeemNames.MISC_FART,
+			Prompt = "No, you!",
+			Cost = 1,
+			Color = RedeemColors.HARM,
+			IsEnabled = false,
+			IsUserInputRequired = false,
+		};
 	}
 }

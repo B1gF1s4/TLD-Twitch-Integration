@@ -1,4 +1,6 @@
-﻿using Il2Cpp;
+﻿using AudioMgr;
+using Il2Cpp;
+using MelonLoader;
 using static TLD_Twitch_Integration.ExecutionService;
 
 namespace TLD_Twitch_Integration.Game
@@ -35,6 +37,12 @@ namespace TLD_Twitch_Integration.Game
 		public static DateTime StinkStart { get; set; }
 		public static float StinkValue { get; set; }
 
+		public static bool IsFartActive { get; set; }
+		public static DateTime FartStart { get; set; }
+
+		public static ClipManager? ClipManager { get; set; }
+		public static Shot? VoiceSource { get; set; }
+
 		public static void Update()
 		{
 			IsInBuilding = GetIsInBuilding();
@@ -50,8 +58,19 @@ namespace TLD_Twitch_Integration.Game
 			GearItems = GetItemsInInventory();
 		}
 
-		public static T GetGearItemComponentPrefab<T>(string name)
-			=> GearItem.LoadGearItemPrefab(name).GetComponent<T>();
+		public static void InitAudio()
+		{
+			ClipManager = AudioMaster.NewClipManager();
+
+			var path = Path.Combine(Mod.BaseDirectory, "audio");
+			Melon<Mod>.Logger.Msg($"initializing audio path: {path}");
+
+			ClipManager.LoadClipsFromDir(path, ClipManager.LoadType.Compressed);
+
+			Melon<Mod>.Logger.Msg($"loaded {ClipManager.clipCount} clips");
+
+			VoiceSource = AudioMaster.CreatePlayerShot(AudioMaster.SourceType.Voice);
+		}
 
 		public static void ChangeMeter(StatusMeter type, bool isHelp)
 		{
@@ -103,6 +122,12 @@ namespace TLD_Twitch_Integration.Game
 		public static bool IsMenuOpen()
 		{
 			return InterfaceManager.IsOverlayActiveCached();
+		}
+
+		public static void StopFart()
+		{
+			GameManager.GetChemicalPoisoningComponent().m_InHazardZone = false;
+			GameManager.GetChemicalPoisoningComponent().m_ActiveZones = 0;
 		}
 
 		private static bool GetIsInBuilding()

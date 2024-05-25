@@ -1,5 +1,6 @@
 ﻿using HarmonyLib;
 using Il2Cpp;
+using TLD_Twitch_Integration.Commands;
 using static TLD_Twitch_Integration.ExecutionService;
 
 namespace TLD_Twitch_Integration.Game
@@ -219,6 +220,24 @@ namespace TLD_Twitch_Integration.Game
 
 			if (countBefore < countAfter)
 				GameService.ShouldAddFrostbite = false;
+		}
+	}
+
+	[HarmonyPatch(typeof(ChemicalPoisoning), nameof(ChemicalPoisoning.UpdateRisk))]
+	internal class ChemicalPoisoningUpdateRiskPatch
+	{
+		internal static void Postfix()
+		{
+			if (!GameService.IsFartActive)
+				return;
+
+			var runningTime = (DateTime.UtcNow - GameService.FartStart).TotalSeconds;
+
+			if (runningTime > CmdMiscFart.Duration)
+			{
+				GameService.StopFart();
+				GameService.IsFartActive = false;
+			}
 		}
 	}
 }

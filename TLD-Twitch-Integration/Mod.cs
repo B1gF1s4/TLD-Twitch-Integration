@@ -1,6 +1,7 @@
 ﻿using MelonLoader;
 using MelonLoader.Utils;
 using TLD_Twitch_Integration.Commands;
+using TLD_Twitch_Integration.Game;
 
 namespace TLD_Twitch_Integration
 {
@@ -22,6 +23,14 @@ namespace TLD_Twitch_Integration
 
 			Settings.OnLoad();
 			await AuthService.OnLoad();
+		}
+
+		public override void OnSceneWasLoaded(int buildIndex, string sceneName)
+		{
+			if (sceneName.Contains("Menu"))
+			{
+				GameService.InitAudio();
+			}
 		}
 
 		public async override void OnUpdate()

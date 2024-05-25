@@ -29,7 +29,7 @@
 		public const string INVENTORY_BANDAGE = "TTI: Bandage";
 
 		public const string MISC_420 = "TTI: Happy 420";
-		//public const string MISC_FART = "TTI: Fart";
+		public const string MISC_FART = "TTI: Fart";
 
 		public const string DEV_SOUND = "TTI Dev: Sound Check";
 	}

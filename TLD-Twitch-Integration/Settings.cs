@@ -372,9 +372,9 @@ namespace TLD_Twitch_Integration
 		[Description($"Enable or disable the {RedeemNames.MISC_420} redeem.")]
 		public bool AllowMisc420 = false;
 
-		//[Name("Enable Fart")]
-		//[Description($"Enable or disable the {RedeemNames.MISC_FART} redeem.")]
-		//public bool AllowMiscFart = false;
+		[Name("Enable Fart")]
+		[Description($"Enable or disable the {RedeemNames.MISC_FART} redeem.")]
+		public bool AllowMiscFart = false;
 
 		//[Name("Enable Sound Check")]
 		//[Description($"Enable or disable {RedeemNames.DEV_SOUND} redeem")]
@@ -485,7 +485,7 @@ namespace TLD_Twitch_Integration
 			SetFieldVisible(nameof(AllowBunnyExplosion), Enabled);
 			SetFieldVisible(nameof(AllowTime), Enabled);
 			SetFieldVisible(nameof(AllowMisc420), Enabled);
-			//SetFieldVisible(nameof(AllowMiscFart), Enabled);
+			SetFieldVisible(nameof(AllowMiscFart), Enabled);
 			//SetFieldVisible(nameof(AllowDevSoundCheck), Enabled);
 			RefreshWeatherHelpFields();
 			RefreshWeatherHarmFields();

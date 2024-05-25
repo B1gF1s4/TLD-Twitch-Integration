@@ -35,7 +35,7 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 			{ RedeemNames.INVENTORY_BANDAGE, InventoryRedeems.Bandage },
 
 			{ RedeemNames.MISC_420, MiscRedeems.Happy420 },
-			//{ RedeemNames.MISC_FART, MiscRedeems.Fart },
+			{ RedeemNames.MISC_FART, MiscRedeems.Fart },
 
 			{ RedeemNames.DEV_SOUND, DevRedeems.SoundCheck },
 		};
