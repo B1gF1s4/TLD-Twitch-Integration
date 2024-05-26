@@ -24,6 +24,7 @@
 - [x] [TTI Animal: Stalking Wolf](#tti-animal-stalking-wolf)
 - [x] [TTI Animal: Bunny Explosion](#tti-animal-bunny-explosion)
 - [x] [TTI Misc: Happy 420](#tti-misc-happy-420)
+- [x] [TTI Misc: Fart](#tti-misc-fart)
 
 ## Details
 
@@ -130,3 +131,7 @@
 
 ### TTI Misc: Happy 420
 - plays the suffocate sound
+
+### TTI Misc: Fart
+- plays a fart soundclip
+- enables chemical poisoning risk zone for 8s
