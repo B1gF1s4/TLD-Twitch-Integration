@@ -9,8 +9,7 @@ The channel using this mod needs to be at least affiliate with twitch, so custom
 - download and place [AudioCore.dll](https://github.com/DigitalzombieTLD/AudioCore/releases) in your **[TLD]/Plugins/** folder
 - download and place [AudioManager.dll](https://github.com/DigitalzombieTLD/AudioManager/releases) in your **[TLD]/Mods/** folder
 - download and place [ModSettings.dll](https://github.com/zeobviouslyfakeacc/ModSettings/releases) in your **[TLD]/Mods/** folder
-- optional: download and place [DevConsole.dll](https://github.com/FINDarkside/TLD-Developer-Console/releases) in your **[TLD]/Mods/** folder
-	- this will enable the use of TTI commands
+- download and place [DevConsole.dll](https://github.com/FINDarkside/TLD-Developer-Console/releases) in your **[TLD]/Mods/** folder
 - download and place [TLD-Twitch-Integration.dll](https://github.com/B1gF1s4/TLD-Twitch-Integration/releases) in your **[TLD]/Mods/** folder
 
 ### Getting started
