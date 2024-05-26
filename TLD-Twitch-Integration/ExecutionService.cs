@@ -250,8 +250,8 @@ namespace TLD_Twitch_Integration
 				case RedeemNames.MISC_420:
 					return CommandDefaults.CmdMisc420.Execute(redeem);
 
-				//case RedeemNames.MISC_FART:
-				//	return CommandDefaults.CmdMiscFart.Execute(redeem);
+				case RedeemNames.MISC_FART:
+					return CommandDefaults.CmdMiscFart.Execute(redeem);
 
 				case RedeemNames.DEV_SOUND:
 					return CommandDefaults.CmdDevSoundCheck.Execute(redeem);

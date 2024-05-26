@@ -1,6 +1,5 @@
 ﻿using AudioMgr;
 using Il2Cpp;
-using MelonLoader;
 using static TLD_Twitch_Integration.ExecutionService;
 
 namespace TLD_Twitch_Integration.Game
@@ -63,13 +62,11 @@ namespace TLD_Twitch_Integration.Game
 			ClipManager = AudioMaster.NewClipManager();
 
 			var path = Path.Combine(Mod.BaseDirectory, "audio");
-			Melon<Mod>.Logger.Msg($"initializing audio path: {path}");
 
-			ClipManager.LoadClipsFromDir(path, ClipManager.LoadType.Compressed);
-
-			Melon<Mod>.Logger.Msg($"loaded {ClipManager.clipCount} clips");
+			ClipManager.LoadClipsFromDir(path, ClipManager.LoadType.Stream);
 
 			VoiceSource = AudioMaster.CreatePlayerShot(AudioMaster.SourceType.Voice);
+			VoiceSource.SetVolume(0.6f);
 		}
 
 		public static void ChangeMeter(StatusMeter type, bool isHelp)
@@ -128,6 +125,7 @@ namespace TLD_Twitch_Integration.Game
 		{
 			GameManager.GetChemicalPoisoningComponent().m_InHazardZone = false;
 			GameManager.GetChemicalPoisoningComponent().m_ActiveZones = 0;
+			GameManager.GetChemicalPoisoningComponent().m_ToxicityGainedPerHour = 300;
 		}
 
 		private static bool GetIsInBuilding()

@@ -1,5 +1,4 @@
 ﻿using Il2Cpp;
-using MelonLoader;
 using TLD_Twitch_Integration.Exceptions;
 using TLD_Twitch_Integration.Game;
 using TLD_Twitch_Integration.Twitch.Models;
@@ -25,17 +24,14 @@ namespace TLD_Twitch_Integration.Commands
 
 			var clip = GameService.ClipManager?.GetClip("fart");
 
-			if (clip == null)
-				Melon<Mod>.Logger.Msg("clip not found");
-
 			if (clip != null)
-				GameService.VoiceSource?.Play(clip);
+				GameService.VoiceSource?.PlayOneshot(clip);
 
-			GameManager.GetSuffocatingComponent().ApplySuffocatingVisualEffect();
-			//GameService.PlayPlayerSound("PLAY_SUFFOCATIONCOUGH");
+			GameService.PlayPlayerSound("PLAY_SUFFOCATIONCOUGH");
 
 			GameManager.GetChemicalPoisoningComponent().m_InHazardZone = true;
 			GameManager.GetChemicalPoisoningComponent().m_ActiveZones = 1;
+			GameManager.GetChemicalPoisoningComponent().m_ToxicityGainedPerHour = 600;
 
 			string alert;
 			if (redeem == null)
