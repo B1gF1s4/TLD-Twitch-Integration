@@ -8,3 +8,4 @@
 
 - add prybar, knife, hatched and hammer to weapon redeem
 - add bandage redeem
+- "let there be light" spawns pickable lit torch in front of player
