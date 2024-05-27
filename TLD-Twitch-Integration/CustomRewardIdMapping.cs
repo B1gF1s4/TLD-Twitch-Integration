@@ -76,8 +76,8 @@ namespace TLD_Twitch_Integration
 		[Name(RedeemNames.MISC_420)]
 		public string Misc420 = "";
 
-		[Name(RedeemNames.MISC_FART)]
-		public string MiscFart = "";
+		//[Name(RedeemNames.MISC_FART)]
+		//public string MiscFart = "";
 
 		//[Name(RedeemNames.DEV_SOUND)]
 		//public string DevSoundCheck = "";

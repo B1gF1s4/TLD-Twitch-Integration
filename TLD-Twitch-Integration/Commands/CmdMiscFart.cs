@@ -1,7 +1,4 @@
-﻿using Il2Cpp;
-using TLD_Twitch_Integration.Exceptions;
-using TLD_Twitch_Integration.Game;
-using TLD_Twitch_Integration.Twitch.Models;
+﻿using TLD_Twitch_Integration.Twitch.Models;
 
 namespace TLD_Twitch_Integration.Commands
 {
@@ -15,31 +12,33 @@ namespace TLD_Twitch_Integration.Commands
 
 		public override string Execute(Redemption? redeem = null)
 		{
-			if (!Settings.ModSettings.AllowMiscFart)
-				throw new RequiresRedeemRefundException(
-					"Fart redeem is currently disabled.");
+			return "redeem not implemented yet";
 
-			GameService.FartStart = DateTime.UtcNow;
-			GameService.IsFartActive = true;
+			//if (!Settings.ModSettings.AllowMiscFart)
+			//	throw new RequiresRedeemRefundException(
+			//		"Fart redeem is currently disabled.");
 
-			var clip = GameService.ClipManager?.GetClip("fart");
+			//GameService.FartStart = DateTime.UtcNow;
+			//GameService.IsFartActive = true;
 
-			if (clip != null)
-				GameService.VoiceSource?.PlayOneshot(clip);
+			//var clip = GameService.ClipManager?.GetClip("fart");
 
-			GameService.PlayPlayerSound("PLAY_SUFFOCATIONCOUGH");
+			//if (clip != null)
+			//	GameService.VoiceSource?.PlayOneshot(clip);
 
-			GameManager.GetChemicalPoisoningComponent().m_InHazardZone = true;
-			GameManager.GetChemicalPoisoningComponent().m_ActiveZones = 1;
-			GameManager.GetChemicalPoisoningComponent().m_ToxicityGainedPerHour = 600;
+			//GameService.PlayPlayerSound("PLAY_SUFFOCATIONCOUGH");
 
-			string alert;
-			if (redeem == null)
-				alert = $"farting";
-			else
-				alert = $"{redeem.UserName} redeemed '{redeem.CustomReward?.Title}'";
+			//GameManager.GetChemicalPoisoningComponent().m_InHazardZone = true;
+			//GameManager.GetChemicalPoisoningComponent().m_ActiveZones = 1;
+			//GameManager.GetChemicalPoisoningComponent().m_ToxicityGainedPerHour = 600;
 
-			return alert;
+			//string alert;
+			//if (redeem == null)
+			//	alert = $"farting";
+			//else
+			//	alert = $"{redeem.UserName} redeemed '{redeem.CustomReward?.Title}'";
+
+			//return alert;
 		}
 	}
 }

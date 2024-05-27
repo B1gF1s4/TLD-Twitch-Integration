@@ -1,5 +1,4 @@
-﻿using AudioMgr;
-using Il2Cpp;
+﻿using Il2Cpp;
 using static TLD_Twitch_Integration.ExecutionService;
 
 namespace TLD_Twitch_Integration.Game
@@ -39,8 +38,8 @@ namespace TLD_Twitch_Integration.Game
 		public static bool IsFartActive { get; set; }
 		public static DateTime FartStart { get; set; }
 
-		public static ClipManager? ClipManager { get; set; }
-		public static Shot? VoiceSource { get; set; }
+		//public static ClipManager? ClipManager { get; set; }
+		//public static Shot? VoiceSource { get; set; }
 
 		public static void Update()
 		{
@@ -59,14 +58,14 @@ namespace TLD_Twitch_Integration.Game
 
 		public static void InitAudio()
 		{
-			ClipManager = AudioMaster.NewClipManager();
+			//ClipManager = AudioMaster.NewClipManager();
 
-			var path = Path.Combine(Mod.BaseDirectory, "audio");
+			//var path = Path.Combine(Mod.BaseDirectory, "audio");
 
-			ClipManager.LoadClipsFromDir(path, ClipManager.LoadType.Stream);
+			//ClipManager.LoadClipsFromDir(path, ClipManager.LoadType.Stream);
 
-			VoiceSource = AudioMaster.CreatePlayerShot(AudioMaster.SourceType.Voice);
-			VoiceSource.SetVolume(0.6f);
+			//VoiceSource = AudioMaster.CreatePlayerShot(AudioMaster.SourceType.Voice);
+			//VoiceSource.SetVolume(0.6f);
 		}
 
 		public static void ChangeMeter(StatusMeter type, bool isHelp)
