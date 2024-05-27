@@ -2,14 +2,15 @@
 Mod for The Long Dark that let's viewers of a twitch live stream interact with the game.
 The channel using this mod needs to be at least affiliate with twitch, so custom redeems are enabled.
 
+**limitation: TTI currently comes with 22 redeems. Twitch allows for a maximum of 50 custom rewards (redeems) which includes both enabled and disabled**
+
 ## Install
 
 - download and install [dotnet 6.0 runtime](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
 - install [MelonLoader](https://github.com/HerpDerpinstine/MelonLoader/releases/latest/download/MelonLoader.Installer.exe) **v0.6.1**
-- download and place [AudioCore.dll](https://github.com/DigitalzombieTLD/AudioCore/releases) in your **[TLD]/Plugins/** folder
-- download and place [AudioManager.dll](https://github.com/DigitalzombieTLD/AudioManager/releases) in your **[TLD]/Mods/** folder
 - download and place [ModSettings.dll](https://github.com/zeobviouslyfakeacc/ModSettings/releases) in your **[TLD]/Mods/** folder
-- download and place [DevConsole.dll](https://github.com/FINDarkside/TLD-Developer-Console/releases) in your **[TLD]/Mods/** folder
+- optional: download and place [DevConsole.dll](https://github.com/FINDarkside/TLD-Developer-Console/releases) in your **[TLD]/Mods/** folder
+	- this enables TTI commands
 - download and place [TLD-Twitch-Integration.dll](https://github.com/B1gF1s4/TLD-Twitch-Integration/releases) in your **[TLD]/Mods/** folder
 
 ### Getting started
@@ -31,8 +32,6 @@ The channel using this mod needs to be at least affiliate with twitch, so custom
 - all TTI created redeems can be editted in any way (including title, cost, color, icons and prompts).
 - changing the redeems enabled status in the twitch dashboard will be overwritten by availability setting in mod settings in game
 - if you uninstall TTI, but want to preserve your redeems on twitch and want to relink them at a later point, keep the file /TLD-Twitch-Integration/redeems.json from your Mods folder.
-
-**limitation: TTI currently comes with 23 redeems. Twitch allows for a maximum of 50 custom rewards (redeems) which includes both enabled and disabled**
 
 ## Logging out
 

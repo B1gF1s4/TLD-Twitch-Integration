@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TLD-Twitch-Integration", "T
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5BDD3F68-CCB8-4C18-903E-CAB89A99EC51}"
 	ProjectSection(SolutionItems) = preProject
+		Changelog.md = Changelog.md
+		notes.md = notes.md
 		README.md = README.md
 		RedeemsForRelease.md = RedeemsForRelease.md
 	EndProjectSection
