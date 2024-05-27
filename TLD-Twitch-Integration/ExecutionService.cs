@@ -12,7 +12,7 @@ namespace TLD_Twitch_Integration
 	public class ExecutionService
 	{
 		public static bool ExecutionPending { get; set; }
-		public static List<Redemption> ExecutionQueue { get; set; } = new();
+		public static Dictionary<string, Redemption> ExecutionQueue { get; set; } = new();
 
 
 		private const int _interval = 8;
@@ -84,8 +84,8 @@ namespace TLD_Twitch_Integration
 			var userId = AuthService.User?.Id ??
 				throw new NotLoggedInException();
 
-			var redeemToExecute = ExecutionQueue.Any() ?
-				ExecutionQueue.FirstOrDefault() :
+			var redeemToExecute = ExecutionQueue.Values.Any() ?
+				ExecutionQueue.Values.FirstOrDefault() :
 				RedemptionService.OpenRedeems
 					.OrderBy(r => r.RedeemedAt)
 					.ToList()
@@ -131,7 +131,9 @@ namespace TLD_Twitch_Integration
 			{
 				Melon<Mod>.Logger.Msg($"redeem skipped, trying next");
 
-				ExecutionQueue.Add(redeem);
+				if (!ExecutionQueue.ContainsKey(redeem.Id!))
+					ExecutionQueue.Add(redeem.Id!, redeem);
+
 				RedemptionService.OpenRedeems.RemoveAll(r => r.Id == redeem.Id);
 
 				var nextRedeemToExecute = RedemptionService.OpenRedeems
@@ -164,7 +166,8 @@ namespace TLD_Twitch_Integration
 				else
 					await TwitchAdapter.CancelRedemption(AuthService.ClientId, Settings.Token.Access, userId, redeem);
 
-				ExecutionQueue.RemoveAll(r => r.Id == redeem.Id);
+				ExecutionQueue.Remove(redeem.Id!);
+
 				RedemptionService.OpenRedeems.RemoveAll(r => r.Id == redeem.Id);
 			}
 			catch (InvalidTokenException)
