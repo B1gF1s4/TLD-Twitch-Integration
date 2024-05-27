@@ -171,7 +171,7 @@ namespace TLD_Twitch_Integration
 		[Description($"Enable or disable 'fatigue' for the {RedeemNames.STATUS_HELP} redeem")]
 		public bool AllowStatusHelpAwake = true;
 
-		[Name("Allow Not Thirsy")]
+		[Name("Allow Not Thirsty")]
 		[Description($"Enable or disable 'thirst' for the {RedeemNames.STATUS_HELP} redeem")]
 		public bool AllowStatusHelpNotThirsty = true;
 
