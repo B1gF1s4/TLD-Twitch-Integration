@@ -10,4 +10,3 @@
 - added refunding of all open redeems in main menu. new runs now start fresh
 - fixed an issue with mod settings of status harm redeem were not applied correctly
 - slightly lowered accepted height offset for animal spawns
-- 
