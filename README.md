@@ -55,7 +55,7 @@ To log out for example to connect a different twitch account go to the mods data
 
 [lazlo_vii](https://www.twitch.tv/lazlo_vii) redeem ideas
 
-### Thank you to all the brave early testers!
+### Thank you to the brave early testers!
 
 [LBNeo](https://www.twitch.tv/lbneo)
 
