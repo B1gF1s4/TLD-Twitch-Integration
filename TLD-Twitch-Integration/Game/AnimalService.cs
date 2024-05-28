@@ -12,7 +12,7 @@ namespace TLD_Twitch_Integration.Game
 			var cam = GameManager.GetCurrentCamera();
 			var errorMsg = $"Error spawning {prefabName}";
 			var layerMask = Utils.m_PhysicalCollisionLayerMask | 67108864;
-			var maxAcceptedHeightDifference = 8f;
+			var maxAcceptedHeightDifference = 6f;
 
 			GameObject prefab =
 				Addressables.LoadAssetAsync<GameObject>(prefabName).WaitForCompletion() ??

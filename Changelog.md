@@ -9,4 +9,5 @@
 - fixed an issue where manually completing or refunding a redeem could cause TTI to get stuck
 - added refunding of all open redeems in main menu. new runs now start fresh
 - fixed an issue with mod settings of status harm redeem were not applied correctly
+- slightly lowered accepted height offset on animal spawns
 - 
