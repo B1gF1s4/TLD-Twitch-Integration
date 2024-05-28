@@ -7,7 +7,7 @@ The channel using this mod needs to be at least affiliate with twitch, so custom
 ## Install
 
 - download and install [dotnet 6.0 runtime](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
-- install [MelonLoader](https://github.com/HerpDerpinstine/MelonLoader/releases/latest/download/MelonLoader.Installer.exe) **v0.6.1**
+- install [MelonLoader](https://github.com/HerpDerpinstine/MelonLoader/releases/latest/download/MelonLoader.Installer.exe) **v0.6.1!! DO NOT USE LATEST v0.6.2!!**
 - download and place [ModSettings.dll](https://github.com/DigitalzombieTLD/ModSettings/releases) in your **[TLD]/Mods/** folder
 - optional: download and place [DevConsole.dll](https://github.com/FINDarkside/TLD-Developer-Console/releases) in your **[TLD]/Mods/** folder
 	- this will enable the use of TTI commands
@@ -35,18 +35,24 @@ The channel using this mod needs to be at least affiliate with twitch, so custom
 
 ## Logging out
 
-To log out for example to connect a different twitch account go to the mods data folder /Mods/TLD_Twitch_Integration/ and delete the file login.json
+To log out for example to connect a different twitch account go to the mods data folder **[TLD]/Mods/TLD_Twitch_Integration/** and delete the file **login.json**
 
 ## Credits
 
-[B1gF1s4](https://www.twitch.tv/b1gf1s4) streams this regularly on twitch
+[B1gF1s4](https://www.twitch.tv/b1gf1s4)
 
 [ChefMaria](https://www.twitch.tv/chefmaria) banger ideas
 
-[NeilsClark](https://www.youtube.com/@ProfNeils) art work
+[NeilsClark](https://www.twitch.tv/profneils) art work
 
 [MustardGlove](https://www.twitch.tv/mustardglove) being persistent about something to use channelpoints on
 
 [TLD Modding discord](https://discord.gg/nb2jQez) general awesomeness
 
 [DigitalZombie](https://github.com/DigitalzombieTLD) super helpful pointers
+
+[Bashrobe](https://www.twitch.tv/bashrobe) redeem ideas, testing, troubleshooting
+
+### Thank you to all brave early testers!
+
+[Paraloopable](https://www.twitch.tv/paraloopable)
