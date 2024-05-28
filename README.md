@@ -53,6 +53,8 @@ To log out for example to connect a different twitch account go to the mods data
 
 [Bashrobe](https://www.twitch.tv/bashrobe) redeem ideas, testing, troubleshooting
 
-### Thank you to all brave early testers!
+### Thank you to all the brave early testers!
+
+[LBNeo](https://www.twitch.tv/lbneo)
 
 [Paraloopable](https://www.twitch.tv/paraloopable)
