@@ -167,7 +167,6 @@ namespace TLD_Twitch_Integration
 					await TwitchAdapter.CancelRedemption(AuthService.ClientId, Settings.Token.Access, userId, redeem);
 
 				ExecutionQueue.Remove(redeem.Id!);
-
 				RedemptionService.OpenRedeems.RemoveAll(r => r.Id == redeem.Id);
 			}
 			catch (InvalidTokenException)
@@ -177,6 +176,8 @@ namespace TLD_Twitch_Integration
 			catch (Exception ex)
 			{
 				Melon<Mod>.Logger.Error(ex);
+				ExecutionQueue.Remove(redeem.Id!);
+				RedemptionService.OpenRedeems.RemoveAll(r => r.Id == redeem.Id);
 			}
 		}
 
