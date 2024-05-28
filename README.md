@@ -41,17 +41,19 @@ To log out for example to connect a different twitch account go to the mods data
 
 [B1gF1s4](https://www.twitch.tv/b1gf1s4)
 
-[ChefMaria](https://www.twitch.tv/chefmaria) banger ideas
+[ChefMaria](https://www.twitch.tv/chefmaria) banger ideas, testing
 
 [NeilsClark](https://www.twitch.tv/profneils) art work
 
-[MustardGlove](https://www.twitch.tv/mustardglove) being persistent about something to use channelpoints on
+[MustardGlove](https://www.twitch.tv/mustardglove) being persistent about channelpoint redeems
 
-[TLD Modding discord](https://discord.gg/nb2jQez) general awesomeness
+[TLD Modding discord](https://discord.gg/nb2jQez) being amazing
 
-[DigitalZombie](https://github.com/DigitalzombieTLD) super helpful pointers
+[Digitalzombie](https://github.com/DigitalzombieTLD) super helpful pointers
 
 [Bashrobe](https://www.twitch.tv/bashrobe) redeem ideas, testing, troubleshooting
+
+[lazlo_vii](https://www.twitch.tv/lazlo_vii) redeem ideas
 
 ### Thank you to all the brave early testers!
 
