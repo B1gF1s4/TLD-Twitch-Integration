@@ -16,16 +16,16 @@ namespace TLD_Twitch_Integration.Commands
 				throw new RequiresRedeemRefundException(
 					"Status harm redeem is currently disabled.");
 
-			if (!Settings.ModSettings.AllowStatusHelpAwake &&
-				!Settings.ModSettings.AllowStatusHelpFull &&
-				!Settings.ModSettings.AllowStatusHelpNotThirsty &&
-				!Settings.ModSettings.AllowStatusHelpWarm)
+			if (!Settings.ModSettings.AllowStatusHarmTired &&
+				!Settings.ModSettings.AllowStatusHarmFreezing &&
+				!Settings.ModSettings.AllowStatusHarmThirsty &&
+				!Settings.ModSettings.AllowStatusHarmHungry)
 				throw new RequiresRedeemRefundException(
 					"All meters for the status harm redeem are currently disabled.");
 
-			var defaultStatus = Settings.ModSettings.AllowStatusHelpWarm ? StatusMeter.Cold :
-						Settings.ModSettings.AllowStatusHelpAwake ? StatusMeter.Fatigue :
-						Settings.ModSettings.AllowStatusHelpNotThirsty ? StatusMeter.Thirst : StatusMeter.Hunger;
+			var defaultStatus = Settings.ModSettings.AllowStatusHarmFreezing ? StatusMeter.Cold :
+						Settings.ModSettings.AllowStatusHarmTired ? StatusMeter.Fatigue :
+						Settings.ModSettings.AllowStatusHarmThirsty ? StatusMeter.Thirst : StatusMeter.Hunger;
 
 			var userInput = defaultStatus.ToString().ToLower();
 			if (redeem != null && !string.IsNullOrEmpty(redeem.UserInput))
