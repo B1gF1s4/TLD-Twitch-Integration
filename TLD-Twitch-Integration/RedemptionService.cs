@@ -32,10 +32,15 @@ namespace TLD_Twitch_Integration
 				return;
 
 			if (string.IsNullOrEmpty(GameManager.m_ActiveScene) ||
-				GameManager.m_ActiveScene == "MainMenu" ||
 				GameManager.m_ActiveScene == "Boot" ||
 				GameManager.m_ActiveScene == "Empty")
 				return;
+
+			if (GameManager.m_ActiveScene == "MainMenu")
+			{
+				await ClearOpenRedeems();
+				return;
+			}
 
 			if (GameManager.m_IsPaused)
 				return;
@@ -46,9 +51,53 @@ namespace TLD_Twitch_Integration
 			await CheckForOpenRedeems();
 		}
 
+		private static async Task ClearOpenRedeems()
+		{
+			var userId = AuthService.User?.Id ??
+				throw new NotLoggedInException();
+
+			HasOpenRedeems = false;
+
+			var tasks = new List<Task>();
+			var hasErrors = false;
+
+			foreach (var redeem in OpenRedeems)
+			{
+				if (AuthService.Status == AuthService.ConnectionStatus.Refreshing)
+					continue;
+
+				try
+				{
+					var t = TwitchAdapter.FulfillRedemption(
+						AuthService.ClientId, Settings.Token.Access, userId, redeem);
+					tasks.Add(t);
+				}
+				catch (InvalidTokenException)
+				{
+					HasOpenRedeems = true;
+					hasErrors = true;
+					var t = AuthService.RefreshToken();
+					tasks.Add(t);
+				}
+				catch (Exception ex)
+				{
+					HasOpenRedeems = true;
+					hasErrors = true;
+					Melon<Mod>.Logger.Error(ex);
+				}
+			}
+
+			await Task.WhenAll(tasks);
+
+			if (!hasErrors)
+				OpenRedeems.RemoveAll(all => true);
+		}
+
 		private static async Task CheckForOpenRedeems()
 		{
-			var userId = AuthService.User?.Id ?? throw new NotLoggedInException();
+			var userId = AuthService.User?.Id ??
+				throw new NotLoggedInException();
+
 			var redeemIdFields = Settings.Redeems.GetType()
 				.GetFields(BindingFlags.Instance | BindingFlags.Public);
 
