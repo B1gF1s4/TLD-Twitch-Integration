@@ -12,6 +12,8 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 			Color = RedeemColors.HARM,
 			IsEnabled = false,
 			IsUserInputRequired = true,
+			IsCooldownEnabled = true,
+			CooldownInSeconds = 600,
 		};
 
 		public static CustomReward BigGame = new()
@@ -22,6 +24,8 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 			Color = RedeemColors.HARM,
 			IsEnabled = false,
 			IsUserInputRequired = true,
+			IsCooldownEnabled = true,
+			CooldownInSeconds = 600,
 		};
 
 		public static CustomReward StalkingWolf = new()
@@ -32,6 +36,8 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 			Color = RedeemColors.HARM,
 			IsEnabled = false,
 			IsUserInputRequired = false,
+			IsCooldownEnabled = true,
+			CooldownInSeconds = 600,
 		};
 
 		public static CustomReward BunnyExplosion = new()
@@ -42,6 +48,8 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 			Color = RedeemColors.HELP,
 			IsEnabled = false,
 			IsUserInputRequired = false,
+			IsCooldownEnabled = true,
+			CooldownInSeconds = 600,
 		};
 	}
 }

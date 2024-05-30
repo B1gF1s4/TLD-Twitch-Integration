@@ -12,6 +12,8 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 			Color = RedeemColors.SOUND,
 			IsEnabled = false,
 			IsUserInputRequired = true,
+			IsCooldownEnabled = false,
+			CooldownInSeconds = 0,
 		};
 	}
 }

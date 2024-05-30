@@ -2,7 +2,6 @@
 
 - twolves not as pack on spawn
 - redeem refund on multiple of the same redeem at the same time
-- cooldown defaults
 - needs maximum of open redeems in execution queue
 - animal cleanup
 - prevent torch drag on floor during drop torch redeem

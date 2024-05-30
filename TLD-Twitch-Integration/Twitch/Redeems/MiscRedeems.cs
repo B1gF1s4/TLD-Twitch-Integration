@@ -12,6 +12,8 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 			Color = RedeemColors.HELP,
 			IsEnabled = false,
 			IsUserInputRequired = false,
+			IsCooldownEnabled = false,
+			CooldownInSeconds = 0,
 		};
 
 		public static CustomReward Fart = new()
@@ -22,6 +24,8 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 			Color = RedeemColors.HARM,
 			IsEnabled = false,
 			IsUserInputRequired = false,
+			IsCooldownEnabled = true,
+			CooldownInSeconds = 600,
 		};
 	}
 }

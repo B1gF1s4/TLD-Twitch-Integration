@@ -7,7 +7,8 @@
 - fixed an issue where manually rejecting or completing a redeem while in main menu would crash the game
 - separated syncing redeems enabled status from checking for deleted redeems and lowered its interval to 3s
 	- this will make redeems on twitch appear/disappear faster after enabling/disabling in settings
-	- deleted redeems on tiwtch side will still be recreated every 30s
+	- deleted redeems on twitch side will still be recreated every 30s
+- added 10min default cooldown to most redeems
 
 ## v0.1.1
 

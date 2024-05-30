@@ -116,13 +116,9 @@ namespace TLD_Twitch_Integration
 		{
 			var lastCheckedDelta = (DateTime.UtcNow - _lastCheckedForDeleted).TotalSeconds;
 			if (lastCheckedDelta < _intervalCheckForDeleted)
-			{
-				Melon<Mod>.Logger.Msg($"skipping check for deleted redeems. {lastCheckedDelta}s since last check");
 				return;
-			}
 
-			Melon<Mod>.Logger.Msg("checking for deleted redeems to recreate..");
-
+			_isSyncing = true;
 			_lastCheckedForDeleted = DateTime.UtcNow;
 
 			var userId = AuthService.User?.Id ?? throw new NotLoggedInException();
@@ -197,6 +193,8 @@ namespace TLD_Twitch_Integration
 				Settings.Redeems.Save();
 				SyncRequired = true;
 			}
+
+			_isSyncing = false;
 		}
 
 		private static async Task SyncCustomRewardsWithSettings()

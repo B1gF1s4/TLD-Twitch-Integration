@@ -11,7 +11,9 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 			Cost = 500,
 			Color = RedeemColors.HELP,
 			IsEnabled = false,
-			IsUserInputRequired = true
+			IsUserInputRequired = true,
+			IsCooldownEnabled = true,
+			CooldownInSeconds = 600,
 		};
 
 		public static CustomReward Harm = new()
@@ -21,7 +23,9 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 			Cost = 500,
 			Color = RedeemColors.HARM,
 			IsEnabled = false,
-			IsUserInputRequired = true
+			IsUserInputRequired = true,
+			IsCooldownEnabled = true,
+			CooldownInSeconds = 600,
 		};
 
 		public static CustomReward Afflictions = new()
@@ -32,6 +36,8 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 			Color = RedeemColors.HARM,
 			IsEnabled = false,
 			IsUserInputRequired = false,
+			IsCooldownEnabled = true,
+			CooldownInSeconds = 600,
 		};
 
 		public static CustomReward AfflictionCure = new()
@@ -42,6 +48,8 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 			Color = RedeemColors.HELP,
 			IsEnabled = false,
 			IsUserInputRequired = false,
+			IsCooldownEnabled = true,
+			CooldownInSeconds = 600,
 		};
 
 		public static CustomReward Bleeding = new()
@@ -52,6 +60,8 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 			Color = RedeemColors.HARM,
 			IsEnabled = false,
 			IsUserInputRequired = false,
+			IsCooldownEnabled = true,
+			CooldownInSeconds = 600,
 		};
 
 		public static CustomReward Sprain = new()
@@ -62,6 +72,8 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 			Color = RedeemColors.HARM,
 			IsEnabled = false,
 			IsUserInputRequired = false,
+			IsCooldownEnabled = true,
+			CooldownInSeconds = 600,
 		};
 
 		public static CustomReward Fristbite = new()
@@ -72,6 +84,8 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 			Color = RedeemColors.HARM,
 			IsEnabled = false,
 			IsUserInputRequired = false,
+			IsCooldownEnabled = true,
+			CooldownInSeconds = 600,
 		};
 
 		public static CustomReward Stink = new()
@@ -82,6 +96,8 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 			Color = RedeemColors.HARM,
 			IsEnabled = false,
 			IsUserInputRequired = false,
+			IsCooldownEnabled = true,
+			CooldownInSeconds = 600,
 		};
 	}
 }

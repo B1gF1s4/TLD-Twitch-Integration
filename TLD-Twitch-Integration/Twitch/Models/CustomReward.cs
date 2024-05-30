@@ -25,5 +25,11 @@ namespace TLD_Twitch_Integration.Twitch.Models
 		[JsonPropertyName("is_user_input_required")]
 		public bool IsUserInputRequired { get; set; }
 
+		[JsonPropertyName("is_global_cooldown_enabled")]
+		public bool IsCooldownEnabled { get; set; }
+
+		[JsonPropertyName("global_cooldown_seconds")]
+		public int CooldownInSeconds { get; set; }
+
 	}
 }

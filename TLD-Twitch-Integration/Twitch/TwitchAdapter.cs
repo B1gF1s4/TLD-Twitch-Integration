@@ -165,6 +165,8 @@ namespace TLD_Twitch_Integration.Twitch
 					new KeyValuePair<string, string>("is_enabled", reward.IsEnabled.ToString()),
 					new KeyValuePair<string, string>("background_color", reward.Color!),
 					new KeyValuePair<string, string>("is_user_input_required", reward.IsUserInputRequired.ToString()),
+					new KeyValuePair<string, string>("is_global_cooldown_enabled", reward.IsCooldownEnabled.ToString()),
+					new KeyValuePair<string, string>("global_cooldown_seconds", reward.CooldownInSeconds.ToString()),
 				})
 			};
 

@@ -12,6 +12,8 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 			Color = RedeemColors.WEATHER,
 			IsEnabled = false,
 			IsUserInputRequired = true,
+			IsCooldownEnabled = true,
+			CooldownInSeconds = 600,
 		};
 
 		public static CustomReward Harm = new()
@@ -22,6 +24,8 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 			Color = RedeemColors.WEATHER,
 			IsEnabled = false,
 			IsUserInputRequired = true,
+			IsCooldownEnabled = true,
+			CooldownInSeconds = 600,
 		};
 
 		public static CustomReward Aurora = new()
@@ -32,6 +36,8 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 			Color = RedeemColors.WEATHER,
 			IsEnabled = false,
 			IsUserInputRequired = false,
+			IsCooldownEnabled = true,
+			CooldownInSeconds = 600,
 		};
 
 		public static CustomReward Time = new()
@@ -42,6 +48,8 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 			Color = RedeemColors.WEATHER,
 			IsEnabled = false,
 			IsUserInputRequired = false,
+			IsCooldownEnabled = true,
+			CooldownInSeconds = 600,
 		};
 	}
 }

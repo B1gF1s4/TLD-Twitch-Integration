@@ -12,6 +12,8 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 			Color = RedeemColors.INVENTORY,
 			IsEnabled = false,
 			IsUserInputRequired = false,
+			IsCooldownEnabled = true,
+			CooldownInSeconds = 600,
 		};
 
 		public static CustomReward DropTorch = new()
@@ -22,6 +24,8 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 			Color = RedeemColors.INVENTORY,
 			IsEnabled = false,
 			IsUserInputRequired = false,
+			IsCooldownEnabled = true,
+			CooldownInSeconds = 600,
 		};
 
 		public static CustomReward DropItem = new()
@@ -32,6 +36,8 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 			Color = RedeemColors.INVENTORY,
 			IsEnabled = false,
 			IsUserInputRequired = false,
+			IsCooldownEnabled = true,
+			CooldownInSeconds = 600,
 		};
 
 		public static CustomReward SteppedStim = new()
@@ -42,6 +48,8 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 			Color = RedeemColors.INVENTORY,
 			IsEnabled = false,
 			IsUserInputRequired = false,
+			IsCooldownEnabled = true,
+			CooldownInSeconds = 600,
 		};
 
 		public static CustomReward Weapon = new()
@@ -52,6 +60,8 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 			Color = RedeemColors.HELP,
 			IsEnabled = false,
 			IsUserInputRequired = true,
+			IsCooldownEnabled = true,
+			CooldownInSeconds = 600,
 		};
 
 		public static CustomReward Bandage = new()
@@ -62,6 +72,8 @@ namespace TLD_Twitch_Integration.Twitch.Redeems
 			Color = RedeemColors.HELP,
 			IsEnabled = false,
 			IsUserInputRequired = false,
+			IsCooldownEnabled = true,
+			CooldownInSeconds = 600,
 		};
 	}
 }
