@@ -42,6 +42,9 @@ namespace TLD_Twitch_Integration
 		[Description("Enable or disable TTIs UI components")]
 		public bool ShowAlert = true;
 
+		[Name("Display Kill Counter")]
+		public bool ShowKillCounter = false;
+
 
 		// TTI Animal
 
@@ -463,6 +466,7 @@ namespace TLD_Twitch_Integration
 		public void RefreshAllFields()
 		{
 			SetFieldVisible(nameof(ShowAlert), Enabled);
+			SetFieldVisible(nameof(ShowKillCounter), Enabled);
 			SetFieldVisible(nameof(AllowWeatherHelp), Enabled);
 			SetFieldVisible(nameof(AllowWeatherHarm), Enabled);
 			SetFieldVisible(nameof(AllowWeatherAurora), Enabled);

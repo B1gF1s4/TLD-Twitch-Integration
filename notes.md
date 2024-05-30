@@ -12,7 +12,6 @@
 - add bandage redeem
 - "let there be light" spawns pickable lit torch in front of player
 - "one stone at a time" undroppable stone in inv
-- animal kill counter
 - distance walked display
 - dynamic spawn distance for wolf depending on walking speed
 - "have a breather" ghost for x seconds

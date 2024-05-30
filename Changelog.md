@@ -1,6 +1,11 @@
 # Changelog
 
-## v0.1.2
+## PRE-RELEASE-0.2.0
+
+- adds optional kill counter
+- adds moddata dependency
+
+## PRE-RELEASE-0.1.2
 
 - fixed an issue where drop item redeem was broken after rolling water
 - fixed an issue where afflictions cure redeem was enabled while afflictions were turned off
@@ -10,7 +15,7 @@
 	- deleted redeems on twitch side will still be recreated every 30s
 - added 10min default cooldown to most redeems
 
-## v0.1.1
+## PRE-RELEASE-0.1.1
 
 - added changelog
 - cleaned up AssemblyInfo
