@@ -5,6 +5,26 @@ using static TLD_Twitch_Integration.ExecutionService;
 
 namespace TLD_Twitch_Integration.Game
 {
+	[HarmonyPatch(typeof(BaseAiManager), nameof(BaseAiManager.Update))]
+	internal class BaseAiManagerUpdatePatch
+	{
+		internal static void Postfix()
+		{
+			AnimalService.CleanupSpawnedAnimals();
+		}
+	}
+
+	[HarmonyPatch(typeof(GameManager), nameof(GameManager.SetActiveScene), new Type[] { typeof(string) })]
+	internal class GameManagerSetActiveScenePatch
+	{
+		internal static void Prefix(ref string sceneName)
+		{
+			if (!string.IsNullOrEmpty(sceneName) &&
+				GameManager.m_ActiveScene != sceneName)
+				AnimalService.ResetSpawnedAnimals();
+		}
+	}
+
 	[HarmonyPatch(typeof(GameManager), nameof(GameManager.Update))]
 	internal class GameManagerUpdatePatch
 	{

@@ -4,6 +4,10 @@
 
 - adds optional kill counter
 - adds moddata dependency
+- further lowered accepted height offset for animal spawns
+- adds distance traveled display
+- adds animals in range counter
+- adds animal cleanup outside of range
 
 ## PRE-RELEASE-0.1.2
 

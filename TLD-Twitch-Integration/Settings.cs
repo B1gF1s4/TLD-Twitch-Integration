@@ -1,4 +1,5 @@
-﻿using ModSettings;
+﻿using ModData;
+using ModSettings;
 using System.Reflection;
 using TLD_Twitch_Integration.Commands;
 using TLD_Twitch_Integration.Twitch.Redeems;
@@ -10,6 +11,7 @@ namespace TLD_Twitch_Integration
 		internal static readonly Login Token = new();
 		internal static readonly ModSettings ModSettings = new();
 		internal static readonly CustomRewardIdMapping Redeems = new();
+		internal static readonly ModDataManager DataManager = new(nameof(TLD_Twitch_Integration), false);
 
 		public static void OnLoad()
 		{
@@ -42,8 +44,12 @@ namespace TLD_Twitch_Integration
 		[Description("Enable or disable TTIs UI components")]
 		public bool ShowAlert = true;
 
-		[Name("Display Kill Counter")]
-		public bool ShowKillCounter = false;
+		[Name("Display Stats")]
+		public bool ShowStats = false;
+
+		[Name("Animal Cleanup Distance")]
+		[Slider(10f, 400f)]
+		public float AnimalCleanupDistance = 200f;
 
 
 		// TTI Animal
@@ -466,7 +472,8 @@ namespace TLD_Twitch_Integration
 		public void RefreshAllFields()
 		{
 			SetFieldVisible(nameof(ShowAlert), Enabled);
-			SetFieldVisible(nameof(ShowKillCounter), Enabled);
+			SetFieldVisible(nameof(ShowStats), Enabled);
+			SetFieldVisible(nameof(AnimalCleanupDistance), Enabled);
 			SetFieldVisible(nameof(AllowWeatherHelp), Enabled);
 			SetFieldVisible(nameof(AllowWeatherHarm), Enabled);
 			SetFieldVisible(nameof(AllowWeatherAurora), Enabled);

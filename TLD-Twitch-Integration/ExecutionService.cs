@@ -15,7 +15,7 @@ namespace TLD_Twitch_Integration
 		public static Dictionary<string, Redemption> ExecutionQueue { get; set; } = new();
 
 
-		private const int _interval = 8;
+		private const int _interval = 7;
 
 		private static DateTime _lastUpdated;
 
