@@ -5,6 +5,9 @@
 - fixed an issue where drop item redeem was broken after rolling water
 - fixed an issue where afflictions cure redeem was enabled while afflictions were turned off
 - fixed an issue where manually rejecting or completing a redeem while in main menu would crash the game
+- separated syncing redeems enabled status from checking for deleted redeems and lowered its interval to 3s
+	- this will make redeems on twitch appear/disappear faster after enabling/disabling in settings
+	- deleted redeems on tiwtch side will still be recreated every 30s
 
 ## v0.1.1
 

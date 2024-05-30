@@ -13,9 +13,15 @@ namespace TLD_Twitch_Integration
 
 		public static bool SyncRequired { get; set; } = true;
 
-		private const int _interval = 30;
+		private const int _interval = 3;
+
+		private const int _intervalCheckForDeleted = 30;
 
 		private static DateTime _lastUpdated;
+
+		private static DateTime _lastCheckedForDeleted;
+
+		private static bool _isSyncing = false;
 
 		public static async Task OnUpdate()
 		{
@@ -25,6 +31,9 @@ namespace TLD_Twitch_Integration
 			_lastUpdated = DateTime.UtcNow;
 
 			if (!AuthService.IsConnected)
+				return;
+
+			if (_isSyncing)
 				return;
 
 			if (!IsInitialized)
@@ -43,6 +52,8 @@ namespace TLD_Twitch_Integration
 
 		private static async Task CreateCustomRewards()
 		{
+			_isSyncing = true;
+
 			var type = Settings.Redeems.GetType();
 			var fields = type.GetFields(BindingFlags.Instance | BindingFlags.Public);
 			var needsTokenRefresh = false;
@@ -97,10 +108,23 @@ namespace TLD_Twitch_Integration
 				Melon<Mod>.Logger.Msg($"finished creating redeems. saving IDs.");
 				Settings.Redeems.Save();
 			}
+
+			_isSyncing = false;
 		}
 
 		private static async Task CheckForDeletedCustomRewards()
 		{
+			var lastCheckedDelta = (DateTime.UtcNow - _lastCheckedForDeleted).TotalSeconds;
+			if (lastCheckedDelta < _intervalCheckForDeleted)
+			{
+				Melon<Mod>.Logger.Msg($"skipping check for deleted redeems. {lastCheckedDelta}s since last check");
+				return;
+			}
+
+			Melon<Mod>.Logger.Msg("checking for deleted redeems to recreate..");
+
+			_lastCheckedForDeleted = DateTime.UtcNow;
+
 			var userId = AuthService.User?.Id ?? throw new NotLoggedInException();
 			var rewardsOnTwitch = new List<CustomReward>();
 
@@ -178,6 +202,8 @@ namespace TLD_Twitch_Integration
 		private static async Task SyncCustomRewardsWithSettings()
 		{
 			Melon<Mod>.Logger.Msg($"syncing twitch redeems with game settings ..");
+
+			_isSyncing = true;
 
 			try
 			{
@@ -344,6 +370,7 @@ namespace TLD_Twitch_Integration
 			finally
 			{
 				SyncRequired = false;
+				_isSyncing = false;
 			}
 		}
 
