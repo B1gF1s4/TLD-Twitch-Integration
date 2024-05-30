@@ -3,9 +3,10 @@
 - twolves not as pack on spawn
 - redeem refund on multiple of the same redeem at the same time
 - cooldown defaults
-- status help not working
 - needs maximum of open redeems in execution queue
 - fix bug when clearing queue in main menu with at least one of the open redeems refunded manually
+- animal cleanup
+- - drop item redeem getting stuck sometimes
 
 ## Feature Ideas
 
@@ -16,3 +17,4 @@
 - animal kill counter
 - distance walked display
 - dynamic spawn distance for wolf depending on walking speed
+- "have a breather" ghost for x seconds

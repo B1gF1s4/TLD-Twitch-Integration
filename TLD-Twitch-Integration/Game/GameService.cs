@@ -53,7 +53,6 @@ namespace TLD_Twitch_Integration.Game
 			IsAuroraFading = GetIsAuroraFading();
 			IsHoldingTorchLike = GetIsHoldingTorchLike();
 			HasTorchLikeInInventory = GetHasTorchLikeInInventory();
-			GearItems = GetItemsInInventory();
 		}
 
 		public static void InitAudio()
@@ -184,19 +183,5 @@ namespace TLD_Twitch_Integration.Game
 			return true;
 		}
 
-		private static Il2CppSystem.Collections.Generic.List<GearItem> GetItemsInInventory()
-		{
-			var filter = (GearItem gi) =>
-			{
-				return !string.IsNullOrEmpty(gi.name) &&
-				gi.m_NarrativeCollectibleItem == null;
-			};
-
-			var list = new Il2CppSystem.Collections.Generic.List<GearItem>();
-
-			GameManager.GetInventoryComponent().GetGearItems(filter, list);
-
-			return list;
-		}
 	}
 }
