@@ -173,6 +173,13 @@ namespace TLD_Twitch_Integration
 			{
 				await AuthService.RefreshToken();
 			}
+			catch (RedeemAlreadyProcessedException)
+			{
+				Melon<Mod>.Logger.Msg($"redeem {redeem.CustomReward?.Title} by {redeem.UserName} " +
+						$"was completed or rejected manually. removing it from TTI processing list.");
+				ExecutionQueue.Remove(redeem.Id!);
+				RedemptionService.OpenRedeems.RemoveAll(r => r.Id == redeem.Id);
+			}
 			catch (Exception ex)
 			{
 				Melon<Mod>.Logger.Error(ex);

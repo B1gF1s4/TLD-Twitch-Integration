@@ -3,6 +3,8 @@
 ## v0.1.2
 
 - fixed an issue where drop item redeem was broken after rolling water
+- fixed an issue where afflictions cure redeem was enabled while afflictions were turned off
+- fixed an issue where manually rejecting or completing a redeem while in main menu would crash the game
 
 ## v0.1.1
 

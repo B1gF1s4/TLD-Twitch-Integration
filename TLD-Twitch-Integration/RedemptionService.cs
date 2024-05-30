@@ -17,6 +17,7 @@ namespace TLD_Twitch_Integration
 		private const int _interval = 5;
 
 		private static DateTime _lastUpdated;
+		private static bool _clearingOpenRedeems = false;
 
 		public static async Task OnUpdate()
 		{
@@ -56,7 +57,11 @@ namespace TLD_Twitch_Integration
 			var userId = AuthService.User?.Id ??
 				throw new NotLoggedInException();
 
+			if (_clearingOpenRedeems)
+				return;
+
 			HasOpenRedeems = false;
+			_clearingOpenRedeems = true;
 
 			var tasks = new List<Task>();
 			var hasErrors = false;
@@ -66,31 +71,37 @@ namespace TLD_Twitch_Integration
 				if (AuthService.Status == AuthService.ConnectionStatus.Refreshing)
 					continue;
 
-				try
-				{
-					var t = TwitchAdapter.FulfillRedemption(
+				var t = TwitchAdapter.CancelRedemption(
 						AuthService.ClientId, Settings.Token.Access, userId, redeem);
-					tasks.Add(t);
-				}
-				catch (InvalidTokenException)
-				{
-					HasOpenRedeems = true;
-					hasErrors = true;
-					var t = AuthService.RefreshToken();
-					tasks.Add(t);
-				}
-				catch (Exception ex)
-				{
-					HasOpenRedeems = true;
-					hasErrors = true;
-					Melon<Mod>.Logger.Error(ex);
-				}
+				tasks.Add(t);
 			}
 
-			await Task.WhenAll(tasks);
+			try
+			{
+				await Task.WhenAll(tasks);
+			}
+			catch (InvalidTokenException)
+			{
+				HasOpenRedeems = true;
+				hasErrors = true;
+				await AuthService.RefreshToken();
+			}
+			catch (RedeemAlreadyProcessedException)
+			{
+				Melon<Mod>.Logger.Msg($"one of the redeems was completed or rejected manually. " +
+					$"removing it from TTI processing list.");
+			}
+			catch (Exception ex)
+			{
+				HasOpenRedeems = true;
+				hasErrors = true;
+				Melon<Mod>.Logger.Error(ex);
+			}
 
 			if (!hasErrors)
 				OpenRedeems.RemoveAll(all => true);
+
+			_clearingOpenRedeems = false;
 		}
 
 		private static async Task CheckForOpenRedeems()

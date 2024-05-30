@@ -251,7 +251,8 @@ namespace TLD_Twitch_Integration
 				await UpdateCustomReward(
 					Settings.Redeems.GetIdByRedeemName(RedeemNames.STATUS_AFFLICTION_CURE),
 					Settings.ModSettings.Enabled &&
-					Settings.ModSettings.AllowAfflictionCure,
+					Settings.ModSettings.AllowAfflictionCure &&
+					Settings.ModSettings.AllowAfflictions,
 					RedeemNames.STATUS_AFFLICTION_CURE);
 
 				await UpdateCustomReward(

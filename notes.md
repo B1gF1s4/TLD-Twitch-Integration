@@ -4,7 +4,6 @@
 - redeem refund on multiple of the same redeem at the same time
 - cooldown defaults
 - needs maximum of open redeems in execution queue
-- fix bug when clearing queue in main menu with at least one of the open redeems refunded manually
 - animal cleanup
 
 ## Feature Ideas

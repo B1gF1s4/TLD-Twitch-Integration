@@ -345,6 +345,9 @@ namespace TLD_Twitch_Integration.Twitch
 				if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
 					throw new InvalidTokenException();
 
+				if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
+					throw new RedeemAlreadyProcessedException(redemption.CustomReward?.Title!);
+
 				throw new UnhandledErrorResponseException(response.StatusCode, responseContent);
 			}
 		}
