@@ -6,7 +6,6 @@
 - needs maximum of open redeems in execution queue
 - fix bug when clearing queue in main menu with at least one of the open redeems refunded manually
 - animal cleanup
-- - drop item redeem getting stuck sometimes
 
 ## Feature Ideas
 

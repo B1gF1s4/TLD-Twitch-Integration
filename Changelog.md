@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.1.2
+
+- fixed an issue where drop item redeem was broken after rolling water
+
 ## v0.1.1
 
 - added changelog
