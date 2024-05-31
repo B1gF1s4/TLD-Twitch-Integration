@@ -3,11 +3,16 @@
 ## PRE-RELEASE-0.2.0
 
 - adds optional kill counter
-- adds moddata dependency
 - further lowered accepted height offset for animal spawns
 - adds distance traveled display
 - adds animals in range counter
 - adds animal cleanup outside of range
+- added fury score
+	- point system used in the hunting tourney fury then silence organized by [ChefMaria](https://www.twitch.tv/chefmaria) 
+- fixed an issue where inventory was considered empty during drop torch redeem
+- fixed an issue where inventory was considered empty during team no pants redeem
+- fixed an issue where animal cleanup could cause CTD if animals were inactive and outside radius
+
 
 ## PRE-RELEASE-0.1.2
 

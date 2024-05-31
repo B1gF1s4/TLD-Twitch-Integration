@@ -1,5 +1,4 @@
-﻿using ModData;
-using ModSettings;
+﻿using ModSettings;
 using System.Reflection;
 using TLD_Twitch_Integration.Commands;
 using TLD_Twitch_Integration.Twitch.Redeems;
@@ -11,7 +10,7 @@ namespace TLD_Twitch_Integration
 		internal static readonly Login Token = new();
 		internal static readonly ModSettings ModSettings = new();
 		internal static readonly CustomRewardIdMapping Redeems = new();
-		internal static readonly ModDataManager DataManager = new(nameof(TLD_Twitch_Integration), false);
+		//internal static readonly ModDataManager DataManager = new(nameof(TLD_Twitch_Integration), false);
 
 		public static void OnLoad()
 		{

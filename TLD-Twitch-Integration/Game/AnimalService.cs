@@ -1,4 +1,5 @@
 ﻿using Il2Cpp;
+using Il2CppTLD.Stats;
 using TLD_Twitch_Integration.Exceptions;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -67,23 +68,6 @@ namespace TLD_Twitch_Integration.Game
 			_spawnedAnimals.Clear();
 		}
 
-		public static List<BaseAi> GetAliveBaseAiInRange()
-		{
-			var playerPos = GameManager.GetCurrentCamera().transform.position;
-			var aisInRange = AiUtils.GetAisWithinRange(playerPos,
-				Settings.ModSettings.AnimalCleanupDistance);
-
-			var list = new List<BaseAi>();
-
-			foreach (var ai in aisInRange)
-			{
-				if (ai.GetNormalizedCondition() > 0.01f)
-					list.Add(ai);
-			}
-
-			return list;
-		}
-
 		public static void CleanupSpawnedAnimals()
 		{
 			if (_spawnedAnimals.Count <= 0)
@@ -102,19 +86,26 @@ namespace TLD_Twitch_Integration.Game
 
 			foreach (var animalObj in _spawnedAnimals)
 			{
-				BaseAi animal = animalObj.GetComponent<BaseAi>() ??
-					throw new RequiresRedeemRefundException("error getting base ai component");
+				BaseAi animal = animalObj.GetComponent<BaseAi>();
+
+				if (animal == null)
+				{
+					animalObjsToRemove.Add(animalObj);
+					continue;
+				}
 
 				if (!animal.isActiveAndEnabled)
 				{
 					animal.Despawn();
 					animalObjsToRemove.Add(animalObj);
+					continue;
 				}
 
 				if (!aisInRange.Contains(animal))
 				{
 					animal.Despawn();
 					animalObjsToRemove.Add(animalObj);
+					continue;
 				}
 			}
 
@@ -122,6 +113,17 @@ namespace TLD_Twitch_Integration.Game
 			{
 				_spawnedAnimals.Remove(objToRemove);
 			}
+		}
+
+		public static int GetFuryScore()
+		{
+			var bunnies = (int)StatsManager.GetValue(StatID.RabbitsKilled);
+			var deer = (int)StatsManager.GetValue(StatID.StagsKilled);
+			var wolves = (int)StatsManager.GetValue(StatID.WolvesKilled);
+			var bears = (int)StatsManager.GetValue(StatID.BearsKilled);
+			var moose = (int)StatsManager.GetValue(StatID.MooseKilled);
+
+			return bunnies + deer * 3 + wolves * 5 + bears * 25 + moose * 100;
 		}
 	}
 }
