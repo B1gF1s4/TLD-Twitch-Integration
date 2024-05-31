@@ -95,7 +95,9 @@ namespace TLD_Twitch_Integration.Game
 
 			_lastCleanup = DateTime.UtcNow;
 
-			var aisInRange = GetAliveBaseAiInRange();
+			var playerPos = GameManager.GetCurrentCamera().transform.position;
+			var aisInRange = AiUtils.GetAisWithinRange(playerPos,
+				Settings.ModSettings.AnimalCleanupDistance);
 			var animalObjsToRemove = new List<GameObject>();
 
 			foreach (var animalObj in _spawnedAnimals)

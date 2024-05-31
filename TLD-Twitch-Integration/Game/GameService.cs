@@ -10,8 +10,6 @@ namespace TLD_Twitch_Integration.Game
 		public static bool IsAuroraFading { get; set; }
 		public static bool IsHoldingTorchLike { get; set; }
 		public static bool HasTorchLikeInInventory { get; set; }
-		public static Il2CppSystem.Collections.Generic.List<GearItem> GearItems
-		{ get; set; } = new();
 
 		public static WeatherStage WeatherToChange { get; set; }
 			= WeatherStage.Undefined;

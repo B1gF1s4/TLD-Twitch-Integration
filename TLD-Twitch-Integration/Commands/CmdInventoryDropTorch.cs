@@ -20,10 +20,6 @@ namespace TLD_Twitch_Integration.Commands
 			if (GameService.IsMenuOpen())
 				return "";
 
-			if (GameService.GearItems.Count <= 0)
-				throw new RequiresRedeemRefundException(
-					"Player has no items in inventory.");
-
 			if (!GameService.HasTorchLikeInInventory)
 				throw new RequiresRedeemRefundException(
 					"Player has no torch in inventory.");

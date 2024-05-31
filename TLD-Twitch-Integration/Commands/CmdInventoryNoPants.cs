@@ -20,10 +20,6 @@ namespace TLD_Twitch_Integration.Commands
 			if (GameService.IsMenuOpen())
 				return "";
 
-			if (GameService.GearItems.Count <= 0)
-				throw new RequiresRedeemRefundException(
-					"Player has no items in inventory.");
-
 			var player = GameManager.GetPlayerManagerComponent();
 
 			var pantsInner = player.GetClothingInSlot(ClothingRegion.Legs, ClothingLayer.Top);

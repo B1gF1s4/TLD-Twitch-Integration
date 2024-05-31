@@ -64,7 +64,11 @@ namespace TLD_Twitch_Integration.Gui
 					return;
 
 				if (!Settings.ModSettings.ShowStats)
+				{
+					__instance.m_DisplayVistaNotification = false;
+					__instance.m_VistaNotification.alpha = 0f;
 					return;
+				}
 
 				if (__instance.m_VistaNotificationTitle != null)
 					__instance.m_VistaNotificationTitle.text = "";
