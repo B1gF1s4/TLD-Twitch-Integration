@@ -199,8 +199,6 @@ namespace TLD_Twitch_Integration
 
 		private static async Task SyncCustomRewardsWithSettings()
 		{
-			Melon<Mod>.Logger.Msg($"syncing twitch redeems with game settings ..");
-
 			_isSyncing = true;
 
 			try
@@ -379,7 +377,6 @@ namespace TLD_Twitch_Integration
 			try
 			{
 				await TwitchAdapter.UpdateCustomReward(AuthService.ClientId, Settings.Token.Access, userId, rewardId, isEnabled);
-				Melon<Mod>.Logger.Msg($"updated enabled status of {rewardName} to {isEnabled}");
 			}
 			catch (InvalidTokenException)
 			{

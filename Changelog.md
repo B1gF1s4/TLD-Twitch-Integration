@@ -1,5 +1,9 @@
 # Changelog
 
+## PRE-RELEASE-0.2.1
+
+- reduced logging to prevent outofmem exceptions
+
 ## PRE-RELEASE-0.2.0
 
 - adds optional kill counter

@@ -106,7 +106,6 @@ namespace TLD_Twitch_Integration
 			GameService.Update();
 
 			var defaultTitle = Settings.Redeems.GetRedeemNameById(redeem.CustomReward?.Id!);
-			Melon<Mod>.Logger.Msg($"trying to execute redeem {defaultTitle}");
 
 			var redeemMessage = "";
 			try
@@ -117,9 +116,6 @@ namespace TLD_Twitch_Integration
 			{
 				await UpdateRedemption(userId, redeem, false);
 
-				Melon<Mod>.Logger.Msg($"'{redeem.CustomReward?.Title}' redeemed by {redeem.UserName} refunded. " +
-					$"- {refund.Message}");
-
 				if (Settings.ModSettings.ShowAlert)
 					HUDMessage.AddMessage($"{redeem.UserName}'s Redeem refunded. -> {refund.Message}",
 						_interval - 1, true, true);
@@ -129,8 +125,6 @@ namespace TLD_Twitch_Integration
 
 			if (string.IsNullOrEmpty(redeemMessage))
 			{
-				Melon<Mod>.Logger.Msg($"redeem skipped, trying next");
-
 				if (!ExecutionQueue.ContainsKey(redeem.Id!))
 					ExecutionQueue.Add(redeem.Id!, redeem);
 
@@ -148,8 +142,6 @@ namespace TLD_Twitch_Integration
 			}
 			else
 			{
-				Melon<Mod>.Logger.Msg($"redeem executed, removing from redemption queue on twitch");
-
 				if (Settings.ModSettings.ShowAlert)
 					HUDMessage.AddMessage(redeemMessage, _interval - 1, true, true);
 
