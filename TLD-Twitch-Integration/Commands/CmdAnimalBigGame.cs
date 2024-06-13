@@ -4,7 +4,7 @@ using TLD_Twitch_Integration.Twitch.Models;
 
 namespace TLD_Twitch_Integration.Commands
 {
-    public class CmdAnimalBigGame : CommandBase
+	public class CmdAnimalBigGame : CommandBase
 	{
 
 		public CmdAnimalBigGame() : base("tti_animal_big")
@@ -38,6 +38,12 @@ namespace TLD_Twitch_Integration.Commands
 				prefabName = userInputAnimal.Contains("bear") ? "WILDLIFE_Bear" :
 					userInputAnimal.Contains("moose") ? "WILDLIFE_Moose" : prefabName;
 			}
+
+			if (prefabName.Contains("Bear") && !Settings.ModSettings.AllowBigGameBear)
+				prefabName = "WILDLIFE_Moose";
+
+			if (prefabName.Contains("Moose") && !Settings.ModSettings.AllowBigGameMoose)
+				prefabName = "WILDLIFE_Bear";
 
 			var dist = prefabName.Contains("Bear") ?
 				Settings.ModSettings.DistanceBear :
