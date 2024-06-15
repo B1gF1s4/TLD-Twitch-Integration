@@ -2,7 +2,13 @@
 
 ## PRE-RELEASE-0.2.1
 
-- reduced logging to prevent outofmem exceptions
+- reduced logging to prevent out-of-mem exceptions
+- fixes an issue where moose still would spawn on big game redeem while it was disabled
+- adds different ui types that can be toggled in med settings
+	- None - no stats ui will be displayed
+	- Chat Vs Streamer - distance travelled and kill counter is displayed
+	- Fury Then Silence - kill counter, accuracy and score is displayed
+	- Wolf Wrangler - time and wolf kill counter is displayed
 
 ## PRE-RELEASE-0.2.0
 

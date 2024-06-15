@@ -12,6 +12,8 @@
 - decouple afflictions from affliction cure
 - fix redeem refund in main menu
 - cleanup animal spawns throws exception in some cases when getting baseai component from gameobject
+- fix game crash when connection lost
+- fix accuracy not being calcluated correctly
 
 ## Feature Ideas
 

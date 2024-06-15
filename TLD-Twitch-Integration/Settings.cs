@@ -1,6 +1,7 @@
 ﻿using ModSettings;
 using System.Reflection;
 using TLD_Twitch_Integration.Commands;
+using TLD_Twitch_Integration.Gui;
 using TLD_Twitch_Integration.Twitch.Redeems;
 
 namespace TLD_Twitch_Integration
@@ -43,12 +44,12 @@ namespace TLD_Twitch_Integration
 		[Description("Enable or disable TTIs UI components")]
 		public bool ShowAlert = true;
 
-		[Name("Display Stats")]
-		public bool ShowStats = false;
+		[Name("Display Mode")]
+		public Display.DisplayMode DisplayMode = Display.DisplayMode.None;
 
 		[Name("Animal Cleanup Distance")]
-		[Slider(10f, 400f)]
-		public float AnimalCleanupDistance = 200f;
+		[Slider(5f, 200f)]
+		public float AnimalCleanupDistance = 100f;
 
 
 		// TTI Animal
@@ -397,6 +398,9 @@ namespace TLD_Twitch_Integration
 		{
 			base.OnConfirm();
 			CustomRewardsService.SyncRequired = true;
+
+			if (DisplayMode != Display.CurrentDisplayMode)
+				Display.DisplayModeHasChanged = true;
 		}
 
 		protected override void OnChange(FieldInfo field, object? oldValue, object? newValue)
@@ -471,7 +475,7 @@ namespace TLD_Twitch_Integration
 		public void RefreshAllFields()
 		{
 			SetFieldVisible(nameof(ShowAlert), Enabled);
-			SetFieldVisible(nameof(ShowStats), Enabled);
+			SetFieldVisible(nameof(DisplayMode), Enabled);
 			SetFieldVisible(nameof(AnimalCleanupDistance), Enabled);
 			SetFieldVisible(nameof(AllowWeatherHelp), Enabled);
 			SetFieldVisible(nameof(AllowWeatherHarm), Enabled);

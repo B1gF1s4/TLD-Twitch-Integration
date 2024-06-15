@@ -115,7 +115,7 @@ namespace TLD_Twitch_Integration.Game
 			}
 		}
 
-		public static int GetFuryScore()
+		public static int GetFuryScore(bool includeAccuracy)
 		{
 			var bunnies = (int)StatsManager.GetValue(StatID.RabbitsKilled);
 			var deer = (int)StatsManager.GetValue(StatID.StagsKilled);
@@ -123,7 +123,32 @@ namespace TLD_Twitch_Integration.Game
 			var bears = (int)StatsManager.GetValue(StatID.BearsKilled);
 			var moose = (int)StatsManager.GetValue(StatID.MooseKilled);
 
-			return bunnies + deer * 3 + wolves * 5 + bears * 25 + moose * 100;
+			var val = bunnies + deer * 3 + wolves * 5 + bears * 25 + moose * 100;
+
+			if (includeAccuracy)
+			{
+				var acc = GetAccuracyValue();
+
+				if (acc >= 1)
+					val += 1000;
+				else if (acc >= 0.9)
+					val += 100;
+
+				// TODO: implement actual accuracy bonuses
+			}
+
+			return val;
+		}
+
+		public static double GetAccuracyValue()
+		{
+			var shotsTaken = (int)StatsManager.GetValue(StatID.BowShot);
+			var shotsHit = (int)StatsManager.GetValue(StatID.SuccessfulHits_Bow);
+
+			if (shotsTaken <= 0)
+				return 0;
+
+			return shotsHit / shotsTaken;
 		}
 	}
 }
