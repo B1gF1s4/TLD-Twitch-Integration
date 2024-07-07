@@ -9,6 +9,7 @@
 	- Chat Vs Streamer - distance travelled and kill counter is displayed
 	- Fury Then Silence - kill counter, accuracy and score is displayed
 	- Wolf Wrangler - time and wolf kill counter is displayed
+- updated dependency links in install instructions
 
 ## PRE-RELEASE-0.2.0
 
